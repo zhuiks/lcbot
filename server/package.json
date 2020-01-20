@@ -5,32 +5,28 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon src/index.js",
-    "start:ci": "node src/index.js"
+    "start": "nodemon -r dotenv/config src/index.js",
+    "start:ci": "node -r dotenv/config src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-datasource-mongodb": "^0.2.1",
-    "apollo-server": "2.6.1",
-    "apollo-server-testing": "2.6.1",
-    "graphql": "^14.2.1",
-    "mongodb": "^3.5.1",
-    "nodemon": "^1.18.4",
-    "sequelize": "^4.39.0",
-    "sqlite3": "^4.0.3"
+    "apollo-server": "^2.9.16",
+    "apollo-server-testing": "^2.9.16",
+    "graphql": "*",
+    "mongodb": "*",
+    "nodemon": "^2.0.2"
   },
   "devDependencies": {
-    "apollo-link": "^1.2.3",
-    "apollo-link-http": "^1.5.5",
-    "jest": "^23.6.0",
-    "nock": "^10.0.2",
-    "node-fetch": "^2.2.1"
+    "apollo-link": "*",
+    "apollo-link-http": "*",
+    "dotenv": "^8.2.0",
+    "jest": "*"
   },
   "jest": {
     "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/__utils"
+      "/node_modules/"
     ]
   }
 }

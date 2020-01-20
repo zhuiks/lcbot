@@ -20,7 +20,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-      saveSong(title: String, text: [String], link: String): String
+      saveSong(title: String, text: [String], links: [String]): String
   }
 `;
 
