@@ -6,6 +6,7 @@ const typeDefs = gql`
       title: String
       text: [Slide]!
       links: [String]
+      url: String
   }
 
   type Slide {
@@ -19,7 +20,13 @@ const typeDefs = gql`
   }
 
   type Mutation {
-      saveSong(title: String, text: [String], links: [String]): String
+      saveSong(title: String, text: [String], links: [String]): UpdateResponce
+  }
+
+  type UpdateResponce {
+    success: Boolean!
+    song: Song
+    message: String
   }
 `;
 

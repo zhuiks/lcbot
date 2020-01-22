@@ -7,7 +7,16 @@ module.exports = {
     },
   Mutation: {
       saveSong: async (_, {title, text, links}, { dataSources }) => {
-        return dataSources.songs.saveSong({title, text, links});      
+        const songId = await dataSources.songs.saveSong({title, text, links});
+        const song = await dataSources.songs.getSong(songId);
+        return {
+          success: songId!=false && song.id!=false,
+          song,
+          message: 
+            songId && song.id
+            ? "Song saved successfully"
+            : "Something went wrong"
+        }
       }
   }
 };  
