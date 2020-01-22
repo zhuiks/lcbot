@@ -1,16 +1,23 @@
 const { MongoDataSource } = require('apollo-datasource-mongodb');
 
 class Songs extends MongoDataSource {
-  getAllSongs() {
-    return this.collection.find();
+  constructor(db) {
+    if(!db || !db.collection) {
+      throw new Error('DB is not connected... :(');
+    }
+    super(db.collection('songs'));
+  }
+  
+  async getAllSongs() {
+    return this.collection.find().toArray();
   }
 
-  getSong(songId) {
+  async getSong(songId) {
     return this.collection.findOne({_id: songId})
   }
 
-  saveSong (song) {
-    this.collection.insertOne(song);
+  async saveSong (song) {
+    return this.collection.insertOne(song);
   }
 }
 
