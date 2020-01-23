@@ -1,7 +1,7 @@
 export { default as Button } from './button';
 export { default as Footer } from './footer';
 export { default as Header } from './header';
-// export { default as LaunchDetail } from './launch-detail';
+export { default as SongDetail } from './song-detail';
 export { default as SongRow } from './song-row';
 export { default as Loading } from './loading';
 // export { default as LoginForm } from './login-form';

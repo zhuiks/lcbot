@@ -4,10 +4,10 @@ import gql from 'graphql-tag';
 
 import { SongRow, Header, Button, Loading } from '../components';
 import { RouteComponentProps } from '@reach/router';
-import * as GetLaunchListTypes from './__generated__/GetLaunchList';
+import * as GetSongListTypes from './__generated__/GetSongList';
 
 const GET_SONGS = gql`
-  query songList {
+  query GetSongList {
     songs {
       id
       title
@@ -17,14 +17,13 @@ const GET_SONGS = gql`
 
 interface SongsProps extends RouteComponentProps { }
 
-const Songs: React.FC<LaunchesProps> = () => {
+const Songs: React.FC<SongsProps> = () => {
   const { 
     data, 
     loading, 
     error
   } = useQuery<
-    GetLaunchListTypes.GetLaunchList, 
-    GetLaunchListTypes.GetLaunchListVariables
+    GetSongListTypes.GetSongList
   >(GET_SONGS);
 
   if (loading) return <Loading />;
@@ -33,10 +32,9 @@ const Songs: React.FC<LaunchesProps> = () => {
 
   return (
     <Fragment>
-      <Header />
+      <Header/>
       {data.songs &&
-        data.songs.songs &&
-        data.songs.songs.map((song: any) => (
+        data.songs.map((song: any) => (
           <SongRow key={song.id} song={song} />
         ))}
     </Fragment>
