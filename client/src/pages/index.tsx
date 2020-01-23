@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Router } from '@reach/router';
 
-// import Launch from './launch';
+import Song from './song';
 import Songs from './songs';
 // import Cart from './cart';
 // import Profile from './profile';
@@ -13,7 +13,7 @@ export default function Pages() {
       <PageContainer>
         <Router primary={false} component={Fragment}>
           <Songs path="/" />
-          {/* <Launch path="launch/:launchId" /> */}
+          <Song path="song/:songId" />
           {/* <Cart path="cart" /> */}
           {/* <Profile path="profile" /> */}
         </Router>

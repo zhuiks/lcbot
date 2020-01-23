@@ -17,11 +17,8 @@ export default ({ song }: any) => {
   return (
     <StyledLink
       to={`/song/${id}`}
-      style={{
-        backgroundImage: getBackgroundImage(id),
-      }}
     >
-      <h5>{song.title}</h5>
+      <h5>{title}</h5>
     </StyledLink>
   );
 };
@@ -33,7 +30,7 @@ export default ({ song }: any) => {
 export const cardClassName = css({
   padding: `${unit * 4}px ${unit * 5}px`,
   borderRadius: 7,
-  color: 'white',
+  color: '#333',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
 });
@@ -41,7 +38,7 @@ export const cardClassName = css({
 const padding = unit * 2;
 const StyledLink = styled(Link)(cardClassName, {
   display: 'block',
-  height: 193,
+  height: 50,
   marginTop: padding,
   textDecoration: 'none',
   ':not(:last-child)': {
