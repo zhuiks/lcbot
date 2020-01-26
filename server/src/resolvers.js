@@ -2,8 +2,8 @@ module.exports = {
   Query: {
     songs: (_, __, { dataSources }) =>
       dataSources.songs.getAllSongs(),
-    song: (_, { songId }, { dataSources }) =>
-      dataSources.songs.getSong(songId)
+    song: (_, { id }, { dataSources }) => 
+      dataSources.songs.getSong(id)
     },
   Mutation: {
       saveSong: async (_, {title, text, links}, { dataSources }) => {

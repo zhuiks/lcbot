@@ -4,15 +4,26 @@ const typeDefs = gql`
   type Song {
       id: ID!
       title: String
-      text: [Slide]!
+      text: [String]!
       links: [String]
       url: String
   }
 
   type Slide {
       id: ID!
+      type: SlideType
       lines: [String!]!
   }
+
+  enum SlideType {
+    INTRO
+    VERSE
+    PRE
+    CHORUS
+    BRIDGE
+    SOLO
+    OUT
+  } 
 
   type Query {
     songs: [Song]!
