@@ -12,6 +12,7 @@ export const GET_SONG_DETAILS = gql`
     song(id: $songId) {
       id
       title
+      text
     }
   }
 `;

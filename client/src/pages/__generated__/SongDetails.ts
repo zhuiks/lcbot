@@ -10,6 +10,7 @@ export interface SongDetails_song {
   __typename: "Song";
   id: string;
   title: string | null;
+  text: (string | null)[];
 }
 
 export interface SongDetails {
