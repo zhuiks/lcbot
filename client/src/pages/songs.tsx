@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import ListGroup from 'react-bootstrap/ListGroup';
 
-import { SongRow, Header, Button, Loading } from '../components';
-import { RouteComponentProps } from '@reach/router';
+import { SongRow, Loading } from '../components';
 import * as GetSongListTypes from './__generated__/GetSongList';
 
 const GET_SONGS = gql`
@@ -15,7 +15,7 @@ const GET_SONGS = gql`
   }
 `;
 
-interface SongsProps extends RouteComponentProps { }
+interface SongsProps { }
 
 const Songs: React.FC<SongsProps> = () => {
   const { 
@@ -31,13 +31,12 @@ const Songs: React.FC<SongsProps> = () => {
   if (!data) return <p>Not found</p>;
 
   return (
-    <Fragment>
-      <Header/>
-      {data.songs &&
+    <ListGroup variant="flush">
+        {data.songs &&
         data.songs.map((song: any) => (
           <SongRow key={song.id} song={song} />
         ))}
-    </Fragment>
+    </ListGroup>
   );
 }
 

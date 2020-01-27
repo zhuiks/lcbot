@@ -1,50 +1,46 @@
 import React from 'react';
-import styled from 'react-emotion';
-import { size } from 'polished';
+import { LinkContainer } from 'react-router-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
-import { unit, colors } from '../styles';
 import logo from '../assets/logo.png';
-// const max = 25; // 25 letters in the alphabet
-// const offset = 97; // letter A's charcode is 97
 
 
 interface HeaderProps {
-  image?: string | any;
+  title?: string;
   children?: any;
 }
 
-const Header: React.FC<HeaderProps> = ({ image, children = 'Lyrics & Chords' }) => {
-  const avatar = image || logo;
+const Header: React.FC<HeaderProps> = ({ title= 'Lyrics & Chords', children }) => {
 
   return (
-    <Container>
-      <Image round={!image} src={avatar} alt="Lyrics & Chords" />
-      <div>
-        <h2>{children}</h2>
-        {/* <Subheading>{email}</Subheading> */}
-      </div>
-    </Container>
+    <Navbar bg="dark" variant="dark">
+      <LinkContainer to="/">
+        <Navbar.Brand>
+          <img
+            alt=""
+            src={logo}
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{' '}
+          {title}
+        </Navbar.Brand>
+      </LinkContainer>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+        <Nav>
+          <LinkContainer to="/add">
+            <Nav.Link>Add Song</Nav.Link>
+          </LinkContainer>
+        </Nav>
+      {/* <Form inline>
+        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+        <Button variant="outline-success">Search</Button>
+      </Form> */}
+    </Navbar.Collapse>
+  </Navbar>
   );
 }
 
 export default Header;
-
-/**
- * STYLED COMPONENTS USED IN THIS FILE ARE BELOW HERE
- */
-
-const Container = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  marginBottom: unit * 4.5,
-});
-
-const Image = styled('img')(size(134), (props: { round: boolean }) => ({
-  marginRight: unit * 2.5,
-  borderRadius: props.round ? '50%' : '0%',
-}));
-
-const Subheading = styled('h5')({
-  marginTop: unit / 2,
-  color: colors.textSecondary,
-});
