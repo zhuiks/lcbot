@@ -4,6 +4,6 @@ export { default as Header } from './header';
 export { default as SongDetail } from './song-detail';
 export { default as SongRow } from './song-row';
 export { default as Loading } from './loading';
-// export { default as LoginForm } from './login-form';
+export { default as SongForm } from './song-form';
 export { default as MenuItem } from './menu-item';
 export { default as PageContainer } from './page-container';

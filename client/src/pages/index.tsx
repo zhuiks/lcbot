@@ -4,8 +4,8 @@ import { Router } from '@reach/router';
 import Song from './song';
 import Songs from './songs';
 // import Cart from './cart';
-// import Profile from './profile';
 import { Footer, PageContainer } from '../components';
+import NewSong from './new-song';
 
 export default function Pages() {
   return (
@@ -14,11 +14,11 @@ export default function Pages() {
         <Router primary={false} component={Fragment}>
           <Songs path="/" />
           <Song path="song/:songId" />
-          {/* <Cart path="cart" /> */}
+          <NewSong path="new" />
           {/* <Profile path="profile" /> */}
         </Router>
       </PageContainer>
-      {/* <Footer /> */}
+      <Footer />
     </Fragment>
   );
 }
