@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag'; 
-
-import { Loading, Header, SongDetail } from '../components';
-// import { ActionButton } from '../containers';
-import { RouteComponentProps } from '@reach/router';
+import { useParams } from 'react-router-dom';
+import { Loading, SongText, PageHeader } from '../components';
 import * as SongDetailsTypes from './__generated__/SongDetails';
 
 export const GET_SONG_DETAILS = gql`
@@ -17,18 +15,21 @@ export const GET_SONG_DETAILS = gql`
   }
 `;
 
-interface SongProps extends RouteComponentProps {
-  songId?: any;
-}
+interface SongVars extends SongDetailsTypes.SongDetailsVariables {
+  songId: any;
+};
 
-const Song: React.FC<SongProps> = ({ songId }) => {
+const Song: React.FC = () => {
+  
+  let { songId } = useParams(); //https://reacttraining.com/react-router/web/api/Hooks/useparams
+
   const { 
     data, 
     loading, 
     error 
   } = useQuery<
     SongDetailsTypes.SongDetails, 
-    SongDetailsTypes.SongDetailsVariables
+    SongVars
   >(GET_SONG_DETAILS, 
     { variables: { songId } }
   );
@@ -39,10 +40,8 @@ const Song: React.FC<SongProps> = ({ songId }) => {
 
   return (
     <Fragment>
-      <Header>
-        {data && data.song && data.song.title}
-      </Header>
-      <SongDetail {...data.song} />
+      <PageHeader>{data.song && data.song.title}</PageHeader>
+      <SongText {...data.song} />
       {/* <ActionButton {...data.song} /> */}
     </Fragment>
   );

@@ -1,24 +1,33 @@
-import React, { Fragment } from 'react';
-import { Router } from '@reach/router';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 import Song from './song';
 import Songs from './songs';
-// import Cart from './cart';
-// import Profile from './profile';
-import { Footer, PageContainer } from '../components';
+import NewSong from './new-song';
+import { Header } from '../components';
+import Container from 'react-bootstrap/Container';
 
 export default function Pages() {
   return (
-    <Fragment>
-      <PageContainer>
-        <Router primary={false} component={Fragment}>
-          <Songs path="/" />
-          <Song path="song/:songId" />
-          {/* <Cart path="cart" /> */}
-          {/* <Profile path="profile" /> */}
-        </Router>
-      </PageContainer>
-      {/* <Footer /> */}
-    </Fragment>
+    <Router>
+      <Header />
+      <Container>
+        <Switch>
+          <Route path="/song/:songId">
+            <Song />
+          </Route>
+          <Route path="/add">
+            <NewSong />
+          </Route>  
+          <Route path="/">
+            <Songs />
+          </Route>
+        </Switch>
+      </Container>
+    </Router>
   );
 }
