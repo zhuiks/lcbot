@@ -4,14 +4,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 import logo from '../assets/logo.png';
-
+import Form from 'react-bootstrap/Form';
+import { SearchField } from '.';
 
 interface HeaderProps {
   title?: string;
   children?: any;
+  filter?: string;
+  filterAction?: (s: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ title= 'Lyrics & Chords', children }) => {
+const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', children, filter = '', filterAction }) => {
 
   return (
     <Navbar bg="dark" variant="dark" className="mb-5">
@@ -29,17 +32,18 @@ const Header: React.FC<HeaderProps> = ({ title= 'Lyrics & Chords', children }) =
       </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+        {filterAction &&
+        <Form inline>
+          <SearchField filter={filter} onChange={filterAction} />
+        </Form>
+        }
         <Nav>
           <LinkContainer to="/add">
             <Nav.Link>Add Song</Nav.Link>
           </LinkContainer>
         </Nav>
-      {/* <Form inline>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-        <Button variant="outline-success">Search</Button>
-      </Form> */}
-    </Navbar.Collapse>
-  </Navbar>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
 

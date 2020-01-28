@@ -5,3 +5,5 @@ export { default as SongRow } from './song-row';
 export { default as Loading } from './loading';
 export { default as SongForm } from './song-form';
 export { default as SaveResult } from './save-result';
+export { default as SearchField } from './search';
+
