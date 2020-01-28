@@ -2,7 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from "react-router-dom";
 
 import Song from './song';
@@ -12,6 +12,7 @@ import { Header } from '../components';
 import Container from 'react-bootstrap/Container';
 
 export default function Pages() {
+
   return (
     <Router>
       <Header />
@@ -22,7 +23,7 @@ export default function Pages() {
           </Route>
           <Route path="/add">
             <NewSong />
-          </Route>  
+          </Route>
           <Route path="/">
             <Songs />
           </Route>

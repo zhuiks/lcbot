@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import { SongRow, Loading } from '../components';
+import { SongRow, Loading, SearchField } from '../components';
 import * as GetSongListTypes from './__generated__/GetSongList';
+import wordSearch from '../word-search';
 
 const GET_SONGS = gql`
   query GetSongList {
@@ -18,6 +19,7 @@ const GET_SONGS = gql`
 interface SongsProps { }
 
 const Songs: React.FC<SongsProps> = () => {
+  const [filter, setFilter] = useState("");
   const { 
     data, 
     loading, 
@@ -31,12 +33,15 @@ const Songs: React.FC<SongsProps> = () => {
   if (!data) return <p>Not found</p>;
 
   return (
+    <Fragment>
+      <SearchField filter={filter} onChange={setFilter} />
     <ListGroup variant="flush">
         {data.songs &&
-        data.songs.map((song: any) => (
+        wordSearch(data.songs, filter).map((song: any) => (
           <SongRow key={song.id} song={song} />
         ))}
     </ListGroup>
+    </Fragment>
   );
 }
 

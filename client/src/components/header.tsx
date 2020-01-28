@@ -5,13 +5,12 @@ import Nav from 'react-bootstrap/Nav';
 
 import logo from '../assets/logo.png';
 
-
 interface HeaderProps {
   title?: string;
   children?: any;
 }
 
-const Header: React.FC<HeaderProps> = ({ title= 'Lyrics & Chords', children }) => {
+const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', children }) => {
 
   return (
     <Navbar bg="dark" variant="dark" className="mb-5">
@@ -34,12 +33,8 @@ const Header: React.FC<HeaderProps> = ({ title= 'Lyrics & Chords', children }) =
             <Nav.Link>Add Song</Nav.Link>
           </LinkContainer>
         </Nav>
-      {/* <Form inline>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-        <Button variant="outline-success">Search</Button>
-      </Form> */}
-    </Navbar.Collapse>
-  </Navbar>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
 
