@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
 } from "react-router-dom";
 
 import Song from './song';
@@ -13,21 +12,20 @@ import { Header } from '../components';
 import Container from 'react-bootstrap/Container';
 
 export default function Pages() {
-  const [filter, setFilter] = useState("");
 
   return (
     <Router>
-      <Header filter={filter} filterAction={setFilter} />
+      <Header />
       <Container>
         <Switch>
           <Route path="/song/:songId">
-            {filter.length > 0 ? <Redirect to="/" /> : <Song />}
+            <Song />
           </Route>
           <Route path="/add">
             <NewSong />
           </Route>
           <Route path="/">
-            <Songs filter={filter} />
+            <Songs />
           </Route>
         </Switch>
       </Container>

@@ -1,9 +1,10 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 
 interface SearchFormProps {
   filter?: string;
-  onChange: any;
+  onChange: (s: string) => void;
 }
 
 
@@ -15,12 +16,14 @@ const SearchField: React.FC<SearchFormProps> = ({ filter = '', onChange }) => {
   };
 
   return (
-    <FormControl
-      type="text"
-      placeholder="Search"
-      onChange={HandleInput}
-      className="mr-2"
-    />
+    <Form className="mb-5">
+      <FormControl
+        type="text"
+        placeholder="Search"
+        onChange={HandleInput}
+        size="lg"
+      />
+    </Form>
   );
 }
 export default SearchField;
