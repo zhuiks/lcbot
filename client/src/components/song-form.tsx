@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { PageHeader } from '.';
 
 interface SaveFormProps {
   saveSong: (a: { variables: any }) => void;
@@ -61,7 +62,7 @@ export default class SaveForm extends Component<SaveFormProps, SaveFormState> {
   render() {
     return (
       <Fragment>
-        <h1>New Song</h1>
+        <PageHeader>New Song</PageHeader>
         <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="newSongForm.Title">
             <Form.Control

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag'; 
 import { useParams } from 'react-router-dom';
-import { Loading, SongText } from '../components';
+import { Loading, SongText, PageHeader } from '../components';
 import * as SongDetailsTypes from './__generated__/SongDetails';
 
 export const GET_SONG_DETAILS = gql`
@@ -40,7 +40,7 @@ const Song: React.FC = () => {
 
   return (
     <Fragment>
-      <h1>{data.song && data.song.title}</h1>
+      <PageHeader>{data.song && data.song.title}</PageHeader>
       <SongText {...data.song} />
       {/* <ActionButton {...data.song} /> */}
     </Fragment>

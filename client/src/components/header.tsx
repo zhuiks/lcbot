@@ -14,7 +14,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title= 'Lyrics & Chords', children }) => {
 
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark" className="mb-5">
       <LinkContainer to="/">
         <Navbar.Brand>
           <img
