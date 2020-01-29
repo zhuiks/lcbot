@@ -52,17 +52,21 @@ provider:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
+package:
 #  include:
 #    - include-me.js
 #    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
+  exclude:
+    - .env
+    - .gitignore
+    - .git/**
+    - .gitlab-ci.yml
+    - client/**
+    - __tests__/**
 
 functions:
   hello:
-    handler: src/handler.hello
+    handler: server/src/handler.hello
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
