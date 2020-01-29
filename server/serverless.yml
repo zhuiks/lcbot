@@ -20,8 +20,8 @@ service: lcbot-server
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
 
-plugins:
-  - serverless-offline
+#plugins:
+#  - serverless-offline
 
 provider:
   name: aws
