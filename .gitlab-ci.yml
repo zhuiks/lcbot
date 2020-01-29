@@ -6,7 +6,7 @@ stages:
 production:
   stage: deploy
   before_script:
-    - npm config set prefix /usr/local
+    - npm config set prefix /usr/local/server
     - npm install -g serverless
   script:
     - serverless deploy --stage production --verbose
