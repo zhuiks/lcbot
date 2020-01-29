@@ -7,7 +7,7 @@ deploy-server:
   stage: deploy
   before_script:
     - npm config set prefix /usr/local
-    - npm install -g serverless serverless-offline
+    - npm install -g serverless
   script:
     - cd server && serverless deploy --verbose
   environment: production
