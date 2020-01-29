@@ -3,11 +3,11 @@ image: node:latest
 stages:
   - deploy
 
-production:
+deploy-server:
   stage: deploy
   before_script:
     - npm config set prefix /usr/local
     - npm install -g serverless serverless-offline
   script:
-    - serverless deploy --verbose
+    - cd server && serverless deploy --verbose
   environment: production
