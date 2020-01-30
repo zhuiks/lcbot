@@ -14,8 +14,9 @@
     "apollo-datasource-mongodb": "^0.2.1",
     "apollo-server": "^2.9.16",
     "apollo-server-testing": "^2.9.16",
+    "aws-sdk": "^2.610.0",
+    "crypto-random-string": "^3.1.0",
     "graphql": "*",
-    "mongodb": "*",
     "nodemon": "^2.0.2"
   },
   "devDependencies": {
