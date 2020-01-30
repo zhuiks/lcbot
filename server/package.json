@@ -2,7 +2,7 @@
   "name": "lcbot-server",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/handler.js",
   "scripts": {
     "test": "jest",
     "start": "serverless offline start --noTimeout --port 4000",
