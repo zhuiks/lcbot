@@ -52,11 +52,10 @@ package:
     - .gitignore
     - .git/**
     - .gitlab-ci.yml
-    - client/**
-    - __tests__/**
+    - src/__tests__/**
 
 functions:
-  hello:
+  graphql:
     handler: src/handler.query
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

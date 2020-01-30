@@ -9,5 +9,5 @@ deploy-server:
     - npm config set prefix /usr/local
     - npm install -g serverless
   script:
-    - cd server && serverless deploy --verbose
+    - cd server && npm run deploy
   environment: production

@@ -5,19 +5,16 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon -r dotenv/config src/index.js",
-    "start:ci": "node -r dotenv/config src/index.js"
+    "start": "serverless offline start --noTimeout --port 4000",
+    "deploy": "serverless deploy --verbose"
   },
   "author": "zhuiks",
   "license": "ISC",
   "dependencies": {
-    "apollo-datasource-mongodb": "^0.2.1",
-    "apollo-server": "^2.9.16",
-    "apollo-server-testing": "^2.9.16",
+    "apollo-server-lambda": "^2.9.16",
     "aws-sdk": "^2.610.0",
     "crypto-random-string": "^3.1.0",
-    "graphql": "*",
-    "nodemon": "^2.0.2"
+    "graphql": "*"
   },
   "devDependencies": {
     "apollo-link": "*",
