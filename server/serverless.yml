@@ -39,7 +39,7 @@ provider:
         - dynamodb:Scan
         - dynamodb:Query
         - dynamodb:UpdateItem
-        Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 
 # you can add packaging information here
