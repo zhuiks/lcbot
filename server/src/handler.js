@@ -9,12 +9,18 @@ const server = new ApolloServer({
   tracing: true,
   dataSources: () => {
     return {
-     songs: new Songs()
-  }}
+      songs: new Songs()
+    }
+  }
 });
 
 module.exports.query = (event, context, callback) => {
-  const handler = server.createHandler();
+  const handler = server.createHandler({
+    cors: {
+      origin: true,
+      credentials: true,
+    },
+  });
 
   // tell AWS lambda we do not want to wait for NodeJS event loop
   // to be empty in order to send the response

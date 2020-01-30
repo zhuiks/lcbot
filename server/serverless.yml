@@ -64,6 +64,11 @@ functions:
       - http:
           path: query
           method: get
+          cors: true
+      - http:
+          path: query
+          method: post
+          cors: true
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
