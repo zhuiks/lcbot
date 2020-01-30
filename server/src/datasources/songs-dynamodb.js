@@ -1,6 +1,6 @@
 const getDb = require('./dynamo-db');
 
-export default class Songs {
+class Songs {
     async getAllSongs() {
         const results = await getDb().query({});
         return results; //results.map(song => this.songPretifier(song));
@@ -69,3 +69,5 @@ export default class Songs {
     }
 
 }
+
+module.exports = Songs;
