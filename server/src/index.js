@@ -26,4 +26,4 @@ const handler = (event, context, callback) => {
   return handler(event, context, callback);
 };
 
-export default handler;
+module.exports = { handler };
