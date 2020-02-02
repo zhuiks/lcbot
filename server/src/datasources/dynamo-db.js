@@ -3,32 +3,42 @@ const stringGen = require('crypto-random-string');
 
 let _db;
 
+const _promisify = async (foo) => {
+    return new Promise((resolve, reject) => {
+        foo((error, result) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+};
+
 class Database {
     async connect() {
         if (!this.dynamoDb) {
             let params = {};
-            if (__DEV__) {
-                // params = {
-                //     endpoint: process.env.DB_URL,
-                //     region: 'local',
-                //     accessKeyId: 'local',
-                //     secretAccessKey: 'local',
-                // };
+            if (process.env.IS_OFFLINE) {
+                params = {
+                    endpoint: 'http://localhost:8000',
+                    region: 'localhost',
+                };
             }
 
             this.dynamoDb = new AWS.DynamoDB.DocumentClient(params);
 
-            if (__DEV__) {
-                // will create tables through lambda only in development
-                // await this.createTables(tables);
-            }
+            // if (__DEV__) {
+            //     // will create tables through lambda only in development
+            //     await this.createTables(tables);
+            // }
         }
 
         return this.dynamoDb;
     }
 
     async get(SongId) {
-        return promisify(callback =>
+        return _promisify(callback =>
             this.dynamoDb.get({
                 TableName: process.env.DYNAMODB_TABLE,
                 Key: { SongId },
@@ -43,7 +53,8 @@ class Database {
 
     async update(data) {
         const SongId = data.SongId || stringGen({ length: 5, type: 'url-safe' });
-        return promisify(callback =>
+        console.log(data.text.length);
+        return _promisify(callback =>
             this.dynamoDb.update({
                 TableName: process.env.DYNAMODB_TABLE,
                 Key: { SongId },
@@ -57,8 +68,8 @@ class Database {
                 ExpressionAttributeValues: {
                     ':lang': 'ar',
                     ':title': data.title ? data.title.toString() : '',
-                    ':text': data.text.toArray(),
-                    ':links': data.links.toArray(),
+                    ':txt': data.text,
+                    ':links': data.links,
                 },
                 ReturnValues: "ALL_NEW",
             }, callback))
@@ -71,7 +82,7 @@ class Database {
     }
 
     async query(params) {
-        return promisify(callback =>
+        return _promisify(callback =>
             this.dynamoDb.scan({
                 TableName: process.env.DYNAMODB_TABLE,
                 FilterExpression: 'lang = :lang',
@@ -84,20 +95,8 @@ class Database {
                 return result.Items;
             })
     }
-
-    async _promisify(foo) {
-        return new Promise((resolve, reject) => {
-            foo((error, result) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(result);
-                }
-            });
-        });
-    }
-
 }
+
 const getDatabase = async () => {
     if (!_db) {
         _db = new Database();

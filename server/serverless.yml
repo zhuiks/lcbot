@@ -1,7 +1,8 @@
 service: lcbot-server
 
-#plugins:
-#  - serverless-offline
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
 
 provider:
   name: aws
@@ -97,3 +98,10 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:provider.environment.DYNAMODB_TABLE}
+
+custom:
+  dynamodb:
+    stages:
+      - dev
+    start:
+      migrate: true
