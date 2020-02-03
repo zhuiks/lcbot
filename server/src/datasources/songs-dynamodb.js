@@ -22,10 +22,9 @@ class Songs {
     _songPretifier(songDb) {
         return {
             id: songDb.SongId,
-            title: songDb.title,
-            text: songDb.text,
-            links: songDb.links,
-            url: "www.todo"
+            title: songDb.Title,
+            text: songDb.Text,
+            links: songDb.Links
         };
     }
 }
