@@ -1,0 +1,17 @@
+image: node:latest
+
+stages:
+  - deploy
+
+deploy-server:
+  stage: deploy
+  only:
+    changes:
+      - server/**/*
+  before_script:
+    - npm config set prefix /usr/local
+    - npm install -g serverless
+    - cd server && npm install
+  script:
+    - npm run deploy
+  environment: production
