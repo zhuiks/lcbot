@@ -8,7 +8,8 @@ import Pages from './pages';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-  uri: 'http://localhost:4000/'
+  uri: 'https://hz1lib0jqi.execute-api.us-east-1.amazonaws.com/dev/query/'
+  // uri: 'http://localhost:3000/query/'
 });
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
