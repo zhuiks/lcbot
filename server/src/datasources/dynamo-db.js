@@ -119,10 +119,11 @@ class Database {
         return _promisify(callback =>
             this.dynamoDb.scan({
                 TableName: process.env.DYNAMODB_TABLE,
-                FilterExpression: 'lang = :lang',
+                FilterExpression: 'Lang = :lang',
                 ExpressionAttributeValues: { ':lang': 'ar' }
             }, callback))
             .then((result) => {
+                console.log(result)
                 if (!result.Items) {
                     return [];
                 }
