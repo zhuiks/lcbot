@@ -21,6 +21,7 @@ deploy-server:
   environment: production
 
 frontend-pages:
+  stage: deploy
   only:
     changes:
       - webstatic/**/*

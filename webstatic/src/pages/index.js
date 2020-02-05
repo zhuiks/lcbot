@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 
 const IndexPage = () => (
   <Layout pageInfo={{ pageName: "index" }}>
-    <SEO title="Home" keywords={[`gatsby`, `react`, `bootstrap`]} />
+    <SEO title="Song List" keywords={[`gatsby`, `react`, `bootstrap`]} />
     <Container className="text-center">
       <Row>
         <Col>
@@ -19,13 +19,6 @@ const IndexPage = () => (
       <Row className="justify-content-center my-3">
         <Col md="6">
           <ListGroup>
-            <ListGroup.Item
-              action
-              href="https://getbootstrap.com"
-              target="_blank"
-            >
-              Bootstrap
-            </ListGroup.Item>
             <ListGroup.Item
               action
               href="https://react-bootstrap.github.io/"
