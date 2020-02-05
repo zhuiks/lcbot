@@ -20,6 +20,7 @@ const Layout = ({ children, pageInfo }) => (
         site {
           siteMetadata {
             title
+            author
           }
         }
       }
@@ -46,9 +47,7 @@ const Layout = ({ children, pageInfo }) => (
             <Col className="footer-col">
               <footer>
                 <span>
-                  © {new Date().getFullYear()}, Built with
-                  {` `}
-                  <a href="https://www.gatsbyjs.org">Gatsby</a>
+                  © {data.site.siteMetadata.author} {new Date().getFullYear()}
                 </span>
               </footer>
             </Col>
