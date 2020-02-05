@@ -50,10 +50,6 @@ const IndexPage = () => (
             screen when the user scrolls past it, and a footer that stays at the
             bottom of the screen.
           </p>
-          <p>
-            For more documentation on these packages and how they work, please
-            refer to the pages linked in the list above.
-          </p>
         </Col>
       </Row>
     </Container>
