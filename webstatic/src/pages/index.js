@@ -1,59 +1,45 @@
-import React from "react"
+import React, { useState } from "react"
+import { graphql } from "gatsby"
 import { Row, Col, Container, ListGroup } from "react-bootstrap"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import SearchField from "../components/search"
+import SongRow from "../components/song-row"
+import { wordSearch } from "../utils"
 
-const IndexPage = () => (
-  <Layout pageInfo={{ pageName: "index" }}>
-    <SEO title="Song List" keywords={[`gatsby`, `react`, `bootstrap`]} />
-    <Container className="text-center">
-      <Row>
-        <Col>
-          <p>
-            This is a Gatsby Starter that I frequently use to get jump started
-            on quick website builds. It includes the following packages:
-          </p>
-        </Col>
-      </Row>
-      <Row className="justify-content-center my-3">
-        <Col md="6">
-          <ListGroup>
-            <ListGroup.Item
-              action
-              href="https://react-bootstrap.github.io/"
-              target="_blank"
-            >
-              react-bootstrap
-            </ListGroup.Item>
-            <ListGroup.Item
-              action
-              href="https://react-icons.netlify.com"
-              target="_blank"
-            >
-              react-icons
-            </ListGroup.Item>
-            <ListGroup.Item
-              action
-              href="https://www.gatsbyjs.org/packages/gatsby-plugin-sass/"
-              target="_blank"
-            >
-              gatsby-plugin-sass
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <p>
-            This starter also includes a navbar that sticks to the top of the
-            screen when the user scrolls past it, and a footer that stays at the
-            bottom of the screen.
-          </p>
-        </Col>
-      </Row>
-    </Container>
-  </Layout>
-)
+export const query = graphql`
+  query {
+    songList {
+      songs{
+        id
+        title
+      }
+    }
+  }
+`
+
+const IndexPage = ({ data }) => {
+  const [filter, setFilter] = useState("");
+
+  return (
+    <Layout pageInfo={{ pageName: "index" }}>
+      <SEO title="Song List" keywords={[`gatsby`, `react`, `bootstrap`]} />
+      <Container className="text-center">
+        <Row className="justify-content-center my-3">
+          <Col md="6">
+            <SearchField filter={filter} onChange={setFilter} />
+            <ListGroup variant="flush">
+              {data.songList &&
+                wordSearch(data.songList.songs, filter).map(song => (
+                  <SongRow key={song.id} song={song} />
+                ))}
+            </ListGroup>
+          </Col>
+        </Row>
+      </Container>
+    </Layout>
+  )
+}
 
 export default IndexPage

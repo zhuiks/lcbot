@@ -14,6 +14,7 @@
     "gatsby-plugin-sass": "^2.0.11",
     "gatsby-plugin-sharp": "^2.0.35",
     "gatsby-source-filesystem": "^2.0.33",
+    "gatsby-source-graphql": "^2.1.33",
     "gatsby-transformer-sharp": "^2.1.18",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
@@ -21,6 +22,7 @@
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
+    "react-highlight-words": "^0.16.0",
     "react-icons": "^3.6.1"
   },
   "devDependencies": {
@@ -33,7 +35,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop -H 0.0.0.0 -p 8000",
+    "develop": "gatsby develop -H 0.0.0.0 -p 9000",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",

@@ -6,14 +6,25 @@ module.exports = {
     author: `zhuiks`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-graphql",
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        // Arbitrary name for the remote schema Query type
+        typeName: "SongQuery",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "songList",
+        // Url to query from
+        url: "http://localhost:3000/query",
       },
     },
+    `gatsby-plugin-react-helmet`,
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `images`,
+    //     path: `${__dirname}/src/images`,
+    //   },
+    // },
     `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
