@@ -19,9 +19,10 @@ export const query = graphql`
 
 const SongPage = ({ data }) => {
   const song = data.songList.song
+  const descr = song.text.reduce((acc, val) => acc + encodeURIComponent(val+'\n'))
   return (
-    <Layout isSongPage="1">
-      <SEO title={song.title} description={song.text.reduce((acc, val) => acc +' '+ val)}/>
+    <Layout isSongPage={descr}>
+      <SEO title={song.title} description={descr}/>
       <h1>{song.title}</h1>
       <SongText {...song} />
     </Layout>

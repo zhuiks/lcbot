@@ -49,7 +49,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: description ? `article` : `website`,
         },
         {
           name: `twitter:card`,
