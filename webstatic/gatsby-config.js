@@ -2,7 +2,7 @@ module.exports = {
   pathPrefix: "/lcbot",
   siteMetadata: {
     title: `Lyric & Chords`,
-    description: `A starter that includes react-bootstrap and react-icons, along with SASS compilation.`,
+    description: `Find lyrics and chords for worship songs`,
     author: `zhuiks`,
   },
   plugins: [

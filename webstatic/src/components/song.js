@@ -21,7 +21,7 @@ const SongPage = ({ data }) => {
   const song = data.songList.song
   return (
     <Layout isSongPage="1">
-      <SEO title={song.title} />
+      <SEO title={song.title} description={song.text.reduce((acc, val) => acc +' '+ val)}/>
       <h1>{song.title}</h1>
       <SongText {...song} />
     </Layout>
