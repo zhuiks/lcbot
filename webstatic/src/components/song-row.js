@@ -5,7 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 const SongRow = ({ song }) => {
   const { id, title } = song;
   return (
-    <Link to= {`/song/${id}`}>
+    <Link to= {`/${id}`}>
       <ListGroup.Item action>{title}</ListGroup.Item>
     </Link>
   )
