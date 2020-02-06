@@ -3,11 +3,15 @@ image: node:latest
 stages:
   - deploy
 
+
 deploy-server:
   stage: deploy
   only:
     changes:
       - server/**/*
+  cache:
+    paths:
+      - server/node_modules/
   before_script:
     - npm config set prefix /usr/local
     - npm install -g serverless
@@ -15,3 +19,19 @@ deploy-server:
   script:
     - npm run deploy
   environment: production
+
+pages:
+  stage: deploy
+  only:
+    changes:
+      - webstatic/**/*
+  cache:
+    paths:
+      - webstatic/node_modules/
+  script:
+    - cd webstatic && npm install
+    - ./node_modules/.bin/gatsby build --prefix-paths
+    - mv ./public ../
+  artifacts:
+    paths:
+      - public
