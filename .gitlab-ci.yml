@@ -31,6 +31,7 @@ pages:
   script:
     - cd webstatic && npm install
     - ./node_modules/.bin/gatsby build --prefix-paths
+    - mv ./public ../
   artifacts:
     paths:
-      - webstatic/public
+      - public
