@@ -16,7 +16,7 @@ const typography = new Typography({
         },
     ],
     baseFontSize: "28px",
-    baseLineHeight: 1.666,
+    baseLineHeight: 1.4,
     headerFontFamily: ["El Messiri", "serif"],
     bodyFontFamily: ["Harmattan", "sans-serif"],
 })

@@ -21,7 +21,7 @@ export const query = graphql`
 const SongPage = ({ data }) => {
   const song = data.songList.song
   return (
-    <Layout searchLink="1">
+    <Layout isSongPage="1">
       <SEO title={song.title} />
       <h1>{song.title}</h1>
       <SongText {...song} />

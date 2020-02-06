@@ -10,7 +10,7 @@ import { StaticQuery, graphql, Link } from "gatsby"
 
 import { Container, Row, Col } from "react-bootstrap"
 
-const Layout = ({ children, searchLink = false }) => (
+const Layout = ({ children, isSongPage = false }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -24,31 +24,19 @@ const Layout = ({ children, searchLink = false }) => (
     `}
     render={data => (
       <>
-        <Container fluid className="px-0 main">
-          <Row noGutters>
-            <Col>
-              <Container className="mt-5">
-                <main>{children}</main>
-              </Container>
-            </Col>
-          </Row>
+        <Container fluid className={"main" + (isSongPage ? " song" : "")}>
+          <main>{children}</main>
         </Container>
-        <Container fluid className="px-0">
-          <Row noGutters>
-            <Col className="footer-col">
-              <footer>
-                <span className="mr-auto">
-                  {searchLink && 
-                    <Link to="/">Search</Link>
-                  }
-                </span>
-                <span>
-                  © {data.site.siteMetadata.author} {new Date().getFullYear()}
-                </span>
-              </footer>
-            </Col>
-          </Row>
-        </Container>
+        <footer>
+          <div>
+            {isSongPage &&
+              <Link to="/">Search</Link>
+            }
+          </div>
+          <div className="copyright">
+            © {new Date().getFullYear()} {/*data.site.siteMetadata.author*/}
+          </div>
+        </footer>
       </>
     )}
   />
