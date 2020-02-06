@@ -55,7 +55,7 @@ class Database {
         const SongId = data.SongId || stringGen({ length: 5, type: 'url-safe' });
         let updateExpr = [];
         let attrNames = {};
-        let attrVal = {':empty': []};
+        let attrVal = {};
         if (true || data.lang) {
             updateExpr.push('#L = :lang');
             attrNames['#L'] = 'Lang';
@@ -92,6 +92,7 @@ class Database {
                 updateExpr.push('#U = list_append(if_not_exists(#U,:empty), :links)');
                 attrNames['#U'] = 'Links';
                 attrVal[':links'] = links;
+                attrVal[':empty'] = [];
             }
         }
         if(updateExpr.length === 0) {
