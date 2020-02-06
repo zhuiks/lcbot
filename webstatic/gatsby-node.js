@@ -19,7 +19,7 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
     `)
-    console.log(data)    
+ 
     data.songList.songs.forEach(song => {
       actions.createPage({
         path: song.id,

@@ -21,11 +21,10 @@ export const query = graphql`
 const SongPage = ({ data }) => {
   const song = data.songList.song
   return (
-    <Layout pageInfo={{ pageName: song.title }}>
+    <Layout searchLink="1">
       <SEO title={song.title} />
       <h1>{song.title}</h1>
       <SongText {...song} />
-      <Link to="/">Go back to the homepage</Link>
     </Layout>
   )
 }

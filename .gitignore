@@ -73,6 +73,7 @@ typings/
 # gatsby files
 .cache/
 webstatic/public
+/public
 
 # Yarn
 yarn-error.log

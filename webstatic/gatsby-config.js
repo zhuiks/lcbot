@@ -14,7 +14,8 @@ module.exports = {
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: "songList",
         // Url to query from
-        url: "http://localhost:3000/query",
+        url: 'https://hz1lib0jqi.execute-api.us-east-1.amazonaws.com/dev/query/',
+        // url: "http://localhost:3000/query",
       },
     },
     `gatsby-plugin-react-helmet`,

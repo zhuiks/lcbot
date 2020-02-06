@@ -6,14 +6,11 @@
  */
 
 import React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 
 import { Container, Row, Col } from "react-bootstrap"
 
-import Header from "./header"
-import Navbar from "./navBar"
-
-const Layout = ({ children, pageInfo }) => (
+const Layout = ({ children, searchLink = false }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -28,12 +25,6 @@ const Layout = ({ children, pageInfo }) => (
     render={data => (
       <>
         <Container fluid className="px-0 main">
-          <Row noGutters className="justify-content-center">
-            <Col>
-              <Header siteTitle={data.site.siteMetadata.title} />
-            </Col>
-          </Row>
-          <Navbar pageInfo={pageInfo} />
           <Row noGutters>
             <Col>
               <Container className="mt-5">
@@ -46,6 +37,11 @@ const Layout = ({ children, pageInfo }) => (
           <Row noGutters>
             <Col className="footer-col">
               <footer>
+                <span className="mr-auto">
+                  {searchLink && 
+                    <Link to="/">Search</Link>
+                  }
+                </span>
                 <span>
                   © {data.site.siteMetadata.author} {new Date().getFullYear()}
                 </span>

@@ -23,7 +23,7 @@ const IndexPage = ({ data }) => {
   const [filter, setFilter] = useState("");
 
   return (
-    <Layout pageInfo={{ pageName: "index" }}>
+    <Layout>
       <SEO title="Song List" keywords={[`gatsby`, `react`, `bootstrap`]} />
       <Container className="text-center">
         <Row className="justify-content-center my-3">
