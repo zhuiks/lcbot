@@ -1,11 +1,10 @@
 {
   "name": "lcbot-webapp",
   "private": true,
-  "description": "A starter that includes and configures react-bootstrap and react-icons, along with SASS handling. ",
+  "description": "A static website with lyrics",
   "version": "0.1.0",
-  "author": "Billy Jacoby <billyjacoby@gmail.com>",
+  "author": "zhuiks",
   "dependencies": {
-    "bootstrap": "^4.3.1",
     "gatsby": "^2.3.34",
     "gatsby-image": "^2.0.41",
     "gatsby-plugin-manifest": "^2.0.29",
@@ -20,11 +19,9 @@
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
     "react-highlight-words": "^0.16.0",
-    "react-icons": "^3.6.1",
     "react-typography": "^0.16.19",
     "typography": "^0.16.19"
   },
@@ -33,7 +30,7 @@
     "prettier": "^1.17.0"
   },
   "keywords": [
-    "gatsby"
+    "lyrics chords worship songs"
   ],
   "license": "MIT",
   "scripts": {

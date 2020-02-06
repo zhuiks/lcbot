@@ -10,14 +10,13 @@ const SearchField = ({ filter = '', onChange }) => {
   };
 
   return (
-    <Form className="mb-5">
-      <FormControl
+    <form>
+      <input
         type="text"
         placeholder="Search"
         onChange={HandleInput}
-        size="lg"
       />
-    </Form>
+    </form>
   );
 }
 export default SearchField;

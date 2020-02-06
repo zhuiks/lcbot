@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
-import { Row, Col, Container, ListGroup } from "react-bootstrap"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -25,19 +24,15 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Song List" keywords={[`gatsby`, `react`, `bootstrap`]} />
-      <Container className="text-center">
-        <Row className="justify-content-center my-3">
-          <Col md="6">
+      <div className="text-center">
             <SearchField filter={filter} onChange={setFilter} />
-            <ListGroup variant="flush">
+            <ul className="song-list">
               {data.songList &&
                 wordSearch(data.songList.songs, filter).map(song => (
                   <SongRow key={song.id} song={song} />
                 ))}
-            </ListGroup>
-          </Col>
-        </Row>
-      </Container>
+            </ul>
+      </div>
     </Layout>
   )
 }

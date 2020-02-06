@@ -1,6 +1,6 @@
 div.main {
   min-height: 100vh;
-  padding: 40px 2em $footer-height;
+  padding: 40px 1em $footer-height;
   direction: rtl;
   main {
     margin-bottom: 2em;
@@ -27,10 +27,4 @@ footer {
     }
   }
 
-}
-
-a.link-no-style {
-  &:hover {
-    text-decoration: none;
-  }
 }

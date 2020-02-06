@@ -8,7 +8,6 @@
 import React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 
-import { Container, Row, Col } from "react-bootstrap"
 
 const Layout = ({ children, isSongPage = false }) => (
   <StaticQuery
@@ -24,9 +23,9 @@ const Layout = ({ children, isSongPage = false }) => (
     `}
     render={data => (
       <>
-        <Container fluid className={"main" + (isSongPage ? " song" : "")}>
+        <div className={"main" + (isSongPage ? " song" : "")}>
           <main>{children}</main>
-        </Container>
+        </div>
         <footer>
           <div>
             {isSongPage &&
