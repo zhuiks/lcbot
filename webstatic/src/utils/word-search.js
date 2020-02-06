@@ -1,7 +1,7 @@
 import React from 'react';
 import Highlighter from "react-highlight-words";
 
-export const wordSearch = (songs, term) => {
+const wordSearch = (songs, term) => {
     if (term.trim().length === 0)
         return songs;
     const regex = RegExp(term, "gi");
@@ -21,3 +21,5 @@ export const wordSearch = (songs, term) => {
 
     return result.filter(song => song.score>0);
 }
+
+export default wordSearch
