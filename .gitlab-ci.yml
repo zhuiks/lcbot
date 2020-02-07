@@ -7,7 +7,8 @@ stages:
 deploy-server:
   stage: deploy
   only:
-    - master
+    refs:
+      - master
     changes:
       - server/**/*
   cache:
@@ -24,7 +25,8 @@ deploy-server:
 pages:
   stage: deploy
   only:
-    - master
+    refs:
+      - master
     changes:
       - webstatic/**/*
   cache:
