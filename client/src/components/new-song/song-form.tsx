@@ -6,50 +6,30 @@ import Form from 'react-bootstrap/Form';
 import Step from './step';
 import * as SavingTypes from '../../pages/__generated__/saveSong';
 import { MutationFunctionOptions } from '@apollo/react-common';
+import textBreaker from '../../utils/text-breaker';
 
 interface SaveFormProps {
   saveSong: (options: MutationFunctionOptions<SavingTypes.saveSong, SavingTypes.saveSongVariables>) => any;
 }
 
-const SaveForm: React.FC<SaveFormProps> = ({saveSong}) => {
+interface onStepChangeArgs {
+  previousStep: number;
+  activeStep: number;
+}
+
+const SaveForm: React.FC<SaveFormProps> = ({ saveSong }) => {
 
   const [songText, setText] = useState('');
+  const [songSlides, setSlides] = useState();
   const [songTitle, setTitle] = useState('');
   const [songLinks, setLinks] = useState(['']);
 
-  // onChange = (el: HTMLInputElement) => {
-  //   console.log(`${el.id} = "${el.value}"`);
-  //   let newState: any = {};
-  //   switch (el.id) {
-  //     case "song-title":
-  //       newState = { title: el.value.trim() };
-  //       break;
-  //     case "song-text":
-  //       newState = el.value.split(/\r\n|[\n\v\f\r\x85\u2028\u2029]/);
-  //       if (this.state.title.length === 0 && newState.length > 1) {
-  //         newState = {
-  //           text: newState,
-  //           title: newState[0].trim() //todo: update html input
-  //         }
-  //       } else {
-  //         newState = {
-  //           text: newState
-  //         }
-  //       }
-  //       break;
-  //     case "song-link":
-  //       newState = {
-  //         links: [el.value]
-  //       }
-  //       break;
-  //   }
-  //   console.log(newState);
-  //   this.setState(newState);
-  // };
+  const onStepChange = ({ previousStep, activeStep }: onStepChangeArgs) => {
+    if (previousStep === 1) {
+      setSlides(textBreaker(songText));
+    }
+  }
 
-  const onStepChange = (stats: any) => {
-    console.log(stats);
-}
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     saveSong({
@@ -73,6 +53,11 @@ const SaveForm: React.FC<SaveFormProps> = ({saveSong}) => {
                 rows="10"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setText(e.target.value) }}
               />
+            </Step>
+            <Step title="Song Order">
+              <div>
+                {JSON.stringify(songSlides, undefined, 2)}
+              </div>
             </Step>
             <Step title="Song Data">
               <Form.Group controlId="song-title">

@@ -1,6 +1,6 @@
 import fixArabicNumbers from './fixArabicNumber';
 
-interface slideType {
+export interface slideType {
     type: string;
     name: string | null | undefined;
     text: string[];
@@ -16,12 +16,12 @@ const textBreaker = (input: string) => {
         .split(/(?:(?:\r\n|[\n\v\f\x85\u2028\u2029])\s*){2,}/)
         .forEach(text => {
             if (text.trim().length) {
-                const regex = new RegExp(`^\s*(?<name>${verseR}|${chorusR})\s*[-|–|:]?\s*`, 'i');
+                const regex = new RegExp(`^\s*(${verseR}|${chorusR})\s*[-|–|:]?\s*`, 'i');
                 const m = text.match(regex);
-                let slideName = m && m.groups && m.groups.name;
+                let slideName = m && m[1]; //m.groups && m.groups.type_name;
                 const slideType = slideName === chorusR ? 'CHORUS' : 'VERSE';
                 if(slideType === 'VERSE') {
-                    verseCounter = m && m.groups && parseInt(m.groups.name) || verseCounter+1;
+                    verseCounter = m && parseInt(m[1]) || verseCounter+1;
                     slideName = verseCounter.toString();
                 }
                 const slideText = m && m.index!==undefined
