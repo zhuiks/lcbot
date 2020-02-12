@@ -1,39 +1,71 @@
 import fixArabicNumbers from './fixArabicNumber';
 
+const verse = '[0-9]+';
+const chorus = '(?:ال)?'+'قرار';
+const chorusR = new RegExp(chorus);
+
 export interface slideType {
     type: string;
-    name: string | null | undefined;
+    name: string | null;
     text: string[];
 }
 
-const textBreaker = (input: string) => {
-    let slides: slideType[] = [];
-    const verseR = '[0-9]+';
-    const chorusR = 'القرار';
-    let verseCounter = 0;
+let currentSlide: slideType;
+let slides: slideType[];
+let verseCounter: number;
 
+const resetSlide = (allSlides: boolean = false) => {
+    currentSlide = {
+        type: 'VERSE',
+        name: '1',
+        text: []
+    }
+    if(allSlides) {
+        slides = [];
+        verseCounter = 1;
+    }
+}
+const setSlideType = (name: string) => {
+    currentSlide.name = name;
+    if (chorusR.test(name)) {
+        currentSlide.type = 'CHORUS';
+    } else { // if 'VERSE'
+        verseCounter = parseInt(name);
+    }
+
+}
+const addSlide = (name: string = '') => {
+    // console.log(currentSlide, name, verseCounter)
+    if (currentSlide.text.length) {
+        slides.push(currentSlide);
+        resetSlide();
+    }
+    setSlideType(name);
+}
+
+
+const textBreaker = (input: string) => {
+    const regex = new RegExp(`^ *(${verse}|${chorus}) *[-|–|:]* *`, 'iu');
+    resetSlide(true);
     fixArabicNumbers(input.trim())
-        .split(/(?:(?:\r\n|[\n\v\f\x85\u2028\u2029])\s*){2,}/)
-        .forEach(text => {
-            if (text.trim().length) {
-                const regex = new RegExp(`^\s*(${verseR}|${chorusR})\s*[-|–|:]?\s*`, 'i');
-                const m = text.match(regex);
-                let slideName = m && m[1]; //m.groups && m.groups.type_name;
-                const slideType = slideName === chorusR ? 'CHORUS' : 'VERSE';
-                if(slideType === 'VERSE') {
-                    verseCounter = m && parseInt(m[1]) || verseCounter+1;
-                    slideName = verseCounter.toString();
+        .split(/\r\n|[\n\v\f\r\x85\u2028\u2029]/).forEach(line => {
+            line = line.trim()
+            if (line.length) {
+                const m = regex.exec(line);
+                if (m !== null) {
+                    // console.log(m, m[0].length);
+                    addSlide(m[1]); //m.groups && m.groups.type_name;
+                    line = line.slice(m.index + m[0].length).trim();
                 }
-                const slideText = m && m.index!==undefined
-                    ? text.slice(m.index + m[0].length) 
-                    : text;
-                slides.push({
-                    type: slideType,
-                    name: slideName,
-                    text: slideText.trim().split(/\r\n|[\n\v\f\r\x85\u2028\u2029]/)
-                });
+                if (line.length) {
+                    currentSlide.text.push(line);
+                }
+            } else if(currentSlide.text.length) {
+                verseCounter++;
+                addSlide(verseCounter.toString());
             }
         });
+    addSlide();
     return slides;
 }
 export default textBreaker;

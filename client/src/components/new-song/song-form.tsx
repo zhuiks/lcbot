@@ -3,10 +3,11 @@ import StepWizard from 'react-step-wizard';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Step from './step';
 import * as SavingTypes from '../../pages/__generated__/saveSong';
 import { MutationFunctionOptions } from '@apollo/react-common';
 import textBreaker from '../../utils/text-breaker';
+import Step from './step';
+import Orderer from './ordering';
 
 interface SaveFormProps {
   saveSong: (options: MutationFunctionOptions<SavingTypes.saveSong, SavingTypes.saveSongVariables>) => any;
@@ -55,9 +56,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ saveSong }) => {
               />
             </Step>
             <Step title="Song Order">
-              <div>
-                {JSON.stringify(songSlides, undefined, 2)}
-              </div>
+              <Orderer slides={songSlides} />
             </Step>
             <Step title="Song Data">
               <Form.Group controlId="song-title">
