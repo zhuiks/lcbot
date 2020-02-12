@@ -29,6 +29,9 @@ const SaveForm: React.FC<SaveFormProps> = ({ saveSong }) => {
     if (previousStep === 1) {
       setSlides(textBreaker(songText));
     }
+    if (previousStep === 2 && songTitle.length === 0) {
+      setTitle(songSlides[0].text[0].replace(/\(\s?|\s?\)/g, ''));
+    }
   }
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -53,6 +56,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ saveSong }) => {
                 as="textarea"
                 rows="10"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setText(e.target.value) }}
+                value={songText}
               />
             </Step>
             <Step title="Song Order">
@@ -63,6 +67,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ saveSong }) => {
                 <Form.Control
                   placeholder="Song title"
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setTitle(e.target.value) }}
+                  value={songTitle}
                 />
               </Form.Group>
             </Step>

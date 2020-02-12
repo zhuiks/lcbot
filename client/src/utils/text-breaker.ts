@@ -1,7 +1,7 @@
 import fixArabicNumbers from './fixArabicNumber';
 
 const verse = '[0-9]+';
-const chorus = '(?:ال)?'+'قرار';
+const chorus = '(?:ال)?' + 'قرار';
 const chorusR = new RegExp(chorus);
 
 export interface slideType {
