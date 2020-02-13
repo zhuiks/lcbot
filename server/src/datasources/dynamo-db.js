@@ -68,14 +68,20 @@ class Database {
             attrVal[':title'] = title;
         }
         if (data.text) {
-            const text = typeof data.text === 'string'
-                ? [data.text]
-                : Array.from(data.text, s => s.toString().trim());
-            if (text.length) {
-                updateExpr.push('#Txt = :txt');
-                attrNames['#Txt'] = 'Text';
-                attrVal[':txt'] = text.map(s => s.length === 0 ? " " : s);
+            console.log(data.text);
+            if(data.text.length) {
+                updateExpr.push('#Slides = :slides');
+                attrNames['#Slides'] = 'Slides';
+                attrVal[':slides'] = data.text;
             }
+            // const text = typeof data.text === 'string'
+            //     ? [data.text]
+            //     : Array.from(data.text, s => s.toString().trim());
+            // if (text.length) {
+            //     updateExpr.push('#Txt = :txt');
+            //     attrNames['#Txt'] = 'Text';
+            //     attrVal[':txt'] = text.map(s => s.length === 0 ? " " : s);
+            // }
         }
         if (data.links) {
             const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
