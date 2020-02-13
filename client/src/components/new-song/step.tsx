@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React from 'react';
 import { StepWizardChildProps } from 'react-step-wizard';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
