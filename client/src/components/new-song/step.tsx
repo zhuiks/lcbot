@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from 'react';
+import { StepWizardChildProps } from 'react-step-wizard';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -8,28 +9,26 @@ import { PageHeader } from '..';
  * Could be used for nav buttons or overview
  */
 
-interface StepProps {
+interface StepProps extends StepWizardChildProps{
     children: any;
-    title?: string;
-    currentStep?: number;
-    totalSteps?: number;
-    nextStep?: () => void;
-    previousStep?: () => void;
+    title: string;
+    submit: () => void;
 }
 
-const Step: React.FC<StepProps> = ({
+const Step: React.FC<Partial<StepProps>> = ({
     children,
     title = 'New Song',
+    totalSteps = 1,
     currentStep = 1,
     // firstStep,
     // goToStep,
     // lastStep,
     nextStep,
     previousStep,
-    totalSteps = 1,
+    submit
 }) => (
         <div>
-            <PageHeader>{currentStep+': Add ' + title}</PageHeader>
+            <PageHeader>{`${currentStep} (${totalSteps}): Add ${title}`}</PageHeader>
             {children}
             <Row className="mt-5">
                 <Col sm={3}>
@@ -38,10 +37,10 @@ const Step: React.FC<StepProps> = ({
                     }
                 </Col>
                 <Col sm={3} className="ml-auto">
-                    {currentStep <= totalSteps ?
+                    {currentStep < totalSteps ?
                         <Button onClick={nextStep} block>Continue</Button>
                         :
-                        <Button variant="success" type="submit" block>Save</Button>
+                        <Button variant="success" onClick={submit} block>Save</Button>
                     }
                 </Col>
             </Row>

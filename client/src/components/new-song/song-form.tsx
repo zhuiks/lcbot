@@ -29,13 +29,12 @@ const SaveForm: React.FC<SaveFormProps> = ({ saveSong }) => {
     if (previousStep === 1) {
       setSlides(textBreaker(songText));
     }
-    if (previousStep === 2 && songTitle.length === 0) {
+    if (previousStep === 2 && songTitle.length === 0 && songSlides && songSlides.length && songSlides[0].text.length) {
       setTitle(songSlides[0].text[0].replace(/\(\s?|\s?\)/g, ''));
     }
   }
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const submitForm = () => {
     saveSong({
       variables: {
         title: songTitle,
@@ -48,7 +47,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ saveSong }) => {
   return (
     <Row className="justify-content-center">
       <Col sm={6}>
-        <Form onSubmit={onSubmit}>
+        <Form>
           <StepWizard onStepChange={onStepChange}>
             <Step title="Song Lyrics">
               <Form.Control
@@ -71,7 +70,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ saveSong }) => {
                 />
               </Form.Group>
             </Step>
-            <Step title="Extra Details">
+            <Step title="Extra Details" submit={submitForm}>
               <Form.Group controlId="song-link">
                 <Form.Label>Video Link:</Form.Label>
                 <Form.Control
