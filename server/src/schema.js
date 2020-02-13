@@ -5,14 +5,20 @@ const typeDefs = gql`
       id: ID!
       title: String
       text: [String]!
+      slides: [Slide]
       links: [String]
-      url: String
   }
 
   type Slide {
-      id: ID!
-      type: SlideType
-      lines: [String!]!
+      type: SlideType!
+      name: String
+      lines: [String!]
+  }
+
+  input SlideInput {
+    type: SlideType! = VERSE
+    name: String
+    lines: [String!]
   }
 
   enum SlideType {
@@ -31,7 +37,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-      saveSong(title: String, text: [String], links: [String]): UpdateResponce
+      saveSong(title: String, text: [SlideInput], links: [String]): UpdateResponce
   }
 
   type UpdateResponce {
