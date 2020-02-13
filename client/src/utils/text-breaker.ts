@@ -53,9 +53,10 @@ const textBreaker = (input: string) => {
             if (line.length) {
                 const m = regex.exec(line);
                 if (m !== null) {
+                    const [fullMatch, slideHeader] = m;
                     // console.log(m, m[0].length);
-                    addSlide(m[1]); //m.groups && m.groups.type_name;
-                    line = line.slice(m.index + m[0].length).trim();
+                    addSlide(slideHeader); //m.groups && m.groups.type_name;
+                    line = line.slice(fullMatch.length).trim();
                 }
                 if (line.length) {
                     currentSlide.text.push(line);
