@@ -3,14 +3,35 @@ import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
 import React from 'react';
-import ReactDOM from 'react-dom'; 
+import ReactDOM from 'react-dom';
 import Pages from './pages';
+import { ApolloLink } from 'apollo-link';
+import { onError } from "apollo-link-error";
+
+const link = ApolloLink.from([
+  onError(({ graphQLErrors, networkError }) => {
+    if (graphQLErrors)
+      graphQLErrors.forEach(({ message, locations, path }) => { 
+        let locationStr = '';
+        if(locations) {
+          locations.forEach(el => { 
+            locationStr += `#${el.line}: ${el.column}`;
+          });
+        }
+        console.log(
+          `[GraphQL error]: Message: ${message}, Path: ${path} ${locationStr}`,
+        );
+      });
+
+    if (networkError) console.log(`[Network error]: ${networkError}`);
+  }),
+  new HttpLink({
+    // uri: 'https://hz1lib0jqi.execute-api.us-east-1.amazonaws.com/dev/query/'
+    uri: 'http://localhost:3000/query/'
+  }),
+]);
 
 const cache = new InMemoryCache();
-const link = new HttpLink({
-  uri: 'https://hz1lib0jqi.execute-api.us-east-1.amazonaws.com/dev/query/'
-  // uri: 'http://localhost:3000/query/'
-});
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
@@ -20,6 +41,6 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Pages />
-  </ApolloProvider>, 
+  </ApolloProvider>,
   document.getElementById('root')
 );

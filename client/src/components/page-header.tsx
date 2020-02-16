@@ -8,7 +8,7 @@ interface PageHeaderProps {
 
 const PageHeader: React.FC<PageHeaderProps> = ({ link = '', children }) => {
 
-  const title = <h1>{children}</h1>
+  const title = <h1 className="mb-3">{children}</h1>
   return link !== '' ? (<LinkContainer to={link}><a href="#make-ts-happy">{title}</a></ LinkContainer>) : title;
 };
 

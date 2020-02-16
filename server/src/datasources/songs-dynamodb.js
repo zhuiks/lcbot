@@ -24,6 +24,7 @@ class Songs {
             id: songDb.SongId,
             title: songDb.Title,
             text: songDb.Text,
+            slides: songDb.Slides,
             links: songDb.Links
         };
     }

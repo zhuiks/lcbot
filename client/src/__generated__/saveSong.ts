@@ -2,6 +2,8 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+import { SlideInput } from "./globalTypes";
+
 // ====================================================
 // GraphQL mutation operation: saveSong
 // ====================================================
@@ -25,7 +27,7 @@ export interface saveSong {
 }
 
 export interface saveSongVariables {
-  title?: string | null;
-  text: (string | null)[];
+  title: string;
+  slides: SlideInput[];
   links?: (string | null)[] | null;
 }

@@ -18,5 +18,17 @@ module.exports = {
             : "Something went wrong"
       }
     }
+  },
+  Song: {
+    text: (songDb) => {
+      if(songDb.text)
+        return songDb.text;
+      let lines = [];
+      songDb.slides.forEach(slide => {
+        lines.push(' ', '    ' + (slide.name || slide.type));
+        lines = lines.concat(slide.lines);
+      });
+      return lines.slice(1);  
+    }
   }
 };  
