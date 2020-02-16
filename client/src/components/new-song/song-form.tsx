@@ -3,8 +3,9 @@ import StepWizard from 'react-step-wizard';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import * as SavingTypes from '../../pages/__generated__/saveSong';
 import { MutationFunctionOptions } from '@apollo/react-common';
+import * as SavingTypes from '../../__generated__/saveSong';
+import { SlideInput } from '../../__generated__/globalTypes';
 import textBreaker from '../../utils/text-breaker';
 import Step from './step';
 import Orderer from './ordering';
@@ -21,16 +22,16 @@ interface onStepChangeArgs {
 const SaveForm: React.FC<SaveFormProps> = ({ saveSong }) => {
 
   const [songText, setText] = useState('');
-  const [songSlides, setSlides] = useState();
+  const [songSlides, setSlides] = useState<SlideInput[]>([]);
   const [songTitle, setTitle] = useState('');
-  const [songLinks, setLinks] = useState(['']);
+  const [songLinks, setLinks] = useState<string[]>([]);
 
   const onStepChange = ({ previousStep, activeStep }: onStepChangeArgs) => {
     if (previousStep === 1) {
       setSlides(textBreaker(songText));
     }
-    if (previousStep === 2 && songTitle.length === 0 && songSlides && songSlides.length && songSlides[0].text.length) {
-      setTitle(songSlides[0].text[0].replace(/\(\s?|\s?\)/g, ''));
+    if (previousStep === 2 && songTitle.length === 0 && songSlides && songSlides.length && songSlides[0].lines) {
+      setTitle(songSlides[0].lines[0].replace(/\(\s?|\s?\)/g, ''));
     }
   }
 
@@ -38,7 +39,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ saveSong }) => {
     saveSong({
       variables: {
         title: songTitle,
-        text: [],
+        slides: songSlides,
         links: songLinks
       }
     });

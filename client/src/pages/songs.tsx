@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import { SongRow, Loading, SearchField } from '../components';
-import * as GetSongListTypes from './__generated__/GetSongList';
+import * as GetSongListTypes from '../__generated__/GetSongList';
 import wordSearch from '../word-search';
 
 const GET_SONGS = gql`

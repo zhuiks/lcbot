@@ -1,24 +1,19 @@
 import fixArabicNumbers from './fixArabicNumber';
+import { SlideInput, SlideType } from '../__generated__/globalTypes';
 
 const verse = '[0-9]+';
 const chorus = '(?:ال)?' + 'قرار';
 const chorusR = new RegExp(chorus);
 
-export interface slideType {
-    type: string;
-    name: string | null;
-    text: string[];
-}
-
-let currentSlide: slideType;
-let slides: slideType[];
+let currentSlide: SlideInput;
+let slides: SlideInput[];
 let verseCounter: number;
 
 const resetSlide = (allSlides: boolean = false) => {
     currentSlide = {
-        type: 'VERSE',
+        type: SlideType.VERSE,
         name: '1',
-        text: []
+        lines: []
     }
     if(allSlides) {
         slides = [];
@@ -28,7 +23,7 @@ const resetSlide = (allSlides: boolean = false) => {
 const setSlideType = (name: string) => {
     currentSlide.name = name;
     if (chorusR.test(name)) {
-        currentSlide.type = 'CHORUS';
+        currentSlide.type = SlideType.CHORUS;
     } else { // if 'VERSE'
         verseCounter = parseInt(name);
     }
@@ -36,7 +31,7 @@ const setSlideType = (name: string) => {
 }
 const addSlide = (name: string = '') => {
     // console.log(currentSlide, name, verseCounter)
-    if (currentSlide.text.length) {
+    if (currentSlide.lines && currentSlide.lines.length) {
         slides.push(currentSlide);
         resetSlide();
     }
@@ -59,9 +54,9 @@ const textBreaker = (input: string) => {
                     line = line.slice(fullMatch.length).trim();
                 }
                 if (line.length) {
-                    currentSlide.text.push(line);
+                    currentSlide.lines && currentSlide.lines.push(line);
                 }
-            } else if(currentSlide.text.length) {
+            } else if(currentSlide.lines && currentSlide.lines.length) {
                 verseCounter++;
                 addSlide(verseCounter.toString());
             }
