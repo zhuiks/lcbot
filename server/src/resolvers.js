@@ -17,6 +17,18 @@ module.exports = {
             ? "Song saved successfully"
             : "Something went wrong"
       }
+    },
+    updateSong: async (_, { id, title, text, links }, { dataSources }) => {
+      const songId = await dataSources.songs.saveSong({ id, title, text, links });
+      const song = await dataSources.songs.getSong(songId);
+      return {
+        success: songId != false && song.id != false,
+        song,
+        message:
+          songId != false && song.id != false
+            ? "Song updated successfully"
+            : "Something went wrong"
+      }
     }
   },
   Song: {
