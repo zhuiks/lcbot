@@ -3,11 +3,11 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { SongForm, Loading, SaveResult, AppError } from '../components';
-import * as SavingTypes from './__generated__/saveSong';
+import * as SavingTypes from '../__generated__/saveSong';
 
 export const SAVE_SONG = gql`
-  mutation saveSong($title: String, $text: [String]!, $links: [String]) {
-    saveSong(title: $title, text: $text, links: $links) {
+  mutation saveSong($title: String!, $slides: [SlideInput!]!, $links: [String]) {
+    saveSong(title: $title, text: $slides, links: $links) {
       success
       message
       song {
