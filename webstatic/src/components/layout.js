@@ -9,8 +9,8 @@ import React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import { FaWhatsapp, FaSearch } from "react-icons/fa"
 
-const Layout = ({ children, isSongPage = false }) => {
-  const whatsappLink = `https://wa.me/?text=${isSongPage}`
+const Layout = ({ children, songText = false }) => {
+  const whatsappLink = `https://wa.me/?text=${songText}`
   return (
     <StaticQuery
       query={graphql`
@@ -25,11 +25,11 @@ const Layout = ({ children, isSongPage = false }) => {
     `}
       render={data => (
         <>
-          <div className={"main" + (isSongPage ? " song" : "")}>
+          <div className={"main" + (songText ? " song" : "")}>
             <main>{children}</main>
           </div>
           <footer>
-            {isSongPage &&
+            {songText &&
               <>
                 <div className="link">
                   <Link to="/"><FaSearch /></Link>
