@@ -3,12 +3,14 @@ import StepWizard from 'react-step-wizard';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import { updateSongVariables } from '../../__generated__/updateSong';
+import Badge from 'react-bootstrap/Badge';
 import { SlideInput } from '../../__generated__/globalTypes';
 import textBreaker from '../../utils/text-breaker';
 import Step from './step';
-import Orderer from './ordering';
+import Orderer from './orderer';
 import { useUpdateSong } from './submit';
+import { Loading, AppError } from '..';
+import SubmitResult from './submit-result';
 
 interface SaveFormProps {
   songData: {
@@ -43,7 +45,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
     }
   }
 
-  const {updateSong, mutationResult} = useUpdateSong();
+  const { updateSong, mutationResult } = useUpdateSong();
 
   const submitForm = () => {
     updateSong({
@@ -56,44 +58,54 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
 
   const isNewSong = songData.text ? false : true;
 
+  if (mutationResult.loading) return <Loading />;
   return (
-    <Row className="justify-content-center">
-      <Col sm={6}>
-        <Form>
-          <StepWizard onStepChange={onStepChange}>
-            <Step title="Song Lyrics" isNewSong={isNewSong}>
-              <Form.Control
-                id="song-text"
-                as="textarea"
-                rows="10"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setText(e.target.value) }}
-                value={songText}
-              />
-            </Step>
-            <Step title="Song Order" isNewSong={isNewSong}>
-              <Orderer slides={songSlides} />
-            </Step>
-            <Step title="Song Data" isNewSong={isNewSong}>
-              <Form.Group controlId="song-title">
-                <Form.Control
-                  placeholder="Song title"
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setTitle(e.target.value) }}
-                  value={songTitle}
-                />
-              </Form.Group>
-            </Step>
-            <Step title="Extra Details" submit={submitForm} isNewSong={isNewSong}>
-              <Form.Group controlId="song-link">
-                <Form.Label>Video Link:</Form.Label>
-                <Form.Control
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setLinks([e.target.value]) }}
-                />
-              </Form.Group>
-            </Step>
-          </StepWizard>
-        </Form>
-      </Col>
-    </Row>
+    <>
+      <Badge variant="info">{songData.id}</Badge>
+      {mutationResult.error &&
+        <AppError err={mutationResult.error} />}
+      {mutationResult.data ?
+        <SubmitResult data={mutationResult.data.updateSong} />
+        :
+        <Row className="justify-content-center">
+          <Col sm={6}>
+            <Form>
+              <StepWizard onStepChange={onStepChange}>
+                <Step title="Song Lyrics" isNewSong={isNewSong}>
+                  <Form.Control
+                    id="song-text"
+                    as="textarea"
+                    rows="10"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setText(e.target.value) }}
+                    value={songText}
+                  />
+                </Step>
+                <Step title="Song Order" isNewSong={isNewSong}>
+                  <Orderer slides={songSlides} />
+                </Step>
+                <Step title="Song Data" isNewSong={isNewSong}>
+                  <Form.Group controlId="song-title">
+                    <Form.Control
+                      placeholder="Song title"
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setTitle(e.target.value) }}
+                      value={songTitle}
+                    />
+                  </Form.Group>
+                </Step>
+                <Step title="Extra Details" submit={submitForm} isNewSong={isNewSong}>
+                  <Form.Group controlId="song-link">
+                    <Form.Label>Video Link:</Form.Label>
+                    <Form.Control
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setLinks([e.target.value]) }}
+                    />
+                  </Form.Group>
+                </Step>
+              </StepWizard>
+            </Form>
+          </Col>
+        </Row>
+      }
+    </>
   );
 };
 
