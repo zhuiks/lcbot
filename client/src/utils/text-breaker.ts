@@ -38,6 +38,12 @@ const addSlide = (name: string = '') => {
     setSlideType(name);
 }
 
+const addLine = (str: string) => {
+    str = str.trim().replace(/^\( */, '||:').replace(/ *\) *[x|\*]? *(\d)?$/, ':||');
+    if(str.length) {
+        currentSlide.lines && currentSlide.lines.push(str);
+    }
+}
 
 const textBreaker = (input: string) => {
     const regex = new RegExp(`^ *(${verse}|${chorus}) *[-|–|:]* *`, 'iu');
@@ -51,11 +57,9 @@ const textBreaker = (input: string) => {
                     const [fullMatch, slideHeader] = m;
                     // console.log(m, m[0].length);
                     addSlide(slideHeader); //m.groups && m.groups.type_name;
-                    line = line.slice(fullMatch.length).trim();
+                    line = line.slice(fullMatch.length);
                 }
-                if (line.length) {
-                    currentSlide.lines && currentSlide.lines.push(line);
-                }
+                addLine(line);
             } else if(currentSlide.lines && currentSlide.lines.length) {
                 verseCounter++;
                 addSlide(verseCounter.toString());

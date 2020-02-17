@@ -108,14 +108,28 @@ describe('testBreaker', () => {
         const slides = textBreaker(testInput[1]);
         expect(slides[0]).toHaveProperty('lines');
         expect(slides[0].lines).toHaveLength(5);                
-        expect(slides[0].lines[0]).toEqual('(جايين يا أبانا');
-        expect(slides[1].lines[0]).toEqual('(ده رجانا فيك يا إلهنا');
+        expect(slides[0].lines[0].slice(3)).toEqual('جايين يا أبانا');
+        expect(slides[1].lines[0].slice(3)).toEqual('ده رجانا فيك يا إلهنا');
 
         const slides2 = textBreaker(testInput[2]);
         expect(slides2[0].lines).toHaveLength(4);     
         
         const slides3 = textBreaker(testInput[3]);
-        expect(slides3[0].lines[0]).toEqual('( ماكو مثلك ربي ... هل كد مني قريب');        
+        expect(slides3[0].lines[0].slice(3)).toEqual('ماكو مثلك ربي ... هل كد مني قريب');        
+    });
+
+    it('replace repeat parenties', ()=>{
+        const slides = textBreaker(testInput[1]);
+        const firstLine = slides[0].lines && slides[0].lines[0];
+        const lastLine = slides[0].lines && slides[0].lines[4];
+        expect(firstLine?.slice(0,3)).toEqual('||:');
+        expect(lastLine?.slice(-3)).toEqual(':||');
+
+        const slides2 = textBreaker(testInput[3]);
+        const firstLine2 = slides2[0].lines && slides2[0].lines[0];
+        const lastLine2 = slides2[0].lines && slides2[0].lines[1];
+        expect(firstLine2?.slice(0,3)).toEqual('||:');
+        expect(lastLine2?.slice(-3)).toEqual(':||');
     });
 
     it('processes duplicated slides correctly', ()=>{
