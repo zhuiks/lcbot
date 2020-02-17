@@ -51,7 +51,7 @@ class Database {
     }
 
     async update(data) {
-        const SongId = data.SongId || '__no-id-temp';
+        const SongId = data.id || '__no-id-temp';
         let updateExpr = [];
         let attrNames = {};
         let attrVal = {};
