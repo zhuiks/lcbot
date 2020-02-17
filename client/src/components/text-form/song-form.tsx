@@ -43,19 +43,25 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
     }
   }
 
-  const submitForm = useUpdateSong({
-    songId: '',
-    title: songTitle || '',
-    slides: songSlides,
-    links: songLinks
-  });
+  const {updateSong, mutationResult} = useUpdateSong();
+
+  const submitForm = () => {
+    updateSong({
+      songId: songData.id,
+      title: songTitle,
+      slides: songSlides,
+      links: songLinks
+    });
+  }
+
+  const isNewSong = songData.text ? false : true;
 
   return (
     <Row className="justify-content-center">
       <Col sm={6}>
         <Form>
           <StepWizard onStepChange={onStepChange}>
-            <Step title="Song Lyrics" isNewSong={songData ? false : true}>
+            <Step title="Song Lyrics" isNewSong={isNewSong}>
               <Form.Control
                 id="song-text"
                 as="textarea"
@@ -64,10 +70,10 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
                 value={songText}
               />
             </Step>
-            <Step title="Song Order">
+            <Step title="Song Order" isNewSong={isNewSong}>
               <Orderer slides={songSlides} />
             </Step>
-            <Step title="Song Data">
+            <Step title="Song Data" isNewSong={isNewSong}>
               <Form.Group controlId="song-title">
                 <Form.Control
                   placeholder="Song title"
@@ -76,7 +82,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
                 />
               </Form.Group>
             </Step>
-            <Step title="Extra Details" submit={submitForm}>
+            <Step title="Extra Details" submit={submitForm} isNewSong={isNewSong}>
               <Form.Group controlId="song-link">
                 <Form.Label>Video Link:</Form.Label>
                 <Form.Control
