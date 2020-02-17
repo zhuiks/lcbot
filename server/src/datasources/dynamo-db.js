@@ -1,5 +1,4 @@
 const AWS = require('aws-sdk');
-const stringGen = require('crypto-random-string');
 
 let _db;
 
@@ -52,7 +51,7 @@ class Database {
     }
 
     async update(data) {
-        const SongId = data.SongId || stringGen({ length: 5, type: 'url-safe' });
+        const SongId = data.SongId || '__no-id-temp';
         let updateExpr = [];
         let attrNames = {};
         let attrVal = {};
