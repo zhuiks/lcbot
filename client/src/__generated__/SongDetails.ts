@@ -11,6 +11,7 @@ export interface SongDetails_song {
   id: string;
   title: string | null;
   text: (string | null)[];
+  links: (string | null)[] | null;
 }
 
 export interface SongDetails {

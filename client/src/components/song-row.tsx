@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 export default ({ song }: any) => {
   const { id, title } = song;
   return (
-    <LinkContainer to= {`/song/${id}`}>
+    <LinkContainer to= {`/edit/${id}`}>
       <ListGroup.Item action>{title}</ListGroup.Item>
     </LinkContainer>
   );

@@ -5,29 +5,30 @@
 import { SlideInput } from "./globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: saveSong
+// GraphQL mutation operation: updateSong
 // ====================================================
 
-export interface saveSong_saveSong_song {
+export interface updateSong_updateSong_song {
   __typename: "Song";
   id: string;
   title: string | null;
   text: (string | null)[];
 }
 
-export interface saveSong_saveSong {
+export interface updateSong_updateSong {
   __typename: "UpdateResponce";
   success: boolean;
   message: string | null;
-  song: saveSong_saveSong_song | null;
+  song: updateSong_updateSong_song | null;
 }
 
-export interface saveSong {
-  saveSong: saveSong_saveSong | null;
+export interface updateSong {
+  updateSong: updateSong_updateSong | null;
 }
 
-export interface saveSongVariables {
+export interface updateSongVariables {
+  songId: string;
   title: string;
-  slides: SlideInput[];
+  slides?: (SlideInput | null)[] | null;
   links?: (string | null)[] | null;
 }

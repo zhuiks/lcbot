@@ -7,9 +7,9 @@ import {
 
 import Song from './song';
 import Songs from './songs';
-import NewSong from './new-song';
 import { Header } from '../components';
 import Container from 'react-bootstrap/Container';
+import NewSong from './new-song';
 
 export default function Pages() {
 
@@ -18,7 +18,7 @@ export default function Pages() {
       <Header />
       <Container>
         <Switch>
-          <Route path="/song/:songId">
+          <Route path="/edit/:songId">
             <Song />
           </Route>
           <Route path="/add">

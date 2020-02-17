@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag'; 
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Loading, SongText, PageHeader } from '../components';
-import * as SongDetailsTypes from '../__generated__/SongDetails';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+import * as QueryTypes from '../__generated__/SongDetails';
+import { Loading, AppError, SongForm } from '../components';
 
 export const GET_SONG_DETAILS = gql`
   query SongDetails($songId: ID!) {
@@ -11,39 +11,35 @@ export const GET_SONG_DETAILS = gql`
       id
       title
       text
+      links
     }
   }
 `;
 
-interface SongVars extends SongDetailsTypes.SongDetailsVariables {
-  songId: any;
-};
+
+export interface SaveSongArgs {
+
+}
 
 const Song: React.FC = () => {
-  
-  let { songId } = useParams(); //https://reacttraining.com/react-router/web/api/Hooks/useparams
 
-  const { 
-    data, 
-    loading, 
-    error 
-  } = useQuery<
-    SongDetailsTypes.SongDetails, 
-    SongVars
-  >(GET_SONG_DETAILS, 
+  const { songId } = useParams(); //https://reacttraining.com/react-router/web/api/Hooks/useparams
+
+  const {loading, error, data} = useQuery<
+    QueryTypes.SongDetails,
+    Partial<QueryTypes.SongDetailsVariables>
+  >(GET_SONG_DETAILS,
     { variables: { songId } }
   );
-  
+
   if (loading) return <Loading />;
-  if (error) return <p>ERROR: {error.message}</p>;
-  if (!data) return <p>Not found</p>;
 
   return (
-    <Fragment>
-      <PageHeader>{data.song && data.song.title}</PageHeader>
-      <SongText {...data.song} />
-      {/* <ActionButton {...data.song} /> */}
-    </Fragment>
+    <>
+      {error &&
+        <AppError err={error} />}
+      <SongForm songData={data && data.song || {id:'0'}} />;
+    </>
   );
 }
 
