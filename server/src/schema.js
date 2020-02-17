@@ -37,7 +37,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-      saveSong(title: String!, text: [SlideInput!]!, links: [String]): UpdateResponce
+      addSong(title: String!, text: [SlideInput!]!, links: [String]): UpdateResponce
       updateSong(id: ID!, title: String, text: [SlideInput], links: [String]): UpdateResponce
   }
 
