@@ -41,7 +41,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
       setSlides(textBreaker(songText));
     }
     if (previousStep === 2 && !songTitle && songSlides && songSlides.length && songSlides[0].lines) {
-      setTitle(songSlides[0].lines[0].replace(/^\|\:|\:\|$\)/g, ''));
+      setTitle(songSlides[0].lines[0].replace(/\|\:|\:\|/g, ''));
     }
   }
 
