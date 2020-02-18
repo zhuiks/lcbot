@@ -38,12 +38,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-react-bootstrap`,
-        short_name: `react-bootstrap`,
+        name: `Lyrics & chords finder`,
+        short_name: `lcbot`,
         start_url: `/`,
-        background_color: `#20232a`,
-        theme_color: `#20232a`,
+        background_color: `#ffffff`,
+        theme_color: `#000000`,
         display: `minimal-ui`,
+        icon: `src/images/logo.png`
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

@@ -10,7 +10,7 @@ const SongText = ({ slides }) => (
           slide.lines.map(line => {
             const repeatStart = line.indexOf('|:') !== -1 ? ' repeat-start' : ''
             const repeatEnd = line.indexOf(':|') !== -1 ? ' repeat-end' : ''
-            return <p className={repeatStart+repeatEnd}>{line.replace(/\|\:|\:\|/g, '')}</p>
+            return <p className={repeatStart+repeatEnd}>{line.replace(/\|:|:\|/g, '')}</p>
           })
         }
       </div>
