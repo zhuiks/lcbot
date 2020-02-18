@@ -2,7 +2,7 @@
   "name": "lcbot-webapp",
   "private": true,
   "description": "A static website with lyrics",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "zhuiks",
   "dependencies": {
     "gatsby": "^2.3.34",
