@@ -35,8 +35,9 @@ const slides2text = slides => {
 const SongPage = ({ data }) => {
   const song = data.songList.song
   const descr = slides2text(song.slides)
+  const youtubeLink = song.links && song.links[0]
   return (
-    <Layout songText={descr}>
+    <Layout songText={descr} link={youtubeLink}>
       <SEO title={song.title} description={descr}/>
       <h1>{song.title}</h1>
       <SongText {...song} />
