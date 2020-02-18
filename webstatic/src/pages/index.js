@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import SearchField from "../components/search"
 import SongRow from "../components/song-row"
-import { wordSearch } from "../utils"
+import songFilter from "../components/song-filter"
 
 export const query = graphql`
   query {
@@ -23,12 +23,12 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Song List" keywords={[`gatsby`, `react`, `bootstrap`]} />
+      <SEO title="الترنيمات" keywords={[`gatsby`, `react`, `bootstrap`]} />
       <div className="text-center">
             <SearchField filter={filter} onChange={setFilter} />
             <ul className="song-list">
               {data.songList &&
-                wordSearch(data.songList.songs, filter).map(song => (
+                songFilter(data.songList.songs, filter).map(song => (
                   <SongRow key={song.id} song={song} />
                 ))}
             </ul>
