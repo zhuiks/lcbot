@@ -10,10 +10,12 @@
     &[class*='repeat-']::after {
       position: absolute;
       height: 100%;
+      z-index: -1;
       content: ' ';
       width: 1.5em;
       color: #cccccc;
       font-size: 0.7em;
+      inset-block-start: 0;
       inset-inline-end: 0;
       border-inline-start: 2px solid #cccccc;
       padding-inline-start: 5px;
