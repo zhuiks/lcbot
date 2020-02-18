@@ -41,7 +41,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
       setSlides(textBreaker(songText));
     }
     if (previousStep === 2 && !songTitle && songSlides && songSlides.length && songSlides[0].lines) {
-      setTitle(songSlides[0].lines[0].replace(/\(\s?|\s?\)/g, ''));
+      setTitle(songSlides[0].lines[0].replace(/^\|\:|\:\|$\)/g, ''));
     }
   }
 
@@ -78,6 +78,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
                     rows="10"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setText(e.target.value) }}
                     value={songText}
+                    style={{ direction: "rtl" }}
                   />
                 </Step>
                 <Step title="Song Order" isNewSong={isNewSong}>
@@ -89,6 +90,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
                       placeholder="Song title"
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setTitle(e.target.value) }}
                       value={songTitle}
+                      style={{ direction: "rtl" }}
                     />
                   </Form.Group>
                 </Step>
