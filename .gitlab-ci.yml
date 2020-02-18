@@ -28,12 +28,12 @@ pages:
     refs:
       - master
     changes:
-      - webstatic/**/*
+      - webapp/**/*
   cache:
     paths:
-      - webstatic/node_modules/
+      - webapp/node_modules/
   script:
-    - cd webstatic && npm install
+    - cd webapp && npm install
     - ./node_modules/.bin/gatsby build --prefix-paths
     - mv ./public ../
   artifacts:
