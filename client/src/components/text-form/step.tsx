@@ -12,12 +12,14 @@ import { PageHeader } from '..';
 interface StepProps extends StepWizardChildProps{
     children: any;
     title: string;
-    submit: () => void;
+    isNewSong: boolean;
+    submit: any;
 }
 
 const Step: React.FC<Partial<StepProps>> = ({
     children,
     title = 'New Song',
+    isNewSong = true,
     totalSteps = 1,
     currentStep = 1,
     // firstStep,
@@ -28,7 +30,7 @@ const Step: React.FC<Partial<StepProps>> = ({
     submit
 }) => (
         <div>
-            <PageHeader>{`${currentStep} (${totalSteps}): Add ${title}`}</PageHeader>
+            <PageHeader>{`${currentStep} (${totalSteps}): ${isNewSong?'Add':'Edit'} ${title}`}</PageHeader>
             {children}
             <Row className="mt-5">
                 <Col sm={3}>
