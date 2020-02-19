@@ -26,8 +26,7 @@ const link = ApolloLink.from([
     if (networkError) console.log(`[Network error]: ${networkError}`);
   }),
   new HttpLink({
-    // uri: 'https://hz1lib0jqi.execute-api.us-east-1.amazonaws.com/dev/query/'
-    uri: 'http://localhost:3000/query/'
+    uri: process.env.SERVER_URL || 'http://localhost:3000/query/'
   }),
 ]);
 

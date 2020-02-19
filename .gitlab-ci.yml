@@ -22,20 +22,20 @@ deploy-server:
     - npm run deploy
   environment: production
 
-pages:
-  stage: deploy
-  only:
-    refs:
-      - master
-    changes:
-      - webapp/**/*
-  cache:
-    paths:
-      - webapp/node_modules/
-  script:
-    - cd webapp && npm install
-    - ./node_modules/.bin/gatsby build --prefix-paths
-    - mv ./public ../
-  artifacts:
-    paths:
-      - public
+# pages:
+#   stage: deploy
+#   only:
+#     refs:
+#       - master
+#     changes:
+#       - webapp/**/*
+#   cache:
+#     paths:
+#       - webapp/node_modules/
+#   script:
+#     - cd webapp && npm install
+#     - ./node_modules/.bin/gatsby build --prefix-paths
+#     - mv ./public ../
+#   artifacts:
+#     paths:
+#       - public
