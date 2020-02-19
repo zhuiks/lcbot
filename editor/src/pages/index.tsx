@@ -7,7 +7,7 @@ import {
 
 import Song from './song';
 import Songs from './songs';
-import { Header } from '../components';
+import { Header, Login, PrivateRoute } from '../components';
 import Container from 'react-bootstrap/Container';
 import NewSong from './new-song';
 
@@ -18,15 +18,18 @@ export default function Pages() {
       <Header />
       <Container>
         <Switch>
-          <Route path="/edit/:songId">
+          <Route path="/login">
+            <Login />
+          </Route>
+          <PrivateRoute path="/edit/:songId">
             <Song />
-          </Route>
-          <Route path="/add">
+          </PrivateRoute>
+          <PrivateRoute path="/add">
             <NewSong />
-          </Route>
-          <Route path="/">
+          </PrivateRoute>
+          <PrivateRoute path="/">
             <Songs />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </Container>
     </Router>

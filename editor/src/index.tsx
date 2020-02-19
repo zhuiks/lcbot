@@ -7,6 +7,17 @@ import ReactDOM from 'react-dom';
 import Pages from './pages';
 import { ApolloLink } from 'apollo-link';
 import { onError } from "apollo-link-error";
+import netlifyIdentity from 'netlify-identity-widget';
+
+declare global {
+  interface Window {
+    netlifyIdentity:any;
+  }
+}
+
+window.netlifyIdentity = netlifyIdentity;
+// You must run this once before trying to interact with the widget
+netlifyIdentity.init();
 
 const link = ApolloLink.from([
   onError(({ graphQLErrors, networkError }) => {

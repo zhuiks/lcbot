@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 import logo from '../assets/logo.png';
+import { netlifyAuth, AuthButton } from './netlify';
 
 interface HeaderProps {
   title?: string;
@@ -29,9 +30,12 @@ const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', children }) 
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav>
-          <LinkContainer to="/add">
-            <Nav.Link>Add Song</Nav.Link>
-          </LinkContainer>
+          {netlifyAuth.isAuthenticated && (
+            <LinkContainer to="/add">
+              <Nav.Link>Add Song</Nav.Link>
+            </LinkContainer>
+          )}
+          <AuthButton />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
