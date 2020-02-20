@@ -13,34 +13,44 @@ import NewSong from './new-song';
 import { IdentityModal, useIdentityContext, IdentityContextProvider } from 'react-netlify-identity-widget';
 import 'react-netlify-identity-widget/styles.css';
 
+const Routs: React.FC = () => (
+  <Switch>
+    <Route path="/edit/:songId">
+      <Song />
+    </Route>
+    <Route path="/add">
+      <NewSong />
+    </Route>
+    <Route path="/">
+      <Songs />
+    </Route>
+  </Switch>
+);
 
-const AuthView: React.FC = () => {
-  const identity = useIdentityContext()
-  const [loginDialog, setLoginDialog] = React.useState(false)
+
+const AuthView: React.FC = (children) => {
+  const identity = useIdentityContext();
+  const [loginDialog, setLoginDialog] = React.useState(false);
   return (
     <Router>
-      <Header user={identity.user} logoutAction={() => setLoginDialog(true)}/>
+      <Header user={identity.user} logoutAction={() => setLoginDialog(true)} />
       <Container>
         {identity && identity.isLoggedIn ? (
-          <Switch>
-            <Route path="/edit/:songId">
-              <Song />
-            </Route>
-            <Route path="/add">
-              <NewSong />
-            </Route>
-            <Route path="/">
-              <Songs />
-            </Route>
-          </Switch>
+          children
         ) : (
-            <Login loginAction={() => setLoginDialog(true)}/>
-        )}
+            <Login loginAction={() => setLoginDialog(true)} />
+          )}
         <IdentityModal
           showDialog={loginDialog}
           onCloseDialog={() => setLoginDialog(false)}
-          onLogin={(user) => console.log('hello ', user!.user_metadata)}
-          onSignup={(user) => console.log('welcome ', user!.user_metadata)}
+          onLogin={(user) => {
+            setLoginDialog(false);
+            console.log('hello ', user!.user_metadata);
+          }}
+          onSignup={(user) => {
+            setLoginDialog(false);
+            console.log('welcome ', user!.user_metadata);
+          }}
           onLogout={() => console.log('bye ')}
         />
       </Container>
@@ -50,15 +60,25 @@ const AuthView: React.FC = () => {
 
 export default function Pages() {
 
-  // const url = process.env.REACT_APP_NETLIFY_IDENTITY_URL 
-  const url = 'https://lcbot-editor.netlify.com'
+  if (process.env.NODE_ENV !== 'production') return (
+    <Router>
+      <Header user={true} logoutAction={() => console.log('Bye!')} />
+      <Container>
+        <Routs />
+      </Container>
+      </Router>
+  );
+
+  const url = process.env.REACT_APP_NETLIFY_IDENTITY_URL || '';
   if (!url)
     throw new Error(
       'process.env.REACT_APP_NETLIFY_IDENTITY_URL is blank, which means you probably forgot to set it in your Netlify environment variables',
     );
   return (
     <IdentityContextProvider url={url}>
-      <AuthView />
+      <AuthView>
+        <Routs />
+      </AuthView>
     </IdentityContextProvider>
   );
 }
