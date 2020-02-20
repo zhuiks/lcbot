@@ -66,7 +66,7 @@ export default function Pages() {
       <Container>
         <Routs />
       </Container>
-      </Router>
+    </Router>
   );
 
   const url = process.env.REACT_APP_NETLIFY_IDENTITY_URL || '';
