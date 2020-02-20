@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Badge from 'react-bootstrap/Badge';
 import { SlideInput } from '../../__generated__/globalTypes';
-import textBreaker from '../../utils/text-breaker';
+import textBreaker from '../../lib/text-breaker';
 import Step from './step';
 import Orderer from './orderer';
 import { useUpdateSong } from './submit';
