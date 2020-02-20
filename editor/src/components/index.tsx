@@ -6,5 +6,5 @@ export { default as Loading } from './loading';
 export { default as AppError } from './error';
 export { default as SongForm } from './text-form/song-form';
 export { default as SearchField } from './search';
-export * from './netlify';
+export { default as Login } from './login';
 

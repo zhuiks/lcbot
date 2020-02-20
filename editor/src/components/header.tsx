@@ -4,14 +4,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 import logo from '../assets/logo.png';
-import { netlifyAuth, AuthButton } from './netlify';
 
 interface HeaderProps {
   title?: string;
   children?: any;
+  user: any;
+  logoutAction: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', children }) => {
+const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', user, logoutAction, children }) => {
 
   return (
     <Navbar bg="dark" variant="dark" className="mb-5">
@@ -29,13 +30,18 @@ const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', children }) 
       </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+        {user && (
+          <Navbar.Text>
+            Hello <strong>{(user.user_metadata && user.user_metadata.full_name) || 'NoName'}</strong>!
+          </Navbar.Text>
+        )}
         <Nav>
-          {netlifyAuth.isAuthenticated && (
-            <LinkContainer to="/add">
-              <Nav.Link>Add Song</Nav.Link>
-            </LinkContainer>
+          {user && (
+            <Nav.Link onClick={logoutAction}>Log Out</Nav.Link>
           )}
-          <AuthButton />
+          <LinkContainer to="/add">
+            <Nav.Link disabled={!user}>Add Song</Nav.Link>
+          </LinkContainer>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
