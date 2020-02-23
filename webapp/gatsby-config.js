@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: "/lcbot",
   siteMetadata: {
-    title: `Lyric & Chords`,
+    title: `Lyrics & Chords`,
     description: `Find lyrics and chords for worship songs`,
     author: `zhuiks`,
   },
