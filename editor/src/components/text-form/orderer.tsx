@@ -4,7 +4,7 @@ import { SlideInput } from '../../__generated__/globalTypes';
 import SongText from '@bit/zhuiks.lcbot.song-text';
 
 interface OrdererProps {
-    slides: SlideInput[] | undefined;
+    slides: SlideInput[];
 }
 
 const Orderer: React.FC<OrdererProps> = ({ slides }) => {

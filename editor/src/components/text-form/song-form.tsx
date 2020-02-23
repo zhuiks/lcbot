@@ -32,7 +32,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
   const [songText, setText] = useState(
     typeof songData.text === 'string' ? songData.text : (songData.text ? songData.text.join('\n') : '')
   );
-  const [songSlides, setSlides] = useState<SlideInput[]>();
+  const [songSlides, setSlides] = useState<SlideInput[]>([]);
   const [songTitle, setTitle] = useState<string>(songData.title || '');
   const [songLinks, setLinks] = useState<string[]>();
 

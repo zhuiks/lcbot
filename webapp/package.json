@@ -5,6 +5,7 @@
   "version": "0.2.0",
   "author": "zhuiks",
   "dependencies": {
+    "@bit/zhuiks.lcbot.global-types": "0.0.1",
     "gatsby": "^2.3.34",
     "gatsby-image": "^2.0.41",
     "gatsby-plugin-manifest": "^2.0.29",
