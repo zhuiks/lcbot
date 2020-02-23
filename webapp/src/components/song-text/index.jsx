@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SongText = ({ slides }) => (
-  <>
+  <article className="song-lyrics">
     {slides.map(slide => (
       <div className={"slide slide-" + slide.type.toLowerCase()}>
         {slide.name &&
@@ -15,7 +15,7 @@ const SongText = ({ slides }) => (
         }
       </div>
     ))}
-  </>
+  </article>
 );
 
 export default SongText;
