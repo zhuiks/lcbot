@@ -1,0 +1,5 @@
+{
+    "env": {},
+    "componentsDefaultDirectory": "editor/src/components/{name}",
+    "packageManager": "npm"
+}
