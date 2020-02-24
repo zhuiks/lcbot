@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import styled from "styled-components"
 
 import Layout from "./layout"
 import SEO from "./seo"
@@ -21,8 +22,13 @@ export const query = graphql`
     }
   }
 `
+
+const SongTitle = styled.h1`
+  text-align: center;
+`
+
 const slides2text = slides => {
-  let text = '';
+  let text = ''
   slides.forEach(slide => {
     if(text) {
       text += encodeURIComponent('\n')
@@ -40,7 +46,7 @@ const SongPage = ({ data }) => {
   return (
     <Layout songText={descr} link={youtubeLink}>
       <SEO title={song.title} description={descr}/>
-      <h1>{song.title}</h1>
+      <SongTitle>{song.title}</SongTitle>
       <SongText {...song} />
     </Layout>
   )

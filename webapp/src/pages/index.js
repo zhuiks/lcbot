@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
+import styled from "styled-components"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -18,6 +19,11 @@ export const query = graphql`
   }
 `
 
+const SongList = styled.ul`
+  list-style: none;
+  margin: 1em;
+`
+
 const IndexPage = ({ data }) => {
   const [filter, setFilter] = useState("");
 
@@ -26,12 +32,12 @@ const IndexPage = ({ data }) => {
       <SEO title="الترنيمات" keywords={[`gatsby`, `react`, `bootstrap`]} />
       <div className="text-center">
             <SearchField filter={filter} onChange={setFilter} />
-            <ul className="song-list">
+            <SongList className="song-list">
               {data.songList &&
                 songFilter(data.songList.songs, filter).map(song => (
                   <SongRow key={song.id} song={song} />
                 ))}
-            </ul>
+            </SongList>
       </div>
     </Layout>
   )

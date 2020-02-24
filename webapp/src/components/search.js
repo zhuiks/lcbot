@@ -1,17 +1,24 @@
-import React from 'react';
+import React from 'react'
+import styled from "styled-components"
+
+const Input = styled.input`
+  border-radius: 5px;
+  border: #999 1px solid;
+  width: 100%;
+  padding: 0.3em 0.5em;
+`
 
 const SearchField = ({ filter = '', onChange }) => {
 
   const HandleInput = (e) => {
     const val = e.target.value.trim();
     if(val.length < 2) return;
-    console.log(`${e.target.id} = "${val}"`);
-    onChange(val);
-  };
+    onChange(val)
+  }
 
   return (
     <form>
-      <input
+      <Input
         type="text"
         placeholder="بحث"
         onChange={HandleInput}

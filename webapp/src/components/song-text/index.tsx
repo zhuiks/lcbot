@@ -48,7 +48,7 @@ interface SongTextProps {
 }
 
 const SongText: React.FC<SongTextProps> = ({ slides }) => (
-    <article className="song-lyrics">
+    <>
         {slides.map(slide => (
             <Slide type={slide.type}>
                 {slide.name &&
@@ -67,7 +67,7 @@ const SongText: React.FC<SongTextProps> = ({ slides }) => (
                 }
             </Slide>
         ))}
-    </article>
+    </>
 );
 
 export default SongText;
