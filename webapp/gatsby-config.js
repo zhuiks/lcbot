@@ -17,6 +17,7 @@ module.exports = {
         url: process.env.SERVER_URL || "http://localhost:3000/query",
       },
     },
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     // {
     //   resolve: `gatsby-source-filesystem`,
@@ -25,6 +26,7 @@ module.exports = {
     //     path: `${__dirname}/src/images`,
     //   },
     // },
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-typography`,
       options: {

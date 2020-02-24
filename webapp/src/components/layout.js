@@ -39,7 +39,7 @@ const Layout = ({ children, songText = false, link }) => {
                 </div>
                 {link &&
                   <div className="link">
-                    <a href={link} target="_blank"><FaYoutube /></a>
+                    <a href={link} target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
                   </div>
                 }
               </>
