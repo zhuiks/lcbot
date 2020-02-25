@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { SlideInput } from '../../__generated__/globalTypes';
-import SongText from '@bit/zhuiks.lcbot.song-text';
+import SongSlide from '@bit/zhuiks.lcbot.song-slide';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -14,7 +14,9 @@ const Orderer: React.FC<OrdererProps> = ({ slides }) => {
     return (
         <Row className="justify-content-center">
             <Col sm={6} style={{ direction: 'rtl', textAlign: 'right' }}>
-                <SongText slides={slides} />
+                {slides.map((slide, i) => (
+                    <SongSlide key={i} slide={slide} />
+                ))}
             </Col>
         </Row>
     )
