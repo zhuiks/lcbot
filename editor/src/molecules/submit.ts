@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 
-import * as MutationTypes from '../../__generated__/updateSong';
+import * as MutationTypes from '../__generated__/updateSong';
 import { ExecutionResult, MutationResult } from '@apollo/react-common';
 
 export const UPDATE_SONG = gql`

@@ -4,12 +4,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Badge from 'react-bootstrap/Badge';
-import { SlideInput } from '../../__generated__/globalTypes';
-import textBreaker from '../../lib/text-breaker';
-import Step from './step';
-import Orderer from './orderer';
-import { useUpdateSong } from './submit';
-import { Loading, AppError } from '..';
+import Loading from '../atoms/loading';
+
+import AppError from '../molecules/error';
+import { SlideInput } from '../__generated__/globalTypes';
+import textBreaker from '../lib/text-breaker';
+
+import Step from '../molecules/step';
+import Orderer from '../molecules/orderer';
+import { useUpdateSong } from '../molecules/submit';
 import SubmitResult from './submit-result';
 
 interface SaveFormProps {

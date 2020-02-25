@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Alert from 'react-bootstrap/Alert';
-import { PageHeader } from '../';
+import PageHeader from '../atoms/page-header';
 
 const SubmitResult: React.FC<any> = ({ data }: any) => (
   <Fragment>

@@ -1,7 +1,7 @@
 import React from 'react';
 import stringGen from 'crypto-random-string';
 
-import { SongForm } from '../components';
+import SongForm from '../organisms/song-form';
 
 const NewSong: React.FC = () => {
   const songId = stringGen({ length: 5, type: 'url-safe' });

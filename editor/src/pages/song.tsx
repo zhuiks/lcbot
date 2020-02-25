@@ -3,7 +3,10 @@ import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import * as QueryTypes from '../__generated__/SongDetails';
-import { Loading, AppError, SongForm } from '../components';
+
+import Loading from '../atoms/loading';
+import AppError from '../molecules/error';
+import SongForm from '../organisms/song-form';
 
 export const GET_SONG_DETAILS = gql`
   query SongDetails($songId: ID!) {

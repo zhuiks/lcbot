@@ -3,7 +3,7 @@ import { StepWizardChildProps } from 'react-step-wizard';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import { PageHeader } from '..';
+import PageHeader from '../atoms/page-header';
 /**
  * Stats Component - to illustrate the possible functions
  * Could be used for nav buttons or overview

@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import { SlideInput } from '../../__generated__/globalTypes';
+import { SlideInput } from '../__generated__/globalTypes';
 import SongSlide from '@bit/zhuiks.lcbot.song-slide';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

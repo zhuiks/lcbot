@@ -3,7 +3,8 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import { SongRow, Loading, SearchField } from '../components';
+import Loading from '../atoms/loading';
+import { SongRow, SearchField } from '../components';
 import * as GetSongListTypes from '../__generated__/GetSongList';
 import wordSearch from '../word-search';
 
