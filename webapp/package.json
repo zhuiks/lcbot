@@ -7,9 +7,9 @@
   "dependencies": {
     "@bit/zhuiks.lcbot.global-types": "0.0.1",
     "babel-plugin-styled-components": "^1.10.7",
-    "gatsby": "^2.3.34",
-    "gatsby-image": "^2.0.41",
-    "gatsby-plugin-manifest": "^2.0.29",
+    "gatsby": "^2.19.21",
+    "gatsby-image": "^2.2.41",
+    "gatsby-plugin-manifest": "^2.2.42",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.35",
@@ -19,7 +19,6 @@
     "gatsby-source-filesystem": "^2.0.33",
     "gatsby-source-graphql": "^2.1.33",
     "gatsby-transformer-sharp": "^2.1.18",
-    "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -32,8 +31,13 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.0.0",
+    "babel-jest": "^25.1.0",
+    "babel-preset-gatsby": "^0.2.29",
     "gh-pages": "^2.0.1",
-    "prettier": "^1.17.0"
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.1.0",
+    "prettier": "^1.17.0",
+    "react-test-renderer": "^16.12.0"
   },
   "keywords": [
     "lyrics chords worship songs"
@@ -45,7 +49,7 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "test": "jest",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "repository": {

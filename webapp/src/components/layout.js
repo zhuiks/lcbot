@@ -1,5 +1,5 @@
 import React from "react"
-import { StaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
 import { FaWhatsapp, FaSearch, FaYoutube } from "react-icons/fa"
 
@@ -43,11 +43,9 @@ const Footer = styled.footer`
 `
 
 const Layout = ({ children, songText = false, link }) => {
-  const whatsappLink = `https://wa.me/?text=${songText}`
-  return (
-    <StaticQuery
-      query={graphql`
-      query SiteTitleQuery {
+  const { site } = useStaticQuery(
+    graphql`
+      query {
         site {
           siteMetadata {
             title
@@ -55,39 +53,41 @@ const Layout = ({ children, songText = false, link }) => {
           }
         }
       }
-    `}
-      render={data => (
-        <>
-          <Main>
-            {songText ? 
-              <article>{children}</article>
-              :
-              <div>{children}</div>
-            }
-          </Main>
-          <Footer>
-            {songText &&
-              <>
-                <div className="link">
-                  <Link to="/"><FaSearch /></Link>
-                </div>
-                <div className="link">
-                  <a href={whatsappLink}><FaWhatsapp /></a>
-                </div>
-                {link &&
-                  <div className="link">
-                    <a href={link} target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
-                  </div>
-                }
-              </>
-            }
-            <div className="copyright">
-              © {new Date().getFullYear()} {/*data.site.siteMetadata.author*/}
+    `
+  )
+
+  const whatsappLink = `https://wa.me/?text=${songText}`
+
+  return (
+    <>
+      <Main>
+        {songText ?
+          <article>{children}</article>
+          :
+          <div>{children}</div>
+        }
+      </Main>
+      <Footer>
+        {songText &&
+          <>
+            <div className="link">
+              <Link to="/"><FaSearch /></Link>
             </div>
-          </Footer>
-        </>
-      )}
-    />
+            <div className="link">
+              <a href={whatsappLink}><FaWhatsapp /></a>
+            </div>
+            {link &&
+              <div className="link">
+                <a href={link} target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
+              </div>
+            }
+          </>
+        }
+        <div className="copyright">
+          © {new Date().getFullYear()} {/*data.site.siteMetadata.author*/}
+        </div>
+      </Footer>
+    </>
   )
 }
 

@@ -47,8 +47,8 @@ const SongPage = ({ data }) => {
     <Layout songText={descr} link={youtubeLink}>
       <SEO title={song.title} description={descr}/>
       <SongTitle>{song.title}</SongTitle>
-      {song.slides.map(slide => (
-        <SongSlide slide={slide} />
+      {song.slides.map((slide, i) => (
+        <SongSlide key={i} slide={slide} />
       ))}
     </Layout>
   )
