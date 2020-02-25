@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 import Layout from "./layout"
 import SEO from "./seo"
-import SongText from "./song-text"
+import SongSlide from "./song-slide"
 
 export const query = graphql`
   query($songId: ID!) {
@@ -47,7 +47,9 @@ const SongPage = ({ data }) => {
     <Layout songText={descr} link={youtubeLink}>
       <SEO title={song.title} description={descr}/>
       <SongTitle>{song.title}</SongTitle>
-      <SongText {...song} />
+      {song.slides.map(slide => (
+        <SongSlide slide={slide} />
+      ))}
     </Layout>
   )
 }

@@ -43,13 +43,11 @@ const Repeat = styled.span`
   padding-block-start: 1em;
 `
 
-interface SongTextProps {
-    slides: SlideInput[]
+interface SongSlideProps {
+    slide: SlideInput
 }
 
-const SongText: React.FC<SongTextProps> = ({ slides }) => (
-    <>
-        {slides.map(slide => (
+const SongSlide: React.FC<SongSlideProps> = ({ slide }) => (
             <Slide type={slide.type}>
                 {slide.name &&
                     <SlideTitle>{slide.name}</SlideTitle>}
@@ -66,8 +64,6 @@ const SongText: React.FC<SongTextProps> = ({ slides }) => (
                     ))
                 }
             </Slide>
-        ))}
-    </>
-);
+)
 
-export default SongText;
+export default SongSlide;
