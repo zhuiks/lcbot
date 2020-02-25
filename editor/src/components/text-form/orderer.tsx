@@ -2,6 +2,8 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { SlideInput } from '../../__generated__/globalTypes';
 import SongText from '@bit/zhuiks.lcbot.song-text';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 interface OrdererProps {
     slides: SlideInput[];
@@ -9,7 +11,13 @@ interface OrdererProps {
 
 const Orderer: React.FC<OrdererProps> = ({ slides }) => {
 
-    return <SongText slides={slides} />
+    return (
+        <Row className="justify-content-center">
+            <Col sm={6} style={{ direction: 'rtl', textAlign: 'right' }}>
+                <SongText slides={slides} />
+            </Col>
+        </Row>
+    )
     // return (
     //     <>
     //         {slides && slides.map((slide: SlideInput, n: number) => (

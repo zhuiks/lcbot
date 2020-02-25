@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Alert from 'react-bootstrap/Alert';
-import { SongText, PageHeader } from '../';
+import { PageHeader } from '../';
 
 const SubmitResult: React.FC<any> = ({ data }: any) => (
   <Fragment>
@@ -9,7 +9,7 @@ const SubmitResult: React.FC<any> = ({ data }: any) => (
       {data.message}
     </Alert>
     <PageHeader link={ "/edit/" + data.song.id }>{data.song.title}</PageHeader>
-    <SongText text={data.song.text} />
+    {/* <SongText text={data.song.text} /> */}
   </Fragment>
 );
 

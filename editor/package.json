@@ -3,8 +3,8 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "@apollo/react-hooks": "3.0.0",
-    "@bit/zhuiks.lcbot.song-text": "0.0.2",
+    "@apollo/react-hooks": "^3.0.0",
+    "@bit/zhuiks.lcbot.song-text": "0.0.3",
     "@reach/dialog": "^0.8.4",
     "@reach/tabs": "^0.8.4",
     "@reach/visually-hidden": "^0.8.2",
