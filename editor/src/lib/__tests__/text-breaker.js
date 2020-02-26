@@ -26,6 +26,7 @@ const testInput = [
 لمسة إيدك تشفيها
 وتردها تاني إليك) 2
 
+
 3- (بنتوب قدامك
 بنعود لحنانك
 نعلن ملكك في حياتنا
@@ -54,14 +55,14 @@ const testInput = [
 ( انت تحبني ... رغم عيوبي ... وكل ضعفاتي
 و حبك ربي ... يرفعني يغيرلي حياتي )*٢
 
+
 قرار :- ( ماكو مثلك ربي ... هل كد مني قريب 
     ماكو مثلك ربي ... صلاتي يستجيب ) *٢
 
 ( بأسمك اصلي ...لابوي الأب السماوي
 و لمن اصلي ... يسمعني و يقبل طلباتي )*٢
 
-قرار :- ( ماكو مثلك ربي ... هل كد مني قريب
-  ماكو مثلك ربي ... صلاتي يستجيب ) *٢
+قرار 
 `
 ];
 
@@ -102,6 +103,10 @@ describe('testBreaker', () => {
         expect(slides2[0]).toHaveProperty('name', '1');                
         expect(slides2[1]).toHaveProperty('name', '2');                
         expect(slides2[2]).toHaveProperty('name', '3');                
+
+        const slides3 = textBreaker(testInput[3]);
+        expect(slides3[1]).toHaveProperty('name', '1');                
+        expect(slides3[3]).toHaveProperty('name', '2');                
     });
 
     it('returns text by lines without slide info', ()=>{
@@ -133,6 +138,10 @@ describe('testBreaker', () => {
     });
 
     it('processes duplicated slides correctly', ()=>{
-
+        const slides = textBreaker(testInput[3]);
+        expect(slides[2].type).toEqual('CHORUS');
+        expect(slides[2].lines).toEqual([]);
+        expect(slides[4].type).toEqual('CHORUS');
+        expect(slides[4].lines).toEqual([]);
     });
 });
