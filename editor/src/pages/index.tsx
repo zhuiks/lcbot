@@ -29,7 +29,7 @@ const Routs: React.FC = () => (
 );
 
 
-const AuthView: React.FC = (children) => {
+const AuthView: React.FC = () => {
   const identity = useIdentityContext();
   const [loginDialog, setLoginDialog] = React.useState(false);
   return (
@@ -37,7 +37,7 @@ const AuthView: React.FC = (children) => {
       <Header user={identity.user} logoutAction={() => setLoginDialog(true)} />
       <Container>
         {identity && identity.isLoggedIn ? (
-          children
+          <Routs />
         ) : (
             <Login loginAction={() => setLoginDialog(true)} />
           )}
@@ -61,7 +61,7 @@ const AuthView: React.FC = (children) => {
 
 export default function Pages() {
 
-  if (process.env.NODE_ENV !== 'production') return (
+  if (false && process.env.NODE_ENV !== 'production') return (
     <Router>
       <Header user={true} logoutAction={() => console.log('Bye!')} />
       <Container>
@@ -77,9 +77,7 @@ export default function Pages() {
     );
   return (
     <IdentityContextProvider url={url}>
-      <AuthView>
-        <Routs />
-      </AuthView>
+      <AuthView />
     </IdentityContextProvider>
   );
 }
