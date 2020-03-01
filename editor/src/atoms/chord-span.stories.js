@@ -11,10 +11,10 @@ export default {
   component: ChordSpan,
 };
 
-export const Default = () => <ChordSpan chord="C#m">soome piece</ChordSpan>;
+export const Default = () => <ChordSpan chord="C#m">soome piece</ChordSpan>
 
 export const Arabic = () => (
   <RTLdiv>
-    <ChordSpan chord="F#m">اهلا وسهلا</ChordSpan>;
+    <ChordSpan chord="F#m">اهلا وسهلا</ChordSpan>
   </RTLdiv>
 );

@@ -1,10 +1,15 @@
 import React, { ReactHTML } from 'react';
 import styled from 'styled-components';
 
-const ChordContainer = styled.div`
+interface ChordProps {
+    readonly bgColor?: string;
+    readonly paddingTop?: number;
+}
+const ChordContainer = styled.div<ChordProps>`
     position: relative;
-    padding-top: 1em;
-    background-color: #eee;
+    padding-top: ${props => (props.paddingTop || 1).toString()+'em'};
+    background-color: ${props => props.bgColor || '#eee'};
+    color: ${props => props.bgColor || '#eee'};
 `;
 const ChordHolder = styled.span`
     position: absolute;
@@ -14,10 +19,11 @@ const ChordHolder = styled.span`
 `;
 interface ChordSpanProps {
     chord: string;
+    paddingTop?: number;
     children: any;
 }
-const ChordSpan: React.FC<ChordSpanProps> = ({ chord, children }) => (
-    <ChordContainer>
+const ChordSpan: React.FC<ChordSpanProps> = ({ chord, paddingTop, children }) => (
+    <ChordContainer paddingTop={paddingTop}>
         <ChordHolder>{chord}</ChordHolder>
         {children}
     </ChordContainer>
