@@ -2,19 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import ChordSpan from './chord-span';
 
-const RTLdiv = styled.div`
+export const MockRTLdiv = styled.div`
   direction: rtl;
 `;
 
 export default {
-  title: 'ChordSpan',
+  title: 'Chords/Span',
   component: ChordSpan,
+  excludeStories: /^mock.*/i,
 };
 
 export const Default = () => <ChordSpan chord="C#m">soome piece</ChordSpan>
 
 export const Arabic = () => (
-  <RTLdiv>
+  <MockRTLdiv>
     <ChordSpan chord="F#m">اهلا وسهلا</ChordSpan>
-  </RTLdiv>
+  </MockRTLdiv>
 );

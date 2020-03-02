@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { convertFromRaw, EditorState, Editor } from 'draft-js';
 
 import chordsBlockRenderer from './chords-block';
+import MockRTLdiv from '../atoms/chord-span.stories';
 
 const mockChords = {
     randomIdC: {
@@ -22,7 +23,7 @@ const mockChords = {
     },
 };
 
-const mockContent = {
+export const mockContent = {
     blocks: [{
         text: "Я вільний! Любов'ю Ти вигнав страх мій",
         type: 'unstyled',
@@ -33,7 +34,7 @@ const mockContent = {
     }],
     entityMap: mockChords
 };
-const mockContentAr = {
+export const mockContentAr = {
     blocks: [{
         text: "انت تحبني رغم عيوبي وكل ضعفاتي",
         type: 'unstyled',
@@ -45,11 +46,6 @@ const mockContentAr = {
     }],
     entityMap: mockChords
 };
-
-const RTLdiv = styled.div`
-  direction: rtl;
-`;
-
 
 interface ChordEditorProps {
     rawContent: any
@@ -69,14 +65,15 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ rawContent }) => {
 }
 
 export default {
-    title: 'Chords Line',
+    title: 'Chords/Line',
     component: ChordEditor,
+    excludeStories: /^mock.*/i,
 };
 
 export const Default: React.FC = () => <ChordEditor rawContent={mockContent} />;
 
 export const Arabic: React.FC = () => (
-    <RTLdiv>
+    <MockRTLdiv>
         <ChordEditor rawContent={mockContentAr} />
-    </RTLdiv>
+    </MockRTLdiv>
 );

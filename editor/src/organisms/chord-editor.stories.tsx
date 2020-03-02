@@ -5,7 +5,7 @@ import ChordEditor from './chord-editor';
 import { SlideInput, SlideType } from '../__generated__/globalTypes';
 
 export default {
-    title: 'Chord Editor',
+    title: 'Chords/The Editor',
     component: ChordEditor,
 };
 
