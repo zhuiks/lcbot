@@ -1,6 +1,7 @@
 image: node:latest
 
 stages:
+  - test
   - deploy
 
 
@@ -22,20 +23,20 @@ deploy-server:
     - npm run deploy
   environment: production
 
-# pages:
-#   stage: deploy
-#   only:
+pages:
+  stage: test
+  only:
 #     refs:
 #       - master
-#     changes:
-#       - webapp/**/*
-#   cache:
-#     paths:
-#       - webapp/node_modules/
-#   script:
-#     - cd webapp && npm install
-#     - ./node_modules/.bin/gatsby build --prefix-paths
-#     - mv ./public ../
-#   artifacts:
-#     paths:
-#       - public
+    changes:
+      - editor/**/*
+  cache:
+    paths:
+      - editor/node_modules/
+  script:
+    - cd editor && npm install
+    - npm run build-storybook
+    - mv -v ./storybook-static/ ../public 
+  artifacts:
+    paths:
+      - public
