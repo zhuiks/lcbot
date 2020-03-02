@@ -1,70 +1,23 @@
 import React from "react";
 import { SlideInput } from "../__generated__/globalTypes";
 import SongSlide from "@bit/zhuiks.lcbot.song-slide";
-import { Editor, EditorState, ContentState, ContentBlock, convertFromRaw } from 'draft-js';
-import ChordSpan from "../atoms/chord-span";
+import { Editor, EditorState, ContentState, ContentBlock, DraftHandleValue } from 'draft-js';
+import chordsBlockRenderer from "../molecules/chords-block";
 
-interface ChordigyBlockProps {
-    block: ContentBlock;
-    contentState: ContentState;
-    blockProps?: any
+
+
+/* const handleChords: DraftHandleValue = (chars: string, editorState: EditorState) => {
+    console.log(`"${chars}"@${editorState.getSelection().getEndOffset()}`);
+    
+    return 'handled';
 }
-const ChordifyBlock: React.FC<ChordigyBlockProps> = ({block, contentState, blockProps}) => {
-    const text = block.getText();
-    let entityDivs: JSX.Element[] = [];
-    block.findEntityRanges(
-        (character) => {
-          const entityKey = character.getEntity();
-          return (
-            entityKey !== null &&
-            contentState.getEntity(entityKey).getType() === 'CHORD'
-          );
-        },
-        (start, end) => {
-            entityDivs.push(<ChordSpan chord="C">{text.slice(start, end)}</ChordSpan>)
-        }
-      );
-    return (
-        <div>
-            <div className="chordsLine">{entityDivs}</div>
-        <div>{text}</div>
-        </div>
-    )
-}
-const blockRenderer = (block: ContentBlock) => {
-    return {
-        component: ChordifyBlock,
-        editable: true,
-        props: {
-
-        }
-    }
-}
-
-
+ */
 interface ChordEditorProps {
     slide: SlideInput
 }
-
 const ChordEditor: React.FC<ChordEditorProps> = ({ slide }) => {
     const startText = slide.lines && slide.lines[0] || 'aaa';
-    // const contentState = ContentState.createFromText(startText);
-    const contentState = convertFromRaw({
-        blocks: [{
-            text: "Dont worry, be happy! pa-pa-pa",
-            type: 'unstyled',
-            entityRanges: [
-                {offset: 0, length: 4, key: 'randomId'},
-                {offset: 6, length: 5, key: 'randomId'},
-            ],
-        }],
-        entityMap: {
-            randomId: {
-                type: 'CHORD',
-                mutability: 'IMMUTABLE',
-            },
-        }
-    });
+    const contentState = ContentState.createFromText(startText);
     const [editorState, setEditorState] = React.useState(
         EditorState.createWithContent(contentState),
     );
@@ -72,7 +25,9 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide }) => {
         <Editor
             editorState={editorState}
             onChange={setEditorState}
-            blockRendererFn={blockRenderer}
+            blockRendererFn={chordsBlockRenderer}
+        //    handleBeforeInput={handleChords}
+        //    handleKeyCommand={action('key-command')}
         />
     );
 }
