@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { convertFromRaw, EditorState, Editor } from 'draft-js';
 
 import chordsBlockRenderer from './chords-block';
-import MockRTLdiv from '../atoms/chord-span.stories';
+import { MockRTLdiv } from '../atoms/chord-span.stories';
 
 const mockChords = {
     randomIdC: {
