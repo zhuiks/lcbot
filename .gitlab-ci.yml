@@ -34,7 +34,6 @@ pages:
     paths:
       - editor/node_modules/
   script:
-    - mv .npmrc editor/
     - cd editor && npm install
     - npm run build-storybook
     - mv -v ./storybook-static/ ../public 
