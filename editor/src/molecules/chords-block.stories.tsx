@@ -11,14 +11,21 @@ const mockChords = {
         type: 'CHORD',
         mutability: 'IMMUTABLE',
         data: {
-            chord: 'C'
+            chord: {
+                rootNote: 'C',
+                duration: 11,
+            }
         }
     },
     randomIdAm: {
         type: 'CHORD',
         mutability: 'IMMUTABLE',
         data: {
-            chord: 'Am'
+            chord: {
+                rootNote: 'A',
+                type: 'm',
+                duration: 17,
+            }
         }
     },
 };

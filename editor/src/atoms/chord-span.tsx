@@ -7,9 +7,9 @@ interface ChordProps {
 }
 const ChordContainer = styled.div<ChordProps>`
     position: relative;
-    padding-top: ${props => (props.paddingTop || 1).toString()+'em'};
+    padding-top: ${props => (props.paddingTop || 1).toString() + 'em'};
     background-color: ${props => props.bgColor || '#eee'};
-    color: ${props => props.bgColor || '#eee'};
+    color: ${props => props.bgColor || '#ccc'};
 `;
 const ChordHolder = styled.span`
     position: absolute;
@@ -17,16 +17,27 @@ const ChordHolder = styled.span`
     font-weight: bold;
     color: red;
 `;
-interface ChordSpanProps {
-    chord: string;
-    paddingTop?: number;
-    children: any;
+
+export interface Chord {
+    rootNote: string;
+    type?: string;
+    optipon?: string;
+    duration: number;
+    text?: string;
 }
-const ChordSpan: React.FC<ChordSpanProps> = ({ chord, paddingTop, children }) => (
-    <ChordContainer paddingTop={paddingTop}>
-        <ChordHolder>{chord}</ChordHolder>
-        {children}
-    </ChordContainer>
-);
+export interface ChordSpanProps {
+    chord: Chord;
+    paddingTop?: number;
+    children?: any;
+}
+const ChordSpan: React.FC<ChordSpanProps> = ({chord, paddingTop, children}) => {
+    const text = (chord.text || children.toString() || '').padEnd(chord.duration);
+    return (
+        <ChordContainer paddingTop={paddingTop}>
+            <ChordHolder>{chord.rootNote}{chord.type}</ChordHolder>
+            {text}
+        </ChordContainer>
+    );
+}
 
 export default ChordSpan;
