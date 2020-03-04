@@ -5,7 +5,7 @@ import StoryRouter from 'storybook-react-router';
 import PageHeader from './page-header';
 
 export default {
-  title: 'PageHeader',
+  title: 'Page Atoms/Header',
   component: PageHeader,
   decorators: [StoryRouter()],
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import Loading from './loading';
 
 export default {
-  title: 'Loading',
+  title: 'Page Atoms/Loading',
   component: Loading,
 };
 
