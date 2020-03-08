@@ -1,22 +1,26 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
+
 import ChordEditor from './chord-editor';
-import { SlideInput, SlideType } from '../__generated__/globalTypes';
+import { SlideType } from '../__generated__/globalTypes';
+import ChordSlide from '../molecules/chord-slide';
+
+const mockSlide = new ChordSlide({
+    type: SlideType.CHORUS,
+    lines: [
+        "Усі діла Твої звеличують Тебе",
+        "Усе для Тебе і Тобою все живе!",
+        "Усі ми створені в Тобі знайти усе",
+        "Боже в Тобі усе!",
+    ],
+});
 
 export default {
     title: 'Chords/The Editor',
     component: ChordEditor,
 };
 
-const slideMock: SlideInput = {
-    type: SlideType.VERSE,
-    name: '2',
-    lines: [
-        'line 1 line 1 line 1',
-        'line 2 line 2',
-    ]
-};
 
-export const Default: React.FC = () => <ChordEditor slide={slideMock}/>;
+export const Default: React.FC = () => <ChordEditor slide={mockSlide}/>;
 
