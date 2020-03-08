@@ -3,6 +3,7 @@ import { EditorState, convertFromRaw, ContentState, SelectionState } from "draft
 import { SlideInput, SlideType } from "../__generated__/globalTypes";
 import { Chord } from "../atoms/chord-span";
 import ChordSlide from "./chord-slide";
+import { ActionDisplay } from "@storybook/addon-actions";
 
 export const slide2editor = (slide: ChordSlide | undefined) => {
     if (!slide) {
@@ -52,8 +53,14 @@ const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEd
                 ...state,
             };
         case 'SELECTION_CHANGE':
+            if(!action.selection) return state;
+            const blockMapKeys = state.editorState.getCurrentContent().getBlockMap().keySeq();
+            const currentBlockKey = action.selection.getAnchorKey();
+            console.log(`[${blockMapKeys.findIndex(k => k === currentBlockKey)}, ${action.selection.getAnchorOffset()}]`);
             return {
                 ...state,
+                currentPosition: action.selection.getAnchorOffset(),
+                currentLine: blockMapKeys.findIndex(k => k === currentBlockKey),
             }
         default:
             throw new Error();
