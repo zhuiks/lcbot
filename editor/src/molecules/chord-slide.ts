@@ -2,16 +2,16 @@ import { Chord } from "../atoms/chord-span";
 import { SlideInput, SlideType } from "../__generated__/globalTypes";
 
 export interface ChordArgs {
-    lineAt: number;
-    charAt: number;
+    line: number;
+    pos: number;
     chordData: any;
 }
 
 interface ChordSlideI extends SlideInput {
     chords: Chord[][];
-    addChord: (args: ChordArgs) => boolean;
-    modChord: (args: ChordArgs) => boolean;
-    delChord: (args: ChordArgs) => boolean;
+    addChord: (args: ChordArgs) => ChordSlideI;
+    modChord: (args: ChordArgs) => ChordSlideI;
+    delChord: (args: ChordArgs) => ChordSlideI;
 }
 
 class ChordSlide implements ChordSlideI {
@@ -23,17 +23,18 @@ class ChordSlide implements ChordSlideI {
         this.type = slide.type;
         this.name = slide.name;
         this.lines = slide.lines;
+        this.chords = Array(slide.lines?.length || 1).fill([]);
     }
-    addChord: (args: ChordArgs) => boolean = ({ lineAt, charAt = 0, chordData = {} }) => {
-        const insertIndex = charAt;
-        this.chords[lineAt].splice(insertIndex, 0, chordData);
-        return true;
+    addChord: (args: ChordArgs) => ChordSlideI = ({ line, pos = 0, chordData = {} }) => {
+        const insertIndex = pos;
+        this.chords[line].splice(insertIndex, 0, chordData);
+        return this;
     };
-    modChord: (args: ChordArgs) => boolean = ({ lineAt, charAt = 0, chordData = {} }) => {
-        return true;
+    modChord: (args: ChordArgs) => ChordSlideI = ({ line, pos = 0, chordData = {} }) => {
+        return this;
     };
-    delChord: (args: ChordArgs) => boolean = ({ lineAt, charAt = 0, chordData = {} }) => {
-        return true;
+    delChord: (args: ChordArgs) => ChordSlideI = ({ line, pos = 0, chordData = {} }) => {
+        return this;
     };
 
 }

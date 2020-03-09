@@ -14,7 +14,7 @@ export interface ChordEditorProps {
 const ChordEditor: React.FC<ChordEditorProps> = ({ slide }) => {
     const { editorState, dispatch } = useSlide(slide);
     const onChange = (newState: EditorState) => {
-        dispatch({type: 'SELECTION_CHANGE', selection: newState.getSelection()})
+        dispatch({type: 'SELECTION_CHANGE', payload: newState})
     }
     const handleCharInput = handleChords(dispatch);
     return (

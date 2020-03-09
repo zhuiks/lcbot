@@ -1,26 +1,7 @@
-import { useState, useReducer } from "react"
-import { EditorState, convertFromRaw, ContentState, SelectionState } from "draft-js";
-import { SlideInput, SlideType } from "../__generated__/globalTypes";
-import { Chord } from "../atoms/chord-span";
+import { useReducer } from "react"
+import { EditorState } from "draft-js";
 import ChordSlide from "./chord-slide";
-import { ActionDisplay } from "@storybook/addon-actions";
-
-export const slide2editor = (slide: ChordSlide | undefined) => {
-    if (!slide) {
-        return EditorState.createEmpty();
-    }
-    const state = ContentState.createFromText(slide.lines?.join('\n') || '');
-    const editor = EditorState.createWithContent(state);
-    return editor;
-}
-const editor2slide = (editor: EditorState) => {
-    const content = editor.getCurrentContent();
-    const slide: SlideInput = {
-        type: SlideType.VERSE,
-        lines: content.getPlainText('\n').split('\n'),
-    }
-    return slide;
-}
+import { initChords, applyChord } from "../lib/apply-chords";
 
 interface SlideEditorState {
     chordSlide: ChordSlide;
@@ -30,37 +11,53 @@ interface SlideEditorState {
 }
 
 const initState = (slide: ChordSlide) => {
+    const contentState = initChords(slide);
     return {
         chordSlide: slide,
         currentLine: 0,
         currentPosition: 0,
-        editorState: slide2editor(slide),
+        editorState: EditorState.createWithContent(contentState),
     }
 }
 
 interface SlideActionType {
     type: 'RESET' | 'ADD_CHORD' | 'SELECTION_CHANGE';
-    selection?: SelectionState;
-    data?: any;
-    slide?: ChordSlide;
+    payload?: any;
 }
 const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEditorState => {
     switch (action.type) {
         case 'RESET':
-            return action.slide ? initState(action.slide) : state;
+            return action.payload ? initState(action.payload) : state;
         case 'ADD_CHORD':
+            const newChordSlide = state.chordSlide.addChord({
+                line: state.currentLine,
+                pos: state.currentPosition,
+                chordData: action.payload,
+            });
+            const content = applyChord(
+                action.payload, 
+                state.editorState.getCurrentContent(),
+                state.currentLine,
+                state.currentPosition);
             return {
                 ...state,
+                chordSlide: newChordSlide,
+                editorState: EditorState.set(state.editorState, {
+                    currentContent: content,
+                }),
             };
         case 'SELECTION_CHANGE':
-            if(!action.selection) return state;
-            const blockMapKeys = state.editorState.getCurrentContent().getBlockMap().keySeq();
-            const currentBlockKey = action.selection.getAnchorKey();
-            console.log(`[${blockMapKeys.findIndex(k => k === currentBlockKey)}, ${action.selection.getAnchorOffset()}]`);
+            if (!action.payload) return state;
+            const es = action.payload;
+            const sel = es.getSelection();
+            const blockMapKeys = es.getCurrentContent().getBlockMap().keySeq();
+            const currentBlockKey = sel.getAnchorKey();
+            console.log(`[${blockMapKeys.findIndex(k => k === currentBlockKey)}, ${sel.getAnchorOffset()}]`);
             return {
                 ...state,
-                currentPosition: action.selection.getAnchorOffset(),
+                currentPosition: sel.getAnchorOffset(),
                 currentLine: blockMapKeys.findIndex(k => k === currentBlockKey),
+                editorState: es,
             }
         default:
             throw new Error();

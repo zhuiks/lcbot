@@ -9,7 +9,7 @@ const handleChords = (dispatch: any) => (chars: string, editorState: EditorState
         rootNote: chars.toUpperCase(),
     }
 
-    dispatch({type: 'ADD_CHORD', selection: editorState.getSelection(), data: chordData});
+    dispatch({type: 'ADD_CHORD', selection: editorState.getSelection(), payload: chordData});
 
     const handled: DraftHandleValue = "handled";
     return handled;
