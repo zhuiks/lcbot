@@ -34,6 +34,7 @@ const Repeat = styled.span`
   width: 1.5em;
   color: #cccccc;
   font-size: 0.7em;
+  line-height: 0.7em;
   top: 0;
   inset-block-start: 0;
   left: 0;
@@ -41,6 +42,9 @@ const Repeat = styled.span`
   border-inline-start: 2px solid #cccccc;
   padding-inline-start: 5px;
   padding-block-start: 1em;
+  padding-block-end: 3px;
+  display: flex;
+  align-items: flex-end;
 `
 
 interface SongSlideProps {
