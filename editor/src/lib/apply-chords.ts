@@ -31,7 +31,7 @@ export const applyChord = (
         'hasFocus': true,
     });
 
-    const newState = state.createEntity(CHORD_TYPE, CHORD_MUTABILITY, chordData);
+    const newState = state.createEntity(CHORD_TYPE, CHORD_MUTABILITY, {chord: chordData});
     const entityKey = newState.getLastCreatedEntityKey();
 
     return Modifier.applyEntity(newState, selection, entityKey);

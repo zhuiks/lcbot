@@ -35,7 +35,7 @@ const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEd
                 chordData: action.payload,
             });
             const content = applyChord(
-                action.payload, 
+                newChordSlide.chords[state.currentLine][state.currentPosition], 
                 state.editorState.getCurrentContent(),
                 state.currentLine,
                 state.currentPosition);

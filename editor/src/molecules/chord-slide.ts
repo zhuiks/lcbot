@@ -27,7 +27,7 @@ class ChordSlide implements ChordSlideI {
     }
     addChord: (args: ChordArgs) => ChordSlideI = ({ line, pos = 0, chordData = {} }) => {
         const insertIndex = pos;
-        this.chords[line].splice(insertIndex, 0, chordData);
+        this.chords[line].splice(insertIndex, 0, { ...chordData, duration: 5});
         return this;
     };
     modChord: (args: ChordArgs) => ChordSlideI = ({ line, pos = 0, chordData = {} }) => {
