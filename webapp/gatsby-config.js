@@ -2,7 +2,9 @@ module.exports = {
   pathPrefix: "/lcbot",
   siteMetadata: {
     title: `Lyrics & Chords`,
-    description: `Find lyrics and chords for worship songs`,
+    description: `Easy to find and share words and chords for worship songs, praises and hymns`,
+    url: `https://bayader.tk`,
+    image: `/images/worship.jpg`,
     author: `zhuiks`,
   },
   plugins: [
@@ -33,18 +35,16 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Lyrics & chords finder`,
-        short_name: `lcbot`,
+        name: `Easy to find Lyrics and Chords`,
+        short_name: `Lyrics&Chords`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#000000`,
         display: `minimal-ui`,
-        icon: `src/images/logo.png`
+        icon: `images/logo.png`
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

@@ -18,6 +18,8 @@ function SEO({ description, lang, meta, keywords, title }) {
           siteMetadata {
             title
             description
+            url
+            image
             author
           }
         }
@@ -26,6 +28,7 @@ function SEO({ description, lang, meta, keywords, title }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
+  const metaImage = site.siteMetadata.image
 
   return (
     <Helmet
@@ -35,10 +38,12 @@ function SEO({ description, lang, meta, keywords, title }) {
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
+        // --- Primary Meta Tags
         {
           name: `description`,
           content: metaDescription,
         },
+        // --- Open Graph / Facebook
         {
           property: `og:title`,
           content: title,
@@ -48,9 +53,18 @@ function SEO({ description, lang, meta, keywords, title }) {
           content: metaDescription,
         },
         {
+          property: `og:image`,
+          content: metaImage,
+        },
+        {
+          property: `og:image`,
+          content: metaImage,
+        },
+        {
           property: `og:type`,
           content: description ? `article` : `website`,
         },
+        // --- Twitter
         {
           name: `twitter:card`,
           content: `summary`,
@@ -67,13 +81,17 @@ function SEO({ description, lang, meta, keywords, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `twitter:image`,
+          content: metaImage,
+        },
       ]
         .concat(
           keywords.length > 0
             ? {
-                name: `keywords`,
-                content: keywords.join(`, `),
-              }
+              name: `keywords`,
+              content: keywords.join(`, `),
+            }
             : []
         )
         .concat(meta)}

@@ -29,7 +29,11 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="الترنيمات" keywords={[`gatsby`, `react`, `bootstrap`]} />
+      <SEO 
+        title="ترنيمات والكوردات" 
+        description="ابحث وشارك كلمات و كوردات الترانيم و التسبيح"
+        keywords={[`ترنيم`, `كلمات`, `تسبيح`]} 
+      />
       <div className="text-center">
             <SearchField filter={filter} onChange={setFilter} />
             <SongList className="song-list">
