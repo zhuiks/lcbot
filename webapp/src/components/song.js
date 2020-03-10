@@ -30,11 +30,13 @@ const SongTitle = styled.h1`
 const slides2text = slides => {
   let text = ''
   slides.forEach(slide => {
-    if(text) {
+    if (text) {
       text += encodeURIComponent('\n')
     }
-    text += encodeURIComponent('    ' + (slide.name || slide.type)+'\n')
-    text += slide.lines.reduce((acc, val) => acc + encodeURIComponent(val+'\n'))
+    text += encodeURIComponent('    ' + (slide.name || slide.type) + '\n')
+    if (slide.lines && slide.lines.length) {
+      text += slide.lines.reduce((acc, val) => acc + encodeURIComponent(val + '\n'))
+    }
   })
   return text
 }
@@ -45,11 +47,12 @@ const SongPage = ({ data }) => {
   const youtubeLink = song.links && song.links[0]
   return (
     <Layout songText={descr} link={youtubeLink}>
-      <SEO title={song.title} description={descr}/>
+      <SEO title={song.title} description={descr} />
       <SongTitle>{song.title}</SongTitle>
-      {song.slides.map((slide, i) => (
-        <SongSlide key={i} slide={slide} />
-      ))}
+      {song.slides.map((slide, i) => {
+        const displaySlide = slide.lines && slide.lines.length ? slide : song.slides.find(sl => sl.type === slide.type && sl.lines && sl.lines.length )
+        return <SongSlide key={i} slide={displaySlide} />
+      })}
     </Layout>
   )
 }
