@@ -38,16 +38,18 @@ const slides2text = slides => {
       text += slide.lines.reduce((acc, val) => acc + encodeURIComponent(val + '\n'))
     }
   })
+  text += encodeURIComponent('\n')
   return text
 }
 
 const SongPage = ({ data }) => {
   const song = data.songList.song
-  const descr = slides2text(song.slides)
+  const songText = slides2text(song.slides)
+  const songBegining = song.slides.find(sl => sl.lines && sl.lines.length ).lines.join(' - ')
   const youtubeLink = song.links && song.links[0]
   return (
-    <Layout songText={descr} link={youtubeLink}>
-      <SEO title={song.title} description={descr} />
+    <Layout songText={songText} songId={song.id} link={youtubeLink}>
+      <SEO title={song.title} description={"كلمات ترنيمة" + ": "+ songBegining} />
       <SongTitle>{song.title}</SongTitle>
       {song.slides.map((slide, i) => {
         const displaySlide = slide.lines && slide.lines.length ? slide : song.slides.find(sl => sl.type === slide.type && sl.lines && sl.lines.length )

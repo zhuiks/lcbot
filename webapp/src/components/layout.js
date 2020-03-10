@@ -42,13 +42,14 @@ const Footer = styled.footer`
   }
 `
 
-const Layout = ({ children, songText = false, link }) => {
+const Layout = ({ children, songId = false, songText, link }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
             title
+            url
             author
           }
         }
@@ -56,19 +57,19 @@ const Layout = ({ children, songText = false, link }) => {
     `
   )
 
-  const whatsappLink = `https://wa.me/?text=${songText}`
+  const whatsappLink = songId ? `https://wa.me/?text=${songText}${site.siteMetadata.url}/${songId}` : ''
 
   return (
     <>
       <Main>
-        {songText ?
+        {songId ?
           <article>{children}</article>
           :
           <div>{children}</div>
         }
       </Main>
       <Footer>
-        {songText &&
+        {songId &&
           <>
             <div className="link">
               <Link to="/"><FaSearch /></Link>
