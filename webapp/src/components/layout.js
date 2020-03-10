@@ -57,7 +57,7 @@ const Layout = ({ children, songId = false, songText, link }) => {
     `
   )
 
-  const whatsappLink = songId ? `https://wa.me/?text=${songText}${site.siteMetadata.url}/${songId}` : ''
+  const whatsappLink = songId ? `https://wa.me/?text=${songText}${site.siteMetadata.url}${songId}` : ''
 
   return (
     <>

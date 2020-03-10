@@ -3,9 +3,8 @@ module.exports = {
   siteMetadata: {
     title: `Lyrics & Chords`,
     description: `Easy to find and share words and chords for worship songs, praises and hymns`,
-    url: `https://bayader.tk`,
-    image: `/images/worship.jpg`,
-    author: `zhuiks`,
+    url: `https://bayader.tk/`,
+    author: `BayaderCoders`,
   },
   plugins: [
     {
@@ -44,7 +43,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#000000`,
         display: `minimal-ui`,
-        icon: `images/logo.png`
+        icon: `src/images/logo.png`
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
