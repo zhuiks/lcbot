@@ -45,11 +45,13 @@ const slides2text = slides => {
 const SongPage = ({ data }) => {
   const song = data.songList.song
   const songText = slides2text(song.slides)
-  const songBegining = song.slides.find(sl => sl.lines && sl.lines.length ).lines.join(' - ')
+  const songBegining = song.slides.find(sl => sl.lines && sl.lines.length )
+    .lines.map(line=>line.replace(/\|:|:\|/g, ''))
+    .join(' - ')
   const youtubeLink = song.links && song.links[0]
   return (
     <Layout songText={songText} songId={song.id} link={youtubeLink}>
-      <SEO title={song.title} description={"كلمات ترنيمة" + ": "+ songBegining} />
+      <SEO title={song.title} description={"كلمات ترنيمة" + ": "+ songBegining} songId={song.id} />
       <SongTitle>{song.title}</SongTitle>
       {song.slides.map((slide, i) => {
         const displaySlide = slide.lines && slide.lines.length ? slide : song.slides.find(sl => sl.type === slide.type && sl.lines && sl.lines.length )

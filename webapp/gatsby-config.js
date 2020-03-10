@@ -3,7 +3,7 @@ module.exports = {
   siteMetadata: {
     title: `Lyrics & Chords`,
     description: `Easy to find and share words and chords for worship songs, praises and hymns`,
-    url: `https://bayader.tk/`,
+    url: `https://bayader.tk`,
     author: `BayaderCoders`,
   },
   plugins: [

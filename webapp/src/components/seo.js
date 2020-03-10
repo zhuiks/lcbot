@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import metaImage from "../images/worship.jpg"
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, keywords, title, songId }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -54,19 +54,15 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           property: `og:image`,
-          content: metaImage,
-        },
-        {
-          property: `og:image`,
-          content: metaImage,
+          content: site.siteMetadata.url + metaImage,
         },
         {
           property: `og:type`,
-          content: `website`, //description ? `article` : `website`,
+          content: songId ? `article` : `website`,
         },
         {
           property: `og:url`,
-          content: site.siteMetadata.url,
+          content: site.siteMetadata.url + (songId ? `/${songId}` : '') +'/',
         },
         // --- Twitter
         {
@@ -87,7 +83,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           name: `twitter:image`,
-          content: metaImage,
+          content: site.siteMetadata.url + metaImage,
         },
       ]
         .concat(
@@ -116,6 +112,7 @@ SEO.propTypes = {
   meta: PropTypes.arrayOf(PropTypes.object),
   keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
+  songId: PropTypes.string,
 }
 
 export default SEO
