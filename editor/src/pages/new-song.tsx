@@ -1,10 +1,10 @@
 import React from 'react';
-import stringGen from 'crypto-random-string';
 
 import SongForm from '../organisms/song-form';
+import generateKey from '../lib/generate-key';
 
 const NewSong: React.FC = () => {
-  const songId = stringGen({ length: 5, type: 'url-safe' });
+  const songId = generateKey('songId');
 
   return <SongForm songData={{id: songId}} />;
 };
