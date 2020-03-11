@@ -1,4 +1,5 @@
 const path = require(`path`)
+const generatePdf = require(`./src/utils/generate-pdf`)
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -21,11 +22,13 @@ exports.createPages = async ({ actions, graphql }) => {
     `)
  
     data.songList.songs.forEach(song => {
+      const pdf = generatePdf(song)
       actions.createPage({
         path: song.id,
         component: path.resolve(`./src/components/song.js`),
         context: {
           songId: song.id,
+          pdf,
         },
       })
     })
