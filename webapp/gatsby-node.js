@@ -11,10 +11,14 @@ exports.createPages = async ({ actions, graphql }) => {
     const { data } = await graphql(`
       query {
         songList {
-            songs{
+            songs {
               id
               title
-              text
+              slides {
+                type
+                name
+                lines        
+              }
               links
             }
           }

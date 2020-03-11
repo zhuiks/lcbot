@@ -2,6 +2,10 @@ const PDFDocument = require('pdfkit')
 const fs = require('fs')
 // const TwitterCldr = require('twitter_cldr').load('ar');
 
+//TODO: refactor!
+const LINE_CHARS_LIMIT = 25
+const PDF_OUTPUT_DIR = 'print'
+
 const isArabic = (text) => text.search(/[\u0600-\u06FF]/) >= 0
 
 const rightToLeftText = (text) => {
@@ -28,7 +32,11 @@ const generatePdf = (song) => {
             right: 100
         }
     })
-    const fileName = `print/${song.id}.pdf`
+    const dir = `static/${PDF_OUTPUT_DIR}`
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir)
+    }
+    const fileName = `${PDF_OUTPUT_DIR}/${song.id}.pdf`
     doc.pipe(fs.createWriteStream(`static/${fileName}`))
     doc.registerFont('Heading', 'fonts/ElMessiri-SemiBold.ttf')
     doc.registerFont('Regular', 'fonts/Harmattan-Regular.ttf')
@@ -36,21 +44,25 @@ const generatePdf = (song) => {
     doc.font('Heading').fontSize(32)
         .text(rightToLeftText(song.title), { align: 'center' })
     doc.font('Regular').fontSize(18).moveDown()
-    song.slides.forEach(slide => {
-        doc.moveDown().fillColor('#aaa')
-            .text(rightToLeftText(slide.name), { align: 'right' })
-            .moveUp().fillColor('#333')
-        if (slide.lines) {
-            let lineReducer = '';
-            slide.lines.forEach(line => {
-                lineReducer += ' ' + line.replace(/\|:|:\|/g, '')
-                if(getCharacterLength(lineReducer) > 25) {
-                    doc.text(rightToLeftText(lineReducer.trim()), { align: 'center' })
-                    lineReducer = ''
-                }
-            })
-        }
-    })
+    if (song.slides) {
+        song.slides.forEach(slide => {
+            if (slide.name) {
+                doc.moveDown().fillColor('#aaa')
+                    .text(rightToLeftText(slide.name), { align: 'right' })
+                    .moveUp().fillColor('#333')
+            }
+            if (slide.lines) {
+                let lineReducer = '';
+                slide.lines.forEach(line => {
+                    lineReducer += ' ' + line.replace(/\|:|:\|/g, '')
+                    if (getCharacterLength(lineReducer) > LINE_CHARS_LIMIT) {
+                        doc.text(rightToLeftText(lineReducer.trim()), { align: 'center' })
+                        lineReducer = ''
+                    }
+                })
+            }
+        })
+    }
     const link = `https://bayader.tk/${song.id}`
     doc.font('Helvetica').fontSize(12).text(link, 50, 790, {
         link,
