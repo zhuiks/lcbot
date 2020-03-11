@@ -3,7 +3,7 @@ import { ContentState, Modifier, SelectionState } from "draft-js";
 import { Chord } from "../atoms/chord-span";
 import ChordSlide from "../molecules/chord-slide";
 
-function getCharacterLength(str: string, start: number, length: number) {
+function getCharacterLength(str: string) {
     // The string iterator that is used here iterates over characters,
     //  not mere code units
     return [...str].length;

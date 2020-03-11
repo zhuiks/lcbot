@@ -52,7 +52,7 @@ const SongPage = ({ data, pageContext }) => {
   return (
     <Layout songText={songText} songId={song.id} link={youtubeLink}>
       <SEO title={song.title} description={"كلمات ترنيمة" + ": "+ songBegining} songId={song.id} />
-      <SongTitle>{song.title} ({pageContext.pdf})</SongTitle>
+      <SongTitle>{song.title} ({pageContext ? pageContext.pdf : '***'})</SongTitle>
       {song.slides.map((slide, i) => {
         const displaySlide = slide.lines && slide.lines.length ? slide : song.slides.find(sl => sl.type === slide.type && sl.lines && sl.lines.length )
         return <SongSlide key={i} slide={displaySlide} />
