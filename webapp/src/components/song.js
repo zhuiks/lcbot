@@ -44,15 +44,19 @@ const slides2text = slides => {
 
 const SongPage = ({ data, pageContext }) => {
   const song = data.songList.song
-  const songText = slides2text(song.slides)
   const songBegining = song.slides.find(sl => sl.lines && sl.lines.length )
     .lines.map(line=>line.replace(/\|:|:\|/g, ''))
     .join(' - ')
-  const youtubeLink = song.links && song.links[0]
+  const songInfo = {
+    songId: song.id,
+    text: slides2text(song.slides),
+    youtube: song.links && song.links[0],
+    pdf: pageContext.pdf,
+  }
   return (
-    <Layout songText={songText} songId={song.id} link={youtubeLink}>
+    <Layout songInfo={songInfo}>
       <SEO title={song.title} description={"كلمات ترنيمة" + ": "+ songBegining} songId={song.id} />
-      <SongTitle>{song.title} ({pageContext ? pageContext.pdf : '***'})</SongTitle>
+      <SongTitle>{song.title}</SongTitle>
       {song.slides.map((slide, i) => {
         const displaySlide = slide.lines && slide.lines.length ? slide : song.slides.find(sl => sl.type === slide.type && sl.lines && sl.lines.length )
         return <SongSlide key={i} slide={displaySlide} />

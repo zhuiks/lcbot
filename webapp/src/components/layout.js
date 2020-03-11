@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
-import { FaWhatsapp, FaSearch, FaYoutube } from "react-icons/fa"
+import { FaWhatsapp, FaSearch, FaYoutube, FaFilePdf } from "react-icons/fa"
 
 const direction = 'rtl'
 const footerHeight = '50px'
@@ -42,7 +42,7 @@ const Footer = styled.footer`
   }
 `
 
-const Layout = ({ children, songId = false, songText, link }) => {
+const Layout = ({ children, songInfo = false }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -57,19 +57,19 @@ const Layout = ({ children, songId = false, songText, link }) => {
     `
   )
 
-  const whatsappLink = songId ? `https://wa.me/?text=${songText}${site.siteMetadata.url}/${songId}` : ''
+  const whatsappLink = songInfo ? `https://wa.me/?text=${songInfo.text}${site.siteMetadata.url}/${songInfo.songId}` : ''
 
   return (
     <>
       <Main>
-        {songId ?
+        {songInfo ?
           <article>{children}</article>
           :
           <div>{children}</div>
         }
       </Main>
       <Footer>
-        {songId &&
+        {songInfo &&
           <>
             <div className="link">
               <Link to="/"><FaSearch /></Link>
@@ -77,9 +77,14 @@ const Layout = ({ children, songId = false, songText, link }) => {
             <div className="link">
               <a href={whatsappLink}><FaWhatsapp /></a>
             </div>
-            {link &&
+            {songInfo.youtube &&
               <div className="link">
-                <a href={link} target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
+                <a href={songInfo.youtube} target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
+              </div>
+            }
+            {songInfo.pdf &&
+              <div className="link">
+                <a href={songInfo.pdf} target="_blank" rel="noopener noreferrer"><FaFilePdf /></a>
               </div>
             }
           </>
