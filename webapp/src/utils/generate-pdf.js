@@ -32,6 +32,9 @@ const generatePdf = (song) => {
             right: 100
         }
     })
+    if (!fs.existsSync('static')){
+        fs.mkdirSync('static')
+    }
     const dir = `static/${PDF_OUTPUT_DIR}`
     if (!fs.existsSync(dir)){
         fs.mkdirSync(dir)
