@@ -1,5 +1,5 @@
 {
-  "name": "lcbot-server",
+  "name": "@lcbot/server",
   "version": "1.1.0",
   "description": "",
   "main": "src/handler.js",
