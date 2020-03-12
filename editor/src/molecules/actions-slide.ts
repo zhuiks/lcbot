@@ -52,11 +52,11 @@ const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEd
             const sel = es.getSelection();
             const blockMapKeys = es.getCurrentContent().getBlockMap().keySeq();
             const currentBlockKey = sel.getAnchorKey();
-            console.log(`[${blockMapKeys.findIndex(k => k === currentBlockKey)}, ${sel.getAnchorOffset()}]`);
+            console.log(`[${blockMapKeys.findIndex((k: string) => k === currentBlockKey)}, ${sel.getAnchorOffset()}]`);
             return {
                 ...state,
                 currentPosition: sel.getAnchorOffset(),
-                currentLine: blockMapKeys.findIndex(k => k === currentBlockKey),
+                currentLine: blockMapKeys.findIndex((k: string) => k === currentBlockKey),
                 editorState: es,
             }
         default:
