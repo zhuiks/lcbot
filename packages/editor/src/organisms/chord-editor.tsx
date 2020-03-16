@@ -1,7 +1,5 @@
 import React from "react";
-import { SlideInput } from "../__generated__/globalTypes";
-import SongSlide from "@bit/zhuiks.lcbot.song-slide";
-import { Editor, EditorState, ContentState, ContentBlock, DraftHandleValue } from 'draft-js';
+import { Editor, EditorState, DraftHandleValue } from 'draft-js';
 import chordsBlockRenderer from "../molecules/chords-block";
 import { useSlide } from "../molecules/actions-slide";
 import handleChords from "../molecules/handle-chords";
@@ -14,15 +12,21 @@ export interface ChordEditorProps {
 const ChordEditor: React.FC<ChordEditorProps> = ({ slide }) => {
     const { editorState, dispatch } = useSlide(slide);
     const onChange = (newState: EditorState) => {
-        dispatch({type: 'SELECTION_CHANGE', payload: newState})
+        dispatch({type: 'SELECTION_CHANGE', editorState: newState})
     }
-    const handleCharInput = handleChords(dispatch);
+    const onCharInput = (chars: string, es: EditorState) => {
+        
+        dispatch({type: 'ADD_CHORD', editorState: es, payload: handleChords(chars)});
+
+        const handled: DraftHandleValue = "handled";
+        return handled;
+        }
     return (
         <Editor
             editorState={editorState}
             onChange={onChange}
             blockRendererFn={chordsBlockRenderer}
-            handleBeforeInput={handleCharInput}
+            handleBeforeInput={onCharInput}
         //    handleKeyCommand={action('key-command')}
         />
     );

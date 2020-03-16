@@ -22,6 +22,7 @@ const initState = (slide: ChordSlide) => {
 
 interface SlideActionType {
     type: 'RESET' | 'ADD_CHORD' | 'SELECTION_CHANGE';
+    editorState: EditorState;
     payload?: any;
 }
 const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEditorState => {
@@ -47,17 +48,19 @@ const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEd
                 }),
             };
         case 'SELECTION_CHANGE':
-            if (!action.payload) return state;
-            const es = action.payload;
-            const sel = es.getSelection();
-            const blockMapKeys = es.getCurrentContent().getBlockMap().keySeq();
+            if (!action.editorState) return state;
+            const editorState = action.editorState;
+            const sel = editorState.getSelection();
+
+            const blockMapKeys = editorState.getCurrentContent().getBlockMap().keySeq();
             const currentBlockKey = sel.getAnchorKey();
-            console.log(`[${blockMapKeys.findIndex((k: string) => k === currentBlockKey)}, ${sel.getAnchorOffset()}]`);
+            const currentLine = blockMapKeys.findIndex((k?: string) => k === currentBlockKey);
+            console.log(`[${currentLine}, ${sel.getAnchorOffset()}]`);
             return {
                 ...state,
                 currentPosition: sel.getAnchorOffset(),
-                currentLine: blockMapKeys.findIndex((k: string) => k === currentBlockKey),
-                editorState: es,
+                currentLine,
+                editorState,
             }
         default:
             throw new Error();
