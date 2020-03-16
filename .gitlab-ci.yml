@@ -34,7 +34,7 @@ pages:
     paths:
       - node_modules/
   script:
-    - cd editor && yarn install
+    - yarn install && cd editor
     - yarn run build-storybook
     - mv -v ./storybook-static/ ../../public 
   artifacts:
