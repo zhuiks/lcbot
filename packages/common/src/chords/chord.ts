@@ -1,7 +1,7 @@
 import { Record } from 'immutable';
 
 const Chord  = Record({
-    rootNote: 'C',
+    root: '*',
     type: '',
     option: '',
     bass: '',
