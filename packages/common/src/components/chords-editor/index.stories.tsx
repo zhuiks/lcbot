@@ -2,9 +2,9 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 
 
-import ChordEditor from './chord-editor';
-import { SlideType } from '../__generated__/globalTypes';
-import ChordSlide from '../molecules/chord-slide';
+import ChordEditor from './';
+import { SlideType } from '../../types';
+import ChordSlide from '../../chords/chord-slide';
 
 const mockSlide = new ChordSlide({
     type: SlideType.CHORUS,
@@ -15,6 +15,7 @@ const mockSlide = new ChordSlide({
         "Боже в Тобі усе!",
     ],
 });
+
 
 export default {
     title: 'Chords/The Editor',
