@@ -1,5 +1,7 @@
-import React, { ReactHTML } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+
+import { IChord } from '../../chords/chord';
 
 interface ChordProps {
     readonly bgColor?: string;
@@ -19,23 +21,16 @@ const ChordHolder = styled.span`
     color: red;
 `;
 
-export interface Chord {
-    rootNote: string;
-    type?: string;
-    optipon?: string;
-    duration: number;
-    text?: string;
-}
 export interface ChordSpanProps {
-    chord: Chord;
+    chord: IChord;
     paddingTop?: number;
     children?: any;
 }
 const ChordSpan: React.FC<ChordSpanProps> = ({chord, paddingTop, children}) => {
-    const text = (chord.text || children.toString() || '').padEnd(chord.duration);
+    const text = (chord.text || children.toString() || '');
     return (
         <ChordContainer paddingTop={paddingTop}>
-            <ChordHolder>{chord.rootNote}{chord.type}</ChordHolder>
+            <ChordHolder>{chord.root}{chord.type}</ChordHolder>
             {text}
         </ChordContainer>
     );

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChordSpan renders correctly 1`] = `
+<div
+  className="sc-AxjAm hWZfZU"
+>
+  <span
+    className="sc-AxirZ iPMNfg"
+  >
+    C
+  </span>
+  Test string
+</div>
+`;

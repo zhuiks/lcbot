@@ -1,7 +1,7 @@
 import { useReducer } from "react"
 import { EditorState } from "draft-js";
-import ChordSlide from "./chord-slide";
-import { initChords, applyChord } from "../lib/apply-chords";
+import ChordSlide from "../../chords/chord-slide";
+import { initChords, applyChord } from "./apply-chords";
 
 interface SlideEditorState {
     chordSlide: ChordSlide;

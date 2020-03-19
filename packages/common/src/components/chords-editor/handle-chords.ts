@@ -2,7 +2,7 @@
 const handleChords = (chars: string) => {
 
     const chordData = {
-        rootNote: chars.toUpperCase(),
+        root: chars.toUpperCase(),
     }
 
     return chordData;

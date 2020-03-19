@@ -1,7 +1,7 @@
 import React from "react";
 import { ContentState, ContentBlock } from 'draft-js';
 import styled from 'styled-components';
-import ChordSpan from "../atoms/chord-span";
+import ChordSpan from "./chord-span";
 
 const chordsPadding = 1.1;
 const ChordsLine = styled.div`
@@ -36,9 +36,7 @@ export const ChordsBlock: React.FC<ChordsBlockProps> = ({ block, contentState, b
             const entityKey = block.getEntityAt(start);
             const entityData = contentState.getEntity(entityKey).getData();
             entityDivs.push(
-                <ChordSpan chord={entityData.chord} paddingTop={chordsPadding}>
-                    {text.slice(start, end)}
-                </ChordSpan>
+                <ChordSpan key={start} chord={entityData.chord} paddingTop={chordsPadding} />
             )
         }
     );

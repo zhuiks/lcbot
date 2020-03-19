@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import ChordSpan, {Chord} from './chord-span';
+import ChordSpan from './chord-span';
+import Chord from '../../chords/chord';
 
 export const MockRTLdiv = styled.div`
   direction: rtl;
@@ -12,17 +13,17 @@ export default {
   excludeStories: /^mock.*/i,
 };
 
-const chord: Chord = {
-  rootNote: 'C#',
+const chord = new Chord({
+  root: 'C#',
   type: 'm',
-  duration: 7,
-}
+  text: 'La-lala-a-a',
+});
 export const Default = () => (
-  <ChordSpan chord={chord}>soome piece</ChordSpan>
+  <ChordSpan chord={chord} />
 )
 
 export const Arabic = () => (
   <MockRTLdiv>
-    <ChordSpan chord={chord}>اهلا وسهلا</ChordSpan>
+    <ChordSpan chord={chord.merge({text: 'اهلا وسهلا'})} />
   </MockRTLdiv>
 );

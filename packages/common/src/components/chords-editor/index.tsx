@@ -1,9 +1,9 @@
 import React from "react";
 import { Editor, EditorState, DraftHandleValue } from 'draft-js';
-import chordsBlockRenderer from "../molecules/chords-block";
-import { useSlide } from "../molecules/actions-slide";
-import handleChords from "../molecules/handle-chords";
-import ChordSlide from "../molecules/chord-slide";
+import chordsBlockRenderer from "./chords-block";
+import { useSlide } from "./actions-slide";
+import handleChords from "./handle-chords";
+import ChordSlide from "../../chords/chord-slide";
 
 
 export interface ChordEditorProps {

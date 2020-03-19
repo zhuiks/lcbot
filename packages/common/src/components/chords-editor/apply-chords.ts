@@ -1,7 +1,7 @@
 import { ContentState, Modifier, SelectionState } from "draft-js";
 
-import { Chord } from "../atoms/chord-span";
-import ChordSlide from "../molecules/chord-slide";
+import { IChord } from "../../chords/chord";
+import ChordSlide from "../../chords/chord-slide";
 
 function getCharacterLength(str: string) {
     // The string iterator that is used here iterates over characters,
@@ -13,20 +13,20 @@ const CHORD_TYPE = 'CHORD';
 const CHORD_MUTABILITY = 'IMMUTABLE';
 
 export const applyChord = (
-    chordData: Chord,
+    chordData: IChord,
     state: ContentState,
     line: number,
     pos: number
 ) => {
-    const blockMap = state.getBlockMap();
-    const entityMap = state.getEntityMap();
+    // const blockMap = state.getBlockMap();
+    // const entityMap = state.getEntityMap();
 
     const theBlock = state.getBlockMap().toIndexedSeq().get(line);
     const selection = new SelectionState({
         'anchorKey': theBlock.getKey(),
         'anchorOffset': pos,
         'focusKey': theBlock.getKey(),
-        'focusOffset': pos + chordData.duration,
+        'focusOffset': pos + getCharacterLength(chordData.text),
         'isBackward': false,
         'hasFocus': true,
     });
@@ -42,11 +42,12 @@ export const initChords = (
     initState: ContentState | null = null
 ) => {
     let state = initState || ContentState.createFromText(slide.lines?.join('\n') || '');
-    for (let l = 0; l < slide.chords.length; l++) {
+    for (let l=0; l<slide.chords.size; l++ ) {
         let offset = 0;
-        for (let i = 0; i < slide.chords[l].length; i++) {
-            state = applyChord(slide.chords[l][i], state, l, offset);
-            offset += slide.chords[l][i].duration;
+        for (let k=0; k<slide.chords.get(l).size; k++ ) {
+            const chord = slide.chords.getIn([l,k]);
+            state = applyChord(chord, state, l, offset);
+            offset += getCharacterLength(chord.text);
         }
     }
     return state;

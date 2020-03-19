@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChordEditor renders correctly 1`] = `
+<div
+  className="DraftEditor-root"
+>
+  <div
+    className="DraftEditor-editorContainer"
+  >
+    <div
+      aria-describedby="placeholder-an6uc"
+      aria-expanded={null}
+      className="notranslate public-DraftEditor-content"
+      contentEditable={true}
+      onBeforeInput={[Function]}
+      onBlur={[Function]}
+      onCompositionEnd={[Function]}
+      onCompositionStart={[Function]}
+      onCopy={[Function]}
+      onCut={[Function]}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+      onFocus={[Function]}
+      onInput={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      onKeyUp={[Function]}
+      onMouseUp={[Function]}
+      onPaste={[Function]}
+      onSelect={[Function]}
+      role="textbox"
+      spellCheck={false}
+      style={
+        Object {
+          "WebkitUserSelect": "text",
+          "outline": "none",
+          "userSelect": "text",
+          "whiteSpace": "pre-wrap",
+          "wordWrap": "break-word",
+        }
+      }
+      suppressContentEditableWarning={true}
+    >
+      <div
+        data-contents="true"
+      >
+        <div
+          className=""
+          contentEditable={true}
+          data-block={true}
+          data-editor="an6uc"
+          data-offset-key="8fmo-0-0"
+          suppressContentEditableWarning={true}
+        >
+          <div
+            className="sc-AxhUy kMyssT"
+          >
+            <div
+              className="sc-AxiKw fcncWt chords"
+            >
+              <div
+                className="sc-AxjAm iLfbef"
+              >
+                <span
+                  className="sc-AxirZ iPMNfg"
+                >
+                  *
+                  
+                </span>
+                Усі діла Твої звеличують Тебе
+              </div>
+            </div>
+            <div
+              className="sc-AxhCb cZQdNu lyrics"
+            >
+              Усі діла Твої звеличують Тебе
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          contentEditable={true}
+          data-block={true}
+          data-editor="an6uc"
+          data-offset-key="8he1l-0-0"
+          suppressContentEditableWarning={true}
+        >
+          <div
+            className="sc-AxhUy kMyssT"
+          >
+            <div
+              className="sc-AxiKw fcncWt chords"
+            >
+              <div
+                className="sc-AxjAm iLfbef"
+              >
+                <span
+                  className="sc-AxirZ iPMNfg"
+                >
+                  *
+                  
+                </span>
+                Усе для Тебе і Тобою все живе!
+              </div>
+            </div>
+            <div
+              className="sc-AxhCb cZQdNu lyrics"
+            >
+              Усе для Тебе і Тобою все живе!
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          contentEditable={true}
+          data-block={true}
+          data-editor="an6uc"
+          data-offset-key="am1kq-0-0"
+          suppressContentEditableWarning={true}
+        >
+          <div
+            className="sc-AxhUy kMyssT"
+          >
+            <div
+              className="sc-AxiKw fcncWt chords"
+            >
+              <div
+                className="sc-AxjAm iLfbef"
+              >
+                <span
+                  className="sc-AxirZ iPMNfg"
+                >
+                  *
+                  
+                </span>
+                Усі ми створені в Тобі знайти усе
+              </div>
+            </div>
+            <div
+              className="sc-AxhCb cZQdNu lyrics"
+            >
+              Усі ми створені в Тобі знайти усе
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          contentEditable={true}
+          data-block={true}
+          data-editor="an6uc"
+          data-offset-key="7ok9r-0-0"
+          suppressContentEditableWarning={true}
+        >
+          <div
+            className="sc-AxhUy kMyssT"
+          >
+            <div
+              className="sc-AxiKw fcncWt chords"
+            >
+              <div
+                className="sc-AxjAm iLfbef"
+              >
+                <span
+                  className="sc-AxirZ iPMNfg"
+                >
+                  *
+                  
+                </span>
+                Боже в Тобі усе!
+              </div>
+            </div>
+            <div
+              className="sc-AxhCb cZQdNu lyrics"
+            >
+              Боже в Тобі усе!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

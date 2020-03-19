@@ -1,10 +1,8 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import styled from 'styled-components';
 import { convertFromRaw, EditorState, Editor } from 'draft-js';
 
 import chordsBlockRenderer from './chords-block';
-import { MockRTLdiv } from '../atoms/chord-span.stories';
+import { MockRTLdiv } from './chord-span.stories';
 
 const mockChords = {
     randomIdC: {
@@ -12,8 +10,8 @@ const mockChords = {
         mutability: 'IMMUTABLE',
         data: {
             chord: {
-                rootNote: 'C',
-                duration: 11,
+                root: 'C',
+                text: 'Я вільний! ',
             }
         }
     },
@@ -22,9 +20,9 @@ const mockChords = {
         mutability: 'IMMUTABLE',
         data: {
             chord: {
-                rootNote: 'A',
+                root: 'A',
                 type: 'm',
-                duration: 17,
+                text: `Любов'ю Ти вигнав`,
             }
         }
     },
