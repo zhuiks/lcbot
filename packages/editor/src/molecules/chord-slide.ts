@@ -9,9 +9,6 @@ export interface ChordArgs {
 
 interface ChordSlideI extends SlideInput {
     chords: Chord[][];
-    addChord: (args: ChordArgs) => ChordSlideI;
-    modChord: (args: ChordArgs) => ChordSlideI;
-    delChord: (args: ChordArgs) => ChordSlideI;
 }
 
 class ChordSlide implements ChordSlideI {
@@ -23,11 +20,21 @@ class ChordSlide implements ChordSlideI {
         this.type = slide.type;
         this.name = slide.name;
         this.lines = slide.lines;
-        this.chords = Array(slide.lines?.length || 1).fill([]);
+        this.chords = slide.lines && slide.lines.length
+            ? slide.lines.map((line: string) => ([{
+                rootNote: '*',
+                duration: line.length,
+            }]))
+            : Array(slide.lines?.length || 1).fill([]);
     }
     addChord: (args: ChordArgs) => ChordSlideI = ({ line, pos = 0, chordData = {} }) => {
-        const insertIndex = pos;
-        this.chords[line].splice(insertIndex, 0, { ...chordData, duration: 5});
+        if (this.chords[line]) {
+            const insertIndex = pos;
+            const newChord = { ...this.chords[line][0], chordData};
+            console.log(newChord);
+            this.chords[line][0] = {rootNote: 'C', duration: 5};
+            //this.chords[line].splice(insertIndex, 0, { ...chordData, duration: 5 });
+        }
         return this;
     };
     modChord: (args: ChordArgs) => ChordSlideI = ({ line, pos = 0, chordData = {} }) => {

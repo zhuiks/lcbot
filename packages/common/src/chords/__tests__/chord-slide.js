@@ -44,27 +44,76 @@ describe('Chord Slide', () => {
         }
     })
 
-    xit('adds chords in the begging', () => {
-        const lineAt = 0;
-        const charAt = 0;
-        slide.addChord({
-            lineAt,
-            charAt,
+    it('adds chord in the begging', () => {
+        const line = 0;
+        const pos = 0;
+        const upSlide = slide.addChord({
+            line,
+            pos,
             chordData: {
-                rootNote: 'C',
+                root: 'C',
             }
         });
-        expect(slide.chords[lineAt]).toHaveLength(1);
-        expect(slide.chords[lineAt][0].rootNote).toEqual('C');
-        expect(slide.chords[lineAt][0].duration).toEqual(slide.lines[lineAt].length);
-        slide.addChord({
-            lineAt,
-            charAt,
+        expect(upSlide).not.toEqual(slide);
+        const upChordLine = upSlide.chords.get(line);
+        expect(upChordLine.size).toEqual(1);
+        const upChord = upSlide.chords.getIn([line, pos]);
+        expect(upChord.root).toEqual('C');
+        expect(upChord.text).toEqual(slide.lines.get(line));
+        const upSlide2 = upSlide.addChord({
+            line,
+            pos,
             chordData: {
-                rootNote: 'A',
+                root: 'F#',
             }
         });
-        expect(slide.chords[lineAt]).toHaveLength(1);
-        expect(slide.chords[lineAt][0].rootNote).toEqual('A');
+        expect(upSlide2).not.toEqual(upSlide);
+        expect(upSlide2).not.toEqual(slide);
+        const upChord2 = upSlide2.chords.getIn([line, pos]);
+        expect(upChord2.root).toEqual('F#');
+        expect(upChord2.text).toEqual(slide.lines.get(line));
     })
+
+    it('adds chord', ()=>{
+        const line = 1;
+        const upSlide = slide.addChord({
+            line,
+            pos: 5,
+            chordData: {
+                root: 'C',
+            }
+        });
+        expect(upSlide).not.toEqual(slide);
+        const upChordLine = upSlide.chords.get(line);
+        expect(upChordLine).not.toEqual(slide.chords.get(line));
+        expect(upChordLine.size).toEqual(2);
+        const upChord = upSlide.chords.getIn([line, 1]);
+        expect(upChord.root).toEqual('C');
+        expect(upSlide.chords.getIn([line, 0]).text).toEqual('Усе д');
+        
+        const upSlide2 = upSlide.addChord({
+            line,
+            pos: 15,
+            chordData: {
+                root: 'F#',
+            }
+        });
+        expect(upSlide2.chords.get(line)).not.toEqual(upSlide.chords.get(line));
+        const upChord2 = upSlide2.chords.getIn([line, 2]);
+        expect(upChord2.root).toEqual('F#');
+        expect(upChord2.text).toEqual('Тобою все живе!');
+
+        const upSlide3 = upSlide2.addChord({
+            line,
+            pos: 0,
+            chordData: {
+                root: 'E',
+            }
+        });
+        const upChord3 = upSlide3.chords.getIn([line, 0]);
+        expect(upChord3.root).toEqual('E');
+        expect(upChord3.text).toEqual('Усе д');
+        expect(upSlide3.chords.get(line).size).toEqual(3);
+    })
+
 })
