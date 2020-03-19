@@ -1,18 +1,18 @@
 import { Record, List, fromJS } from "immutable";
 import { SlideType } from "../types";
-import Chord from "./chord";
+import Chord, { IChord } from "./chord";
 
 interface IChordSlide {
     type: SlideType;
     name?: string;
     lines?: string[] | List<string>;
-    chords?: [{}] | List<List<Chord>>;
+    chords?: [[{}]] | List<List<IChord>>;
 }
 
 interface IChordArgs {
     line: number;
     pos: number;
-    chordData: any;
+    chordData: IChord;
 }
 class ChordSlide extends Record({
     type: SlideType.VERSE,
@@ -27,7 +27,7 @@ class ChordSlide extends Record({
 
     constructor({type, name, lines, chords}: IChordSlide) {
         const imLines = fromJS(lines);
-        const imChords: List<List<Chord>> = chords 
+        const imChords: List<List<IChord>> = chords 
             ? fromJS(chords)
             : imLines.map((line: string) => {
                 const pauseChord = new Chord({
@@ -44,7 +44,7 @@ class ChordSlide extends Record({
         }
         const chordsLine = this.getIn(['chords', line]);
         let charsLength = 0;
-        const chordIndex = chordsLine.findIndex((chord: Chord) => {
+        const chordIndex = chordsLine.findIndex((chord: IChord) => {
             charsLength += [...chord.text].length;
             return charsLength > pos;
         });
@@ -55,7 +55,6 @@ class ChordSlide extends Record({
             ? chordsLine.mergeIn([chordIndex], chordData)
             : chordsLine.mergeIn([chordIndex], {text: prevChordText})
                 .insert(chordIndex+1, new Chord({...chordData, text: newChordText}));
-        // return this.mergeIn(['chords', line, chordIndex], chordData);
         return this.setIn(['chords', line], newChordsLine);
     }
 }
