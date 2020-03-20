@@ -1,7 +1,7 @@
 import { ContentState, Modifier, SelectionState } from "draft-js";
 
-import { IChord } from "../../chords/chord";
 import ChordSlide from "../../chords/chord-slide";
+import { IChord } from "../../chords/chord";
 
 function getCharacterLength(str: string) {
     // The string iterator that is used here iterates over characters,
@@ -45,7 +45,7 @@ export const initChords = (
     for (let l=0; l<slide.chords.size; l++ ) {
         let offset = 0;
         for (let k=0; k<slide.chords.get(l).size; k++ ) {
-            const chord = slide.chords.getIn([l,k]);
+            const chord = slide.getChord(l, k);
             state = applyChord(chord, state, l, offset);
             offset += getCharacterLength(chord.text);
         }

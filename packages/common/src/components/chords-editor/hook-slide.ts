@@ -1,4 +1,4 @@
-import { useReducer } from "react"
+import { useReducer } from "react";
 import { EditorState } from "draft-js";
 import ChordSlide from "../../chords/chord-slide";
 import { initChords, applyChord } from "./apply-chords";
@@ -36,7 +36,7 @@ const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEd
                 chordData: action.payload,
             });
             const content = applyChord(
-                newChordSlide.chords[state.currentLine][state.currentPosition], 
+                newChordSlide.getChord(state.currentLine, state.currentPosition), 
                 state.editorState.getCurrentContent(),
                 state.currentLine,
                 state.currentPosition);
