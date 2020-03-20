@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import { EditorState, SelectionState, Modifier, ContentState } from "draft-js";
 import ChordSlide from "../../chords/chord-slide";
+import { IChord } from "../../chords/chord";
 
 const CHORD_TYPE = 'CHORD';
 const CHORD_MUTABILITY = 'IMMUTABLE';

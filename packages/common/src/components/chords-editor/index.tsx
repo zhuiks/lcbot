@@ -1,7 +1,7 @@
 import React from "react";
 import { Editor, EditorState, DraftHandleValue } from 'draft-js';
 import chordsBlockRenderer from "./chords-block";
-import { useSlide } from "./hook-slide";
+import { useSlide } from "./use-slide";
 import handleChords from "./handle-chords";
 import ChordSlide from "../../chords/chord-slide";
 
