@@ -2,9 +2,8 @@ import { useReducer } from "react";
 import { EditorState, SelectionState, Modifier, ContentState } from "draft-js";
 import ChordSlide from "../../chords/chord-slide";
 import { IChord } from "../../chords/chord";
+import { List, Map } from "immutable";
 
-const CHORD_TYPE = 'CHORD';
-const CHORD_MUTABILITY = 'IMMUTABLE';
 
 interface SlideEditorState {
     chordSlide: ChordSlide;
@@ -39,10 +38,9 @@ const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEd
                 chordData: action.payload,
             });
             const content = applyChord(
-                newChordSlide.getChord(state.currentLine, state.currentPosition), 
+                newChordSlide.chords.get(state.currentLine), 
                 state.editorState.getCurrentContent(),
-                state.currentLine,
-                state.currentPosition);
+                state.currentLine);
             return {
                 ...state,
                 chordSlide: newChordSlide,
@@ -87,42 +85,33 @@ const getCharacterLength = (str: string) => {
 
 
 const applyChord = (
-    chordData: IChord,
-    state: ContentState,
+    chordsLine: List<IChord>,
+    contentState: ContentState,
     line: number,
-    pos: number
 ) => {
     // const blockMap = state.getBlockMap();
     // const entityMap = state.getEntityMap();
-
-    const theBlock = state.getBlockMap().toIndexedSeq().get(line);
+    console.log('applyChord:', chordsLine);
+    const theBlock = contentState.getBlockMap().toIndexedSeq().get(line);
     const selection = new SelectionState({
         'anchorKey': theBlock.getKey(),
-        'anchorOffset': pos,
+        'anchorOffset': 0,
         'focusKey': theBlock.getKey(),
-        'focusOffset': pos + getCharacterLength(chordData.text),
+        'focusOffset': 1,
         'isBackward': false,
         'hasFocus': true,
     });
 
-    const newState = state.createEntity(CHORD_TYPE, CHORD_MUTABILITY, {chord: chordData});
-    const entityKey = newState.getLastCreatedEntityKey();
-
-    return Modifier.applyEntity(newState, selection, entityKey);
+    return Modifier.setBlockData(contentState, selection, Map({chords: chordsLine}));
 }
 
-const initChords = (
+export const initChords = (
     slide: ChordSlide,
     initState: ContentState | null = null
 ) => {
-    let state = initState || ContentState.createFromText(slide.lines?.join('\n') || '');
+    let content = initState || ContentState.createFromText(slide.lines?.join('\n') || '');
     for (let l=0; l<slide.chords.size; l++ ) {
-        let offset = 0;
-        for (let k=0; k<slide.chords.get(l).size; k++ ) {
-            const chord = slide.getChord(l, k);
-            state = applyChord(chord, state, l, offset);
-            offset += getCharacterLength(chord.text);
-        }
+        content = applyChord(slide.chords.get(l), content, l);
     }
-    return state;
+    return content;
 }

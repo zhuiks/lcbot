@@ -3,6 +3,8 @@ import { convertFromRaw, EditorState, Editor } from 'draft-js';
 
 import chordsBlockRenderer from './chords-block';
 import { MockRTLdiv } from './chord-span.stories';
+import { ChordSlide } from '../..';
+import { initChords } from './use-slide';
 
 const mockChords = {
     randomIdC: {
@@ -29,36 +31,44 @@ const mockChords = {
 };
 
 export const mockContent = {
-    blocks: [{
-        text: "Я вільний! Любов'ю Ти вигнав страх мій",
-        type: 'unstyled',
-        entityRanges: [
-            { offset: 0, length: 11, key: 'randomIdC' },
-            { offset: 11, length: 17, key: 'randomIdAm' },
-        ],
-    }],
-    entityMap: mockChords
+    lines: ["Я вільний! Любов'ю Ти вигнав страх мій"],
+    chords: [[
+        {
+            root: 'C',
+            text: "Я вільний! ",
+        },
+        {
+            root: 'A',
+            type: 'm',
+            text: "Любов'ю Ти вигнав",
+        }
+    ]]
 };
 export const mockContentAr = {
-    blocks: [{
-        text: "انت تحبني رغم عيوبي وكل ضعفاتي",
-        type: 'unstyled',
-        entityRanges: [
-            { offset: 0, length: 10, key: 'randomIdC' },
-            { offset: 10, length: 10, key: 'randomIdAm' },
-            { offset: 20, length: 5, key: 'randomIdC' },
-        ],
-    }],
-    entityMap: mockChords
+    lines: ["انت تحبني رغم عيوبي وكل ضعفاتي"],
+    chords: [[
+        {
+            root: 'C',
+            text: "انت تحبني ",
+        },
+        {
+            root: 'A',
+            type: 'm',
+            text: "رغم عيوبي وكل ضع",
+        }
+    ]]
 };
 
 interface ChordEditorProps {
-    rawContent: any
+    rawSlide: any
 }
 
-const ChordEditor: React.FC<ChordEditorProps> = ({ rawContent }) => {
+const ChordEditor: React.FC<ChordEditorProps> = ({ rawSlide }) => {
+    const slide = new ChordSlide(rawSlide);
+    const content = initChords(slide);
+
     const [editorState, setEditorState] = React.useState(
-        EditorState.createWithContent(convertFromRaw(rawContent)),
+        EditorState.createWithContent(content)
     );
     return (
         <Editor
@@ -75,10 +85,10 @@ export default {
     excludeStories: /^mock.*/i,
 };
 
-export const Default: React.FC = () => <ChordEditor rawContent={mockContent} />;
+export const Default: React.FC = () => <ChordEditor rawSlide={mockContent} />
 
 export const Arabic: React.FC = () => (
     <MockRTLdiv>
-        <ChordEditor rawContent={mockContentAr} />
+        <ChordEditor rawSlide={mockContentAr} />
     </MockRTLdiv>
 );

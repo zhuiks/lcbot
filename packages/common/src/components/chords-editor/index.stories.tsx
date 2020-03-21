@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 import ChordEditor from './';
 import { SlideType } from '../../types';
 import ChordSlide from '../../chords/chord-slide';
+import { MockRTLdiv } from './chord-span.stories';
 
 const mockSlide = new ChordSlide({
     type: SlideType.CHORUS,
@@ -16,6 +17,15 @@ const mockSlide = new ChordSlide({
     ],
 });
 
+const mockSlideAr = new ChordSlide({
+    type: SlideType.CHORUS,
+    lines: [
+        "جايلك بتوبة عند رجليك",
+        "مشتاق لحضنك لمسة ايديك",
+        "تيجي تغير تشفي تحرر",
+        "تديني قوة وانت تزيد",
+    ],
+});
 
 export default {
     title: 'Chords/The Editor',
@@ -23,5 +33,10 @@ export default {
 };
 
 
-export const Default: React.FC = () => <ChordEditor slide={mockSlide}/>;
+export const Default: React.FC = () => <ChordEditor slide={mockSlide} />
 
+export const Arabic: React.FC = () => (
+    <MockRTLdiv>
+        <ChordEditor slide={mockSlideAr} />
+    </MockRTLdiv>
+)

@@ -27,7 +27,7 @@ export interface ChordSpanProps {
     children?: any;
 }
 const ChordSpan: React.FC<ChordSpanProps> = ({chord, paddingTop, children}) => {
-    const text = (chord.text || children.toString() || '');
+    const text = (chord.text || children && children.toString() || '');
     return (
         <ChordContainer paddingTop={paddingTop}>
             <ChordHolder>{chord.root}{chord.type}</ChordHolder>

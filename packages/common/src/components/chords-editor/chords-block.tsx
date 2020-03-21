@@ -1,9 +1,10 @@
 import React from "react";
-import { ContentState, ContentBlock } from 'draft-js';
+import { ContentState, ContentBlock, EditorBlock } from 'draft-js';
 import styled from 'styled-components';
 import ChordSpan from "./chord-span";
+import { IChord } from "../../chords/chord";
 
-const chordsPadding = 1.1;
+const CHORDS_PADDING = 1.1;
 const ChordsLine = styled.div`
     position: absolute;
     z-index: -1;
@@ -11,9 +12,13 @@ const ChordsLine = styled.div`
 `;
 
 const TextLine = styled.div`
-    padding-top: ${chordsPadding.toString() + 'em'}
+    padding-top: ${CHORDS_PADDING.toString() + 'em'}
 `;
-const BlockContainer = styled.div``;
+const BlockContainer = styled.div`
+    & > .public-DraftStyleDefault-block {
+        padding-top: ${(1.8*CHORDS_PADDING).toString() + 'em'}
+    }
+`;
 
 export interface ChordsBlockProps {
     block: ContentBlock;
@@ -21,29 +26,18 @@ export interface ChordsBlockProps {
     blockProps?: any
 }
 
-export const ChordsBlock: React.FC<ChordsBlockProps> = ({ block, contentState, blockProps }) => {
-    const text = block.getText();
-    let entityDivs: JSX.Element[] = [];
-    block.findEntityRanges(
-        (character) => {
-            const entityKey = character.getEntity();
-            return (
-                entityKey !== null &&
-                contentState.getEntity(entityKey).getType() === 'CHORD'
-            );
-        },
-        (start, end) => {
-            const entityKey = block.getEntityAt(start);
-            const entityData = contentState.getEntity(entityKey).getData();
-            entityDivs.push(
-                <ChordSpan key={start} chord={entityData.chord} paddingTop={chordsPadding} />
-            )
-        }
-    );
+export const ChordsBlock: React.FC<ChordsBlockProps> = (props) => {
+    const blockData = props.block.getData();
+    const chords = blockData.has('chords') ? blockData.get('chords') : [];
     return (
         <BlockContainer>
-            <ChordsLine className="chords">{entityDivs}</ChordsLine>
-            <TextLine className="lyrics">{text}</TextLine>
+            <ChordsLine className="chords">
+                { chords.map((chord: IChord, i: number) => (
+                    <ChordSpan key={i} chord={chord} paddingTop={CHORDS_PADDING} />
+                ))
+                }
+            </ChordsLine>
+            <EditorBlock {...props}/>
         </BlockContainer>
     )
 }

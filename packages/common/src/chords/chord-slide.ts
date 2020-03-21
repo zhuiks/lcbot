@@ -26,10 +26,14 @@ class ChordSlide extends Record({
     // readonly lines!: List<string>;
     // readonly chords!: List<List<Chord>>;
 
-    constructor({type, name, lines, chords}: IChordSlide) {
+    constructor({type = SlideType.VERSE, name, lines, chords}: IChordSlide) {
         const imLines = fromJS(lines);
         const imChords: List<List<IChord>> = chords 
-            ? fromJS(chords)
+            ? List(chords.map((line) => {
+                return List(line.map((jsChord: IChord) => {
+                    return new Chord(jsChord)
+                }))
+            }))
             : imLines.map((line: string) => {
                 const pauseChord = new Chord({
                     text: line,
