@@ -43,38 +43,45 @@ class ChordSlide extends Record({
         super({type, name, lines: imLines, chords: imChords});
     }
 
-    addChord({line, pos, chordData}: IChordArgs) {
-        if(!this.lines.has(line) || !this.chords.has(line)) {
-            return this;
-        }
-        const chordsLine = this.getIn(['chords', line]);
-        const {chordIndex, charsFromTheEnd} = this._getChordIndex(line, pos);
-        const prevChordText = chordsLine.get(chordIndex).text.slice(0, charsFromTheEnd);
-        const newChordText = chordsLine.get(chordIndex).text.slice(charsFromTheEnd);
-        const newChordsLine = prevChordText.length === 0
-            ? chordsLine.mergeIn([chordIndex], chordData)
-            : chordsLine.mergeIn([chordIndex], {text: prevChordText})
-                .insert(chordIndex+1, new Chord({...chordData, text: newChordText}));
-        return this.setIn(['chords', line], newChordsLine);
-    }
-
-    _getChordIndex(line: number, pos: number) {
-        let charsLength = 0;
-        const chordIndex = this.getIn(['chords', line]).findIndex((chord: IChord) => {
-            charsLength += [...chord.text].length;
-            return charsLength > pos;
-        });
-        const charsFromTheEnd = pos - charsLength;
-        return {
-            chordIndex,
-            charsFromTheEnd
-        }
-    }
 
     getChord(line: number, pos: number) {
-        const { chordIndex } = this._getChordIndex(line, pos);
+        const { chordIndex } = _getChordIndex(this, line, pos);
         return this.getIn(['chords', line, chordIndex]);
     }
 }
 
 export default ChordSlide;
+
+const _getChordIndex = (slide: ChordSlide, line: number, pos: number) => {
+    let charsLength = 0;
+    const chordIndex = slide.getIn(['chords', line]).findIndex((chord: IChord) => {
+        charsLength += [...chord.text].length;
+        return charsLength > pos;
+    });
+    const charsFromTheEnd = pos - charsLength;
+    return {
+        chordIndex,
+        charsFromTheEnd,
+    }
+}
+
+export const addChord = (slide: ChordSlide, type: string, line: number, pos: number) => {
+    if(!slide.lines.has(line) || !slide.chords.has(line)) {
+        return slide;
+    }
+    if(!/^ADD_CHORD_[A-G]$/.test(type)) {
+        return slide;
+    }
+    const chordData = {
+        root: type.slice('ADD_CHORD_'.length)
+    };
+    const chordsLine = slide.getIn(['chords', line]);
+    const {chordIndex, charsFromTheEnd} = _getChordIndex(slide, line, pos);
+    const prevChordText = chordsLine.get(chordIndex).text.slice(0, charsFromTheEnd);
+    const newChordText = chordsLine.get(chordIndex).text.slice(charsFromTheEnd);
+    const newChordsLine = prevChordText.length === 0
+        ? chordsLine.mergeIn([chordIndex], chordData)
+        : chordsLine.mergeIn([chordIndex], {text: prevChordText})
+            .insert(chordIndex+1, new Chord({...chordData, text: newChordText}));
+    return slide.setIn(['chords', line], newChordsLine);
+}

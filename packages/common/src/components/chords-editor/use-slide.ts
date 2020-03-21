@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { EditorState, SelectionState, Modifier, ContentState } from "draft-js";
-import ChordSlide from "../../chords/chord-slide";
+import ChordSlide, { addChord } from "../../chords/chord-slide";
 import { IChord } from "../../chords/chord";
 import { List, Map } from "immutable";
 
@@ -23,7 +23,7 @@ const initState = (slide: ChordSlide) => {
 }
 
 interface SlideActionType {
-    type: 'RESET' | 'ADD_CHORD' | 'SELECTION_CHANGE';
+    type: string;
     editorState: EditorState;
     payload?: any;
 }
@@ -31,14 +31,21 @@ const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEd
     switch (action.type) {
         case 'RESET':
             return action.payload ? initState(action.payload) : state;
-        case 'ADD_CHORD':
-            const newChordSlide = state.chordSlide.addChord({
-                line: state.currentLine,
-                pos: state.currentPosition,
-                chordData: action.payload,
-            });
+        case 'ADD_CHORD_C':
+        case 'ADD_CHORD_D':
+        case 'ADD_CHORD_E':
+        case 'ADD_CHORD_F':
+        case 'ADD_CHORD_G':
+        case 'ADD_CHORD_A':
+        case 'ADD_CHORD_B':
+            const newChordSlide = addChord(
+                state.chordSlide, 
+                action.type,
+                state.currentLine,
+                state.currentPosition,
+            );
             const content = applyChord(
-                newChordSlide.chords.get(state.currentLine), 
+                newChordSlide.chords.get(state.currentLine),
                 state.editorState.getCurrentContent(),
                 state.currentLine);
             return {
@@ -91,7 +98,7 @@ const applyChord = (
 ) => {
     // const blockMap = state.getBlockMap();
     // const entityMap = state.getEntityMap();
-    console.log('applyChord:', chordsLine);
+    // console.log(`#${line} applyChord:`, chordsLine.toJS());
     const theBlock = contentState.getBlockMap().toIndexedSeq().get(line);
     const selection = new SelectionState({
         'anchorKey': theBlock.getKey(),
@@ -102,7 +109,7 @@ const applyChord = (
         'hasFocus': true,
     });
 
-    return Modifier.setBlockData(contentState, selection, Map({chords: chordsLine}));
+    return Modifier.setBlockData(contentState, selection, Map({ chords: chordsLine }));
 }
 
 export const initChords = (
@@ -110,7 +117,8 @@ export const initChords = (
     initState: ContentState | null = null
 ) => {
     let content = initState || ContentState.createFromText(slide.lines?.join('\n') || '');
-    for (let l=0; l<slide.chords.size; l++ ) {
+    console.log(`initChords:`, initState);
+    for (let l = 0; l < slide.chords.size; l++) {
         content = applyChord(slide.chords.get(l), content, l);
     }
     return content;
