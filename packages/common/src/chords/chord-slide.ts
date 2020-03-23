@@ -72,30 +72,49 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
     let chordData;
     const modType = type.slice(0, 'ADD_CHORD'.length); //first part
     const data = type.slice('ADD_CHORD_'.length);  //second part
+    const chordsLine = slide.getIn(['chords', line]);
+    const { chordIndex, charsFromTheEnd } = _getChordIndex(slide, line, pos);
+    const chord = chordsLine.get(chordIndex);                    
     switch (modType) {
         case 'ADD_CHORD':
             chordData = {
-                root: data === '_' ? REST_CHAR : data.toUpperCase()
+                root: data.toUpperCase()
             };
             break;
         case 'MOD_CHORD':
-            let chordType = '';
+            if(chord.root === REST_CHAR) {
+                return slide;
+            }
             switch (data) {
                 case 'MIN':
-                    chordType = 'm';
+                    chordData = {
+                        type: 'm',
+                    }
                     break;
                 case 'DIM':
-                    chordType = 'dim';
+                    chordData = {
+                        type: 'dim',
+                    }
                     break;
                 case 'AUG':
-                    chordType = 'aug';
+                    chordData = {
+                        type: 'aug',
+                    }
                     break;
-            }
-            chordData = {
-                type: chordType,
+                case 'SHARP':
+                    if( chord.root === 'E' || chord.root === 'B') {
+                        return slide;
+                    }
+                    chordData = {
+                        root: chord.root + '#',
+                    }
+                    break;
             }
             break;
         case 'OPT_CHORD':
+            if(chord.root === REST_CHAR) {
+                return slide;
+            }
             let chordOption = '';
             switch (data) {
                 case 'SUS':
@@ -115,16 +134,15 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
         default:
             return slide;
     }
-    const chordsLine = slide.getIn(['chords', line]);
-    const { chordIndex, charsFromTheEnd } = _getChordIndex(slide, line, pos);
-    const prevChordText = chordsLine.get(chordIndex).text.slice(0, charsFromTheEnd);
+
+    const prevChordText = chord.text.slice(0, charsFromTheEnd);
 
     const modChordData = modType === 'ADD_CHORD' && prevChordText.length !== 0
         ? { text: prevChordText }
         : chordData;
 
     let newChordsLine = chordsLine.mergeIn([chordIndex], modChordData);
-    if (modType === 'ADD_CHORD' && prevChordText.length !== 0) {    
+    if (modType === 'ADD_CHORD' && prevChordText.length !== 0) {
         chordData = {
             ...chordData,
             text: chordsLine.get(chordIndex).text.slice(charsFromTheEnd)
