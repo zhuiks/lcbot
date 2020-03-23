@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { EditorState, SelectionState, Modifier, ContentState } from "draft-js";
-import ChordSlide, { addChord } from "../../chords/chord-slide";
+import ChordSlide, { modChord } from "../../chords/chord-slide";
 import { IChord } from "../../chords/chord";
 import { List, Map } from "immutable";
 
@@ -31,30 +31,6 @@ const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEd
     switch (action.type) {
         case 'RESET':
             return action.payload ? initState(action.payload) : state;
-        case 'ADD_CHORD_C':
-        case 'ADD_CHORD_D':
-        case 'ADD_CHORD_E':
-        case 'ADD_CHORD_F':
-        case 'ADD_CHORD_G':
-        case 'ADD_CHORD_A':
-        case 'ADD_CHORD_B':
-            const newChordSlide = addChord(
-                state.chordSlide, 
-                action.type,
-                state.currentLine,
-                state.currentPosition,
-            );
-            const content = applyChord(
-                newChordSlide.chords.get(state.currentLine),
-                state.editorState.getCurrentContent(),
-                state.currentLine);
-            return {
-                ...state,
-                chordSlide: newChordSlide,
-                editorState: EditorState.set(state.editorState, {
-                    currentContent: content,
-                }),
-            };
         case 'SELECTION_CHANGE':
             if (!action.editorState) return state;
             const editorState = action.editorState;
@@ -71,7 +47,23 @@ const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEd
                 editorState,
             }
         default:
-            throw new Error();
+            const newChordSlide = modChord(
+                state.chordSlide, 
+                action.type,
+                state.currentLine,
+                state.currentPosition,
+            );
+            const content = applyChord(
+                newChordSlide.chords.get(state.currentLine),
+                state.editorState.getCurrentContent(),
+                state.currentLine);
+            return {
+                ...state,
+                chordSlide: newChordSlide,
+                editorState: EditorState.set(state.editorState, {
+                    currentContent: content,
+                }),
+            };
     }
 }
 

@@ -1,5 +1,7 @@
 import { Record } from 'immutable';
 
+export const REST_CHAR = '*';
+
 export interface IChord {
     root: string;
     type?: string;
@@ -9,7 +11,7 @@ export interface IChord {
 }
 
 const Chord  = Record({
-    root: '*',
+    root: REST_CHAR,
     type: '',
     option: '',
     bass: '',

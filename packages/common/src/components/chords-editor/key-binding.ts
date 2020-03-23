@@ -18,13 +18,30 @@ export const keyBinding = (e: KeyboardEvent<{}>) => {
             return 'ADD_CHORD_A';
         case 66:   // B
             return 'ADD_CHORD_B';
-        case 37:
-        case 38:
-        case 39:
-        case 40:
-            return 'MOVE_CURSOR';
+        case 51: // 3/# 
+            return 'MOD_CHORD_SHARP';
+        case 77: // m
+            return 'MOD_CHORD_MIN';
+        case 73: // i
+            return 'MOD_CHORD_DIM';
+        case 85: // u
+            return 'MOD_CHORD_AUG';
+        case 83: // s 
+            return 'OPT_CHORD_SUS';
+        case 55: // 7 
+            return 'OPT_CHORD_7';
+        case 50: // 2 
+            return 'OPT_CHORD_2';
+
+        // case 35: //Home
+        // case 36: //End   
+        // case 37:
+        // case 38:
+        // case 39:
+        // case 40:
+        //     return 'MOVE_CURSOR';
     }
-    return getDefaultKeyBinding(e) || 'skip';
+    return getDefaultKeyBinding(e);
 }
 
 export const handleChords = (command: string) => {

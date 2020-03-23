@@ -24,7 +24,7 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide }) => {
     const onKeyCommand = (command: string, es: EditorState) => {
 
         console.log(command);
-        if(command.startsWith('ADD_CHORD')) {
+        if(/^[A-Z]{3}_CHORD_\S+$/.test(command)) {
             dispatch({ type: command, editorState: es });
         }
 
