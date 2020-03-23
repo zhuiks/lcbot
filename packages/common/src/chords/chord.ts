@@ -4,16 +4,16 @@ export const REST_CHAR = '*';
 
 export interface IChord {
     root: string;
+    quality?: string;
     type?: string;
-    option?: string;
     bass?: string;
     text: string;
 }
 
 const Chord  = Record({
     root: REST_CHAR,
+    quality: '',
     type: '',
-    option: '',
     bass: '',
     text: ' ',
 });

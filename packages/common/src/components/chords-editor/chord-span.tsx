@@ -20,7 +20,7 @@ const ChordHolder = styled.span`
     font-weight: bold;
     color: red;
 `;
-const ChordOpt = styled.sup``;
+const ChordType = styled.sup``;
 
 export interface ChordSpanProps {
     chord: IChord;
@@ -33,8 +33,8 @@ const ChordSpan: React.FC<ChordSpanProps> = ({chord, paddingTop, children}) => {
         <ChordContainer paddingTop={paddingTop}>
             <ChordHolder>
                 {chord.root}
-                {chord.type}
-                <ChordOpt>{chord.option}</ChordOpt>
+                {chord.quality}
+                <ChordType>{chord.type}</ChordType>
             </ChordHolder>
             {text}
         </ChordContainer>

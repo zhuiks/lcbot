@@ -88,17 +88,17 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
             switch (data) {
                 case 'MIN':
                     chordData = {
-                        type: 'm',
+                        quality: 'm',
                     }
                     break;
                 case 'DIM':
                     chordData = {
-                        type: 'dim',
+                        quality: 'dim',
                     }
                     break;
                 case 'AUG':
                     chordData = {
-                        type: 'aug',
+                        quality: 'aug',
                     }
                     break;
                 case 'SHARP':
@@ -115,20 +115,20 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
             if(chord.root === REST_CHAR) {
                 return slide;
             }
-            let chordOption = '';
+            let chordType = '';
             switch (data) {
                 case 'SUS':
-                    chordOption = 'sus';
+                    chordType = 'sus';
                     break;
                 case '7':
-                    chordOption = '7';
+                    chordType = '7';
                     break;
                 case '2':
-                    chordOption = '2';
+                    chordType = '2';
                     break;
             }
             chordData = {
-                option: chordOption,
+                type: chordType,
             }
             break;
         default:
