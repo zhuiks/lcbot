@@ -41,6 +41,9 @@ export const keyBinding = (e: KeyboardEvent<{}>) => {
         // case 40:
         //     return 'MOVE_CURSOR';
     }
+    if ( 48 <= e.keyCode && e.keyCode <= 90 ) { //skip all 0-1 a-z keys
+        return 'skip';
+    }
     return getDefaultKeyBinding(e);
 }
 
