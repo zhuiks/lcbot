@@ -21,9 +21,12 @@ export const keyBinding = (e: KeyboardEvent<{}>) => {
         case 51: // 3/# 
             return 'MOD_CHORD_SHARP';
         case 77: // m
+        case 189: // -
             return 'MOD_CHORD_MIN';
         case 73: // i
+        case 79: // o
             return 'MOD_CHORD_DIM';
+        case 187: // = / +
         case 85: // u
             return 'MOD_CHORD_AUG';
         case 83: // s 
@@ -32,6 +35,12 @@ export const keyBinding = (e: KeyboardEvent<{}>) => {
             return 'OPT_CHORD_7';
         case 50: // 2 
             return 'OPT_CHORD_2';
+        case 46: // del 
+            return 'DEL_CHORD';
+        case 8: // backspace 
+            return 'DEL_CHORD_BS';
+        case 32: // " " 
+            return 'DEL_CHORD__';
 
         // case 35: //Home
         // case 36: //End   
@@ -41,7 +50,7 @@ export const keyBinding = (e: KeyboardEvent<{}>) => {
         // case 40:
         //     return 'MOVE_CURSOR';
     }
-    if ( 48 <= e.keyCode && e.keyCode <= 90 ) { //skip all 0-1 a-z keys
+    if (48 <= e.keyCode && e.keyCode <= 90) { //skip all 0-1 a-z keys
         return 'skip';
     }
     return getDefaultKeyBinding(e);
