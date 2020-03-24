@@ -156,15 +156,33 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
         case 'OPT_CHORD':
             chordData = _optChord(chordType, chord);
             break;
+        case 'DEL_CHORD':
+            if (chord.type) {
+                chordData = { type: '' };
+            } else if (chord.quality) {
+                chordData = { quality: '' };
+            } else if (chordIndex === 0) {
+                chordData = { root: REST_CHAR };
+            } else {
+                const prevChord = chordsLine.get(chordIndex-1);
+                chordData = {
+                    text: prevChord.text.replace(new RegExp(`${ZWJ}$`), '') 
+                        + chord.text.replace(new RegExp(`^${ZWJ}`), '')
+                }
+            }
+            break;    
     }
     if(!chordData) {
         return slide;
     }
 
+    let newChordsLine;
     const prevChordText = chord.text.slice(0, charsFromTheEnd);
 
-    let newChordsLine;
-    if (modType === 'ADD_CHORD' && prevChordText.length !== 0) {
+    if ( modType === 'DEL_CHORD' && chordData.text ) {
+        newChordsLine = chordsLine.mergeIn([chordIndex-1], chordData)
+            .delete(chordIndex);
+    } else if (modType === 'ADD_CHORD' && prevChordText.length !== 0) {
         const arabicPairRegex = /^[\u0620-\u064A]{2}$/;
         const addZWJ = arabicPairRegex.test(chord.text.slice(charsFromTheEnd - 1, charsFromTheEnd + 1)) ? ZWJ : '';
         const prevChordData = {

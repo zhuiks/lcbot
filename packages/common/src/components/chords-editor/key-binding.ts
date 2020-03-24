@@ -36,11 +36,11 @@ export const keyBinding = (e: KeyboardEvent<{}>) => {
         case 50: // 2 
             return 'OPT_CHORD_2';
         case 46: // del 
-            return 'DEL_CHORD';
+            return 'DEL_CHORD_DEL';
         case 8: // backspace 
             return 'DEL_CHORD_BS';
-        case 32: // " " 
-            return 'DEL_CHORD__';
+        // case 32: // " " 
+        //     return 'DEL_CHORD__';
 
         // case 35: //Home
         // case 36: //End   
