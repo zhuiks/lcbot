@@ -17,25 +17,35 @@ const ChordContainer = styled.div<ChordProps>`
 const ChordHolder = styled.span`
     position: absolute;
     top: 0;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: red;
     direction: LTR;
 `;
-const ChordType = styled.sup``;
+const ChordSup = styled.sup`
+    position: absolute;
+    padding-inline-start: 2px;
+    top: -5px;
+`;
+const ChordSub = styled.sub`
+    position: absolute;
+    padding-inline-start: 2px;
+    bottom: -5px;
+`;
 
 export interface ChordSpanProps {
     chord: IChord;
     paddingTop?: number;
     children?: any;
 }
-const ChordSpan: React.FC<ChordSpanProps> = ({chord, paddingTop, children}) => {
+
+const ChordSpan: React.FC<ChordSpanProps> = ({ chord, paddingTop, children }) => {
     const text = (chord.text || (children && children.toString()) || '');
     return (
         <ChordContainer paddingTop={paddingTop}>
             <ChordHolder>
                 {chord.root}
-                {chord.quality}
-                <ChordType>{chord.type}</ChordType>
+                {chord.quality === 'm' ? chord.quality : <ChordSub>{chord.quality}</ChordSub>}
+                <ChordSup>{chord.type}</ChordSup>
             </ChordHolder>
             {text}
         </ChordContainer>
