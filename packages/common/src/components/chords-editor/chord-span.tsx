@@ -19,6 +19,7 @@ const ChordHolder = styled.span`
     top: 0;
     font-weight: bold;
     color: red;
+    direction: LTR;
 `;
 const ChordType = styled.sup``;
 

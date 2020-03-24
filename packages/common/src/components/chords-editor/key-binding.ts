@@ -1,6 +1,6 @@
-import { getDefaultKeyBinding, KeyBindingUtil } from 'draft-js';
+import { getDefaultKeyBinding } from 'draft-js';
 import { KeyboardEvent } from 'react';
-const { hasCommandModifier } = KeyBindingUtil;
+// const { hasCommandModifier } = KeyBindingUtil;
 
 export const keyBinding = (e: KeyboardEvent<{}>) => {
     switch (e.keyCode) {
