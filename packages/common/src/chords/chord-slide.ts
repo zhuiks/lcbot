@@ -2,6 +2,8 @@ import { Record, List, fromJS } from "immutable";
 import { SlideType } from "../types";
 import Chord, { IChord, REST_CHAR } from "./chord";
 
+// https://www.w3.org/TR/2018/WD-alreq-20180222/#dfn-zwj
+const ZWJ = '\u200D';
 interface IChordSlide {
     type: SlideType;
     name?: string;
@@ -56,6 +58,10 @@ const _getChordIndex = (slide: ChordSlide, line: number, pos: number) => {
     let charsLength = 0;
     const chordIndex = slide.getIn(['chords', line]).findIndex((chord: IChord) => {
         charsLength += [...chord.text].length;
+        if (chord.text.startsWith(ZWJ)) {
+            pos += 2;
+            console.log('starts with ZWJ');
+        }
         return charsLength > pos;
     });
     const charsFromTheEnd = pos - charsLength;
@@ -74,7 +80,7 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
     const data = type.slice('ADD_CHORD_'.length);  //second part
     const chordsLine = slide.getIn(['chords', line]);
     const { chordIndex, charsFromTheEnd } = _getChordIndex(slide, line, pos);
-    const chord = chordsLine.get(chordIndex);                    
+    const chord = chordsLine.get(chordIndex);
     switch (modType) {
         case 'ADD_CHORD':
             chordData = {
@@ -82,7 +88,7 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
             };
             break;
         case 'MOD_CHORD':
-            if(chord.root === REST_CHAR) {
+            if (chord.root === REST_CHAR) {
                 return slide;
             }
             switch (data) {
@@ -102,7 +108,7 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
                     }
                     break;
                 case 'SHARP':
-                    if( chord.root === 'E' || chord.root === 'B') {
+                    if (chord.root === 'E' || chord.root === 'B') {
                         return slide;
                     }
                     chordData = {
@@ -112,7 +118,7 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
             }
             break;
         case 'OPT_CHORD':
-            if(chord.root === REST_CHAR) {
+            if (chord.root === REST_CHAR) {
                 return slide;
             }
             let chordType = '';
@@ -137,17 +143,25 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
 
     const prevChordText = chord.text.slice(0, charsFromTheEnd);
 
-    const modChordData = modType === 'ADD_CHORD' && prevChordText.length !== 0
-        ? { text: prevChordText }
-        : chordData;
-
-    let newChordsLine = chordsLine.mergeIn([chordIndex], modChordData);
+    let newChordsLine;
     if (modType === 'ADD_CHORD' && prevChordText.length !== 0) {
+        const arabicPairRegex = /^[\u0620-\u064A]{2}$/;
+        const addZWJ = arabicPairRegex.test(chord.text.slice(charsFromTheEnd - 1, charsFromTheEnd + 1)) ? ZWJ : '';
+        const prevChordData = {
+            text: prevChordText + addZWJ,
+        }
         chordData = {
             ...chordData,
-            text: chordsLine.get(chordIndex).text.slice(charsFromTheEnd)
+            text: addZWJ + chord.text.slice(charsFromTheEnd),
         };
-        newChordsLine = newChordsLine.insert(chordIndex + 1, new Chord(chordData));
+        newChordsLine = chordsLine.mergeIn([chordIndex], prevChordData)
+            .insert(chordIndex + 1, new Chord(chordData));
+
+    } else {
+        newChordsLine = chordsLine.mergeIn([chordIndex], chordData);
+    }
+
+    if (modType === 'ADD_CHORD' && prevChordText.length !== 0) {
     }
     return slide.setIn(['chords', line], newChordsLine);
 }
