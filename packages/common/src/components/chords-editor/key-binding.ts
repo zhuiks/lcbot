@@ -21,11 +21,13 @@ export const keyBinding = (e: KeyboardEvent<{}>) => {
         case 51: // 3/# 
             return 'MOD_CHORD_SHARP';
         case 77: // m
+        case 173: // - (firefox)
         case 189: // -
             return 'MOD_CHORD_MIN';
         case 73: // i
         case 79: // o
             return 'MOD_CHORD_DIM';
+        case 61: // = / + (firefox)
         case 187: // = / +
         case 85: // u
             return 'MOD_CHORD_AUG';
@@ -39,8 +41,18 @@ export const keyBinding = (e: KeyboardEvent<{}>) => {
             return 'DEL_CHORD_DEL';
         case 8: // backspace 
             return 'DEL_CHORD_BS';
-        // case 32: // " " 
-        //     return 'DEL_CHORD__';
+
+        case 32: // " " 
+        case 186:
+        case 188:
+        case 190:
+        case 191:
+        case 192:
+        case 219:
+        case 220:
+        case 221:
+        case 222:
+            return 'skip';
 
         // case 35: //Home
         // case 36: //End   
