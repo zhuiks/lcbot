@@ -1,8 +1,7 @@
 import React from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-
+import { Link as RouterLink } from 'react-router-dom';
+import { AppBar, Link, Avatar, Typography, IconButton } from '@material-ui/core';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import logo from '../assets/logo.png';
 
 interface HeaderProps {
@@ -15,33 +14,23 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', user, logoutAction, children }) => {
 
   return (
-    <Navbar bg="dark" variant="dark" className="mb-5">
-      <LinkContainer to="/">
-        <Navbar.Brand>
-          <img
+    <AppBar position="fixed">
+      <Link component={RouterLink} to="/">
+      <Avatar
             alt=""
             src={logo}
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />{' '}
-          {title}
-        </Navbar.Brand>
-      </LinkContainer>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          />
+          <Typography>{title}</Typography>
+      </Link>
         {user && (
-          <Navbar.Text>
+          <>
+          <Typography>
             Hello <strong>{(user.user_metadata && user.user_metadata.full_name) || 'NoName'}</strong>!
-          </Navbar.Text>
-        )}
-        <Nav>
-          {user && (
-            <Nav.Link onClick={logoutAction}>Log Out</Nav.Link>
+          </Typography>
+            <IconButton onClick={logoutAction}><ExitToAppIcon /></IconButton>
+          </>
           )}
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    </AppBar>
   );
 }
 
