@@ -1,6 +1,6 @@
 import { Record } from 'immutable';
 
-export const REST_CHAR = '*';
+export const REST_CHAR = ' ';
 
 export interface IChord {
     root: string;

@@ -10,9 +10,9 @@ interface ChordProps {
 const ChordContainer = styled.div<ChordProps>`
     position: relative;
     padding-top: ${props => (props.paddingTop || 1).toString() + 'em'};
-    background-color: ${props => props.bgColor || '#eee'};
-    color: ${props => props.bgColor || '#ccc'};
-    border-inline-start: 1px dashed #485ef7;
+    background-color: ${props => props.bgColor || '#fff'};
+    color: ${props => props.bgColor || '#fff'};
+    /* border-inline-start: 1px dashed #485ef7; */
 `;
 const ChordHolder = styled.span`
     position: absolute;

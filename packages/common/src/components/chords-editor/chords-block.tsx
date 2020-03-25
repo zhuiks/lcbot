@@ -11,12 +11,9 @@ const ChordsLine = styled.div`
     display: flex;
 `;
 
-const TextLine = styled.div`
-    padding-top: ${CHORDS_PADDING.toString() + 'em'}
-`;
 const BlockContainer = styled.div`
     & > .public-DraftStyleDefault-block {
-        padding-top: ${(1.8*CHORDS_PADDING).toString() + 'em'}
+        padding-top: ${(CHORDS_PADDING).toString() + 'em'}
     }
 `;
 

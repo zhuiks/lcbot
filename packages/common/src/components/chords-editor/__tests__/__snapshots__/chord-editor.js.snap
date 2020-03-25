@@ -8,7 +8,7 @@ exports[`ChordEditor renders correctly 1`] = `
     className="DraftEditor-editorContainer"
   >
     <div
-      aria-describedby="placeholder-an6uc"
+      aria-describedby="placeholder-8jja0"
       aria-expanded={null}
       className="notranslate public-DraftEditor-content"
       contentEditable={true}
@@ -52,32 +52,51 @@ exports[`ChordEditor renders correctly 1`] = `
           className=""
           contentEditable={true}
           data-block={true}
-          data-editor="an6uc"
-          data-offset-key="8fmo-0-0"
+          data-editor="8jja0"
+          data-offset-key="9clf0-0-0"
           suppressContentEditableWarning={true}
         >
           <div
-            className="sc-AxhUy kMyssT"
+            className="sc-AxgMl flrbls"
           >
             <div
-              className="sc-AxiKw fcncWt chords"
+              className="sc-AxhUy coNlgA chords"
             >
               <div
-                className="sc-AxjAm iLfbef"
+                className="sc-AxjAm iLzuZh"
               >
                 <span
-                  className="sc-AxirZ iPMNfg"
+                  className="sc-AxirZ dYYFxI"
                 >
-                  *
-                  
+                   
+                  <sub
+                    className="sc-AxhCb efxBNo"
+                  >
+                    
+                  </sub>
+                  <sup
+                    className="sc-AxiKw iSXCHE"
+                  >
+                    
+                  </sup>
                 </span>
                 Усі діла Твої звеличують Тебе
               </div>
             </div>
             <div
-              className="sc-AxhCb cZQdNu lyrics"
+              className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
+              data-offset-key="9clf0-0-0"
             >
-              Усі діла Твої звеличують Тебе
+              <span
+                data-offset-key="9clf0-0-0"
+                style={Object {}}
+              >
+                <span
+                  data-text="true"
+                >
+                  Усі діла Твої звеличують Тебе
+                </span>
+              </span>
             </div>
           </div>
         </div>
@@ -85,32 +104,51 @@ exports[`ChordEditor renders correctly 1`] = `
           className=""
           contentEditable={true}
           data-block={true}
-          data-editor="an6uc"
-          data-offset-key="8he1l-0-0"
+          data-editor="8jja0"
+          data-offset-key="1itmh-0-0"
           suppressContentEditableWarning={true}
         >
           <div
-            className="sc-AxhUy kMyssT"
+            className="sc-AxgMl flrbls"
           >
             <div
-              className="sc-AxiKw fcncWt chords"
+              className="sc-AxhUy coNlgA chords"
             >
               <div
-                className="sc-AxjAm iLfbef"
+                className="sc-AxjAm iLzuZh"
               >
                 <span
-                  className="sc-AxirZ iPMNfg"
+                  className="sc-AxirZ dYYFxI"
                 >
-                  *
-                  
+                   
+                  <sub
+                    className="sc-AxhCb efxBNo"
+                  >
+                    
+                  </sub>
+                  <sup
+                    className="sc-AxiKw iSXCHE"
+                  >
+                    
+                  </sup>
                 </span>
                 Усе для Тебе і Тобою все живе!
               </div>
             </div>
             <div
-              className="sc-AxhCb cZQdNu lyrics"
+              className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
+              data-offset-key="1itmh-0-0"
             >
-              Усе для Тебе і Тобою все живе!
+              <span
+                data-offset-key="1itmh-0-0"
+                style={Object {}}
+              >
+                <span
+                  data-text="true"
+                >
+                  Усе для Тебе і Тобою все живе!
+                </span>
+              </span>
             </div>
           </div>
         </div>
@@ -118,32 +156,51 @@ exports[`ChordEditor renders correctly 1`] = `
           className=""
           contentEditable={true}
           data-block={true}
-          data-editor="an6uc"
-          data-offset-key="am1kq-0-0"
+          data-editor="8jja0"
+          data-offset-key="eecsa-0-0"
           suppressContentEditableWarning={true}
         >
           <div
-            className="sc-AxhUy kMyssT"
+            className="sc-AxgMl flrbls"
           >
             <div
-              className="sc-AxiKw fcncWt chords"
+              className="sc-AxhUy coNlgA chords"
             >
               <div
-                className="sc-AxjAm iLfbef"
+                className="sc-AxjAm iLzuZh"
               >
                 <span
-                  className="sc-AxirZ iPMNfg"
+                  className="sc-AxirZ dYYFxI"
                 >
-                  *
-                  
+                   
+                  <sub
+                    className="sc-AxhCb efxBNo"
+                  >
+                    
+                  </sub>
+                  <sup
+                    className="sc-AxiKw iSXCHE"
+                  >
+                    
+                  </sup>
                 </span>
                 Усі ми створені в Тобі знайти усе
               </div>
             </div>
             <div
-              className="sc-AxhCb cZQdNu lyrics"
+              className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
+              data-offset-key="eecsa-0-0"
             >
-              Усі ми створені в Тобі знайти усе
+              <span
+                data-offset-key="eecsa-0-0"
+                style={Object {}}
+              >
+                <span
+                  data-text="true"
+                >
+                  Усі ми створені в Тобі знайти усе
+                </span>
+              </span>
             </div>
           </div>
         </div>
@@ -151,32 +208,51 @@ exports[`ChordEditor renders correctly 1`] = `
           className=""
           contentEditable={true}
           data-block={true}
-          data-editor="an6uc"
-          data-offset-key="7ok9r-0-0"
+          data-editor="8jja0"
+          data-offset-key="2or3g-0-0"
           suppressContentEditableWarning={true}
         >
           <div
-            className="sc-AxhUy kMyssT"
+            className="sc-AxgMl flrbls"
           >
             <div
-              className="sc-AxiKw fcncWt chords"
+              className="sc-AxhUy coNlgA chords"
             >
               <div
-                className="sc-AxjAm iLfbef"
+                className="sc-AxjAm iLzuZh"
               >
                 <span
-                  className="sc-AxirZ iPMNfg"
+                  className="sc-AxirZ dYYFxI"
                 >
-                  *
-                  
+                   
+                  <sub
+                    className="sc-AxhCb efxBNo"
+                  >
+                    
+                  </sub>
+                  <sup
+                    className="sc-AxiKw iSXCHE"
+                  >
+                    
+                  </sup>
                 </span>
                 Боже в Тобі усе!
               </div>
             </div>
             <div
-              className="sc-AxhCb cZQdNu lyrics"
+              className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
+              data-offset-key="2or3g-0-0"
             >
-              Боже в Тобі усе!
+              <span
+                data-offset-key="2or3g-0-0"
+                style={Object {}}
+              >
+                <span
+                  data-text="true"
+                >
+                  Боже в Тобі усе!
+                </span>
+              </span>
             </div>
           </div>
         </div>

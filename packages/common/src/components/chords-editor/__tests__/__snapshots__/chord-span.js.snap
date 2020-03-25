@@ -2,12 +2,18 @@
 
 exports[`ChordSpan renders correctly 1`] = `
 <div
-  className="sc-AxjAm hWZfZU"
+  className="sc-AxjAm jZrvsK"
 >
   <span
-    className="sc-AxirZ iPMNfg"
+    className="sc-AxirZ dYYFxI"
   >
     C
+    <sub
+      className="sc-AxhCb efxBNo"
+    />
+    <sup
+      className="sc-AxiKw iSXCHE"
+    />
   </span>
   Test string
 </div>

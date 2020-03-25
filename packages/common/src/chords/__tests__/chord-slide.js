@@ -1,5 +1,5 @@
 import { SlideType } from '../../types';
-import ChordSlide from '../chord-slide';
+import ChordSlide, { modChord } from '../chord-slide';
 import { List, Record } from 'immutable';
 
 const mockSlide = {
@@ -23,7 +23,7 @@ describe('Chord Slide', () => {
         slide = null;
     });
 
-    it('initialize from object', ()=>{
+    it('initialize from object', () => {
         expect(slide).toHaveProperty('type');
         expect(slide.type).toEqual(SlideType.CHORUS);
         expect(List.isList(slide.lines)).toEqual(true);
@@ -39,7 +39,7 @@ describe('Chord Slide', () => {
             expect(chordLine.size).toEqual(1);
             const chord = chordLine.get(0);
             expect(Record.isRecord(chord)).toEqual(true);
-            expect(chord.root).toEqual('*');
+            expect(chord.root).toEqual(' ');
             expect(chord.text.length).toEqual(slide.lines.get(i).length);
         }
     })
@@ -47,42 +47,39 @@ describe('Chord Slide', () => {
     it('adds chord in the begging', () => {
         const line = 0;
         const pos = 0;
-        const upSlide = slide.addChord({
+        const upSlide = modChord(
+            slide,
+            'ADD_CHORD_C',
             line,
-            pos,
-            chordData: {
-                root: 'C',
-            }
-        });
+            pos
+        );
         expect(upSlide).not.toEqual(slide);
         const upChordLine = upSlide.chords.get(line);
         expect(upChordLine.size).toEqual(1);
         const upChord = upSlide.chords.getIn([line, pos]);
         expect(upChord.root).toEqual('C');
         expect(upChord.text).toEqual(slide.lines.get(line));
-        const upSlide2 = upSlide.addChord({
+        const upSlide2 = modChord(
+            upSlide,
+            'ADD_CHORD_F',
             line,
-            pos,
-            chordData: {
-                root: 'F#',
-            }
-        });
+            pos
+        );
         expect(upSlide2).not.toEqual(upSlide);
         expect(upSlide2).not.toEqual(slide);
         const upChord2 = upSlide2.chords.getIn([line, pos]);
-        expect(upChord2.root).toEqual('F#');
+        expect(upChord2.root).toEqual('F');
         expect(upChord2.text).toEqual(slide.lines.get(line));
     })
 
-    it('adds chord', ()=>{
+    it('adds chord', () => {
         const line = 1;
-        const upSlide = slide.addChord({
+        const upSlide = modChord(
+            slide,
+            'ADD_CHORD_C',
             line,
-            pos: 5,
-            chordData: {
-                root: 'C',
-            }
-        });
+            5
+        );
         expect(upSlide).not.toEqual(slide);
         const upChordLine = upSlide.chords.get(line);
         expect(upChordLine).not.toEqual(slide.chords.get(line));
@@ -90,26 +87,24 @@ describe('Chord Slide', () => {
         const upChord = upSlide.chords.getIn([line, 1]);
         expect(upChord.root).toEqual('C');
         expect(upSlide.chords.getIn([line, 0]).text).toEqual('Усе д');
-        
-        const upSlide2 = upSlide.addChord({
+
+        const upSlide2 = modChord(
+            upSlide,
+            'ADD_CHORD_F',
             line,
-            pos: 15,
-            chordData: {
-                root: 'F#',
-            }
-        });
+            15
+        );
         expect(upSlide2.chords.get(line)).not.toEqual(upSlide.chords.get(line));
         const upChord2 = upSlide2.chords.getIn([line, 2]);
-        expect(upChord2.root).toEqual('F#');
+        expect(upChord2.root).toEqual('F');
         expect(upChord2.text).toEqual('Тобою все живе!');
 
-        const upSlide3 = upSlide2.addChord({
+        const upSlide3 = modChord(
+            upSlide2,
+            'ADD_CHORD_E',
             line,
-            pos: 0,
-            chordData: {
-                root: 'E',
-            }
-        });
+            0
+        );
         const upChord3 = upSlide3.chords.getIn([line, 0]);
         expect(upChord3.root).toEqual('E');
         expect(upChord3.text).toEqual('Усе д');
