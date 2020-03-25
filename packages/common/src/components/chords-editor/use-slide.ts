@@ -72,6 +72,7 @@ export const useSlide = (initialSlide: ChordSlide) => {
     const [state, dispatch] = useReducer(slideReducer, initialState);
     return {
         editorState: state.editorState,
+        slide: state.chordSlide,
         dispatch
     }
 }
