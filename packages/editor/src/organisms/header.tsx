@@ -39,9 +39,6 @@ const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', user, logout
           {user && (
             <Nav.Link onClick={logoutAction}>Log Out</Nav.Link>
           )}
-          <LinkContainer to="/add">
-            <Nav.Link disabled={!user}>Add Song</Nav.Link>
-          </LinkContainer>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

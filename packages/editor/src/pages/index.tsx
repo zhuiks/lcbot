@@ -61,7 +61,7 @@ const AuthView: React.FC = () => {
 
 export default function Pages() {
 
-  if (false && process.env.NODE_ENV !== 'production') return (
+  if (process.env.NODE_ENV !== 'production') return (
     <Router>
       <Header user={true} logoutAction={() => console.log('Bye!')} />
       <Container>
