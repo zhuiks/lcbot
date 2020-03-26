@@ -1,6 +1,5 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
+import { Paper, TextField } from '@material-ui/core';
 
 interface SearchFormProps {
   filter?: string;
@@ -16,14 +15,12 @@ const SearchField: React.FC<SearchFormProps> = ({ filter = '', onChange }) => {
   };
 
   return (
-    <Form className="mb-5">
-      <FormControl
-        type="text"
+    <Paper component="form">
+      <TextField
         placeholder="Search"
         onChange={HandleInput}
-        size="lg"
       />
-    </Form>
+    </Paper>
   );
 }
 export default SearchField;
