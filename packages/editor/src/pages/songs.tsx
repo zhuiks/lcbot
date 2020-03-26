@@ -1,15 +1,14 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import ListGroup from 'react-bootstrap/ListGroup';
-import { Container, Fab } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+import { Fab, Grid } from '@material-ui/core';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 
 import Loading from '../atoms/loading';
 import { SongRow, SearchField } from '../components';
 import * as GetSongListTypes from '../__generated__/GetSongList';
 import wordSearch from '../word-search';
-import { LinkContainer } from 'react-router-bootstrap';
 
 const GET_SONGS = gql`
   query GetSongList {
@@ -37,18 +36,26 @@ const Songs: React.FC<SongsProps> = () => {
   if (!data) return <p>Not found</p>;
 
   return (
-    <Container maxWidth="md">
+    <>
       <SearchField filter={filter} onChange={setFilter} />
-      <ListGroup variant="flush">
+      <Grid
+        container
+        spacing={2}
+        direction="column"
+        // justify="flex-start"
+        // alignItems="flex-start"
+        // alignContent="stretch"
+        wrap="nowrap"
+      >
         {data.songs &&
           wordSearch(data.songs, filter).map((song: any) => (
-            <SongRow key={song.id} song={song} />
+            <Grid item>
+              <SongRow key={song.id} song={song} />
+            </Grid>
           ))}
-      </ListGroup>
-      <LinkContainer to="/add">
-        <Fab color="secondary" variant="extended"><PostAddIcon />&nbsp;Add Song</Fab>
-      </LinkContainer>
-    </Container>
+      </Grid>
+      <Fab color="secondary" variant="extended" component={RouterLink} to="/add"><PostAddIcon />&nbsp;Add Song</Fab>
+    </>
   );
 }
 

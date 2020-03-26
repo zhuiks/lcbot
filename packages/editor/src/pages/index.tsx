@@ -18,8 +18,9 @@ import 'react-netlify-identity-widget/styles.css';
 
 
 const Main = styled(Container)({
-
+  
 });
+
 const Routs: React.FC = () => (
   <Switch>
     <Route path="/edit/:songId">

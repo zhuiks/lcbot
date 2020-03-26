@@ -1,12 +1,16 @@
 import React from 'react';
-import ListGroup from 'react-bootstrap/ListGroup'
-import { LinkContainer } from 'react-router-bootstrap';
+import { Paper, Link, Typography } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 
 export default ({ song }: any) => {
   const { id, title } = song;
   return (
-    <LinkContainer to= {`/edit/${id}`}>
-      <ListGroup.Item action>{title}</ListGroup.Item>
-    </LinkContainer>
+    <Paper>
+      <Typography>
+        <Link component={RouterLink} to={`/edit/${id}`}>
+          {title}
+        </Link>
+      </Typography>
+    </Paper>
   );
 };

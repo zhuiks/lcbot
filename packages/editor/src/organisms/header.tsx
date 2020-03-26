@@ -14,7 +14,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', user, logoutAction, children }) => {
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="relative">
       <Toolbar>
 
         <IconButton edge="start" component={RouterLink} to="/">
@@ -23,9 +23,11 @@ const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', user, logout
             src={logo}
           />
         </IconButton>
-        <Link component={RouterLink} to="/">
-          <Typography>{title}</Typography>
-        </Link>
+        <Typography>
+          <Link component={RouterLink} to="/">
+            {title}
+          </Link>
+        </Typography>
         {user && (
           <>
             <Typography>
