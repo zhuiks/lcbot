@@ -4,17 +4,22 @@ import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Pages from './pages';
 import { ApolloLink } from 'apollo-link';
 import { onError } from "apollo-link-error";
+
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from './theme';
+import Pages from './pages';
+
 
 const link = ApolloLink.from([
   onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors)
-      graphQLErrors.forEach(({ message, locations, path }) => { 
+      graphQLErrors.forEach(({ message, locations, path }) => {
         let locationStr = '';
-        if(locations) {
-          locations.forEach(el => { 
+        if (locations) {
+          locations.forEach(el => {
             locationStr += `#${el.line}: ${el.column}`;
           });
         }
@@ -39,7 +44,10 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Pages />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Pages />
+    </ThemeProvider>
   </ApolloProvider>,
   document.getElementById('root')
 );

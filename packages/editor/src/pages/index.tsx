@@ -9,11 +9,17 @@ import Song from './song';
 import Songs from './songs';
 import Header from '../organisms/header';
 import Login from '../organisms/login';
-import Container from 'react-bootstrap/Container';
 import NewSong from './new-song';
+import Container from '@material-ui/core/Container';
+import { styled } from '@material-ui/core/styles';
+
 import { IdentityModal, useIdentityContext, IdentityContextProvider } from 'react-netlify-identity-widget';
 import 'react-netlify-identity-widget/styles.css';
 
+
+const Main = styled(Container)({
+
+});
 const Routs: React.FC = () => (
   <Switch>
     <Route path="/edit/:songId">
@@ -35,7 +41,7 @@ const AuthView: React.FC = () => {
   return (
     <Router>
       <Header user={identity.user} logoutAction={() => setLoginDialog(true)} />
-      <Container>
+      <Main>
         {identity && identity.isLoggedIn ? (
           <Routs />
         ) : (
@@ -54,7 +60,7 @@ const AuthView: React.FC = () => {
           }}
           onLogout={() => console.log('bye ')}
         />
-      </Container>
+      </Main>
     </Router>
   )
 };
@@ -64,9 +70,9 @@ export default function Pages() {
   if (process.env.NODE_ENV !== 'production') return (
     <Router>
       <Header user={true} logoutAction={() => console.log('Bye!')} />
-      <Container>
+      <Main>
         <Routs />
-      </Container>
+      </Main>
     </Router>
   );
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { AppBar, Link, Avatar, Typography, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Link, Avatar, Typography, IconButton } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import logo from '../assets/logo.png';
 
@@ -15,21 +15,26 @@ const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', user, logout
 
   return (
     <AppBar position="fixed">
-      <Link component={RouterLink} to="/">
-      <Avatar
+      <Toolbar>
+
+        <IconButton edge="start" component={RouterLink} to="/">
+          <Avatar
             alt=""
             src={logo}
           />
+        </IconButton>
+        <Link component={RouterLink} to="/">
           <Typography>{title}</Typography>
-      </Link>
+        </Link>
         {user && (
           <>
-          <Typography>
-            Hello <strong>{(user.user_metadata && user.user_metadata.full_name) || 'NoName'}</strong>!
+            <Typography>
+              Hello <strong>{(user.user_metadata && user.user_metadata.full_name) || 'NoName'}</strong>!
           </Typography>
             <IconButton onClick={logoutAction}><ExitToAppIcon /></IconButton>
           </>
-          )}
+        )}
+      </Toolbar>
     </AppBar>
   );
 }
