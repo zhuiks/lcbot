@@ -49,8 +49,8 @@ const Songs: React.FC<SongsProps> = () => {
       >
         {data.songs &&
           wordSearch(data.songs, filter).map((song: any) => (
-            <Grid item>
-              <SongRow key={song.id} song={song} />
+            <Grid item key={song.id}>
+              <SongRow song={song} />
             </Grid>
           ))}
       </Grid>

@@ -1,15 +1,22 @@
 import React from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Link, Typography } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+
 
 interface PageHeaderProps {
   link?: string;
   children: any;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ link = '', children }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ link = '', children }) => (
+  <Typography variant="h3" component="h1">
+    {link !== '' ? (
+      <Link component={RouterLink} to={link}>{children}</Link>
+    ) : (
+      <>{children}</>
+    )}
+  </Typography>
+);
 
-  const title = <h1 className="mb-3">{children}</h1>
-  return link !== '' ? (<LinkContainer to={link}><a href="#make-ts-happy">{title}</a></ LinkContainer>) : title;
-};
 
 export default PageHeader;

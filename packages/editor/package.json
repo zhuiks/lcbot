@@ -7,6 +7,7 @@
     "@bit/zhuiks.lcbot.song-slide": "^0.0.1",
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.46",
     "@reach/dialog": "^0.8.6",
     "@reach/tabs": "^0.8.6",
     "@reach/visually-hidden": "^0.8.6",

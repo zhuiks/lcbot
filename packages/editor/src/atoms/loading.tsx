@@ -1,10 +1,12 @@
 import React from 'react';
-import Spinner from 'react-bootstrap/Spinner';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const Loading = () => (
-  <Spinner animation="border" role="status">
-    <span className="sr-only">Loading...</span>
-  </Spinner>
+  <>
+    <Skeleton />
+    <Skeleton />
+    <Skeleton />
+  </>
 );
 
 export default Loading;
