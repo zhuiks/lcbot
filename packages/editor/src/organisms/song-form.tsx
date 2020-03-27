@@ -8,6 +8,8 @@ import { SlideInput } from '../__generated__/globalTypes';
 import textBreaker from '../lib/text-breaker';
 
 import SongLyrics from '../atoms/song-lyrics';
+import PageHeader from '../atoms/page-header';
+import StepActions from '../molecules/step-actions'
 import Orderer from '../molecules/orderer';
 import { useUpdateSong } from '../molecules/submit';
 import SubmitResult from './submit-result';
@@ -29,17 +31,17 @@ interface onStepChangeArgs {
 
 const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
 
-  const [songText, setText] = useState(
+  const [songLyrics, setLyrics] = useState(
     typeof songData.text === 'string' ? songData.text : (songData.text ? songData.text.join('\n') : '')
   );
   const [songSlides, setSlides] = useState<SlideInput[]>([]);
   const [songTitle, setTitle] = useState<string>(songData.title || '');
   const [songLinks, setLinks] = useState<string[]>();
   const [activeStep, setActiveStep] = React.useState(0);
-
+ 
   const onStepChange = ({ previousStep, activeStep }: onStepChangeArgs) => {
     if (previousStep === 1) {
-      setSlides(textBreaker(songText));
+      setSlides(textBreaker(songLyrics));
     }
     if (previousStep === 2 && !songTitle && songSlides && songSlides.length && songSlides[0].lines) {
       setTitle(songSlides[0].lines[0].replace(/\|\:|\:\|/g, ''));
@@ -69,13 +71,20 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
         <SubmitResult data={mutationResult.data.updateSong} />
         :
         <Paper component="form">
+          <PageHeader>Add New Song</PageHeader>
           <Stepper activeStep={activeStep} orientation="vertical">
             <Step>
               <StepLabel>Song Lyrics</StepLabel>
               <StepContent>
                 <SongLyrics
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setText(e.target.value) }}
-                  value={songText}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setLyrics(e.target.value) }}
+                  value={songLyrics}
+                />
+                <StepActions 
+                  activeStep={activeStep}
+                  totalSteps={4}
+                  setStep={setActiveStep}
+                  onNextStep={()=>setSlides(textBreaker(songLyrics))}
                 />
               </StepContent>
             </Step>
@@ -113,7 +122,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
         </Paper>
       }
     </>
-  );
+  )
 };
 
 export default SaveForm;

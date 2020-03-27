@@ -41,7 +41,7 @@ const Song: React.FC = () => {
     <>
       {error &&
         <AppError err={error} />}
-      <SongForm songData={data && data.song || {id:'0'}} />;
+      <SongForm songData={data && data.song || {id:'0'}} />
     </>
   );
 }
