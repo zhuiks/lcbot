@@ -1,16 +1,22 @@
-import React, { Fragment } from 'react';
-import Alert from 'react-bootstrap/Alert';
-import PageHeader from '../atoms/page-header';
+import React from 'react';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import Grid from '@material-ui/core/Grid';
+import SongRow from '../components/song-row';
+import ButtonAdd from '../atoms/button-add';
 
 const SubmitResult: React.FC<any> = ({ data }: any) => (
-  <Fragment>
-    <Alert variant={data.success ? "success" : "danger"}>
-      <Alert.Heading>{data.success ? "Success" : "Error"}</Alert.Heading>
+  <>
+    <Alert severity={data.success ? "success" : "error"} variant="filled">
+      <AlertTitle>{data.success ? "Success" : "Error"}</AlertTitle>
       {data.message}
     </Alert>
-    <PageHeader link={ "/edit/" + data.song.id }>{data.song.title}</PageHeader>
-    {/* <SongText text={data.song.text} /> */}
-  </Fragment>
+    <Grid container>
+      <Grid item>
+        <SongRow song={data.song} />
+      </Grid>
+    </Grid>
+    <ButtonAdd />
+  </>
 );
 
 export default SubmitResult;

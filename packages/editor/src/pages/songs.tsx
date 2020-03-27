@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import { Link as RouterLink } from 'react-router-dom';
-import { Fab, Grid } from '@material-ui/core';
-import PostAddIcon from '@material-ui/icons/PostAdd';
+import { Grid } from '@material-ui/core';
 
 import Loading from '../atoms/loading';
+import ButtonAdd from '../atoms/button-add';
 import { SongRow, SearchField } from '../components';
 import * as GetSongListTypes from '../__generated__/GetSongList';
 import wordSearch from '../word-search';
@@ -54,7 +53,7 @@ const Songs: React.FC<SongsProps> = () => {
             </Grid>
           ))}
       </Grid>
-      <Fab color="secondary" variant="extended" component={RouterLink} to="/add"><PostAddIcon />&nbsp;Add Song</Fab>
+      <ButtonAdd />
     </>
   );
 }
