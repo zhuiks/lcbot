@@ -77,7 +77,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
               <StepLabel>Song Lyrics</StepLabel>
               <StepContent>
                 <SongLyrics
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setLyrics(e.target.value) }}
+                  onChange={setLyrics}
                   value={songLyrics}
                 />
                 <StepActions 
