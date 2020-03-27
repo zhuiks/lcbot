@@ -38,7 +38,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
   const [songTitle, setTitle] = useState<string>(songData.title || '');
   const [songLinks, setLinks] = useState<string[]>();
   const [activeStep, setActiveStep] = React.useState(0);
- 
+
   const onStepChange = ({ previousStep, activeStep }: onStepChangeArgs) => {
     if (previousStep === 1) {
       setSlides(textBreaker(songLyrics));
@@ -59,8 +59,6 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
     });
   }
 
-  const isNewSong = songData.text ? false : true;
-
   if (mutationResult.loading) return <Loading />;
   return (
     <>
@@ -80,11 +78,16 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
                   onChange={setLyrics}
                   value={songLyrics}
                 />
-                <StepActions 
+                <StepActions
                   activeStep={activeStep}
-                  totalSteps={4}
+                  totalSteps={2}
                   setStep={setActiveStep}
-                  onNextStep={()=>setSlides(textBreaker(songLyrics))}
+                  onNextStep={() => {
+                    setSlides(textBreaker(songLyrics));
+                    if (songSlides && ongSlides.length && songSlides[0].lines) {
+                      setTitle(songSlides[0].lines[0].replace(/\|:|:\|/g, ''));
+                    }
+                  }}
                 />
               </StepContent>
             </Step>
@@ -92,30 +95,12 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
               <StepLabel>Song Order</StepLabel>
               <StepContent>
                 <Orderer slides={songSlides} />
-              </StepContent>
-            </Step>
-            <Step>
-              <StepLabel>Song Data</StepLabel>
-              <StepContent>
-                <Form.Group controlId="song-title">
-                  <Form.Control
-                    placeholder="Song title"
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setTitle(e.target.value) }}
-                    value={songTitle}
-                    style={{ direction: "rtl" }}
-                  />
-                </Form.Group>
-              </StepContent>
-            </Step>
-            <Step>
-              <StepLabel>Extra Details</StepLabel>
-              <StepContent>
-                <Form.Group controlId="song-link">
-                  <Form.Label>Video Link:</Form.Label>
-                  <Form.Control
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setLinks([e.target.value]) }}
-                  />
-                </Form.Group>
+                <StepActions
+                  activeStep={activeStep}
+                  totalSteps={2}
+                  setStep={setActiveStep}
+                  onNextStep={submitForm}
+                />
               </StepContent>
             </Step>
           </Stepper>
