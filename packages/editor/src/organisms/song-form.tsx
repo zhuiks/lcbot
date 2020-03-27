@@ -10,7 +10,7 @@ import textBreaker from '../lib/text-breaker';
 import SongLyrics from '../atoms/song-lyrics';
 import PageHeader from '../atoms/page-header';
 import StepActions from '../molecules/step-actions'
-import Orderer from '../molecules/orderer';
+import Orderer from '../molecules/song-confirm';
 import { useUpdateSong } from '../molecules/submit';
 import SubmitResult from './submit-result';
 
@@ -84,7 +84,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
                   setStep={setActiveStep}
                   onNextStep={() => {
                     setSlides(textBreaker(songLyrics));
-                    if (songSlides && ongSlides.length && songSlides[0].lines) {
+                    if (songSlides && songSlides.length && songSlides[0].lines) {
                       setTitle(songSlides[0].lines[0].replace(/\|:|:\|/g, ''));
                     }
                   }}
