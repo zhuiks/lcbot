@@ -7,7 +7,7 @@ import AppError from '../molecules/error';
 import { SlideInput } from '../__generated__/globalTypes';
 import textBreaker from '../lib/text-breaker';
 
-
+import SongLyrics from '../atoms/song-lyrics';
 import Orderer from '../molecules/orderer';
 import { useUpdateSong } from '../molecules/submit';
 import SubmitResult from './submit-result';
@@ -73,13 +73,9 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
             <Step>
               <StepLabel>Song Lyrics</StepLabel>
               <StepContent>
-                <Form.Control
-                  id="song-text"
-                  as="textarea"
-                  rows="10"
+                <SongLyrics
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setText(e.target.value) }}
                   value={songText}
-                  style={{ direction: "rtl" }}
                 />
               </StepContent>
             </Step>
