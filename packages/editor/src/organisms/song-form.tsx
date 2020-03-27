@@ -10,7 +10,7 @@ import textBreaker from '../lib/text-breaker';
 import SongLyrics from '../atoms/song-lyrics';
 import PageHeader from '../atoms/page-header';
 import StepActions from '../molecules/step-actions'
-import Orderer from '../molecules/song-confirm';
+import SongConfirm from '../molecules/song-confirm';
 import { useUpdateSong } from '../molecules/submit';
 import SubmitResult from './submit-result';
 
@@ -24,11 +24,6 @@ interface SaveFormProps {
   };
 }
 
-interface onStepChangeArgs {
-  previousStep: number;
-  activeStep: number;
-}
-
 const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
 
   const [songLyrics, setLyrics] = useState(
@@ -36,17 +31,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
   );
   const [songSlides, setSlides] = useState<SlideInput[]>([]);
   const [songTitle, setTitle] = useState<string>(songData.title || '');
-  const [songLinks, setLinks] = useState<string[]>();
   const [activeStep, setActiveStep] = React.useState(0);
-
-  const onStepChange = ({ previousStep, activeStep }: onStepChangeArgs) => {
-    if (previousStep === 1) {
-      setSlides(textBreaker(songLyrics));
-    }
-    if (previousStep === 2 && !songTitle && songSlides && songSlides.length && songSlides[0].lines) {
-      setTitle(songSlides[0].lines[0].replace(/\|\:|\:\|/g, ''));
-    }
-  }
 
   const { updateSong, mutationResult } = useUpdateSong();
 
@@ -55,7 +40,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
       songId: songData.id,
       title: songTitle,
       slides: songSlides,
-      links: songLinks
+      links: []
     });
   }
 
@@ -82,7 +67,7 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
                   activeStep={activeStep}
                   totalSteps={2}
                   setStep={setActiveStep}
-                  onNextStep={() => {
+                  onNextStep={ () => {
                     setSlides(textBreaker(songLyrics));
                     if (songSlides && songSlides.length && songSlides[0].lines) {
                       setTitle(songSlides[0].lines[0].replace(/\|:|:\|/g, ''));
@@ -92,9 +77,13 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
               </StepContent>
             </Step>
             <Step>
-              <StepLabel>Song Order</StepLabel>
+              <StepLabel>Confirm</StepLabel>
               <StepContent>
-                <Orderer slides={songSlides} />
+                <SongConfirm
+                  slides={songSlides}
+                  songTitle={songTitle}
+                  onTitleChange={setTitle}
+                />
                 <StepActions
                   activeStep={activeStep}
                   totalSteps={2}
