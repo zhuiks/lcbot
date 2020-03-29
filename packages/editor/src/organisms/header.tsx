@@ -1,8 +1,31 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { AppBar, Toolbar, Link, Avatar, Typography, IconButton } from '@material-ui/core';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {
+  AppBar,
+  Toolbar,
+  Link,
+  Avatar,
+  IconButton,
+  Button,
+  Typography,
+} from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import logo from '../assets/logo.png';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      background: theme.palette.primary.dark,
+    },
+    siteName: {
+      flexGrow: 1,
+      '& > a': {
+        color: theme.palette.primary.contrastText,
+        textDecoration: 'none',
+      }
+    },
+  }));
+
 
 interface HeaderProps {
   title?: string;
@@ -12,9 +35,9 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', user, logoutAction, children }) => {
-
+  const classes = useStyles();
   return (
-    <AppBar position="relative">
+    <AppBar className={classes.root}>
       <Toolbar>
 
         <IconButton edge="start" component={RouterLink} to="/">
@@ -23,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', user, logout
             src={logo}
           />
         </IconButton>
-        <Typography>
+        <Typography className={classes.siteName} variant="h6">
           <Link component={RouterLink} to="/">
             {title}
           </Link>
@@ -33,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', user, logout
             <Typography>
               Hello <strong>{(user.user_metadata && user.user_metadata.full_name) || 'NoName'}</strong>!
           </Typography>
-            <IconButton onClick={logoutAction}><ExitToAppIcon /></IconButton>
+            <Button color="inherit" onClick={logoutAction}>Log Out</Button>
           </>
         )}
       </Toolbar>

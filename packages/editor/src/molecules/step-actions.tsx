@@ -1,16 +1,16 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-const ActionsContainer = styled('div')(
-    ({ theme }) => ({
-        marginBottom: theme.spacing(2),
-    }));
-
-const ActionButton = styled(Button)(
-    ({ theme }) => ({
-        marginTop: theme.spacing(1),
-        marginRight: theme.spacing(1),
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            marginBottom: theme.spacing(2),
+        },
+        button: {
+            marginTop: theme.spacing(1),
+            marginRight: theme.spacing(1),
+        },
     }));
 
 
@@ -26,17 +26,21 @@ const StepActions: React.FC<StepActionProps> = ({
     totalSteps = 1,
     setStep,
     onNextStep
-}) => (
-        <ActionsContainer>
+}) => {
+    const classes = useStyles();
+    return (
+        <div className={classes.root}>
             <div>
-                <ActionButton
+                <Button
+                    className={classes.button}
                     disabled={activeStep === 0}
                     onClick={() => setStep(activeStep - 1)}
                 >
                     Back
-        </ActionButton>
+                </Button>
                 {activeStep === totalSteps - 1 ? (
-                    <ActionButton
+                    <Button
+                        className={classes.button}
                         variant="contained"
                         color="secondary"
                         onClick={() => {
@@ -44,9 +48,10 @@ const StepActions: React.FC<StepActionProps> = ({
                         }}
                     >
                         Save
-                    </ActionButton>
+                    </Button>
                 ) : (
-                        <ActionButton
+                        <Button
+                            className={classes.button}
                             variant="contained"
                             color="primary"
                             onClick={() => {
@@ -55,10 +60,11 @@ const StepActions: React.FC<StepActionProps> = ({
                             }}
                         >
                             Next
-                        </ActionButton>
+                        </Button>
                     )}
             </div>
-        </ActionsContainer>
+        </div>
     );
+}
 
 export default StepActions;
