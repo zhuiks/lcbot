@@ -6,7 +6,7 @@ import * as QueryTypes from '../__generated__/SongDetails';
 
 import Loading from '../atoms/loading';
 import AppError from '../molecules/error';
-import SongForm from '../organisms/song-form';
+import FormEdit from '../organisms/form-edit';
 
 export const GET_SONG_DETAILS = gql`
   query SongDetails($songId: ID!) {
@@ -41,7 +41,7 @@ const Song: React.FC = () => {
     <>
       {error &&
         <AppError err={error} />}
-      <SongForm songData={data && data.song || {id:'0'}} />
+      <FormEdit songData={data && data.song || {id:'0'}} />
     </>
   );
 }

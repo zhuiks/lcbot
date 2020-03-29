@@ -37,7 +37,7 @@ interface SaveFormProps {
   };
 }
 
-const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
+const FormEdit: React.FC<SaveFormProps> = ({ songData }) => {
 
   const [songLyrics, setLyrics] = useState(
     typeof songData.text === 'string' ? songData.text : (songData.text ? songData.text.join('\n') : '')
@@ -71,26 +71,6 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
           <PageHeader>Add New Song</PageHeader>
           <Stepper activeStep={activeStep} orientation="vertical">
             <Step>
-              <StepLabel>Song Lyrics</StepLabel>
-              <StepContent>
-                <SongLyrics
-                  onChange={setLyrics}
-                  value={songLyrics}
-                />
-                <StepActions
-                  activeStep={activeStep}
-                  totalSteps={2}
-                  setStep={setActiveStep}
-                  onNextStep={() => {
-                    setSlides(textBreaker(songLyrics));
-                    if (songSlides && songSlides.length && songSlides[0].lines) {
-                      setTitle(songSlides[0].lines[0].replace(/\|:|:\|/g, ''));
-                    }
-                  }}
-                />
-              </StepContent>
-            </Step>
-            <Step>
               <StepLabel>Confirm</StepLabel>
               <StepContent>
                 <SongConfirm
@@ -113,4 +93,4 @@ const SaveForm: React.FC<SaveFormProps> = ({ songData }) => {
   )
 };
 
-export default SaveForm;
+export default FormEdit;

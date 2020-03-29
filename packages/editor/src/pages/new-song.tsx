@@ -1,13 +1,13 @@
 import React from 'react';
 
-import SongForm from '../organisms/song-form';
+import FormAdd from '../organisms/form-add';
 import generateKey from '../lib/generate-key';
 
 const NewSong: React.FC = () => {
   const songId = generateKey('songId');
 
   return (
-    <SongForm songData={{id: songId}} />
+    <FormAdd songData={{id: songId}} />
   );
 };
 
