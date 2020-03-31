@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import blueGrey from '@material-ui/core/colors/blueGrey';
 
 const headerFont = {
   fontFamily: "El Messiri, serif"
@@ -16,6 +17,9 @@ const theme = createMuiTheme({
         light: '#a1382f',
         dark: '#3f0000',
       },
+      background: {
+        default: blueGrey[50],
+      }
     },
     typography: {
       fontFamily: "Harmattan, sans-serif",
