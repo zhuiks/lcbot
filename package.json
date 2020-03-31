@@ -5,5 +5,13 @@
   ],
   "resolutions": {
     "webpack": "4.42.0"
+  },
+  "scripts": {
+    "client": "yarn workspace @lcbot/editor start",
+    "server": "yarn workspace @lcbot/server start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
+  },
+  "dependencies": {
+    "concurrently": "^5.1.0"
   }
 }
