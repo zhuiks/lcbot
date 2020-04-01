@@ -1,14 +1,13 @@
-import { Record, List, fromJS } from "immutable";
 import { SlideType } from "../types";
 import Chord, { IChord, REST_CHAR } from "./chord";
 
 // https://www.w3.org/TR/2018/WD-alreq-20180222/#dfn-zwj
 const ZWJ = '\u200D';
 interface IChordSlide {
-    type: SlideType;
+    type?: SlideType;
     name?: string;
-    lines?: string[] | List<string>;
-    chords?: [[{}]] | List<List<IChord>>;
+    lines?: string[];
+    chords?: Chord[][];
 }
 
 interface IChordArgs {
@@ -17,38 +16,22 @@ interface IChordArgs {
     chordData: IChord;
 }
 
-class ChordSlide extends Record({
-    type: SlideType.VERSE,
-    name: '',
-    lines: List(),
-    chords: List(),
-}) /* implements IChordSlide */ {
-    // readonly type!: SlideType;
-    // readonly name!: string;
-    // readonly lines!: List<string>;
-    // readonly chords!: List<List<Chord>>;
+class ChordSlide implements IChordSlide {
+    readonly type: SlideType;
+    readonly name: string;
+    readonly lines: string[];
+    readonly chords: Chord[][];
 
-    constructor({ type = SlideType.VERSE, name, lines, chords }: IChordSlide) {
-        const imLines = fromJS(lines);
-        const imChords: List<List<IChord>> = chords
-            ? List(chords.map((line) => {
-                return List(line.map((jsChord: IChord) => {
-                    return new Chord(jsChord)
-                }))
-            }))
-            : imLines.map((line: string) => {
-                const pauseChord = new Chord({
-                    text: line,
-                })
-                return List.of(pauseChord);
-            });
-        super({ type, name, lines: imLines, chords: imChords });
-    }
-
-
-    getChord(line: number, pos: number) {
-        const { chordIndex } = _getChordIndex(this, line, pos);
-        return this.getIn(['chords', line, chordIndex]);
+    constructor({ type = SlideType.VERSE, name = '', lines, chords }: IChordSlide) {
+        this.type = type;
+        this.name = name;
+        this.lines = lines || [' '];
+        this.chords = chords || this.lines.map((line: string) => {
+            const pauseChord = new Chord({
+                text: line,
+            })
+            return [pauseChord];
+        });
     }
 }
 
@@ -56,7 +39,7 @@ export default ChordSlide;
 
 const _getChordIndex = (slide: ChordSlide, line: number, pos: number) => {
     let charsLength = 0;
-    const chordIndex = slide.getIn(['chords', line]).findIndex((chord: IChord) => {
+    const chordIndex = slide.chords[line].findIndex((chord: Chord) => {
         charsLength += [...chord.text].length;
         if (chord.text.startsWith(ZWJ)) {
             pos += 2;
@@ -136,15 +119,15 @@ const _optChord = (type: string, chord: IChord) => {
 }
 
 export const modChord = (slide: ChordSlide, type: string, line: number, pos: number) => {
-    if (!slide.lines.has(line) || !slide.chords.has(line)) {
+    if (!slide.lines[line] || !slide.chords[line]) {
         return slide;
     }
-    let chordData: Partial<IChord> | boolean = false;
+    let chordData: IChord | boolean = false;
     const modType = type.slice(0, 'ADD_CHORD'.length); //first part
     const chordType = type.slice('ADD_CHORD_'.length);  //second part
-    const chordsLine = slide.getIn(['chords', line]);
+    const chordsLine = slide.chords[line];
     const { chordIndex, charsFromTheEnd } = _getChordIndex(slide, line, pos);
-    const chord = chordsLine.get(chordIndex);
+    const chord = chordsLine[chordIndex];
 
     switch (modType) {
         case 'ADD_CHORD':
@@ -164,24 +147,30 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
             } else if (chordIndex === 0) {
                 chordData = { root: REST_CHAR };
             } else {
-                const prevChord = chordsLine.get(chordIndex-1);
+                const prevChord = chordsLine[chordIndex - 1];
                 chordData = {
-                    text: prevChord.text.replace(new RegExp(`${ZWJ}$`), '') 
+                    text: prevChord.text.replace(new RegExp(`${ZWJ}$`), '')
                         + chord.text.replace(new RegExp(`^${ZWJ}`), '')
                 }
             }
-            break;    
+            break;
     }
-    if(!chordData) {
+    if (!chordData) {
         return slide;
     }
 
     let newChordsLine;
     const prevChordText = chord.text.slice(0, charsFromTheEnd);
 
-    if ( modType === 'DEL_CHORD' && chordData.text ) {
-        newChordsLine = chordsLine.mergeIn([chordIndex-1], chordData)
-            .delete(chordIndex);
+    if (modType === 'DEL_CHORD' && chordData.text) {
+        newChordsLine = [
+            ...chordsLine.slice(0, chordIndex - 1),
+            {
+                ...chordsLine[chordIndex - 1],
+                ...chordData,
+            },
+            ...chordsLine.slice(chordIndex + 1)
+        ];
     } else if (modType === 'ADD_CHORD' && prevChordText.length !== 0) {
         const arabicPairRegex = /^[\u0620-\u064A]{2}$/;
         const addZWJ = arabicPairRegex.test(chord.text.slice(charsFromTheEnd - 1, charsFromTheEnd + 1)) ? ZWJ : '';
@@ -192,12 +181,33 @@ export const modChord = (slide: ChordSlide, type: string, line: number, pos: num
             ...chordData,
             text: addZWJ + chord.text.slice(charsFromTheEnd),
         };
-        newChordsLine = chordsLine.mergeIn([chordIndex], prevChordData)
-            .insert(chordIndex + 1, new Chord(chordData));
+        newChordsLine = [
+            ...chordsLine.slice(0, chordIndex),
+            {
+                ...chordsLine[chordIndex],
+                ...prevChordData,
+            },
+            new Chord(chordData),
+            ...chordsLine.slice(chordIndex + 1),
+        ];
 
     } else {
-        newChordsLine = chordsLine.mergeIn([chordIndex], chordData);
+        newChordsLine = [
+            ...chordsLine.slice(0, chordIndex),
+            {
+                ...chordsLine[chordIndex],
+                ...chordData,
+            },
+            ...chordsLine.slice(chordIndex + 1),
+        ];
     }
 
-    return slide.setIn(['chords', line], newChordsLine);
+    return new ChordSlide({
+        ...slide,
+        chords: [
+            ...slide.chords.slice(0, line),
+            newChordsLine,
+            ...slide.chords.slice(line + 1),
+        ]
+    });
 }

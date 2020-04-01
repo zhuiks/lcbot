@@ -8,7 +8,7 @@ exports[`ChordEditor renders correctly 1`] = `
     className="DraftEditor-editorContainer"
   >
     <div
-      aria-describedby="placeholder-8jja0"
+      aria-describedby="placeholder-3f24p"
       aria-expanded={null}
       className="notranslate public-DraftEditor-content"
       contentEditable={true}
@@ -52,8 +52,8 @@ exports[`ChordEditor renders correctly 1`] = `
           className=""
           contentEditable={true}
           data-block={true}
-          data-editor="8jja0"
-          data-offset-key="9clf0-0-0"
+          data-editor="3f24p"
+          data-offset-key="2opm5-0-0"
           suppressContentEditableWarning={true}
         >
           <div
@@ -61,34 +61,13 @@ exports[`ChordEditor renders correctly 1`] = `
           >
             <div
               className="sc-AxhUy coNlgA chords"
-            >
-              <div
-                className="sc-AxjAm iLzuZh"
-              >
-                <span
-                  className="sc-AxirZ dYYFxI"
-                >
-                   
-                  <sub
-                    className="sc-AxhCb efxBNo"
-                  >
-                    
-                  </sub>
-                  <sup
-                    className="sc-AxiKw iSXCHE"
-                  >
-                    
-                  </sup>
-                </span>
-                Усі діла Твої звеличують Тебе
-              </div>
-            </div>
+            />
             <div
               className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
-              data-offset-key="9clf0-0-0"
+              data-offset-key="2opm5-0-0"
             >
               <span
-                data-offset-key="9clf0-0-0"
+                data-offset-key="2opm5-0-0"
                 style={Object {}}
               >
                 <span
@@ -104,8 +83,8 @@ exports[`ChordEditor renders correctly 1`] = `
           className=""
           contentEditable={true}
           data-block={true}
-          data-editor="8jja0"
-          data-offset-key="1itmh-0-0"
+          data-editor="3f24p"
+          data-offset-key="7dsdq-0-0"
           suppressContentEditableWarning={true}
         >
           <div
@@ -113,34 +92,13 @@ exports[`ChordEditor renders correctly 1`] = `
           >
             <div
               className="sc-AxhUy coNlgA chords"
-            >
-              <div
-                className="sc-AxjAm iLzuZh"
-              >
-                <span
-                  className="sc-AxirZ dYYFxI"
-                >
-                   
-                  <sub
-                    className="sc-AxhCb efxBNo"
-                  >
-                    
-                  </sub>
-                  <sup
-                    className="sc-AxiKw iSXCHE"
-                  >
-                    
-                  </sup>
-                </span>
-                Усе для Тебе і Тобою все живе!
-              </div>
-            </div>
+            />
             <div
               className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
-              data-offset-key="1itmh-0-0"
+              data-offset-key="7dsdq-0-0"
             >
               <span
-                data-offset-key="1itmh-0-0"
+                data-offset-key="7dsdq-0-0"
                 style={Object {}}
               >
                 <span
@@ -156,8 +114,8 @@ exports[`ChordEditor renders correctly 1`] = `
           className=""
           contentEditable={true}
           data-block={true}
-          data-editor="8jja0"
-          data-offset-key="eecsa-0-0"
+          data-editor="3f24p"
+          data-offset-key="8u9h5-0-0"
           suppressContentEditableWarning={true}
         >
           <div
@@ -165,34 +123,13 @@ exports[`ChordEditor renders correctly 1`] = `
           >
             <div
               className="sc-AxhUy coNlgA chords"
-            >
-              <div
-                className="sc-AxjAm iLzuZh"
-              >
-                <span
-                  className="sc-AxirZ dYYFxI"
-                >
-                   
-                  <sub
-                    className="sc-AxhCb efxBNo"
-                  >
-                    
-                  </sub>
-                  <sup
-                    className="sc-AxiKw iSXCHE"
-                  >
-                    
-                  </sup>
-                </span>
-                Усі ми створені в Тобі знайти усе
-              </div>
-            </div>
+            />
             <div
               className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
-              data-offset-key="eecsa-0-0"
+              data-offset-key="8u9h5-0-0"
             >
               <span
-                data-offset-key="eecsa-0-0"
+                data-offset-key="8u9h5-0-0"
                 style={Object {}}
               >
                 <span
@@ -208,8 +145,8 @@ exports[`ChordEditor renders correctly 1`] = `
           className=""
           contentEditable={true}
           data-block={true}
-          data-editor="8jja0"
-          data-offset-key="2or3g-0-0"
+          data-editor="3f24p"
+          data-offset-key="1sef1-0-0"
           suppressContentEditableWarning={true}
         >
           <div
@@ -217,34 +154,13 @@ exports[`ChordEditor renders correctly 1`] = `
           >
             <div
               className="sc-AxhUy coNlgA chords"
-            >
-              <div
-                className="sc-AxjAm iLzuZh"
-              >
-                <span
-                  className="sc-AxirZ dYYFxI"
-                >
-                   
-                  <sub
-                    className="sc-AxhCb efxBNo"
-                  >
-                    
-                  </sub>
-                  <sup
-                    className="sc-AxiKw iSXCHE"
-                  >
-                    
-                  </sup>
-                </span>
-                Боже в Тобі усе!
-              </div>
-            </div>
+            />
             <div
               className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
-              data-offset-key="2or3g-0-0"
+              data-offset-key="1sef1-0-0"
             >
               <span
-                data-offset-key="2or3g-0-0"
+                data-offset-key="1sef1-0-0"
                 style={Object {}}
               >
                 <span
