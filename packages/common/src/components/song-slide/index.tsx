@@ -1,6 +1,7 @@
 import React from 'react'
-import { SlideInput, SlideType } from '@bit/zhuiks.lcbot.global-types'
+import { SlideType } from '../../types'
 import styled from 'styled-components'
+import ChordSlide from '../../chords/chord-slide'
 
 interface SlideProps {
   readonly type: SlideType
@@ -48,7 +49,7 @@ const Repeat = styled.span`
 `
 
 interface SongSlideProps {
-    slide: SlideInput
+    slide: ChordSlide
 }
 
 const SongSlide: React.FC<SongSlideProps> = ({ slide }) => (
