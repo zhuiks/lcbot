@@ -1,5 +1,6 @@
 import { SlideType } from '../../types';
-import ChordSlide, { modChord } from '../chord-slide';
+import ChordSlide from '../chord-slide';
+import chordAction from '../chord-action'
 
 const mockSlide = {
     type: SlideType.CHORUS,
@@ -46,7 +47,7 @@ describe('Chord Slide', () => {
     it('adds chord in the begging', () => {
         const line = 0;
         const pos = 0;
-        const upSlide = modChord(
+        const upSlide = chordAction(
             slide,
             'ADD_CHORD_C',
             line,
@@ -58,7 +59,7 @@ describe('Chord Slide', () => {
         const upChord = upSlide.chords[line][pos];
         expect(upChord.root).toEqual('C');
         expect(upChord.text).toEqual(slide.lines[line]);
-        const upSlide2 = modChord(
+        const upSlide2 = chordAction(
             upSlide,
             'ADD_CHORD_F',
             line,
@@ -73,7 +74,7 @@ describe('Chord Slide', () => {
 
     it('adds chord', () => {
         const line = 1;
-        const upSlide = modChord(
+        const upSlide = chordAction(
             slide,
             'ADD_CHORD_C',
             line,
@@ -87,7 +88,7 @@ describe('Chord Slide', () => {
         expect(upChord.root).toEqual('C');
         expect(upSlide.chords[line][0].text).toEqual('Усе д');
 
-        const upSlide2 = modChord(
+        const upSlide2 = chordAction(
             upSlide,
             'ADD_CHORD_F',
             line,
@@ -98,7 +99,7 @@ describe('Chord Slide', () => {
         expect(upChord2.root).toEqual('F');
         expect(upChord2.text).toEqual('Тобою все живе!');
 
-        const upSlide3 = modChord(
+        const upSlide3 = chordAction(
             upSlide2,
             'ADD_CHORD_E',
             line,
