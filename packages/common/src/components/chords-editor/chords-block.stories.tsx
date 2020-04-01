@@ -1,5 +1,5 @@
 import React from 'react';
-import { convertFromRaw, EditorState, Editor } from 'draft-js';
+import { EditorState, Editor } from 'draft-js';
 
 import chordsBlockRenderer from './chords-block';
 import { MockRTLdiv } from './chord-span.stories';
