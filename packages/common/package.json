@@ -2,9 +2,10 @@
   "name": "@lcbot/common",
   "version": "0.1.0",
   "private": true,
+  "main":  "build/index.js",
+  "module": "build/index.js",
   "dependencies": {
     "draft-js": "^0.11.4",
-    "immutable": "^4.0.0-rc.12",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "^3.4.1"
