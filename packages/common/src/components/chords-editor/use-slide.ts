@@ -1,9 +1,8 @@
 import { useReducer } from "react";
 import { EditorState, SelectionState, Modifier, ContentState } from "draft-js";
 import ChordSlide, { modChord } from "../../chords/chord-slide";
-import { IChord } from "../../chords/chord";
-import { List, Map } from "immutable";
-
+import Chord from "../../chords/chord";
+import { Map } from "immutable";
 
 interface SlideEditorState {
     chordSlide: ChordSlide;
@@ -48,15 +47,16 @@ const slideReducer = (state: SlideEditorState, action: SlideActionType): SlideEd
             }
         default:
             const newChordSlide = modChord(
-                state.chordSlide, 
+                state.chordSlide,
                 action.type,
                 state.currentLine,
                 state.currentPosition,
             );
             const content = applyChord(
-                newChordSlide.chords.get(state.currentLine),
+                newChordSlide.chords[state.currentLine],
                 state.editorState.getCurrentContent(),
-                state.currentLine);
+                state.currentLine
+            );
             return {
                 ...state,
                 chordSlide: newChordSlide,
@@ -85,7 +85,7 @@ const getCharacterLength = (str: string) => {
 
 
 const applyChord = (
-    chordsLine: List<IChord>,
+    chordsLine: Chord[],
     contentState: ContentState,
     line: number,
 ) => {
@@ -111,8 +111,8 @@ export const initChords = (
 ) => {
     let content = initState || ContentState.createFromText(slide.lines?.join('\n') || '');
     console.log(`initChords:`, initState);
-    for (let l = 0; l < slide.chords.size; l++) {
-        content = applyChord(slide.chords.get(l), content, l);
+    for (let l = 0; l < slide.chords.length; l++) {
+        content = applyChord(slide.chords[l], content, l);
     }
     return content;
 }

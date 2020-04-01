@@ -6,29 +6,6 @@ import { MockRTLdiv } from './chord-span.stories';
 import { ChordSlide } from '../..';
 import { initChords } from './use-slide';
 
-const mockChords = {
-    randomIdC: {
-        type: 'CHORD',
-        mutability: 'IMMUTABLE',
-        data: {
-            chord: {
-                root: 'C',
-                text: 'Я вільний! ',
-            }
-        }
-    },
-    randomIdAm: {
-        type: 'CHORD',
-        mutability: 'IMMUTABLE',
-        data: {
-            chord: {
-                root: 'A',
-                type: 'm',
-                text: `Любов'ю Ти вигнав`,
-            }
-        }
-    },
-};
 
 export const mockContent = {
     lines: ["Я вільний! Любов'ю Ти вигнав страх мій"],

@@ -15,7 +15,7 @@ export default {
 
 const chord = new Chord({
   root: 'C#',
-  type: 'm',
+  quality: 'm',
   text: 'La-lala-a-a',
 });
 export const Default = () => (
@@ -24,6 +24,6 @@ export const Default = () => (
 
 export const Arabic = () => (
   <MockRTLdiv>
-    <ChordSpan chord={chord.merge({text: 'اهلا وسهلا'})} />
+    <ChordSpan chord={new Chord({...chord, text: 'اهلا وسهلا'})} />
   </MockRTLdiv>
 );
