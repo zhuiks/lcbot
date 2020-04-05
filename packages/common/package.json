@@ -2,7 +2,7 @@
   "name": "@lcbot/common",
   "version": "0.1.0",
   "private": true,
-  "main":  "build/index.js",
+  "main": "build/index.js",
   "module": "build/index.js",
   "dependencies": {
     "draft-js": "^0.11.4",
@@ -34,6 +34,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
     "@storybook/addon-actions": "^5.3.17",
     "@storybook/addon-links": "^5.3.17",
     "@storybook/addons": "^5.3.17",
@@ -47,6 +49,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "babel-preset-react-app": "^9.1.2",
     "typescript": "^3.8.3"
   }
 }
