@@ -5,18 +5,20 @@
     },
     "resolveModules": {
         "modulesDirectories": [
-            "editor/node_modules",
-            "webapp/node_modules"
+            "node_modules",
+            "packages/common/node_modules",
+            "packages/editor/node_modules",
+            "packages/webapp/node_modules"
         ]
     },
     "overrides": {
-        "*": {
+        "organisms/*": {
             "peerDependencies": {
                 "react": "+",
                 "react-dom": "+"
             }
         }
     },
-    "componentsDefaultDirectory": "editor/src/components/{name}",
-    "packageManager": "npm"
+    "componentsDefaultDirectory": "packages/editor/src/components/{name}",
+    "packageManager": "yarn"
 }
