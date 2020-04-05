@@ -1097,10 +1097,23 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bit/zhuiks.lcbot.global-types@0.0.2", "@bit/zhuiks.lcbot.global-types@^0.0.2":
+"@bit/zhuiks.lcbot.core@0.0.1", "@bit/zhuiks.lcbot.core@^0.0.1":
+  version "0.0.1"
+  resolved "https://node.bit.dev/zhuiks.lcbot.core/-/zhuiks.lcbot.core-0.0.1.tgz#f9136a3b55ae2c4d36c51efcbab7b53dc0cda52d"
+  integrity sha1-+RNqO1WuLE02xR78ure1PcDNpS0=
+
+"@bit/zhuiks.lcbot.global-types@0.0.2":
   version "0.0.2"
   resolved "https://node.bit.dev/zhuiks.lcbot.global-types/-/zhuiks.lcbot.global-types-0.0.2.tgz#ab5d8e2612544b519f0ba6dca572f82c93be9f0d"
   integrity sha1-q12OJhJUS1GfC6bcpXL4LJO+nw0=
+
+"@bit/zhuiks.lcbot.organisms.song-slide@^0.0.1":
+  version "0.0.1"
+  resolved "https://node.bit.dev/zhuiks.lcbot.organisms.song-slide/-/zhuiks.lcbot.organisms.song-slide-0.0.1.tgz#00059a2c6c3da394b28e20d7c80d34ba0d28d44c"
+  integrity sha1-AAWaLGw9o5SyjiDXyA00ug0o1Ew=
+  dependencies:
+    "@bit/zhuiks.lcbot.core" "0.0.1"
+    styled-components "5.0.1"
 
 "@bit/zhuiks.lcbot.song-slide@^0.0.1":
   version "0.0.1"
