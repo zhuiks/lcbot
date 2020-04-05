@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Paper } from '@material-ui/core';
-import SongSlide from '@bit/zhuiks.lcbot.song-slide';
-import { SlideInput } from '../__generated__/globalTypes';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { ChordSlide, SongSlide, ChordsEditor } from '@lcbot/common';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -15,12 +14,13 @@ const useStyles = makeStyles((theme: Theme) =>
     }));
 
 interface SlideProps {
-    slide: SlideInput;
+    slide: ChordSlide;
 }
 
 const Slide: React.FC<SlideProps> = ({ slide }) => {
     const classes = useStyles();
-    const [elevation, setElevation] = useState(2)
+    const [elevation, setElevation] = useState(2);
+    const [isEdit, setEdit] = useState(false);
     return (
         <Paper
             square
@@ -28,8 +28,14 @@ const Slide: React.FC<SlideProps> = ({ slide }) => {
             elevation={elevation}
             onMouseOver={() => setElevation(8)}
             onMouseOut={() => setElevation(2)}
+            onClick={() => setEdit(true)}
+            onBlur={() => setEdit(false)}
         >
-            <SongSlide slide={slide} />
+            {isEdit ?
+                <ChordsEditor slide={slide} />
+                :
+                <SongSlide slide={slide} />
+            }
         </Paper>
     )
 }
