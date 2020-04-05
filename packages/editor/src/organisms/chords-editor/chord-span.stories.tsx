@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ChordSpan from './chord-span';
-import Chord from '../../chords/chord';
+import { Chord } from '@bit/zhuiks.lcbot.core';
 
 export const MockRTLdiv = styled.div`
   direction: rtl;

@@ -2,7 +2,7 @@ import React from "react";
 import { ContentState, ContentBlock, EditorBlock } from 'draft-js';
 import styled from 'styled-components';
 import ChordSpan from "./chord-span";
-import { IChord } from "../../chords/chord";
+import { Chord } from "@bit/zhuiks.lcbot.core";
 
 const CHORDS_PADDING = 1.1;
 const ChordsLine = styled.div`
@@ -29,7 +29,7 @@ export const ChordsBlock: React.FC<ChordsBlockProps> = (props) => {
     return (
         <BlockContainer>
             <ChordsLine className="chords">
-                { chords.map((chord: IChord, i: number) => (
+                { chords.map((chord: Chord, i: number) => (
                     <ChordSpan key={i} chord={chord} paddingTop={CHORDS_PADDING} />
                 ))
                 }

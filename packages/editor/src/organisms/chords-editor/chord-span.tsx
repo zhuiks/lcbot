@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { IChord } from '../../chords/chord';
+import { Chord } from '@bit/zhuiks.lcbot.core';
 
 interface ChordProps {
     readonly bgColor?: string;
@@ -33,7 +33,7 @@ const ChordSub = styled.sub`
 `;
 
 export interface ChordSpanProps {
-    chord: IChord;
+    chord: Chord;
     paddingTop?: number;
     children?: any;
 }

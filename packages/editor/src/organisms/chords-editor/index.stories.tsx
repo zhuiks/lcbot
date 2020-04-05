@@ -1,10 +1,8 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-
 import ChordEditor from './';
-import { SlideType } from '../../types';
-import ChordSlide from '../../chords/chord-slide';
+import { SlideType, ChordSlide } from "@bit/zhuiks.lcbot.core";
 import { MockRTLdiv } from './chord-span.stories';
 
 const mockSlide = new ChordSlide({

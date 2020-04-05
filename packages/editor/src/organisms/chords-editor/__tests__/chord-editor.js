@@ -1,9 +1,8 @@
 import React from "react"
 import renderer from "react-test-renderer"
 
-import { SlideType } from '../../../types'
+import { SlideType, ChordSlide } from '@bit/zhuiks.lcbot.core'
 import ChordEditor from "../"
-import ChordSlide from "../../../chords/chord-slide"
 
 describe("ChordEditor", () => {
   it("renders correctly", () => {

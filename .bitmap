@@ -43,6 +43,84 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "zhuiks.lcbot/organisms/chord-editor@0.0.1": {
+        "files": [
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/__tests__/__snapshots__/chord-editor.js.snap",
+                "test": false,
+                "name": "chord-editor.js.snap"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/__tests__/__snapshots__/chord-span.js.snap",
+                "test": false,
+                "name": "chord-span.js.snap"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/__tests__/chord-editor.js",
+                "test": false,
+                "name": "chord-editor.js"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/__tests__/chord-span.js",
+                "test": false,
+                "name": "chord-span.js"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/chord-span.stories.tsx",
+                "test": false,
+                "name": "chord-span.stories.tsx"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/chord-span.tsx",
+                "test": false,
+                "name": "chord-span.tsx"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/chords-block.stories.tsx",
+                "test": false,
+                "name": "chords-block.stories.tsx"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/chords-block.tsx",
+                "test": false,
+                "name": "chords-block.tsx"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/index.stories.tsx",
+                "test": false,
+                "name": "index.stories.tsx"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/index.tsx",
+                "test": false,
+                "name": "index.tsx"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/key-binding.ts",
+                "test": false,
+                "name": "key-binding.ts"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/slide-actions.ts",
+                "test": false,
+                "name": "slide-actions.ts"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/slide-reducer.ts",
+                "test": false,
+                "name": "slide-reducer.ts"
+            },
+            {
+                "relativePath": "packages/editor/src/organisms/chords-editor/use-slide.ts",
+                "test": false,
+                "name": "use-slide.ts"
+            }
+        ],
+        "mainFile": "packages/editor/src/organisms/chords-editor/index.tsx",
+        "trackDir": "packages/editor/src/organisms/chords-editor",
+        "origin": "AUTHORED",
+        "exported": true
+    },
     "zhuiks.lcbot/organisms/song-slide@0.0.1": {
         "files": [
             {

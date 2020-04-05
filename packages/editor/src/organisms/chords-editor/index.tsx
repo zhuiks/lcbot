@@ -3,8 +3,7 @@ import { Editor, EditorState, DraftHandleValue } from 'draft-js';
 import chordsBlockRenderer from "./chords-block";
 import useSlide from './use-slide';
 import { keyBinding } from "./key-binding";
-import ChordSlide from "../../chords/chord-slide";
-import { ChordActions } from "../../types";
+import { ChordActions, ChordSlide } from "@bit/zhuiks.lcbot.core";
 
 
 export interface ChordEditorProps {
