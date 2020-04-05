@@ -3,8 +3,8 @@ import { EditorState, Editor } from 'draft-js';
 
 import chordsBlockRenderer from './chords-block';
 import { MockRTLdiv } from './chord-span.stories';
-import { ChordSlide } from '../..';
-import { initChords } from './use-slide';
+import ChordSlide from '../../chords/chord-slide';
+import { initChords } from './slide-actions';
 
 
 export const mockContent = {
