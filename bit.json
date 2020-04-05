@@ -13,9 +13,9 @@
     },
     "overrides": {
         "organisms/*": {
-            "peerDependencies": {
-                "react": "+",
-                "react-dom": "+"
+            "dependencies": {
+                "react": "-",
+                "react-dom": "-"
             }
         }
     },

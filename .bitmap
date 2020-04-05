@@ -43,5 +43,18 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "zhuiks.lcbot/organisms/song-slide@0.0.1": {
+        "files": [
+            {
+                "relativePath": "packages/webapp/src/components/organisms/song-slide/index.tsx",
+                "test": false,
+                "name": "index.tsx"
+            }
+        ],
+        "mainFile": "packages/webapp/src/components/organisms/song-slide/index.tsx",
+        "trackDir": "packages/webapp/src/components/organisms/song-slide",
+        "origin": "AUTHORED",
+        "exported": true
+    },
     "version": "14.7.6"
 }
