@@ -3,7 +3,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import { Grid, Chip, Paper, Button } from '@material-ui/core';
 import Loading from '../atoms/loading';
 import AppError from '../molecules/error';
-import { SlideInput } from '../__generated__/globalTypes';
+import { SlideInput } from '@bit/zhuiks.lcbot.core';
 
 import PageHeader from '../atoms/page-header';
 import { useUpdateSong } from '../molecules/submit';

@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { ChordSlide } from "@bit/zhuiks.lcbot.core";
+import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 import slideReducer, { initState } from './slide-reducer';
 
 

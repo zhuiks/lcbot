@@ -1,5 +1,6 @@
 import React from 'react'
-import { SlideType, ChordSlide } from '@bit/zhuiks.lcbot.core'
+import { SlideType } from '@bit/zhuiks.lcbot.core.types'
+import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords'
 import styled from 'styled-components'
 
 interface SlideProps {

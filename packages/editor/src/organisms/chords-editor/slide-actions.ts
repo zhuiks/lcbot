@@ -1,4 +1,4 @@
-import { Chord, ChordSlide } from "@bit/zhuiks.lcbot.core";
+import { Chord, ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 import { ContentState, SelectionState, Modifier } from "draft-js";
 import { Map } from "immutable";
 

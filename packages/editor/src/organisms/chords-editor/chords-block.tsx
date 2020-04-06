@@ -2,7 +2,7 @@ import React from "react";
 import { ContentState, ContentBlock, EditorBlock } from 'draft-js';
 import styled from 'styled-components';
 import ChordSpan from "./chord-span";
-import { Chord } from "@bit/zhuiks.lcbot.core";
+import { Chord } from "@bit/zhuiks.lcbot.core.chords";
 
 const CHORDS_PADDING = 1.1;
 const ChordsLine = styled.div`

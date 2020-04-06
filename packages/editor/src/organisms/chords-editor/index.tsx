@@ -3,7 +3,8 @@ import { Editor, EditorState, DraftHandleValue } from 'draft-js';
 import chordsBlockRenderer from "./chords-block";
 import useSlide from './use-slide';
 import { keyBinding } from "./key-binding";
-import { ChordActions, ChordSlide } from "@bit/zhuiks.lcbot.core";
+import { ChordActionType } from "@bit/zhuiks.lcbot.core.types";
+import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 
 
 export interface ChordEditorProps {
@@ -17,7 +18,7 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
         dispatch({ type: 'SELECTION_CHANGE', editorState: newState })
     }
 
-    const onKeyCommand = (command: ChordActions, es: EditorState) => {
+    const onKeyCommand = (command: ChordActionType, es: EditorState) => {
 
         console.log(command);
         if (/^[A-Z]{3}_CHORD_\S+$/.test(command)) {

@@ -1097,15 +1097,34 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bit/zhuiks.lcbot.core@0.0.1", "@bit/zhuiks.lcbot.core@^0.0.1":
+"@bit/zhuiks.lcbot.core.chords@^0.0.1":
+  version "0.0.2"
+  resolved "https://node.bit.dev/zhuiks.lcbot.core.chords/-/zhuiks.lcbot.core.chords-0.0.2.tgz#7e45a232fa2592315671f4de259a8b6285e21339"
+  integrity sha1-fkWiMvolkjFWcfTeJZqLYoXiEzk=
+  dependencies:
+    "@bit/zhuiks.lcbot.core.types" "0.0.2"
+
+"@bit/zhuiks.lcbot.core.types@0.0.2", "@bit/zhuiks.lcbot.core.types@^0.0.1":
+  version "0.0.2"
+  resolved "https://node.bit.dev/zhuiks.lcbot.core.types/-/zhuiks.lcbot.core.types-0.0.2.tgz#4d0e8bb6c70e0036f49549322a10bcf5f03eea82"
+  integrity sha1-TQ6LtscOADb0lUkyKhC89fA+6oI=
+
+"@bit/zhuiks.lcbot.core@0.0.1":
   version "0.0.1"
   resolved "https://node.bit.dev/zhuiks.lcbot.core/-/zhuiks.lcbot.core-0.0.1.tgz#f9136a3b55ae2c4d36c51efcbab7b53dc0cda52d"
   integrity sha1-+RNqO1WuLE02xR78ure1PcDNpS0=
 
-"@bit/zhuiks.lcbot.global-types@0.0.2":
-  version "0.0.2"
-  resolved "https://node.bit.dev/zhuiks.lcbot.global-types/-/zhuiks.lcbot.global-types-0.0.2.tgz#ab5d8e2612544b519f0ba6dca572f82c93be9f0d"
-  integrity sha1-q12OJhJUS1GfC6bcpXL4LJO+nw0=
+"@bit/zhuiks.lcbot.organisms.chord-editor@^0.0.1":
+  version "0.0.1"
+  resolved "https://node.bit.dev/zhuiks.lcbot.organisms.chord-editor/-/zhuiks.lcbot.organisms.chord-editor-0.0.1.tgz#5b8bcef1db0236cc9e73250bfe7bdc3445f3a843"
+  integrity sha1-W4vO8dsCNsyecyUL/nvcNEXzqEM=
+  dependencies:
+    "@bit/zhuiks.lcbot.core" "0.0.1"
+    "@storybook/addon-actions" "5.3.17"
+    draft-js "0.11.4"
+    immutable "3.7.6"
+    react-test-renderer "16.13.1"
+    styled-components "5.0.1"
 
 "@bit/zhuiks.lcbot.organisms.song-slide@^0.0.1":
   version "0.0.1"
@@ -1113,15 +1132,6 @@
   integrity sha1-AAWaLGw9o5SyjiDXyA00ug0o1Ew=
   dependencies:
     "@bit/zhuiks.lcbot.core" "0.0.1"
-    styled-components "5.0.1"
-
-"@bit/zhuiks.lcbot.song-slide@^0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/zhuiks.lcbot.song-slide/-/zhuiks.lcbot.song-slide-0.0.1.tgz#039c47b884ec063823b1002005d4aed16a16186c"
-  integrity sha1-A5xHuITsBjgjsQAgBdSu0WoWGGw=
-  dependencies:
-    "@bit/zhuiks.lcbot.global-types" "0.0.2"
-    react "^16.12.0"
     styled-components "5.0.1"
 
 "@cnakazawa/watch@^1.0.3":
@@ -2495,7 +2505,7 @@
   dependencies:
     type-detect "4.0.8"
 
-"@storybook/addon-actions@^5.3.14", "@storybook/addon-actions@^5.3.17":
+"@storybook/addon-actions@5.3.17", "@storybook/addon-actions@^5.3.14", "@storybook/addon-actions@^5.3.17":
   version "5.3.17"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.3.17.tgz#ec7ae8fa25ef211c2a3302b6ac1d271a6247f767"
   integrity sha512-06HQSBqWFyXcqV418Uv3oMHomNy9g3uCt0FHrqY3BAc7PldY1X0tW65oy//uBueaRaYKdhtRrrjfXRaPQWmDbA==
@@ -8458,7 +8468,7 @@ download@^7.1.0:
     p-event "^2.1.0"
     pify "^3.0.0"
 
-draft-js@^0.11.4:
+draft-js@0.11.4, draft-js@^0.11.4:
   version "0.11.4"
   resolved "https://registry.yarnpkg.com/draft-js/-/draft-js-0.11.4.tgz#e48782b96b90a5c14f2cb34c164c2a1a359d8a48"
   integrity sha512-BLZ59s0vkDj/zI8UPo9Nit/hPsl11ztDejxDCQlVbvEXJSWrTXqO6ZYgdw3hXLtuojq/URqq3wTrpnb3dvzvLA==
@@ -11854,15 +11864,15 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
+immutable@3.7.6, immutable@~3.7.4:
+  version "3.7.6"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
+  integrity sha1-E7TTyxK++hVIKib+Gy665kAHHks=
+
 immutable@^4.0.0-rc.12:
   version "4.0.0-rc.12"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.12.tgz#ca59a7e4c19ae8d9bf74a97bdf0f6e2f2a5d0217"
   integrity sha512-0M2XxkZLx/mi3t8NVwIm1g8nHoEmM9p9UBl/G9k4+hm0kBgOVdMV/B3CY5dQ8qG8qc80NN4gDV4HQv6FTJ5q7A==
-
-immutable@~3.7.4:
-  version "3.7.6"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
-  integrity sha1-E7TTyxK++hVIKib+Gy665kAHHks=
 
 import-cwd@^2.0.0:
   version "2.1.0"
@@ -18240,7 +18250,7 @@ react-syntax-highlighter@^11.0.2:
     prismjs "^1.8.4"
     refractor "^2.4.1"
 
-react-test-renderer@^16.13.0:
+react-test-renderer@16.13.1, react-test-renderer@^16.13.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.13.1.tgz#de25ea358d9012606de51e012d9742e7f0deabc1"
   integrity sha512-Sn2VRyOK2YJJldOqoh8Tn/lWQ+ZiKhyZTPtaO0Q6yNj+QDbmRkVFap6pZPy3YQk8DScRDfyqm/KxKYP9gCMRiQ==
@@ -18273,7 +18283,7 @@ react-typography@^0.16.19:
   resolved "https://registry.yarnpkg.com/react-typography/-/react-typography-0.16.19.tgz#5736b47961dcf6b9605b6fa38d41980db2588e28"
   integrity sha512-kV2qLEsdm0x9P4YXQEDVc88tDb4Vg0h/vdVZGgbqaRn8ERvNzV76JHUeOby3vvcUYU5MPd5Kz5DPH9Bhp4I/iw==
 
-react@^16.12.0, react@^16.13.0, react@^16.8.0, react@^16.8.3:
+react@^16.13.0, react@^16.8.0, react@^16.8.3:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Paper } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { ChordSlide, SongSlide, ChordsEditor } from '@lcbot/common';
+import { ChordSlide } from '@bit/zhuiks.lcbot.core';
+import SongSlide from '@bit/zhuiks.lcbot.organisms.song-slide';
+import ChordsEditor from '@bit/zhuiks.lcbot.organisms.chords-editor';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Chord } from '@bit/zhuiks.lcbot.core';
+import { Chord } from '@bit/zhuiks.lcbot.core.chords';
 
 interface ChordProps {
     readonly bgColor?: string;

@@ -1,6 +1,6 @@
 import { EditorState } from "draft-js";
-import { ChordActions, ChordSlide } from "@bit/zhuiks.lcbot.core";
-import chordAction from "@bit/zhuiks.lcbot.core/chords/chord-action";
+import { ChordActionType } from "@bit/zhuiks.lcbot.core.types";
+import { chordAction, ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 import { initChords, applyChord } from "./slide-actions";
 
 interface ChordsEditorState {
@@ -27,7 +27,7 @@ export const initState = (slide: ChordSlide, onSave?: any) => {
 
 
 export interface SlideActionType {
-    type: ChordActions | 'RESET' | 'SELECTION_CHANGE' | 'SLIDE_UPDATE';
+    type: ChordActionType | 'RESET' | 'SELECTION_CHANGE' | 'SLIDE_UPDATE';
     editorState: EditorState;
     payload?: any;
 }

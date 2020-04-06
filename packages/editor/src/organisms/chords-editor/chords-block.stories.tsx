@@ -3,7 +3,7 @@ import { EditorState, Editor } from 'draft-js';
 
 import chordsBlockRenderer from './chords-block';
 import { MockRTLdiv } from './chord-span.stories';
-import { ChordSlide } from '@bit/zhuiks.lcbot.core';
+import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import { initChords } from './slide-actions';
 
 
