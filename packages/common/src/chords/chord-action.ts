@@ -1,6 +1,6 @@
 import Chord, { IChord, REST_CHAR } from "./chord";
 import ChordSlide from "./chord-slide";
-import { ChordActions } from "../types";
+import { ChordActionType } from "../types";
 
 // https://www.w3.org/TR/2018/WD-alreq-20180222/#dfn-zwj
 const ZWJ = '\u200D';
@@ -92,7 +92,7 @@ const _optChord = (type: string, chord: IChord) => {
 
 }
 
-const chordAction = (slide: ChordSlide, type: ChordActions, line: number, pos: number) => {
+const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, pos: number) => {
     if (!slide.lines[line] || !slide.chords[line]) {
         return slide;
     }

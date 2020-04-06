@@ -8,7 +8,7 @@ export enum SlideType {
   VERSE = "VERSE",
 }
 
-export enum ChordActions {
+export enum ChordActionType {
   ADD_CHORD_C = 'ADD_CHORD_C',
   ADD_CHORD_D = 'ADD_CHORD_D',
   ADD_CHORD_E = 'ADD_CHORD_E',
