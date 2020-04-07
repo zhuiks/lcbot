@@ -1,18 +1,11 @@
 import fixArabicNumbers from './fixArabicNumber';
 import strComparator from './str-comparator';
-import { ChordSlide, Chord } from '@bit/zhuiks.lcbot.core.chords';
+import { IChordSlide, ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import { SlideType } from '@bit/zhuiks.lcbot.core.types';
 
 const verse = '[0-9]+';
 const chorus = '(?:ال)?' + 'قرار';
 const chorusR = new RegExp(chorus);
-
-interface IChordSlide {
-    type?: SlideType;
-    name?: string;
-    lines?: string[];
-    chords?: Chord[][];
-}
 
 let currentSlide: IChordSlide;
 let slides: ChordSlide[];

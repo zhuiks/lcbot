@@ -3,7 +3,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import { Grid, Chip, Paper, Button } from '@material-ui/core';
 import Loading from '../atoms/loading';
 import AppError from '../molecules/error';
-import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
+import { IChordSlide, ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 
 import PageHeader from '../atoms/page-header';
 import { useUpdateSong } from '../molecules/submit';
@@ -42,14 +42,17 @@ interface SaveFormProps {
     id: string,
     title?: string | null,
     text?: (string | null)[],
-    slides?: ChordSlide[],
+    slides?: IChordSlide[],
     links?: (string | null)[] | null
   };
 }
 
 const FormEdit: React.FC<SaveFormProps> = ({ songData }) => {
 
-  const [songSlides, setSlides] = useState<ChordSlide[]>(songData.slides || []);
+  const chordSlides = songData.slides ? 
+    songData.slides.map(slide => new ChordSlide(slide)) : [];
+
+  const [songSlides, setSlides] = useState<ChordSlide[]>(chordSlides);
   const [songTitle, setTitle] = useState<string>(songData.title || '');
 
   const { updateSong, mutationResult } = useUpdateSong();

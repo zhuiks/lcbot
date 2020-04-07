@@ -31,7 +31,7 @@ const Slide: React.FC<SlideProps> = ({ slide }) => {
             onMouseOver={() => setElevation(8)}
             onMouseOut={() => setElevation(2)}
             onClick={() => setEdit(true)}
-            onBlur={() => setEdit(false)}
+            // onBlur={() => setEdit(false)}
         >
             {isEdit ?
                 <ChordsEditor slide={slide} />
