@@ -7,13 +7,13 @@ import { Chord } from "@bit/zhuiks.lcbot.core.chords";
 const CHORDS_PADDING = 1.1;
 const ChordsLine = styled.div`
     position: absolute;
-    z-index: -1;
     display: flex;
 `;
 
 const BlockContainer = styled.div`
     & > .public-DraftStyleDefault-block {
-        padding-top: ${(CHORDS_PADDING).toString() + 'em'}
+        padding-top: ${(CHORDS_PADDING).toString() + 'em'};
+        position: relative;
     }
 `;
 

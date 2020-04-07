@@ -1107,10 +1107,10 @@
   resolved "https://node.bit.dev/zhuiks.lcbot.core.types/-/zhuiks.lcbot.core.types-0.0.2.tgz#4d0e8bb6c70e0036f49549322a10bcf5f03eea82"
   integrity sha1-TQ6LtscOADb0lUkyKhC89fA+6oI=
 
-"@bit/zhuiks.lcbot.org.chords-editor@^0.0.3":
-  version "0.0.3"
-  resolved "https://node.bit.dev/zhuiks.lcbot.org.chords-editor/-/zhuiks.lcbot.org.chords-editor-0.0.3.tgz#76dcf7d0bee11d2be59d30835df2f319294f75d5"
-  integrity sha1-dtz30L7hHSvlnTCDXfLzGSlPddU=
+"@bit/zhuiks.lcbot.org.chords-editor@^0.0.4":
+  version "0.0.4"
+  resolved "https://node.bit.dev/zhuiks.lcbot.org.chords-editor/-/zhuiks.lcbot.org.chords-editor-0.0.4.tgz#65794b0bf4b3a290d6629e6b291f4d13b58eb1d4"
+  integrity sha1-ZXlLC/SzopDWYp5rKR9NE7WOsdQ=
   dependencies:
     "@bit/zhuiks.lcbot.core.chords" "0.0.3"
     "@bit/zhuiks.lcbot.core.types" "0.0.2"
