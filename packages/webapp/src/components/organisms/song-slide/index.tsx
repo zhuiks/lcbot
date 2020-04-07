@@ -57,8 +57,8 @@ const SongSlide: React.FC<SongSlideProps> = ({ slide }) => (
                 {slide.name &&
                     <SlideTitle>{slide.name}</SlideTitle>}
                 {
-                    slide.lines && slide.lines.map(str => (
-                        <Line slideType={slide.type}>
+                    slide.lines && slide.lines.map((str, i) => (
+                        <Line key={i} slideType={slide.type}>
                             {str.replace(/\|:|:\|/g, '')}
                             {str.indexOf(':|') !== -1 ? (
                                 <Repeat>2x</Repeat>
