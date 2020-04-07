@@ -1,13 +1,21 @@
 import fixArabicNumbers from './fixArabicNumber';
-import { SlideInput, SlideType } from '../__generated__/globalTypes';
 import strComparator from './str-comparator';
+import { ChordSlide, Chord } from '@bit/zhuiks.lcbot.core.chords';
+import { SlideType } from '@bit/zhuiks.lcbot.core.types';
 
 const verse = '[0-9]+';
 const chorus = '(?:ال)?' + 'قرار';
 const chorusR = new RegExp(chorus);
 
-let currentSlide: SlideInput;
-let slides: SlideInput[];
+interface IChordSlide {
+    type?: SlideType;
+    name?: string;
+    lines?: string[];
+    chords?: Chord[][];
+}
+
+let currentSlide: IChordSlide;
+let slides: ChordSlide[];
 let verseCounter: number;
 
 const resetSlide = (allSlides: boolean = false) => {
@@ -44,7 +52,7 @@ const addNewSlide = (name: string = '') => {
         )).length) {
             currentSlide.lines = [];
         }
-        slides.push(currentSlide);
+        slides.push(new ChordSlide(currentSlide));
         resetSlide();
     }
     setCurrentSlideType(name);

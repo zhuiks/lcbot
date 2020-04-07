@@ -3,7 +3,6 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import { Chip, Paper, Stepper, Step, StepLabel, StepContent } from '@material-ui/core';
 import Loading from '../atoms/loading';
 import AppError from '../molecules/error';
-import { SlideInput } from '../__generated__/globalTypes';
 import textBreaker from '../lib/text-breaker';
 
 import SongLyrics from '../atoms/song-lyrics';
@@ -13,6 +12,7 @@ import SongConfirm from '../molecules/song-confirm';
 import { useUpdateSong } from '../molecules/submit';
 import SubmitResult from './submit-result';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,7 +32,7 @@ interface SaveFormProps {
     id: string,
     title?: string | null,
     text?: (string | null)[],
-    slides?: SlideInput[],
+    slides?: ChordSlide[],
     links?: (string | null)[] | null
   };
 }
@@ -42,7 +42,7 @@ const FormAdd: React.FC<SaveFormProps> = ({ songData }) => {
   const [songLyrics, setLyrics] = useState(
     typeof songData.text === 'string' ? songData.text : (songData.text ? songData.text.join('\n') : '')
   );
-  const [songSlides, setSlides] = useState<SlideInput[]>([]);
+  const [songSlides, setSlides] = useState<ChordSlide[]>([]);
   const [songTitle, setTitle] = useState<string>(songData.title || '');
   const [activeStep, setActiveStep] = React.useState(0);
 

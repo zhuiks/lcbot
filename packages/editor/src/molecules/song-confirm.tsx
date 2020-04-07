@@ -1,10 +1,10 @@
 import React from 'react';
-import { SlideInput } from '../__generated__/globalTypes';
-import SongSlide from '@bit/zhuiks.lcbot.song-slide';
+import SongSlide from '@bit/zhuiks.lcbot.org.song-slide';
 import TextField from '@material-ui/core/TextField';
+import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 
 interface SongConfirmProps {
-    slides: SlideInput[];
+    slides: ChordSlide[];
     songTitle: string;
     onTitleChange: (value: string) => void;
 }
