@@ -10,6 +10,7 @@ import { useUpdateSong } from '../molecules/submit';
 import Slide from '../molecules/slide';
 import SubmitResult from './submit-result';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Editable from '../atoms/editable';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -85,12 +86,13 @@ const FormEdit: React.FC<SaveFormProps> = ({ songData }) => {
             <Grid item>
               <Paper className={classes.root} elevation={2}>
                 <Chip className={classes.chip} size="small" icon={<VpnKeyIcon />} label={songData.id} />
-                <PageHeader
+                <Editable
+                  variant="h3"
                   helperText="Song title"
                   onChange={setTitle}
                 >
                   {songTitle}
-                </PageHeader>
+                </Editable>
               </Paper>
             </Grid>
             {songSlides.map((slide, i) => (

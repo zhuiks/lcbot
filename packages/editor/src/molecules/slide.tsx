@@ -4,6 +4,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import SongSlide from '@bit/zhuiks.lcbot.org.song-slide';
 import ChordsEditor from '@bit/zhuiks.lcbot.org.chords-editor';
+import Editable from '../atoms/editable';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -31,10 +32,20 @@ const Slide: React.FC<SlideProps> = ({ slide }) => {
             onMouseOver={() => setElevation(8)}
             onMouseOut={() => setElevation(2)}
             onClick={() => setEdit(true)}
-            // onBlur={() => setEdit(false)}
+        // onBlur={() => setEdit(false)}
         >
-            {isEdit ?
-                <ChordsEditor slide={slide} />
+            {isEdit ? (
+                <>
+                    <Editable 
+                        variant="h6"
+                        helperText="Slide Type"
+                        onChange={(name: string) => { }}
+                        >
+                            {slide.name}
+                            </Editable>
+                    <ChordsEditor slide={slide} />
+                </>
+            )
                 :
                 <SongSlide slide={slide} />
             }
