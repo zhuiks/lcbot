@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import { Grid, Chip, Paper, Button } from '@material-ui/core';
 import Loading from '../atoms/loading';
 import AppError from '../molecules/error';
-import { IChordSlide, ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 
-import PageHeader from '../atoms/page-header';
-import { useUpdateSong } from '../molecules/submit';
-import Slide from '../molecules/slide';
+import GridSlideMap from '../molecules/grid-slide-map';
+import useFormReducer, { ISongData } from './use-form-reducer';
 import SubmitResult from './submit-result';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Editable from '../atoms/editable';
@@ -18,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(4),
       paddingBottom: theme.spacing(3),
       position: "relative",
-      borderBottom: "2px dotted "+theme.palette.background.default,
+      borderBottom: "2px dotted " + theme.palette.background.default,
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     },
@@ -29,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     rootBottom: {
       padding: theme.spacing(2),
-      borderTop: "2px dotted "+theme.palette.background.default,
+      borderTop: "2px dotted " + theme.palette.background.default,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
     },
@@ -38,35 +36,13 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   }));
 
-interface SaveFormProps {
-  songData: {
-    id: string,
-    title?: string | null,
-    text?: (string | null)[],
-    slides?: IChordSlide[],
-    links?: (string | null)[] | null
-  };
+interface EditFormProps {
+  songData: ISongData;
 }
+const FormEdit: React.FC<EditFormProps> = ({ songData }) => {
 
-const FormEdit: React.FC<SaveFormProps> = ({ songData }) => {
-
-  const chordSlides = songData.slides ? 
-    songData.slides.map(slide => new ChordSlide(slide)) : [];
-
-  const [songSlides, setSlides] = useState<ChordSlide[]>(chordSlides);
-  const [songTitle, setTitle] = useState<string>(songData.title || '');
-
-  const { updateSong, mutationResult } = useUpdateSong();
   const classes = useStyles();
-
-  const submitForm = () => {
-    updateSong({
-      songId: songData.id,
-      title: songTitle,
-      slides: songSlides,
-      links: []
-    });
-  }
+  const { state, dispatch, mutationResult } = useFormReducer(songData);
 
   if (mutationResult.loading) return <Loading />;
   return (
@@ -76,40 +52,46 @@ const FormEdit: React.FC<SaveFormProps> = ({ songData }) => {
       {mutationResult.data ? (
         <SubmitResult data={mutationResult.data.updateSong} />
       ) : (
-          <Grid 
-          container 
-          component="form"
-          spacing={1}
-          direction="column"
-          wrap="nowrap"
-            >
+          <Grid
+            container
+            component="form"
+            spacing={1}
+            direction="column"
+            wrap="nowrap"
+          >
             <Grid item>
               <Paper className={classes.root} elevation={2}>
-                <Chip className={classes.chip} size="small" icon={<VpnKeyIcon />} label={songData.id} />
+                <Chip
+                  className={classes.chip}
+                  size="small"
+                  icon={<VpnKeyIcon />}
+                  label={state.songId}
+                />
                 <Editable
                   variant="h3"
                   helperText="Song title"
-                  onChange={setTitle}
+                  onChange={(s: string) => dispatch({ type: 'TITLE_CHANGE', payload: s })}
                 >
-                  {songTitle}
+                  {state.songTitle}
                 </Editable>
               </Paper>
             </Grid>
-            {songSlides.map((slide, i) => (
-              <Grid item key={i}>
-                <Slide slide={slide} />
-              </Grid>
-            ))}
+            <GridSlideMap
+              slides={state.slides}
+              editSlide={state.editSlide}
+              editSlideName={state.slideName}
+              dispatch={dispatch}
+            />
             <Grid item>
               <Paper className={classes.rootBottom} elevation={2}>
                 <Button
                   className={classes.button}
                   variant="contained"
                   color="secondary"
-                  onClick={submitForm}
+                  onClick={() => dispatch({ type: 'SONG_SAVE' })}
                 >
                   Save
-                    </Button>
+                </Button>
               </Paper>
             </Grid>
           </Grid>
