@@ -1107,22 +1107,10 @@
   resolved "https://node.bit.dev/zhuiks.lcbot.core.types/-/zhuiks.lcbot.core.types-0.0.2.tgz#4d0e8bb6c70e0036f49549322a10bcf5f03eea82"
   integrity sha1-TQ6LtscOADb0lUkyKhC89fA+6oI=
 
-"@bit/zhuiks.lcbot.org.chords-editor@^0.0.4":
+"@bit/zhuiks.lcbot.org.song-slide@^0.0.4":
   version "0.0.4"
-  resolved "https://node.bit.dev/zhuiks.lcbot.org.chords-editor/-/zhuiks.lcbot.org.chords-editor-0.0.4.tgz#65794b0bf4b3a290d6629e6b291f4d13b58eb1d4"
-  integrity sha1-ZXlLC/SzopDWYp5rKR9NE7WOsdQ=
-  dependencies:
-    "@bit/zhuiks.lcbot.core.chords" "0.0.3"
-    "@bit/zhuiks.lcbot.core.types" "0.0.2"
-    draft-js "0.11.5"
-    immutable "3.7.6"
-    react-test-renderer "16.13.1"
-    styled-components "5.0.1"
-
-"@bit/zhuiks.lcbot.org.song-slide@^0.0.3":
-  version "0.0.3"
-  resolved "https://node.bit.dev/zhuiks.lcbot.org.song-slide/-/zhuiks.lcbot.org.song-slide-0.0.3.tgz#70898e2127e3c909c6c3ded2d19e1ef0e8d67a15"
-  integrity sha1-cImOISfjyQnGw97S0Z4e8OjWehU=
+  resolved "https://node.bit.dev/zhuiks.lcbot.org.song-slide/-/zhuiks.lcbot.org.song-slide-0.0.4.tgz#e6aa87afcf968ba7ad2a1610fb71811af6421fc4"
+  integrity sha1-5qqHr8+Wi6etKhYQ+3GBGvZCH8Q=
   dependencies:
     "@bit/zhuiks.lcbot.core.chords" "0.0.3"
     "@bit/zhuiks.lcbot.core.types" "0.0.2"
@@ -8475,7 +8463,7 @@ download@^7.1.0:
     p-event "^2.1.0"
     pify "^3.0.0"
 
-draft-js@0.11.5, draft-js@^0.11.4:
+draft-js@^0.11.4:
   version "0.11.5"
   resolved "https://registry.yarnpkg.com/draft-js/-/draft-js-0.11.5.tgz#b5dd30c30c9316801ab9766d45a8f88b1cd43b2c"
   integrity sha512-RlHcoDtblwCD6Bw2ay3D0dTLA6lH8862OcdJrHGnYrY5JjlitzSzGvGQwqqumVvbGUNDSZLD3FyNpSs4z5WIUg==
@@ -11892,15 +11880,15 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
-immutable@3.7.6, immutable@~3.7.4:
-  version "3.7.6"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
-  integrity sha1-E7TTyxK++hVIKib+Gy665kAHHks=
-
 immutable@^4.0.0-rc.12:
   version "4.0.0-rc.12"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.12.tgz#ca59a7e4c19ae8d9bf74a97bdf0f6e2f2a5d0217"
   integrity sha512-0M2XxkZLx/mi3t8NVwIm1g8nHoEmM9p9UBl/G9k4+hm0kBgOVdMV/B3CY5dQ8qG8qc80NN4gDV4HQv6FTJ5q7A==
+
+immutable@~3.7.4:
+  version "3.7.6"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
+  integrity sha1-E7TTyxK++hVIKib+Gy665kAHHks=
 
 import-cwd@^2.0.0:
   version "2.1.0"
@@ -18282,7 +18270,7 @@ react-syntax-highlighter@^11.0.2:
     prismjs "^1.8.4"
     refractor "^2.4.1"
 
-react-test-renderer@16.13.1, react-test-renderer@^16.13.0:
+react-test-renderer@^16.13.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.13.1.tgz#de25ea358d9012606de51e012d9742e7f0deabc1"
   integrity sha512-Sn2VRyOK2YJJldOqoh8Tn/lWQ+ZiKhyZTPtaO0Q6yNj+QDbmRkVFap6pZPy3YQk8DScRDfyqm/KxKYP9gCMRiQ==

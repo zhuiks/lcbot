@@ -67,7 +67,7 @@ const GridSlideMap: React.FC<GridSlideProps> = ({ slides, editSlide, editSlideNa
                             </>
                         )
                             :
-                            <SongSlide slide={slide} />
+                            <SongSlide slide={slide} displayChords />
                         }
                     </Paper>
                 </Grid>
