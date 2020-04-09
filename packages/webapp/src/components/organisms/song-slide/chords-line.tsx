@@ -14,8 +14,7 @@ interface ChordProps {
 }
 const ChordContainer = styled.div<ChordProps>`
     position: relative;
-    padding-top: ${props => (props.paddingTop || 1).toString() + 'em'};
-    background-color: ${props => props.bgColor || '#fff'};
+    padding-top: ${props => (props.paddingTop || 1).toString()}em;
     color: ${props => props.bgColor || '#fff'};
 `;
 const ChordHolder = styled.span`

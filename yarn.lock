@@ -1107,10 +1107,10 @@
   resolved "https://node.bit.dev/zhuiks.lcbot.core.types/-/zhuiks.lcbot.core.types-0.0.2.tgz#4d0e8bb6c70e0036f49549322a10bcf5f03eea82"
   integrity sha1-TQ6LtscOADb0lUkyKhC89fA+6oI=
 
-"@bit/zhuiks.lcbot.org.song-slide@^0.0.4":
-  version "0.0.4"
-  resolved "https://node.bit.dev/zhuiks.lcbot.org.song-slide/-/zhuiks.lcbot.org.song-slide-0.0.4.tgz#e6aa87afcf968ba7ad2a1610fb71811af6421fc4"
-  integrity sha1-5qqHr8+Wi6etKhYQ+3GBGvZCH8Q=
+"@bit/zhuiks.lcbot.org.song-slide@^0.0.5":
+  version "0.0.5"
+  resolved "https://node.bit.dev/zhuiks.lcbot.org.song-slide/-/zhuiks.lcbot.org.song-slide-0.0.5.tgz#44ad70564e0b455e92fdc4355b4656f885b52aa4"
+  integrity sha1-RK1wVk4LRV6S/cQ1W0ZW+IW1KqQ=
   dependencies:
     "@bit/zhuiks.lcbot.core.chords" "0.0.3"
     "@bit/zhuiks.lcbot.core.types" "0.0.2"

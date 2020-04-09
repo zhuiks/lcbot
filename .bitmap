@@ -130,7 +130,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "zhuiks.lcbot/org/song-slide@0.0.4": {
+    "zhuiks.lcbot/org/song-slide@0.0.5": {
         "files": [
             {
                 "relativePath": "packages/webapp/src/components/organisms/song-slide/chords-line.tsx",

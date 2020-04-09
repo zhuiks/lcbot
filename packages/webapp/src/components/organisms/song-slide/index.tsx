@@ -37,20 +37,24 @@ interface SongSlideProps {
   displayChords?: boolean
 }
 
-const SongSlide: React.FC<SongSlideProps> = ({ slide, displayChords = false }) => (
-  <Slide type={slide.type}>
-    {slide.name &&
-      <SlideTitle>{slide.name}</SlideTitle>}
-    {
-      slide.lines && slide.lines.map((str, i) => (
-        <LineContainer key={i} slideType={slide.type}>
-          {displayChords && <ChordsLine chords={slide.chords[i]} />}
-          <LyricsLine text={str} chordsPadding={displayChords} />
-        </LineContainer>
+const SongSlide: React.FC<SongSlideProps> = ({ slide, displayChords = false }) => {
+  const toDisplayChords = displayChords && slide.chords && slide.chords.find((chordsLine) => (
+    chordsLine.length && (chordsLine.length > 1 || chordsLine[0].root !== " ")
+  )) !== undefined
+  return (
+    <Slide type={slide.type}>
+      {slide.name &&
+        <SlideTitle>{slide.name}</SlideTitle>}
+      {
+        slide.lines && slide.lines.map((str, i) => (
+          <LineContainer key={i} slideType={slide.type}>
+            {toDisplayChords && <ChordsLine chords={slide.chords[i]} />}
+            <LyricsLine text={str} chordsPadding={toDisplayChords} />
+          </LineContainer>
 
-      ))
-    }
-  </Slide>
-)
-
+        ))
+      }
+    </Slide>
+  )
+}
 export default SongSlide;
