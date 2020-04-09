@@ -66,13 +66,24 @@ const formReducer = (state: FormEditState, action: FormAction): FormEditState =>
                 editSlide,
             };
         case 'CHORDS_UPDATE':
-            // slide: new ChordSlide({
-            //     type: state.slide.type,
-            //     name: state.slideName,
-            //     lines: action.payload.lines,
-            //     chords: action.payload.chords,
-            // })
-            return state;
+            if(!state.slides[state.editSlide]) {
+                return state;
+            }
+            const slide = new ChordSlide({
+                type: state.slides[state.editSlide].type,
+                name: state.slideName,
+                lines: action.payload.lines,
+                chords: action.payload.chords,
+            })
+            return {
+                ...state,
+                slides: [
+                    ...state.slides.slice(0, state.editSlide),
+                    slide,
+                    ...state.slides.slice(state.editSlide+1),
+                ],
+                editSlide: -1,
+            };
         case 'SONG_SAVE':
             if (typeof state.updateSong === 'function') {
                 state.updateSong({
