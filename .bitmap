@@ -133,9 +133,19 @@
     "zhuiks.lcbot/org/song-slide@0.0.3": {
         "files": [
             {
+                "relativePath": "packages/webapp/src/components/organisms/song-slide/chords-line.tsx",
+                "test": false,
+                "name": "chords-line.tsx"
+            },
+            {
                 "relativePath": "packages/webapp/src/components/organisms/song-slide/index.tsx",
                 "test": false,
                 "name": "index.tsx"
+            },
+            {
+                "relativePath": "packages/webapp/src/components/organisms/song-slide/lyrics-line.tsx",
+                "test": false,
+                "name": "lyrics-line.tsx"
             }
         ],
         "mainFile": "packages/webapp/src/components/organisms/song-slide/index.tsx",

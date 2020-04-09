@@ -2,6 +2,8 @@ import React from 'react'
 import { SlideType } from '@bit/zhuiks.lcbot.core.types'
 import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords'
 import styled from 'styled-components'
+import ChordsLine from './chords-line'
+import LyricsLine from './lyrics-line'
 
 interface SlideProps {
   readonly type: SlideType
@@ -19,56 +21,36 @@ const SlideTitle = styled.h3`
   top: 0;
   margin-inline-start: -0.4em;
 `
-interface LineProps {
+interface LineContainerProps {
   readonly slideType: SlideType
-}  
-const Line = styled.p<LineProps>`
+}
+const LineContainer = styled.div<LineContainerProps>`
   margin: 0;
   min-height: 1em;
   position: relative;
   padding-inline-start: ${props => props.slideType === SlideType.CHORUS ? '1em' : '0'};
-`
-const Repeat = styled.span`
-  position: absolute;
-  height: 100%;
-  z-index: -1;
-  width: 1.5em;
-  color: #cccccc;
-  font-size: 0.7em;
-  line-height: 0.7em;
-  top: 0;
-  inset-block-start: 0;
-  left: 0;
-  inset-inline-end: 0;
-  border-inline-start: 2px solid #cccccc;
-  padding-inline-start: 5px;
-  padding-block-start: 1em;
-  padding-block-end: 3px;
-  display: flex;
-  align-items: flex-end;
-`
+`;
+
 
 interface SongSlideProps {
-    slide: ChordSlide
+  slide: ChordSlide
+  displayChords?: boolean
 }
 
-const SongSlide: React.FC<SongSlideProps> = ({ slide }) => (
-            <Slide type={slide.type}>
-                {slide.name &&
-                    <SlideTitle>{slide.name}</SlideTitle>}
-                {
-                    slide.lines && slide.lines.map((str, i) => (
-                        <Line key={i} slideType={slide.type}>
-                            {str.replace(/\|:|:\|/g, '')}
-                            {str.indexOf(':|') !== -1 ? (
-                                <Repeat>2x</Repeat>
-                            ) : ( str.indexOf('|:') !== -1 &&
-                                <Repeat/>
-                            )}
-                        </Line>
-                    ))
-                }
-            </Slide>
+const SongSlide: React.FC<SongSlideProps> = ({ slide, displayChords = false }) => (
+  <Slide type={slide.type}>
+    {slide.name &&
+      <SlideTitle>{slide.name}</SlideTitle>}
+    {
+      slide.lines && slide.lines.map((str, i) => (
+        <LineContainer key={i} slideType={slide.type}>
+          {displayChords && <ChordsLine chords={slide.chords[i]} />}
+          <LyricsLine text={str} chordsPadding={displayChords} />
+        </LineContainer>
+
+      ))
+    }
+  </Slide>
 )
 
 export default SongSlide;
