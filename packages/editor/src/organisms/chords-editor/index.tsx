@@ -2,8 +2,8 @@ import React from "react";
 import { Editor, EditorState, DraftHandleValue } from 'draft-js';
 import chordsBlockRenderer from "./chords-block";
 import useSlide from './use-slide';
+import { SlideActionType } from './slide-reducer';
 import { keyBinding } from "./key-binding";
-import { ChordActionType } from "@bit/zhuiks.lcbot.core.types";
 import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 
 
@@ -18,10 +18,10 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
         dispatch({ type: 'SELECTION_CHANGE', editorState: newState })
     }
 
-    const onKeyCommand = (command: ChordActionType, es: EditorState) => {
+    const onKeyCommand = (command: SlideActionType, es: EditorState) => {
 
         console.log(command);
-        if (/^[A-Z]{3}_CHORD_\S+$/.test(command)) {
+        if (/^[A-Z]{3}_CHORD_\S+$/.test(command) || command === 'SLIDE_UPDATE') {
             dispatch({ type: command, editorState: es });
         }
 

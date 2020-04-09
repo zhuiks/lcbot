@@ -25,13 +25,13 @@ export const initState = (slide: ChordSlide, onSave?: any) => {
     }
 }
 
-
-export interface SlideActionType {
-    type: ChordActionType | 'RESET' | 'SELECTION_CHANGE' | 'SLIDE_UPDATE';
+export type SlideActionType = ChordActionType | 'RESET' | 'SELECTION_CHANGE' | 'SLIDE_UPDATE';
+export interface SlideAction {
+    type: SlideActionType;
     editorState: EditorState;
     payload?: any;
 }
-const slideReducer = (state: ChordsEditorState, action: SlideActionType): ChordsEditorState => {
+const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEditorState => {
     switch (action.type) {
         case 'RESET':
             return action.payload ? initState(action.payload) : state;
@@ -51,6 +51,7 @@ const slideReducer = (state: ChordsEditorState, action: SlideActionType): Chords
                 editorState,
             }
         case 'SLIDE_UPDATE':
+            console.log('ChordsEditor: dispatch SLIDE_UPDATE');
             onSaveSlide(state.slide);
             return state;
         default:

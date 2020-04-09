@@ -66,6 +66,7 @@ const formReducer = (state: FormEditState, action: FormAction): FormEditState =>
                 editSlide,
             };
         case 'CHORDS_UPDATE':
+            console.log('form reducer: dispatch CHORDS_UPDATE');
             if(!state.slides[state.editSlide]) {
                 return state;
             }

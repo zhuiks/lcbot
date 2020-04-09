@@ -3,7 +3,7 @@ import { Paper, Grid } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import SongSlide from '@bit/zhuiks.lcbot.org.song-slide';
-import ChordsEditor from '@bit/zhuiks.lcbot.org.chords-editor';
+import ChordsEditor from '../organisms/chords-editor';
 import Editable from '../atoms/editable';
 import { FormAction } from '../organisms/use-form-reducer';
 

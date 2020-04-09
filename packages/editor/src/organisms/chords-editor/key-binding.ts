@@ -1,47 +1,52 @@
-import { getDefaultKeyBinding } from 'draft-js';
+import { getDefaultKeyBinding, KeyBindingUtil } from 'draft-js';
+import { ChordActionType } from '@bit/zhuiks.lcbot.core.types';
 import { KeyboardEvent } from 'react';
-// const { hasCommandModifier } = KeyBindingUtil;
+const { hasCommandModifier } = KeyBindingUtil;
 
 export const keyBinding = (e: KeyboardEvent<{}>) => {
     switch (e.keyCode) {
         case 67:   // C
-            return 'ADD_CHORD_C';
+            return ChordActionType.ADD_CHORD_C;
         case 68:   // D
-            return 'ADD_CHORD_D';
+            return ChordActionType.ADD_CHORD_D;
         case 69:   // E
-            return 'ADD_CHORD_E';
+            return ChordActionType.ADD_CHORD_E;
         case 70:   // F
-            return 'ADD_CHORD_F';
+            return ChordActionType.ADD_CHORD_F;
         case 71:   // G
-            return 'ADD_CHORD_G';
+            return ChordActionType.ADD_CHORD_G;
         case 65:   // A
-            return 'ADD_CHORD_A';
+            return ChordActionType.ADD_CHORD_A;
         case 66:   // B
-            return 'ADD_CHORD_B';
+            return ChordActionType.ADD_CHORD_B;
         case 51: // 3/# 
-            return 'MOD_CHORD_SHARP';
+            return ChordActionType.MOD_CHORD_SHARP;
         case 77: // m
         case 173: // - (firefox)
         case 189: // -
-            return 'MOD_CHORD_MIN';
+            return ChordActionType.MOD_CHORD_MIN;
         case 73: // i
         case 79: // o
-            return 'MOD_CHORD_DIM';
+            return ChordActionType.MOD_CHORD_DIM;
         case 61: // = / + (firefox)
         case 187: // = / +
         case 85: // u
-            return 'MOD_CHORD_AUG';
+            return ChordActionType.MOD_CHORD_AUG;
         case 83: // s 
-            return 'OPT_CHORD_SUS';
+            if(hasCommandModifier(e)) {
+                return 'SLIDE_UPDATE';
+            }
+            return ChordActionType.OPT_CHORD_SUS;
         case 55: // 7 
-            return 'OPT_CHORD_7';
+            return ChordActionType.OPT_CHORD_7;
         case 50: // 2 
-            return 'OPT_CHORD_2';
+            return ChordActionType.OPT_CHORD_2;
         case 46: // del 
-            return 'DEL_CHORD_DEL';
+            return ChordActionType.DEL_CHORD_DEL;
         case 8: // backspace 
-            return 'DEL_CHORD_BS';
-
+            return ChordActionType.DEL_CHORD_BS;
+        case 13: // enter
+            return 'SLIDE_UPDATE';
         case 32: // " " 
         case 186:
         case 188:
