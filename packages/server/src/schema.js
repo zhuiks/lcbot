@@ -14,7 +14,7 @@ const typeDefs = gql`
       type: SlideType!
       name: String
       lines: [String!]
-      chords: [Chord]
+      chords: [[Chord]]
   }
 
   type Chord {
