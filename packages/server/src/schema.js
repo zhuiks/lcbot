@@ -7,18 +7,37 @@ const typeDefs = gql`
       text: [String]!
       slides: [Slide]
       links: [String]
+      hasChords: Boolean
   }
 
   type Slide {
       type: SlideType!
       name: String
       lines: [String!]
+      chords: [Chord]
+  }
+
+  type Chord {
+    root: String!
+    quality: String
+    type: String
+    bass: String
+    text: String!
   }
 
   input SlideInput {
     type: SlideType! = VERSE
     name: String
     lines: [String!]
+    chords: [[ChordInput]]
+  }
+
+  input ChordInput {
+    root: String! = "_"
+    quality: String
+    type: String
+    bass: String
+    text: String! = " "
   }
 
   enum SlideType {
@@ -37,7 +56,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-      updateSong(id: ID!, title: String!, text: [SlideInput], links: [String]): UpdateResponce
+      addSong(id: ID!, title: String!, slides: [SlideInput], links: [String]): UpdateResponce
+      updateSong(id: ID!, title: String!, slides: [SlideInput], links: [String]): UpdateResponce
   }
 
   type UpdateResponce {

@@ -6,8 +6,20 @@ module.exports = {
       dataSources.songs.getSong(id)
   },
   Mutation: {
-    updateSong: async (_, { id, title, text, links }, { dataSources }) => {
-      const songId = await dataSources.songs.saveSong({ id, title, text, links });
+    addSong: async (_, { id, title, slides, links }, { dataSources }) => {
+      const songId = await dataSources.songs.addSong({ id, title, slides, links });
+      const song = await dataSources.songs.getSong(songId);
+      return {
+        success: songId != false && song.id != false,
+        song,
+        message:
+          songId != false && song.id != false
+            ? "Song added successfully"
+            : "Something went wrong"
+      }
+    },
+    updateSong: async (_, { id, title, slides, links }, { dataSources }) => {
+      const songId = await dataSources.songs.saveSong({ id, title, slides, links });
       const song = await dataSources.songs.getSong(songId);
       return {
         success: songId != false && song.id != false,
@@ -17,7 +29,7 @@ module.exports = {
             ? "Song updated successfully"
             : "Something went wrong"
       }
-    }
+    },
   },
   Song: {
     text: (songDb) => {

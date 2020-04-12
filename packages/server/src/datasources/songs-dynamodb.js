@@ -13,6 +13,12 @@ class Songs {
         return this._songPretifier(song);
     }
 
+    async addSong(song) {
+        const db = await getDb();
+        const r = await db.update(song);
+        return r.SongId;
+    }
+
     async saveSong(song) {
         const db = await getDb();
         const r = await db.update(song);

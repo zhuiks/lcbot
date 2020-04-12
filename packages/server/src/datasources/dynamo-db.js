@@ -66,12 +66,12 @@ class Database {
             attrNames['#T'] = 'Title';
             attrVal[':title'] = title;
         }
-        if (data.text) {
-            console.log(data.text);
-            if(data.text.length) {
+        if (data.slides) {
+            console.log(data.slides);
+            if(data.slides.length) {
                 updateExpr.push('#Slides = :slides');
                 attrNames['#Slides'] = 'Slides';
-                attrVal[':slides'] = data.text;
+                attrVal[':slides'] = data.slides;
             }
             // const text = typeof data.text === 'string'
             //     ? [data.text]
