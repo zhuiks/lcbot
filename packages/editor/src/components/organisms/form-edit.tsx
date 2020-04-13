@@ -5,8 +5,8 @@ import Loading from '../atoms/loading';
 import AppError from '../molecules/error';
 
 import GridSlideMap from '../molecules/grid-slide-map';
-import useFormReducer from './use-form-reducer';
-import { SongDetails_song as ISongData }  from '../__generated__/SongDetails';
+import useFormReducer from '../../hooks/use-form-reducer';
+import { SongDetails_song as ISongData }  from '../../__generated__/SongDetails';
 import SubmitResult from './submit-result';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Editable from '../atoms/editable';

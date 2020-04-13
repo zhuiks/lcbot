@@ -7,9 +7,9 @@ import {
 
 import Song from './song';
 import Songs from './songs';
-import Header from '../organisms/header';
-import Login from '../organisms/login';
-import MainContainer from '../atoms/main-container';
+import Header from '../components/organisms/header';
+import Login from '../components/organisms/login';
+import MainContainer from '../components/atoms/main-container';
 import NewSong from './new-song';
 
 import { IdentityModal, useIdentityContext, IdentityContextProvider } from 'react-netlify-identity-widget';

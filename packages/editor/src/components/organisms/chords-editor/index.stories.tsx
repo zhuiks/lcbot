@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ChordEditor from './';
+import ChordEditor from '.';
 import { SlideType } from "@bit/zhuiks.lcbot.core.types";
 import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 import { MockRTLdiv } from './chord-span.stories';

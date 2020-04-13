@@ -3,8 +3,8 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Grid } from '@material-ui/core';
 
-import Loading from '../atoms/loading';
-import ButtonAdd from '../atoms/button-add';
+import Loading from '../components/atoms/loading';
+import ButtonAdd from '../components/atoms/button-add';
 import { SongRow, SearchField } from '../components';
 import * as GetSongListTypes from '../__generated__/GetSongList';
 import wordSearch from '../word-search';

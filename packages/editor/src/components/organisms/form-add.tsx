@@ -3,13 +3,13 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import { Chip, Paper, Stepper, Step, StepLabel, StepContent } from '@material-ui/core';
 import Loading from '../atoms/loading';
 import AppError from '../molecules/error';
-import textBreaker from '../lib/text-breaker';
+import textBreaker from '../../utils/text-breaker';
 
 import SongLyrics from '../atoms/song-lyrics';
 import PageHeader from '../atoms/page-header';
 import StepActions from '../molecules/step-actions'
 import SongConfirm from '../molecules/song-confirm';
-import { useUpdateSong } from '../molecules/use-update-song';
+import { useUpdateSong } from '../../hooks/use-update-song';
 import SubmitResult from './submit-result';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';

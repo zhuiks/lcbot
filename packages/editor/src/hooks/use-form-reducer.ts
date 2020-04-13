@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { useUpdateSong } from '../molecules/use-update-song';
+import { useUpdateSong } from './use-update-song';
 import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import { SongDetails_song as ISongData } from '../__generated__/SongDetails';
 

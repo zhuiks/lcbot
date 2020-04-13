@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

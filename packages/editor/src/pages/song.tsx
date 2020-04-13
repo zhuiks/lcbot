@@ -4,9 +4,9 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import * as QueryTypes from '../__generated__/SongDetails';
 
-import Loading from '../atoms/loading';
-import AppError from '../molecules/error';
-import FormEdit from '../organisms/form-edit';
+import Loading from '../components/atoms/loading';
+import AppError from '../components/molecules/error';
+import FormEdit from '../components/organisms/form-edit';
 
 export const GET_SONG_DETAILS = gql`
   query SongDetails($songId: ID!) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Grid from '@material-ui/core/Grid';
-import SongRow from '../components/song-row';
+import SongRow from '../song-row';
 import ButtonAdd from '../atoms/button-add';
 
 const SubmitResult: React.FC<any> = ({ data }: any) => (
