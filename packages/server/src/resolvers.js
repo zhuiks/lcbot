@@ -19,7 +19,7 @@ module.exports = {
       }
     },
     updateSong: async (_, { id, title, slides, links }, { dataSources }) => {
-      const songId = await dataSources.songs.saveSong({ id, title, slides, links });
+      const songId = await dataSources.songs.updateSong({ id, title, slides, links });
       const song = await dataSources.songs.getSong(songId);
       return {
         success: songId != false && song.id != false,

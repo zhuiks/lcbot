@@ -19,7 +19,7 @@ class Songs {
         return r.SongId;
     }
 
-    async saveSong(song) {
+    async updateSong(song) {
         const db = await getDb();
         const r = await db.update(song);
         return r.SongId;

@@ -22,6 +22,7 @@ class Database {
                 params = {
                     endpoint: 'http://localhost:8000',
                     region: 'localhost',
+                    logger: console,
                 };
             }
 
@@ -67,7 +68,6 @@ class Database {
             attrVal[':title'] = title;
         }
         if (data.slides) {
-            console.log(data.slides);
             if(data.slides.length) {
                 updateExpr.push('#Slides = :slides');
                 attrNames['#Slides'] = 'Slides';
@@ -103,7 +103,6 @@ class Database {
         if(updateExpr.length === 0) {
             return null;
         }
-        console.log(updateExpr);
         return _promisify(callback =>
             this.dynamoDb.update({
                 TableName: process.env.DYNAMODB_TABLE,
@@ -129,7 +128,6 @@ class Database {
                 ExpressionAttributeValues: { ':lang': 'ar' }
             }, callback))
             .then((result) => {
-                console.log(result)
                 if (!result.Items) {
                     return [];
                 }
