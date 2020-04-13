@@ -6,7 +6,7 @@ import { ExecutionResult, MutationResult } from '@apollo/react-common';
 
 export const UPDATE_SONG = gql`
   mutation updateSong($songId: ID!, $title: String!, $slides: [SlideInput], $links: [String]) {
-    updateSong(id: $songId, title: $title, text: $slides, links: $links) {
+    updateSong(id: $songId, title: $title, slides: $slides, links: $links) {
       success
       message
       song {

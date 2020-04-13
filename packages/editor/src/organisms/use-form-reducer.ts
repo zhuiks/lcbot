@@ -1,14 +1,29 @@
 import { useReducer } from 'react';
-import { useUpdateSong } from '../molecules/submit';
-import { IChordSlide, ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
+import { useUpdateSong } from '../molecules/use-update-song';
+import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
+import { SongDetails_song as ISongData } from '../__generated__/SongDetails';
 
-export interface ISongData {
-    id: string;
-    title?: string | null;
-    text?: (string | null)[];
-    slides?: IChordSlide[];
-    links?: (string | null)[] | null;
+const nullToUndefined = (value: any): any => {
+    if (Array.isArray(value)) {
+        return value.map(nullToUndefined)
+    }
+    if (value === null) {
+        return undefined
+    }
+    if (typeof value === 'object') {
+        return Object.fromEntries(
+            Object.entries(value).map(([key, val]) => [key, nullToUndefined(val)])
+        );
+    }
+    return value
 }
+// export interface ISongData {
+//     id: string;
+//     title?: string | null;
+//     text?: (string | null)[];
+//     slides?: (IChordSlide[] | null) | null;
+//     links?: (string | null)[] | null;
+// }
 type UpdateSongCb = (data: any) => any;
 
 interface FormEditState {
@@ -26,7 +41,7 @@ interface InitData {
 }
 export const initForm = ({ songData, updateSong }: InitData): FormEditState => {
     const chordSlides = songData.slides ?
-        songData.slides.map(slide => new ChordSlide(slide)) : [];
+        songData.slides.map(slide => new ChordSlide(nullToUndefined(slide))) : [];
     return {
         songId: songData.id,
         songTitle: songData.title || '',
@@ -57,7 +72,7 @@ const formReducer = (state: FormEditState, action: FormAction): FormEditState =>
             };
         case 'CHORDS_EDIT':
             const editSlide = action.payload;
-            if(editSlide===state.editSlide || !state.slides[editSlide]) {
+            if (editSlide === state.editSlide || !state.slides[editSlide]) {
                 return state;
             }
             return {
@@ -67,7 +82,7 @@ const formReducer = (state: FormEditState, action: FormAction): FormEditState =>
             };
         case 'CHORDS_UPDATE':
             console.log('form reducer: dispatch CHORDS_UPDATE');
-            if(!state.slides[state.editSlide]) {
+            if (!state.slides[state.editSlide]) {
                 return state;
             }
             const slide = new ChordSlide({
@@ -81,7 +96,7 @@ const formReducer = (state: FormEditState, action: FormAction): FormEditState =>
                 slides: [
                     ...state.slides.slice(0, state.editSlide),
                     slide,
-                    ...state.slides.slice(state.editSlide+1),
+                    ...state.slides.slice(state.editSlide + 1),
                 ],
                 editSlide: -1,
             };

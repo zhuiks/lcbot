@@ -9,7 +9,7 @@ import SongLyrics from '../atoms/song-lyrics';
 import PageHeader from '../atoms/page-header';
 import StepActions from '../molecules/step-actions'
 import SongConfirm from '../molecules/song-confirm';
-import { useUpdateSong } from '../molecules/submit';
+import { useUpdateSong } from '../molecules/use-update-song';
 import SubmitResult from './submit-result';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';

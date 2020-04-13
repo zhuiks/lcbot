@@ -17,6 +17,13 @@ export const GET_SONG_DETAILS = gql`
         type
         name
         lines
+        chords {
+          root
+          quality
+          type
+          bass
+          text
+        }
       }
       links
     }
@@ -32,20 +39,26 @@ const Song: React.FC = () => {
 
   const { songId } = useParams(); //https://reacttraining.com/react-router/web/api/Hooks/useparams
 
-  const {loading, error, data} = useQuery<
+  const { loading, error, data } = useQuery<
     QueryTypes.SongDetails,
     Partial<QueryTypes.SongDetailsVariables>
   >(GET_SONG_DETAILS,
     { variables: { songId } }
   );
 
-  if (loading) return <Loading />;
+  if (loading) return <Loading />
+
+
 
   return (
     <>
       {error &&
         <AppError err={error} />}
-      <FormEdit songData={data && data.song || {id:'0'}} />
+      {data && data.song ?
+        <FormEdit songData={data.song} />
+        :
+        <div>No any data :(</div>
+      }
     </>
   );
 }

@@ -31,7 +31,7 @@ const link = ApolloLink.from([
     if (networkError) console.log(`[Network error]: ${networkError}`);
   }),
   new HttpLink({
-    uri: process.env.REACT_APP_SERVER_URL || 'http://localhost:3000/query/'
+    uri: process.env.REACT_APP_SERVER_URL || 'http://localhost:3000/edit/'
   }),
 ]);
 
