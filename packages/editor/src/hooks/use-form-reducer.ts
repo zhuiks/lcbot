@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import { useUpdateSong } from './use-update-song';
-import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
+import { ChordSlide, Chord } from '@bit/zhuiks.lcbot.core.chords';
 import { SongDetails_song as ISongData } from '../__generated__/SongDetails';
 
 const nullToUndefined = (value: any): any => {
@@ -17,6 +17,27 @@ const nullToUndefined = (value: any): any => {
     }
     return value
 }
+
+const slideCleaner = (slides: ChordSlide[]) => (
+    slides.map((slide: ChordSlide) => {
+        const cleanChords = slide.chords.find((chordsLine) => (
+            chordsLine.length && (chordsLine.length > 1 || chordsLine[0].root !== "_")
+        ))
+            ? slide.chords.map(chordsLine => chordsLine.map((chord: Chord) => (
+                Object.fromEntries(
+                    Object.entries(chord).map(([key, val]) =>
+                        [key, val === '' ? undefined : val])
+                )
+            )))
+            : null;
+        return {
+            ...slide,
+            name: slide.name === '' ? undefined : slide.name,
+            chords: cleanChords,
+        }
+    })
+)
+
 // export interface ISongData {
 //     id: string;
 //     title?: string | null;
@@ -105,7 +126,7 @@ const formReducer = (state: FormEditState, action: FormAction): FormEditState =>
                 state.updateSong({
                     songId: state.songId,
                     title: state.songTitle,
-                    slides: state.slides,
+                    slides: slideCleaner(state.slides),
                     links: []
                 });
             }

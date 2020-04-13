@@ -11,29 +11,42 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './theme';
 import Pages from './pages';
+import { OperationDefinitionNode } from "graphql";
+import { getMainDefinition } from "apollo-utilities";
 
+const serverLink = new HttpLink({
+  uri: process.env.REACT_APP_SERVER_URL || 'http://localhost:3000/edit/'
+});
 
-const link = ApolloLink.from([
-  onError(({ graphQLErrors, networkError }) => {
-    if (graphQLErrors)
-      graphQLErrors.forEach(({ message, locations, path }) => {
-        let locationStr = '';
-        if (locations) {
-          locations.forEach(el => {
-            locationStr += `#${el.line}: ${el.column}`;
-          });
-        }
-        console.log(
-          `[GraphQL error]: Message: ${message}, Path: ${path} ${locationStr}`,
-        );
-      });
+const cleanTypenameLink = new ApolloLink((operation, forward) => {
+  const omitTypename = (key: any, value: any) =>
+    key === "__typename" ? undefined : value;
 
-    if (networkError) console.log(`[Network error]: ${networkError}`);
-  }),
-  new HttpLink({
-    uri: process.env.REACT_APP_SERVER_URL || 'http://localhost:3000/edit/'
-  }),
-]);
+  const def = getMainDefinition(operation.query);
+  if (def && (def as OperationDefinitionNode).operation === "mutation") {
+    operation.variables = JSON.parse(JSON.stringify(operation.variables), omitTypename);
+  }
+  return forward ? forward(operation) : null;
+});
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.forEach(({ message, locations, path }) => {
+      let locationStr = '';
+      if (locations) {
+        locations.forEach(el => {
+          locationStr += `#${el.line}: ${el.column}`;
+        });
+      }
+      console.log(
+        `[GraphQL error]: Message: ${message}, Path: ${path} ${locationStr}`,
+      );
+    });
+
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
+
+const link = ApolloLink.from([errorLink, cleanTypenameLink, serverLink,]);
 
 const cache = new InMemoryCache();
 
