@@ -45,7 +45,7 @@ const ChordsLine: React.FC<ChordsLineProps> = ({ chords }) => {
             {chords.map((chord: Chord, i: number) => (
                 <ChordContainer key={i} paddingTop={CHORDS_PADDING}>
                     <ChordHolder>
-                        {chord.root}
+                        {chord.root !== '_' && chord.root}
                         {chord.quality === 'm' ? chord.quality : <ChordSub>{chord.quality}</ChordSub>}
                         <ChordSup>{chord.type}</ChordSup>
                     </ChordHolder>

@@ -52,7 +52,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "zhuiks.lcbot/org/chords-editor@0.0.6": {
+    "zhuiks.lcbot/org/chords-editor@0.0.7": {
         "files": [
             {
                 "relativePath": "packages/editor/src/organisms/chords-editor/__tests__/__snapshots__/chord-editor.js.snap",
@@ -130,7 +130,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "zhuiks.lcbot/org/song-slide@0.0.6": {
+    "zhuiks.lcbot/org/song-slide@0.0.7": {
         "files": [
             {
                 "relativePath": "packages/webapp/src/components/organisms/song-slide/chords-line.tsx",

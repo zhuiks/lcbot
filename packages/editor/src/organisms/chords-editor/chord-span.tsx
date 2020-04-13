@@ -43,7 +43,7 @@ const ChordSpan: React.FC<ChordSpanProps> = ({ chord, paddingTop, children }) =>
     return (
         <ChordContainer paddingTop={paddingTop}>
             <ChordHolder>
-                {chord.root}
+                {chord.root !== '_' && chord.root}
                 {chord.quality === 'm' ? chord.quality : <ChordSub>{chord.quality}</ChordSub>}
                 <ChordSup>{chord.type}</ChordSup>
             </ChordHolder>
