@@ -1088,10 +1088,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bit/zhuiks.lcbot.core.chords@0.0.4", "@bit/zhuiks.lcbot.core.chords@^0.0.4":
-  version "0.0.4"
-  resolved "https://node.bit.dev/zhuiks.lcbot.core.chords/-/zhuiks.lcbot.core.chords-0.0.4.tgz#cc3f159fb0ccab8a30410fc6446924e5f1dad77a"
-  integrity sha1-zD8Vn7DMq4owQQ/GRGkk5fHa13o=
+"@bit/zhuiks.lcbot.core.chords@0.0.5", "@bit/zhuiks.lcbot.core.chords@^0.0.5":
+  version "0.0.5"
+  resolved "https://node.bit.dev/zhuiks.lcbot.core.chords/-/zhuiks.lcbot.core.chords-0.0.5.tgz#29ae391e90570d23442d526bdeab530798e5d236"
+  integrity sha1-Ka45HpBXDSNELVJr3qtTB5jl0jY=
   dependencies:
     "@bit/zhuiks.lcbot.core.types" "0.0.2"
 
@@ -1107,12 +1107,12 @@
   resolved "https://node.bit.dev/zhuiks.lcbot.core.types/-/zhuiks.lcbot.core.types-0.0.2.tgz#4d0e8bb6c70e0036f49549322a10bcf5f03eea82"
   integrity sha1-TQ6LtscOADb0lUkyKhC89fA+6oI=
 
-"@bit/zhuiks.lcbot.org.song-slide@^0.0.7":
-  version "0.0.7"
-  resolved "https://node.bit.dev/zhuiks.lcbot.org.song-slide/-/zhuiks.lcbot.org.song-slide-0.0.7.tgz#f49bfc4fc99b5ba51b882528ae6d12d655dacca4"
-  integrity sha1-9Jv8T8mbW6UbiCUorm0S1lXazKQ=
+"@bit/zhuiks.lcbot.org.song-slide@^0.0.9":
+  version "0.0.9"
+  resolved "https://node.bit.dev/zhuiks.lcbot.org.song-slide/-/zhuiks.lcbot.org.song-slide-0.0.9.tgz#c79b3bb90e5b99c0ad4f9bac2ebf8c74ec2cb153"
+  integrity sha1-x5s7uQ5bmcCtT5usLr+MdOwssVM=
   dependencies:
-    "@bit/zhuiks.lcbot.core.chords" "0.0.4"
+    "@bit/zhuiks.lcbot.core.chords" "0.0.5"
     "@bit/zhuiks.lcbot.core.types" "0.0.2"
     styled-components "5.0.1"
 

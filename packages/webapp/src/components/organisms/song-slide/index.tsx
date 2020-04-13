@@ -39,7 +39,7 @@ interface SongSlideProps {
 
 const SongSlide: React.FC<SongSlideProps> = ({ slide, displayChords = false }) => {
   const toDisplayChords = displayChords && slide.chords && slide.chords.find((chordsLine) => (
-    chordsLine.length && (chordsLine.length > 1 || chordsLine[0].root !== " ")
+    chordsLine.length && (chordsLine.length > 1 || chordsLine[0].root !== "_")
   )) !== undefined
   return (
     <Slide type={slide.type}>

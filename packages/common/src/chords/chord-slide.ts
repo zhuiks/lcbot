@@ -1,12 +1,6 @@
 import { SlideType } from "../types";
 import Chord from "./chord";
-
-export interface IChordSlide {
-    type?: SlideType;
-    name?: string;
-    lines?: string[];
-    chords?: Chord[][];
-}
+import { IChordSlide } from ".";
 
 class ChordSlide implements IChordSlide {
     readonly type: SlideType;
