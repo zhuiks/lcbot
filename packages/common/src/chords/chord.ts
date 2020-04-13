@@ -1,4 +1,4 @@
-export const REST_CHAR = ' ';
+export const EMPTY_CHAR = '_';
 
 export interface IChord {
     root?: string;
@@ -14,7 +14,7 @@ class Chord implements IChord {
     readonly type: string;
     readonly bass: string;
     readonly text: string;
-    constructor({ root = REST_CHAR, quality = '', type = '', bass = '', text = ' ' }: IChord) {
+    constructor({ root = EMPTY_CHAR, quality = '', type = '', bass = '', text = ' ' }: IChord) {
         this.root = root;
         this.quality = quality;
         this.type = type;

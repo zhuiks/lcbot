@@ -1,5 +1,5 @@
 import { SlideType } from "../types";
-import Chord, { IChord, REST_CHAR } from "./chord";
+import Chord from "./chord";
 
 export interface IChordSlide {
     type?: SlideType;

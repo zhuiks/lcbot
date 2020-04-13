@@ -39,7 +39,7 @@ describe('Chord Slide', () => {
             expect(chordLine.size).toEqual(1);
             const chord = chordLine[0];
             expect(chord).toHaveProperty('bass');
-            expect(chord.root).toEqual(' ');
+            expect(chord.root).toEqual('_');
             expect(chord.text.length).toEqual(slide.lines[i].length);
         }
     })

@@ -1,15 +1,9 @@
-import Chord, { IChord, REST_CHAR } from "./chord";
+import Chord, { IChord, EMPTY_CHAR } from "./chord";
 import ChordSlide from "./chord-slide";
 import { ChordActionType } from "../types";
 
 // https://www.w3.org/TR/2018/WD-alreq-20180222/#dfn-zwj
 const ZWJ = '\u200D';
-
-interface IChordArgs {
-    line: number;
-    pos: number;
-    chordData: IChord;
-}
 
 const _getChordIndex = (slide: ChordSlide, line: number, pos: number) => {
     let charsLength = 0;
@@ -37,7 +31,7 @@ const _addChord = (type: string, chord: IChord) => {
 
 const _modChord = (type: string, chord: IChord) => {
     let chordData = {};
-    if (chord.root === REST_CHAR) {
+    if (chord.root === EMPTY_CHAR) {
         return false;
     }
     switch (type) {
@@ -71,7 +65,7 @@ const _modChord = (type: string, chord: IChord) => {
 }
 
 const _optChord = (type: string, chord: IChord) => {
-    if (chord.root === REST_CHAR) {
+    if (chord.root === EMPTY_CHAR) {
         return false;
     }
     let chordType = '';
@@ -119,7 +113,7 @@ const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, pos
             } else if (chord.quality) {
                 chordData = { quality: '' };
             } else if (chordIndex === 0) {
-                chordData = { root: REST_CHAR };
+                chordData = { root: EMPTY_CHAR };
             } else {
                 const prevChord = chordsLine[chordIndex - 1];
                 chordData = {
