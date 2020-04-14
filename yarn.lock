@@ -8463,7 +8463,7 @@ download@^7.1.0:
     p-event "^2.1.0"
     pify "^3.0.0"
 
-draft-js@^0.11.4:
+draft-js@^0.11.4, draft-js@^0.11.5:
   version "0.11.5"
   resolved "https://registry.yarnpkg.com/draft-js/-/draft-js-0.11.5.tgz#b5dd30c30c9316801ab9766d45a8f88b1cd43b2c"
   integrity sha512-RlHcoDtblwCD6Bw2ay3D0dTLA6lH8862OcdJrHGnYrY5JjlitzSzGvGQwqqumVvbGUNDSZLD3FyNpSs4z5WIUg==
