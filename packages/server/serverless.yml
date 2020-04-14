@@ -25,9 +25,8 @@ provider:
 
 # you can add packaging information here
 package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
+  include:
+    - node_modules/**
   exclude:
     - .env
     - .gitignore
