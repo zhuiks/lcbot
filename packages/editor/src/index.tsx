@@ -13,6 +13,7 @@ import theme from './theme';
 import Pages from './pages';
 import { OperationDefinitionNode } from "graphql";
 import { getMainDefinition } from "apollo-utilities";
+import RTL from './components/atoms/rtl';
 
 const serverLink = new HttpLink({
   uri: process.env.REACT_APP_SERVER_URL || 'http://localhost:3000/edit/'
@@ -58,8 +59,10 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Pages />
+      <RTL>
+        <CssBaseline />
+        <Pages />
+      </RTL>
     </ThemeProvider>
   </ApolloProvider>,
   document.getElementById('root')
