@@ -4,7 +4,7 @@ const serverEdit = require('./server-edit');
 module.exports.query = (event, context, callback) => {
   const handler = serverQuery.createHandler({
     cors: {
-      origin: true,
+      origin: '*',
       credentials: true,
     },
   });
@@ -20,7 +20,7 @@ module.exports.query = (event, context, callback) => {
 module.exports.edit = (event, context, callback) => {
   const handler = serverEdit.createHandler({
     cors: {
-      origin: true,
+      origin: '*',
       credentials: true,
     },
   });
