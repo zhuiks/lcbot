@@ -3,6 +3,8 @@ import strComparator from './str-comparator';
 import { IChordSlide, ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import { SlideType } from '@bit/zhuiks.lcbot.core.types';
 
+/* eslint no-useless-concat: "off" */
+
 const verse = '[0-9]+';
 const chorus = '(?:ال)?' + 'قرار';
 const chorusR = new RegExp(chorus);
