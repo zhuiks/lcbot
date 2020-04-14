@@ -33,6 +33,7 @@ package:
     - .gitignore
     - .git/**
     - .gitlab-ci.yml
+    - .dynamodb	
     - src/__tests__/**
 
 functions:

@@ -18,7 +18,7 @@ deploy-server:
   before_script:
 #    - npm config set prefix /usr/local
 #    - yarn install -g serverless
-    - cd packages/server && yarn install
+    - cd packages/server && npm install
   script:
     - yarn run deploy
   environment: production
