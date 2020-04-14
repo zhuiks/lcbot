@@ -4,7 +4,7 @@ import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import { SongDetails_song as ISongData } from '../__generated__/SongDetails';
 import { nullToUndefined } from '../utils/null-undefined';
 import slideCleaner from '../utils/slide-cleaner';
-import { updateSongVariables } from '../__generated__/updateSong';
+// import { updateSongVariables } from '../__generated__/updateSong';
 
 // type UpdateSongCb = (data: updateSongVariables) => any;
 type UpdateSongCb = (data: any) => any;

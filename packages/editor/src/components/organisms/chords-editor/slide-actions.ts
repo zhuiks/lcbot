@@ -2,11 +2,11 @@ import { Chord, ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 import { ContentState, SelectionState, Modifier } from "draft-js";
 import { Map } from "immutable";
 
-const getCharacterLength = (str: string) => {
-    // The string iterator that is used here iterates over characters,
-    //  not mere code units
-    return [...str].length;
-}
+// const getCharacterLength = (str: string) => {
+//     // The string iterator that is used here iterates over characters,
+//     //  not mere code units
+//     return [...str].length;
+// }
 
 
 export const applyChord = (

@@ -52,7 +52,7 @@ const addNewSlide = (name: string = '') => {
 }
 
 const addCurrentSlideLine = (str: string) => {
-    str = str.trim().replace(/^\( */, '|:').replace(/ *\) *[x|\*]? *(\d)?$/, ':|');
+    str = str.trim().replace(/^\( */, '|:').replace(/ *\) *[x|*]? *(\d)?$/, ':|');
     if (str.length) {
         currentSlide.lines && currentSlide.lines.push(str);
     }
