@@ -11,16 +11,16 @@ deploy-server:
     refs:
       - master
     changes:
-      - server/**/*
+      - packages/server/**/*
   cache:
     paths:
-      - server/node_modules/
+      - node_modules/
   before_script:
-    - npm config set prefix /usr/local
-    - npm install -g serverless
-    - cd server && npm install
+#    - npm config set prefix /usr/local
+#    - yarn install -g serverless
+    - yarn install && cd packages/server
   script:
-    - npm run deploy
+    - yarn run deploy
   environment: production
 
 pages:
@@ -29,14 +29,14 @@ pages:
 #     refs:
 #       - master
     changes:
-      - editor/**/*
+      - packages/editor/**/*
   cache:
     paths:
-      - editor/node_modules/
+      - node_modules/
   script:
-    - cd editor && yarn install
+    - yarn install && cd packages/editor
     - yarn run build-storybook
-    - mv -v ./storybook-static/ ../public 
+    - mv -v ./storybook-static/ ../../public 
   artifacts:
     paths:
       - public

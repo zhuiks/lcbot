@@ -1,0 +1,263 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChordEditor renders correctly 1`] = `
+<div
+  className="DraftEditor-root"
+>
+  <div
+    className="DraftEditor-editorContainer"
+  >
+    <div
+      aria-describedby="placeholder-2fe8i"
+      aria-expanded={null}
+      className="notranslate public-DraftEditor-content"
+      contentEditable={true}
+      onBeforeInput={[Function]}
+      onBlur={[Function]}
+      onCompositionEnd={[Function]}
+      onCompositionStart={[Function]}
+      onCopy={[Function]}
+      onCut={[Function]}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+      onFocus={[Function]}
+      onInput={[Function]}
+      onKeyDown={[Function]}
+      onKeyPress={[Function]}
+      onKeyUp={[Function]}
+      onMouseUp={[Function]}
+      onPaste={[Function]}
+      onSelect={[Function]}
+      role="textbox"
+      spellCheck={false}
+      style={
+        Object {
+          "WebkitUserSelect": "text",
+          "outline": "none",
+          "userSelect": "text",
+          "whiteSpace": "pre-wrap",
+          "wordWrap": "break-word",
+        }
+      }
+      suppressContentEditableWarning={true}
+    >
+      <div
+        data-contents="true"
+      >
+        <div
+          className=""
+          contentEditable={true}
+          data-block={true}
+          data-editor="2fe8i"
+          data-offset-key="2mcob-0-0"
+          suppressContentEditableWarning={true}
+        >
+          <div
+            className="sc-AxgMl flrbls"
+          >
+            <div
+              className="sc-AxhUy coNlgA chords"
+            >
+              <div
+                className="sc-AxjAm iLzuZh"
+              >
+                <span
+                  className="sc-AxirZ dYYFxI"
+                >
+                   
+                  <sub
+                    className="sc-AxhCb efxBNo"
+                  >
+                    
+                  </sub>
+                  <sup
+                    className="sc-AxiKw iSXCHE"
+                  >
+                    
+                  </sup>
+                </span>
+                Усі діла Твої звеличують Тебе
+              </div>
+            </div>
+            <div
+              className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
+              data-offset-key="2mcob-0-0"
+            >
+              <span
+                data-offset-key="2mcob-0-0"
+                style={Object {}}
+              >
+                <span
+                  data-text="true"
+                >
+                  Усі діла Твої звеличують Тебе
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          contentEditable={true}
+          data-block={true}
+          data-editor="2fe8i"
+          data-offset-key="7e6qn-0-0"
+          suppressContentEditableWarning={true}
+        >
+          <div
+            className="sc-AxgMl flrbls"
+          >
+            <div
+              className="sc-AxhUy coNlgA chords"
+            >
+              <div
+                className="sc-AxjAm iLzuZh"
+              >
+                <span
+                  className="sc-AxirZ dYYFxI"
+                >
+                   
+                  <sub
+                    className="sc-AxhCb efxBNo"
+                  >
+                    
+                  </sub>
+                  <sup
+                    className="sc-AxiKw iSXCHE"
+                  >
+                    
+                  </sup>
+                </span>
+                Усе для Тебе і Тобою все живе!
+              </div>
+            </div>
+            <div
+              className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
+              data-offset-key="7e6qn-0-0"
+            >
+              <span
+                data-offset-key="7e6qn-0-0"
+                style={Object {}}
+              >
+                <span
+                  data-text="true"
+                >
+                  Усе для Тебе і Тобою все живе!
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          contentEditable={true}
+          data-block={true}
+          data-editor="2fe8i"
+          data-offset-key="2pk1t-0-0"
+          suppressContentEditableWarning={true}
+        >
+          <div
+            className="sc-AxgMl flrbls"
+          >
+            <div
+              className="sc-AxhUy coNlgA chords"
+            >
+              <div
+                className="sc-AxjAm iLzuZh"
+              >
+                <span
+                  className="sc-AxirZ dYYFxI"
+                >
+                   
+                  <sub
+                    className="sc-AxhCb efxBNo"
+                  >
+                    
+                  </sub>
+                  <sup
+                    className="sc-AxiKw iSXCHE"
+                  >
+                    
+                  </sup>
+                </span>
+                Усі ми створені в Тобі знайти усе
+              </div>
+            </div>
+            <div
+              className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
+              data-offset-key="2pk1t-0-0"
+            >
+              <span
+                data-offset-key="2pk1t-0-0"
+                style={Object {}}
+              >
+                <span
+                  data-text="true"
+                >
+                  Усі ми створені в Тобі знайти усе
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className=""
+          contentEditable={true}
+          data-block={true}
+          data-editor="2fe8i"
+          data-offset-key="csut2-0-0"
+          suppressContentEditableWarning={true}
+        >
+          <div
+            className="sc-AxgMl flrbls"
+          >
+            <div
+              className="sc-AxhUy coNlgA chords"
+            >
+              <div
+                className="sc-AxjAm iLzuZh"
+              >
+                <span
+                  className="sc-AxirZ dYYFxI"
+                >
+                   
+                  <sub
+                    className="sc-AxhCb efxBNo"
+                  >
+                    
+                  </sub>
+                  <sup
+                    className="sc-AxiKw iSXCHE"
+                  >
+                    
+                  </sup>
+                </span>
+                Боже в Тобі усе!
+              </div>
+            </div>
+            <div
+              className="public-DraftStyleDefault-block public-DraftStyleDefault-ltr"
+              data-offset-key="csut2-0-0"
+            >
+              <span
+                data-offset-key="csut2-0-0"
+                style={Object {}}
+              >
+                <span
+                  data-text="true"
+                >
+                  Боже в Тобі усе!
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

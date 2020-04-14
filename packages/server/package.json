@@ -1,0 +1,27 @@
+{
+  "name": "@lcbot/server",
+  "version": "1.1.0",
+  "description": "",
+  "main": "src/handler.js",
+  "scripts": {
+    "test": "jest",
+    "start": "env NODE_ENV=development serverless offline start --noTimeout",
+    "deploy": "serverless deploy --verbose"
+  },
+  "author": "zhuiks",
+  "license": "GNU AGPLv3",
+  "dependencies": {
+    "apollo-server-lambda": "^2.9.16",
+    "aws-sdk": "^2.610.0",
+    "graphql": "^14.6.0"
+  },
+  "devDependencies": {
+    "apollo-link": "*",
+    "apollo-link-http": "*",
+    "dotenv": "^8.2.0",
+    "jest": "*",
+    "serverless": "^1.62.0",
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-offline": "^5.12.1"
+  }
+}

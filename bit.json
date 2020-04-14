@@ -1,22 +1,30 @@
 {
     "env": {
-        "compiler": "bit.envs/compilers/react-typescript@3.1.44",
+        "compiler": "bit.envs/compilers/react-typescript@3.1.51",
         "tester": "bit.envs/testers/jest@22.4.3"
     },
+    "componentsDefaultDirectory": "packages/editor/src/components/{name}",
+    "packageManager": "yarn",
+    "useWorkspaces": true,
     "resolveModules": {
         "modulesDirectories": [
-            "editor/node_modules",
-            "webapp/node_modules"
+            "node_modules",
+            "packages/common/node_modules",
+            "packages/editor/node_modules",
+            "packages/webapp/node_modules"
         ]
     },
     "overrides": {
-        "*": {
-            "peerDependencies": {
-                "react": "+",
-                "react-dom": "+"
+        "core/*": {
+            "env": {
+                "compiler": "bit.envs/compilers/typescript@3.1.45"
+            }
+        },
+        "org/*": {
+            "dependencies": {
+                "react": "-",
+                "react-dom": "-"
             }
         }
-    },
-    "componentsDefaultDirectory": "editor/src/components/{name}",
-    "packageManager": "npm"
+    }
 }
