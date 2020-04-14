@@ -7,7 +7,7 @@ const NewSong: React.FC = () => {
   const songId = generateKey('songId');
 
   return (
-    <FormAdd songData={{id: songId}} />
+    <FormAdd songId={songId} />
   );
 };
 
