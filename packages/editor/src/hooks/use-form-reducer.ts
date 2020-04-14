@@ -1,50 +1,10 @@
 import { useReducer } from 'react';
-import { useUpdateSong } from './use-update-song';
-import { ChordSlide, Chord } from '@bit/zhuiks.lcbot.core.chords';
+import useUpdateSong from './use-update-song';
+import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import { SongDetails_song as ISongData } from '../__generated__/SongDetails';
+import { nullToUndefined } from '../utils/null-undefined';
+import slideCleaner from '../utils/slide-cleaner';
 
-const nullToUndefined = (value: any): any => {
-    if (Array.isArray(value)) {
-        return value.map(nullToUndefined)
-    }
-    if (value === null) {
-        return undefined
-    }
-    if (typeof value === 'object') {
-        return Object.fromEntries(
-            Object.entries(value).map(([key, val]) => [key, nullToUndefined(val)])
-        );
-    }
-    return value
-}
-
-const slideCleaner = (slides: ChordSlide[]) => (
-    slides.map((slide: ChordSlide) => {
-        const cleanChords = slide.chords.find((chordsLine) => (
-            chordsLine.length && (chordsLine.length > 1 || chordsLine[0].root !== "_")
-        ))
-            ? slide.chords.map(chordsLine => chordsLine.map((chord: Chord) => (
-                Object.fromEntries(
-                    Object.entries(chord).map(([key, val]) =>
-                        [key, val === '' ? undefined : val])
-                )
-            )))
-            : null;
-        return {
-            ...slide,
-            name: slide.name === '' ? undefined : slide.name,
-            chords: cleanChords,
-        }
-    })
-)
-
-// export interface ISongData {
-//     id: string;
-//     title?: string | null;
-//     text?: (string | null)[];
-//     slides?: (IChordSlide[] | null) | null;
-//     links?: (string | null)[] | null;
-// }
 type UpdateSongCb = (data: any) => any;
 
 interface FormEditState {

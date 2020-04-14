@@ -23,7 +23,7 @@ interface UpdateSongResult {
   mutationResult: MutationResult<MutationTypes.updateSong>
 }
 
-export const useUpdateSong: () => UpdateSongResult = () => {
+const useUpdateSong: () => UpdateSongResult = () => {
   const [updateSongMutation, mutationResult] = useMutation<MutationTypes.updateSong, MutationTypes.updateSongVariables>(UPDATE_SONG, {
     errorPolicy: 'ignore',
     onError: (err) => {
@@ -39,3 +39,5 @@ export const useUpdateSong: () => UpdateSongResult = () => {
     mutationResult
   }
 };
+
+export default useUpdateSong;
