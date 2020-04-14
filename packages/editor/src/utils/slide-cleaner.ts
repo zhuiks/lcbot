@@ -1,5 +1,7 @@
 import { ChordSlide, Chord } from "@bit/zhuiks.lcbot.core.chords";
 
+// type Chords = Chord[][] | null;
+
 const slideCleaner = (slides: ChordSlide[]) => (
   slides.map((slide: ChordSlide) => {
       const cleanChords = slide.chords.find((chordsLine) => (
@@ -8,7 +10,7 @@ const slideCleaner = (slides: ChordSlide[]) => (
           ? slide.chords.map(chordsLine => chordsLine.map((chord: Chord) => (
               Object.fromEntries(
                   Object.entries(chord).map(([key, val]) =>
-                      [key, val === '' ? undefined : val])
+                      [key, key!== 'root' && key !== 'text' && val === '' ? undefined : val])
               )
           )))
           : null;
