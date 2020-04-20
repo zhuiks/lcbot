@@ -15,6 +15,12 @@ const useStyles = makeStyles((theme: Theme) =>
             borderBottom: "2px dotted " + theme.palette.background.default,
             padding: theme.spacing(3, 2),
         },
+        active: {
+            zIndex: 10,
+            paddingLeft: 0,
+            paddingRight: 0,
+            fontSize: '1.2em',
+        },
         chordEditing: {
             padding: theme.spacing(2),
             border: "2px solid " + theme.palette.primary.main,
@@ -39,7 +45,7 @@ const GridSlideMap: React.FC<GridSlideProps> = ({ slides, editSlide, editSlideNa
     return (
         <>
             {slides.map((slide: ChordSlide, i: number) => (
-                <Grid item key={i}>
+                <Grid item key={i} className={i === editSlide ? ' '+classes.active : ''}>
                     <Paper
                         square
                         className={classes.root}

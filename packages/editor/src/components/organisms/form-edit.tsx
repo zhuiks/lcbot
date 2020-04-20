@@ -1,6 +1,6 @@
 import React from 'react';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import { Grid, Chip, Paper, Button } from '@material-ui/core';
+import { Grid, Chip, Paper, Button, Backdrop } from '@material-ui/core';
 import Loading from '../atoms/loading';
 import AppError from '../molecules/error';
 
@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     button: {
 
+    },
+    backdrop: {
+      zIndex: 0,
     }
   }));
 
@@ -44,6 +47,7 @@ const FormEdit: React.FC<EditFormProps> = ({ songData }) => {
 
   const classes = useStyles();
   const { state, dispatch, mutationResult } = useFormReducer(songData);
+  const editingSlide = state.editSlide >= 0;
 
   if (mutationResult.loading) return <Loading />;
   return (
@@ -89,6 +93,7 @@ const FormEdit: React.FC<EditFormProps> = ({ songData }) => {
                   className={classes.button}
                   variant="contained"
                   color="secondary"
+                  disabled={editingSlide}
                   onClick={() => dispatch({ type: 'SONG_SAVE' })}
                 >
                   Save
@@ -98,6 +103,7 @@ const FormEdit: React.FC<EditFormProps> = ({ songData }) => {
           </Grid>
         )
       }
+      <Backdrop className={classes.backdrop} open={editingSlide} />
     </>
   )
 };
