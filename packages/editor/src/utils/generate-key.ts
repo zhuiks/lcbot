@@ -9,11 +9,11 @@ const seenKeys = {
 const MULTIPLIER = Math.pow(2, 24);
 
 const generateKey = (type: 'blockId' | 'songId' = 'blockId', usedValues = {}) => {
-    let key = 'none';
+    let key;
     seenKeys[type] = { ...seenKeys[type], ...usedValues };
     if(type === 'songId') {
-        while (seenKeys[type].hasOwnProperty(key)) {
-            key = stringGen({ length: 5, type: 'url-safe' });
+        while (key === undefined || seenKeys[type].hasOwnProperty(key)) {
+            key = stringGen({ length: 6, type: 'distinguishable' }).toLowerCase();
         }
     } else {
             while (key === undefined || seenKeys[type].hasOwnProperty(key) || !isNaN(+key)) {
