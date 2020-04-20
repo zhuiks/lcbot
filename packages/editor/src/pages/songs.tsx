@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { Grid } from '@material-ui/core';
 
 import Loading from '../components/atoms/loading';
+import AppError from '../components/molecules/error';
 import ButtonAdd from '../components/atoms/button-add';
 import { SongRow, SearchField } from '../components';
 import * as GetSongListTypes from '../__generated__/GetSongList';
@@ -31,7 +32,7 @@ const Songs: React.FC<SongsProps> = () => {
   >(GET_SONGS);
 
   if (loading) return <Loading />;
-  if (error) return <p>ERROR</p>;
+  if (error) return <AppError err={error} />;
   if (!data) return <p>Not found</p>;
 
   return (
