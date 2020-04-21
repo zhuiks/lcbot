@@ -14,6 +14,7 @@ const BlockContainer = styled.div`
     & > .public-DraftStyleDefault-block {
         padding-top: ${(CHORDS_PADDING).toString() + 'em'};
         position: relative;
+        caret-color: red;
     }
 `;
 
@@ -28,7 +29,7 @@ export const ChordsBlock: React.FC<ChordsBlockProps> = (props) => {
     const chords = blockData.has('chords') ? blockData.get('chords') : [];
     return (
         <BlockContainer>
-            <ChordsLine className="chords">
+            <ChordsLine className="chords" contentEditable={false}>
                 { chords.map((chord: Chord, i: number) => (
                     <ChordSpan key={i} chord={chord} paddingTop={CHORDS_PADDING} />
                 ))
