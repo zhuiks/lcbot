@@ -5,9 +5,12 @@ import { ChordActionType } from "../types";
 // https://www.w3.org/TR/2018/WD-alreq-20180222/#dfn-zwj
 const ZWJ = '\u200D';
 
-const _getChordIndex = (slide: ChordSlide, line: number, pos: number) => {
+export const _getChordIndex = (slide: ChordSlide, line: number, pos: number) => {
     let charsLength = 0;
-    const chordIndex = slide.chords[line].findIndex((chord: Chord) => {
+    const lineLength = [...slide.lines[line]].length;
+    pos = pos >= lineLength ? lineLength - 1 : pos; 
+    const chordsLine = slide.chords[line];
+    const chordIndex = chordsLine.findIndex((chord: Chord) => {
         charsLength += [...chord.text].length;
         if (chord.text.startsWith(ZWJ)) {
             pos += 2;

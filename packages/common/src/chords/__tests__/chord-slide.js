@@ -1,8 +1,8 @@
 import { SlideType } from '../../types';
-import ChordSlide from '../chord-slide';
+import ChordSlide, { _getChordIndex } from '../chord-slide';
 import chordAction from '../chord-action'
 
-const mockSlide = {
+export const mockSlide = {
     type: SlideType.CHORUS,
     lines: [
         "Усі діла Твої звеличують Тебе",
@@ -111,4 +111,16 @@ describe('Chord Slide', () => {
         expect(upSlide3.chords[line].length).toEqual(3);
     })
 
+    it('adds chord in the end of the line', ()=>{
+        const line = slide.lines.length - 1
+        const pos = [...slide.lines[line]].length
+        const upSlide = chordAction(
+            slide,
+            'ADD_CHORD_C',
+            line,
+            pos
+        );
+        const upChord = upSlide.chords[line][1];
+        expect(upChord.root).toEqual('C');
+    })
 })
