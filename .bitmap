@@ -52,7 +52,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "zhuiks.lcbot/org/chords-editor@0.0.9": {
+    "zhuiks.lcbot/org/chords-editor@0.0.10": {
         "files": [
             {
                 "relativePath": "packages/editor/src/components/organisms/chords-editor/__tests__/__snapshots__/chord-editor.js.snap",
