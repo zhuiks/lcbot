@@ -11,8 +11,8 @@ class ChordSlide implements IChordSlide {
     constructor({ type = SlideType.VERSE, name = '', lines, chords }: IChordSlide) {
         this.type = type;
         this.name = name;
-        this.lines = lines || [' '];
-        this.chords = chords || this.lines.map((line: string) => {
+        this.lines = lines ? lines.map(line => line.replace(/\|:|:\|/g, '')): [' '];
+        this.chords = chords || this.lines.map(line => {
             const pauseChord = new Chord({
                 text: line,
             })
