@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Paper, Grid } from '@material-ui/core';
+import { Paper, Grid, Typography } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import SongSlide from '@bit/zhuiks.lcbot.org.song-slide';
@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         active: {
             zIndex: 10,
-            paddingLeft: 0,
-            paddingRight: 0,
+            paddingLeft: '0 !important',
+            paddingRight: '0 !important',
             fontSize: '1.2em',
         },
         chordEditing: {
@@ -70,6 +70,7 @@ const GridSlideMap: React.FC<GridSlideProps> = ({ slides, editSlide, editSlideNa
                                         onSave={s => dispatch({ type: 'CHORDS_UPDATE', payload: s })}
                                     />
                                 </div>
+                                <Typography>Press 'Enter' to update the slide</Typography>
                             </>
                         )
                             :

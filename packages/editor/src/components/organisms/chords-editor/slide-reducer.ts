@@ -1,3 +1,4 @@
+import { useReducer } from "react";
 import { EditorState } from "draft-js";
 import { ChordActionType } from "@bit/zhuiks.lcbot.core.types";
 import { chordAction, ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
@@ -76,4 +77,9 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
     }
 }
 
-export default slideReducer;
+const useSlide = (initialSlide: ChordSlide, onSave?: (s: ChordSlide) => void) => {
+    const initialState = initState(initialSlide, onSave);
+    return useReducer(slideReducer, initialState);
+}
+
+export default useSlide;

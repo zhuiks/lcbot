@@ -1,7 +1,7 @@
 import React from "react";
 import { Editor, EditorState, DraftHandleValue } from 'draft-js';
 import chordsBlockRenderer from "./chords-block";
-import useSlide from './use-slide';
+import useSlide from "./slide-reducer";
 import { SlideActionType } from './slide-reducer';
 import { keyBinding } from "./key-binding";
 import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
@@ -13,7 +13,7 @@ export interface ChordEditorProps {
 }
 
 const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }) => {
-    const { editorState, dispatch } = useSlide(initialSlide, onSave);
+    const [ state, dispatch ] = useSlide(initialSlide, onSave);
     const onEditorChange = (newState: EditorState) => {
         dispatch({ type: 'SELECTION_CHANGE', editorState: newState })
     }
@@ -30,7 +30,7 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
     }
 
     return <Editor
-        editorState={editorState}
+        editorState={state.editorState}
         onChange={onEditorChange}
         blockRendererFn={chordsBlockRenderer}
         // handleBeforeInput={onCharInput}
