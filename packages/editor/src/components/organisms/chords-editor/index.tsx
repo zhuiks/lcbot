@@ -5,6 +5,21 @@ import useSlide from "./slide-reducer";
 import { SlideActionType } from './slide-reducer';
 import { keyBinding } from "./key-binding";
 import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
+import ChordsToolbar from "./chords-toolbar";
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { Button } from "@material-ui/core";
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            padding: theme.spacing(2),
+            border: "2px solid " + theme.palette.primary.main,
+            borderRadius: theme.shape.borderRadius,
+        },
+        button: {
+            marginTop: theme.spacing(1),
+        },
+    }));
 
 
 export interface ChordEditorProps {
@@ -13,10 +28,12 @@ export interface ChordEditorProps {
 }
 
 const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }) => {
-    const [ state, dispatch ] = useSlide(initialSlide, onSave);
+    const classes = useStyles();
+    const [state, dispatch] = useSlide(initialSlide, onSave);
     const onEditorChange = (newState: EditorState) => {
         dispatch({ type: 'SELECTION_CHANGE', editorState: newState })
     }
+    console.log('rerendering Chord Editor');
 
     const onKeyCommand = (command: SlideActionType, es: EditorState) => {
 
@@ -29,14 +46,35 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
         return handled;
     }
 
-    return <Editor
-        editorState={state.editorState}
-        onChange={onEditorChange}
-        blockRendererFn={chordsBlockRenderer}
-        // handleBeforeInput={onCharInput}
-        handleKeyCommand={onKeyCommand}
-        keyBindingFn={keyBinding}
-    />
+    return (
+        <>
+            <div className={classes.root}>
+                <Editor
+                    editorState={state.editorState}
+                    onChange={onEditorChange}
+                    onBlur={() => dispatch({ type: 'FOCUS_LOST' })}
+                    blockRendererFn={chordsBlockRenderer}
+                    // handleBeforeInput={onCharInput}
+                    handleKeyCommand={onKeyCommand}
+                    keyBindingFn={keyBinding}
+                />
+                {state.toolbarShown &&
+                    <ChordsToolbar
+                        currentLine={state.line}
+                        dispatch={dispatch}
+                    />
+                }
+            </div>
+            <Button
+                className={classes.button}
+                color="primary"
+                variant="contained"
+                onClick={() => dispatch({ type: 'SLIDE_UPDATE' })}
+            >
+                Update
+                </Button>
+        </>
+    )
 }
 
 export default ChordEditor;

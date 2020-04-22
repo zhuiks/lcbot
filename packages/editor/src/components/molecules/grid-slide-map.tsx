@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Paper, Grid, Typography } from '@material-ui/core';
+import { Paper, Grid } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import SongSlide from '@bit/zhuiks.lcbot.org.song-slide';
@@ -21,11 +21,6 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingRight: '0 !important',
             fontSize: '1.2em',
         },
-        chordEditing: {
-            padding: theme.spacing(2),
-            border: "2px solid " + theme.palette.primary.main,
-            borderRadius: theme.shape.borderRadius,
-        }
     }));
 
 const slideElevation = (isMouseOver: boolean, isEdit: boolean) => (
@@ -45,7 +40,7 @@ const GridSlideMap: React.FC<GridSlideProps> = ({ slides, editSlide, editSlideNa
     return (
         <>
             {slides.map((slide: ChordSlide, i: number) => (
-                <Grid item key={i} className={i === editSlide ? ' '+classes.active : ''}>
+                <Grid item key={i} className={i === editSlide ? ' ' + classes.active : ''}>
                     <Paper
                         square
                         className={classes.root}
@@ -64,13 +59,10 @@ const GridSlideMap: React.FC<GridSlideProps> = ({ slides, editSlide, editSlideNa
                                 >
                                     {editSlideName}
                                 </Editable>
-                                <div className={classes.chordEditing}>
-                                    <ChordsEditor
-                                        slide={slide}
-                                        onSave={s => dispatch({ type: 'CHORDS_UPDATE', payload: s })}
-                                    />
-                                </div>
-                                <Typography>Press 'Enter' to update the slide</Typography>
+                                <ChordsEditor
+                                    slide={slide}
+                                    onSave={s => dispatch({ type: 'CHORDS_UPDATE', payload: s })}
+                                />
                             </>
                         )
                             :

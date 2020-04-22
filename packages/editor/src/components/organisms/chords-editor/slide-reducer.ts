@@ -9,12 +9,13 @@ interface ChordsEditorState {
     line: number;
     pos: number;
     editorState: EditorState;
+    toolbarShown: boolean;
 }
 
-let onSaveSlide = (slide: ChordSlide) => {};
+let onSaveSlide = (slide: ChordSlide) => { };
 
 export const initState = (slide: ChordSlide, onSave?: any) => {
-    if(typeof onSave === 'function') {
+    if (typeof onSave === 'function') {
         onSaveSlide = onSave;
     }
     const contentState = initChords(slide);
@@ -23,16 +24,18 @@ export const initState = (slide: ChordSlide, onSave?: any) => {
         line: 0,
         pos: 0,
         editorState: EditorState.createWithContent(contentState),
+        toolbarShown: false,
     }
 }
 
-export type SlideActionType = ChordActionType | 'RESET' | 'SELECTION_CHANGE' | 'SLIDE_UPDATE';
+export type SlideActionType = ChordActionType | 'RESET' | 'SELECTION_CHANGE' | 'FOCUS_LOST' | 'SLIDE_UPDATE';
 export interface SlideAction {
     type: SlideActionType;
-    editorState: EditorState;
+    editorState?: EditorState;
     payload?: any;
 }
 const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEditorState => {
+    console.log(`ChordsEditor: dispatched ${action.type}`);
     switch (action.type) {
         case 'RESET':
             return action.payload ? initState(action.payload) : state;
@@ -50,9 +53,14 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
                 pos: sel.getAnchorOffset(),
                 line: currentLine,
                 editorState,
+                toolbarShown: true,
+            }
+        case 'FOCUS_LOST':
+            return {
+                ...state,
+                toolbarShown: false,
             }
         case 'SLIDE_UPDATE':
-            console.log('ChordsEditor: dispatch SLIDE_UPDATE');
             onSaveSlide(state.slide);
             return state;
         default:
