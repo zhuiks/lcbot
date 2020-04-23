@@ -26,7 +26,7 @@ interface ChordsToolbarProps {
 
 const ChordsToolbar: React.FC<ChordsToolbarProps> = ({ currentLine, dispatch }) => {
   const classes = useStyles({ line: currentLine });
-  console.log(`top = ${1+2.5 * (currentLine+1)}em`);
+  // console.log(`top = ${1+2.5 * (currentLine+1)}em`);
   return (
     <ButtonGroup className={classes.root} size="small" color="secondary" variant="contained">
       <Button onClick={() => dispatch({ type: ChordActionType.ADD_CHORD_C })}>C</Button>

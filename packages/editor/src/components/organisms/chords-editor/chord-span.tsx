@@ -11,8 +11,8 @@ const ChordContainer = styled.div<ChordProps>`
     position: relative;
     padding-top: ${props => (props.paddingTop || 1).toString() + 'em'};
     background-color: ${props => props.bgColor || '#fff'};
-    caret-color: #fff;
-    color: ${props => props.bgColor || '#fff'};
+    /* caret-color: #fff; */
+    /* color: ${props => props.bgColor || '#fff'}; */
     /* border-inline-start: 1px dashed #485ef7; */
 `;
 const ChordHolder = styled.span`

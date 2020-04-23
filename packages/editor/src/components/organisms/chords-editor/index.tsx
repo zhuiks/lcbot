@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { Editor, EditorState, DraftHandleValue } from 'draft-js';
-import chordsBlockRenderer from "./chords-block";
+import ChordsBlock from "./chords-block";
 import useSlide from "./slide-reducer";
 import { SlideActionType } from './slide-reducer';
 import { keyBinding } from "./key-binding";
@@ -8,75 +8,91 @@ import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 import ChordsToolbar from "./chords-toolbar";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Button } from "@material-ui/core";
+import { initChords, applyChord } from "./slide-actions";
 
 const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            padding: theme.spacing(2),
-            border: "2px solid " + theme.palette.primary.main,
-            borderRadius: theme.shape.borderRadius,
-            position: "relative",
-        },
-        button: {
-            marginTop: theme.spacing(2),
-        },
-    }));
+  createStyles({
+    root: {
+      padding: theme.spacing(2),
+      border: "2px solid " + theme.palette.primary.main,
+      borderRadius: theme.shape.borderRadius,
+      position: "relative",
+    },
+    button: {
+      marginTop: theme.spacing(2),
+    },
+  }));
 
 
 export interface ChordEditorProps {
-    slide: ChordSlide;
-    onSave?: (s: ChordSlide) => void;
+  slide: ChordSlide;
+  onSave?: (s: ChordSlide) => void;
 }
 
 const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }) => {
-    const classes = useStyles();
-    const [state, dispatch] = useSlide(initialSlide, onSave);
-    const onEditorChange = (newState: EditorState) => {
-        console.log(`onChange: ${newState.getLastChangeType()}`)
-        dispatch({ type: 'SELECTION_CHANGE', editorState: newState })
+  console.log('rerendering Chord Editor');
+  const classes = useStyles();
+  const [state, dispatch] = useSlide(initialSlide, onSave);
+  // const contentState = initChords(state.slide);
+  // const [editorState, setEditorState] = useState(EditorState.createWithContent(contentState));
+
+  const onEditorChange = (newState: EditorState) => {
+    // setEditorState(newState);
+    const caretPosition = getCaretPosition(newState);
+    dispatch({ type: 'POSITION_CHANGE', payload: caretPosition })
+  }
+
+  const onKeyCommand = (command: SlideActionType, es: EditorState) => {
+
+    console.log(command);
+    if (/^[A-Z]{3}_CHORD_\S+$/.test(command) || command === 'SLIDE_UPDATE') {
+      dispatch({ type: command, editorState: es });
+      const content = applyChord(
+        state.slide.chords[state.line],
+        es.getCurrentContent(),
+        state.line
+      );
+      // setEditorState(EditorState.set(es, {
+      //   currentContent: content,
+      // }));
     }
-    console.log('rerendering Chord Editor');
+    const handled: DraftHandleValue = "handled";
+    return handled;
+  }
 
-    const onKeyCommand = (command: SlideActionType, es: EditorState) => {
-
-        console.log(command);
-        if (/^[A-Z]{3}_CHORD_\S+$/.test(command) || command === 'SLIDE_UPDATE') {
-            dispatch({ type: command, editorState: es });
+  return (
+    <>
+      <div className={classes.root}>
+        {state.slide.chords.map((chordsLine, i) => (
+          <ChordsBlock key={i} chords={chordsLine} />
+        ))}
+        {state.toolbarShown &&
+          <ChordsToolbar
+            currentLine={state.line}
+            dispatch={dispatch}
+          />
         }
-
-        const handled: DraftHandleValue = "handled";
-        return handled;
-    }
-
-    return (
-        <>
-            <div className={classes.root}>
-                <Editor
-                    editorState={state.editorState}
-                    onChange={onEditorChange}
-                    onBlur={() => dispatch({ type: 'FOCUS_LOST' })}
-                    blockRendererFn={chordsBlockRenderer}
-                    // handleBeforeInput={onCharInput}
-                    handleKeyCommand={onKeyCommand}
-                    keyBindingFn={keyBinding}
-                />
-                {true && //state.toolbarShown &&
-                    <ChordsToolbar
-                        currentLine={state.line}
-                        dispatch={dispatch}
-                    />
-                }
-            </div>
-            <Button
-                className={classes.button}
-                color="primary"
-                variant="contained"
-                onClick={() => dispatch({ type: 'SLIDE_UPDATE' })}
-            >
-                Update
+      </div>
+      <Button
+        className={classes.button}
+        color="primary"
+        variant="contained"
+        onClick={() => dispatch({ type: 'SLIDE_UPDATE' })}
+      >
+        Update
                 </Button>
-        </>
-    )
+    </>
+  )
+}
+
+const getCaretPosition = (editorState: EditorState) => {
+  const sel = editorState.getSelection();
+  const blockMapKeys = editorState.getCurrentContent().getBlockMap().keySeq();
+  const currentBlockKey = sel.getAnchorKey();
+  const line = blockMapKeys.findIndex((k?: string) => k === currentBlockKey);
+  const pos = sel.getAnchorOffset();
+  console.log(`[${line}, ${pos}]`);
+  return { line, pos };
 }
 
 export default ChordEditor;

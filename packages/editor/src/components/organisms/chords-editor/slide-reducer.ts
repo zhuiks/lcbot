@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useRef } from "react";
 import { EditorState } from "draft-js";
 import { ChordActionType } from "@bit/zhuiks.lcbot.core.types";
 import { chordAction, ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
@@ -8,60 +8,49 @@ interface ChordsEditorState {
     slide: ChordSlide;
     line: number;
     pos: number;
-    editorState: EditorState;
+    editorEl: any;
     toolbarShown: boolean;
 }
 
 let onSaveSlide = (slide: ChordSlide) => { };
 interface InitArgs {
     slide: ChordSlide;
+    editorEl: any;
     onSave?: (slide: ChordSlide) => void;
 }
 
-const initState = ({ slide, onSave }: InitArgs) => {
+const initState = ({ slide, editorEl, onSave }: InitArgs) => {
     if (typeof onSave === 'function') {
         onSaveSlide = onSave;
     }
-    const contentState = initChords(slide);
     return {
         slide,
         line: 0,
         pos: 0,
-        editorState: EditorState.createWithContent(contentState),
+        editorEl,
         toolbarShown: false,
     }
 }
-const getCaretPosition = (editorState: EditorState) => {
-    const sel = editorState.getSelection();
-    const blockMapKeys = editorState.getCurrentContent().getBlockMap().keySeq();
-    const currentBlockKey = sel.getAnchorKey();
-    const line = blockMapKeys.findIndex((k?: string) => k === currentBlockKey);
-    const pos = sel.getAnchorOffset();
-    console.log(`[${line}, ${pos}]`);
-    return { line, pos };
-}
 
 
-export type SlideActionType = ChordActionType | 'RESET' | 'SELECTION_CHANGE' | 'FOCUS_LOST' | 'SLIDE_UPDATE';
+export type SlideActionType = ChordActionType | 'POSITION_CHANGE' | 'FOCUS_LOST' | 'SLIDE_UPDATE';
 export interface SlideAction {
     type: SlideActionType;
     editorState?: EditorState;
     payload?: any;
 }
 const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEditorState => {
-    console.log(`ChordsEditor: dispatched ${action.type}; state: [${state.line}, ${state.pos}]`);
+    console.log(`ChordsEditor: dispatched ${action.type}; state: caret[${state.line}, ${state.pos}] toolbar=${state.toolbarShown}`);
     switch (action.type) {
-        case 'RESET':
-            return action.payload ? initState({ slide: action.payload }) : state;
-        case 'SELECTION_CHANGE':
-            if (!action.editorState) return state;
-            const { line, pos } = getCaretPosition(action.editorState);
-            if ( line === state.line && pos === state.pos ) return state;
+        // case 'RESET':
+        //     return action.payload ? initState({ slide: action.payload }) : state;
+        case 'POSITION_CHANGE':
+            const { line, pos } = action.payload;
+            if (line !== undefined || pos !== undefined || (line === state.line && pos === state.pos)) return state;
             return {
                 ...state,
                 pos,
                 line,
-                editorState: action.editorState,
                 toolbarShown: true,
             }
         case 'FOCUS_LOST':
@@ -79,23 +68,18 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
                 state.line,
                 state.pos,
             );
-            const content = applyChord(
-                newChordSlide.chords[state.line],
-                state.editorState.getCurrentContent(),
-                state.line
-            );
+            if (newChordSlide === state.slide) return state;
+            state.editorEl.current.focus();
             return {
                 ...state,
                 slide: newChordSlide,
-                editorState: EditorState.set(state.editorState, {
-                    currentContent: content,
-                }),
             };
     }
 }
 
 const useSlide = (initialSlide: ChordSlide, onSave?: (s: ChordSlide) => void) => {
-    return useReducer(slideReducer, { slide: initialSlide, onSave }, initState);
+    const editorEl = useRef(null);
+    return useReducer(slideReducer, { slide: initialSlide, editorEl, onSave }, initState);
 }
 
 export default useSlide;
