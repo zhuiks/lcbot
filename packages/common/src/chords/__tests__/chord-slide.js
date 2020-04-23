@@ -1,5 +1,5 @@
 import { SlideType } from '../../types';
-import ChordSlide, { _getChordIndex } from '../chord-slide';
+import ChordSlide from '../chord-slide';
 import chordAction from '../chord-action'
 
 export const mockSlide = {
@@ -86,7 +86,7 @@ describe('Chord Slide', () => {
         expect(upChordLine.length).toEqual(2);
         const upChord = upSlide.chords[line][1];
         expect(upChord.root).toEqual('C');
-        expect(upSlide.chords[line][0].text).toEqual('Усе д');
+        expect(upSlide.chords[line][0].text).toEqual('Усе ');
 
         const upSlide2 = chordAction(
             upSlide,
@@ -97,7 +97,7 @@ describe('Chord Slide', () => {
         expect(upSlide2.chords[line]).not.toEqual(upSlide.chords[line]);
         const upChord2 = upSlide2.chords[line][2];
         expect(upChord2.root).toEqual('F');
-        expect(upChord2.text).toEqual('Тобою все живе!');
+        expect(upChord2.text).toEqual(' Тобою все живе!');
 
         const upSlide3 = chordAction(
             upSlide2,
@@ -107,7 +107,7 @@ describe('Chord Slide', () => {
         );
         const upChord3 = upSlide3.chords[line][0];
         expect(upChord3.root).toEqual('E');
-        expect(upChord3.text).toEqual('Усе д');
+        expect(upChord3.text).toEqual('Усе ');
         expect(upSlide3.chords[line].length).toEqual(3);
     })
 

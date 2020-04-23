@@ -1,29 +1,10 @@
 import Chord, { IChord, EMPTY_CHAR } from "./chord";
 import ChordSlide from "./chord-slide";
 import { ChordActionType } from "../types";
+import getChordIndex from "./get-chord-index";
 
 // https://www.w3.org/TR/2018/WD-alreq-20180222/#dfn-zwj
-const ZWJ = '\u200D';
-
-export const _getChordIndex = (slide: ChordSlide, line: number, pos: number) => {
-    let charsLength = 0;
-    const lineLength = [...slide.lines[line]].length;
-    pos = pos >= lineLength ? lineLength - 1 : pos; 
-    const chordsLine = slide.chords[line];
-    const chordIndex = chordsLine.findIndex((chord: Chord) => {
-        charsLength += [...chord.text].length;
-        if (chord.text.startsWith(ZWJ)) {
-            pos += 2;
-            console.log('starts with ZWJ');
-        }
-        return charsLength > pos;
-    });
-    const charsFromTheEnd = pos - charsLength;
-    return {
-        chordIndex,
-        charsFromTheEnd,
-    }
-}
+export const ZWJ = '\u200D';
 
 const _addChord = (type: string, chord: IChord) => {
     return {
@@ -97,7 +78,7 @@ const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, pos
     const modType = type.slice(0, 'ADD_CHORD'.length); //first part
     const chordType = type.slice('ADD_CHORD_'.length);  //second part
     const chordsLine = slide.chords[line];
-    const { chordIndex, charsFromTheEnd } = _getChordIndex(slide, line, pos);
+    const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, pos);
     const chord = chordsLine[chordIndex];
 
     switch (modType) {
