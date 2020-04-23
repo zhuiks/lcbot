@@ -31,6 +31,7 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
     const classes = useStyles();
     const [state, dispatch] = useSlide(initialSlide, onSave);
     const onEditorChange = (newState: EditorState) => {
+        console.log(`onChange: ${newState.getLastChangeType()}`)
         dispatch({ type: 'SELECTION_CHANGE', editorState: newState })
     }
     console.log('rerendering Chord Editor');

@@ -13,8 +13,12 @@ interface ChordsEditorState {
 }
 
 let onSaveSlide = (slide: ChordSlide) => { };
+interface InitArgs {
+    slide: ChordSlide;
+    onSave?: (slide: ChordSlide) => void;
+}
 
-export const initState = (slide: ChordSlide, onSave?: any) => {
+const initState = ({ slide, onSave }: InitArgs) => {
     if (typeof onSave === 'function') {
         onSaveSlide = onSave;
     }
@@ -27,6 +31,16 @@ export const initState = (slide: ChordSlide, onSave?: any) => {
         toolbarShown: false,
     }
 }
+const getCaretPosition = (editorState: EditorState) => {
+    const sel = editorState.getSelection();
+    const blockMapKeys = editorState.getCurrentContent().getBlockMap().keySeq();
+    const currentBlockKey = sel.getAnchorKey();
+    const line = blockMapKeys.findIndex((k?: string) => k === currentBlockKey);
+    const pos = sel.getAnchorOffset();
+    console.log(`[${line}, ${pos}]`);
+    return { line, pos };
+}
+
 
 export type SlideActionType = ChordActionType | 'RESET' | 'SELECTION_CHANGE' | 'FOCUS_LOST' | 'SLIDE_UPDATE';
 export interface SlideAction {
@@ -35,24 +49,19 @@ export interface SlideAction {
     payload?: any;
 }
 const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEditorState => {
-    console.log(`ChordsEditor: dispatched ${action.type}`);
+    console.log(`ChordsEditor: dispatched ${action.type}; state: [${state.line}, ${state.pos}]`);
     switch (action.type) {
         case 'RESET':
-            return action.payload ? initState(action.payload) : state;
+            return action.payload ? initState({ slide: action.payload }) : state;
         case 'SELECTION_CHANGE':
             if (!action.editorState) return state;
-            const editorState = action.editorState;
-            const sel = editorState.getSelection();
-
-            const blockMapKeys = editorState.getCurrentContent().getBlockMap().keySeq();
-            const currentBlockKey = sel.getAnchorKey();
-            const currentLine = blockMapKeys.findIndex((k?: string) => k === currentBlockKey);
-            console.log(`[${currentLine}, ${sel.getAnchorOffset()}]`);
+            const { line, pos } = getCaretPosition(action.editorState);
+            if ( line === state.line && pos === state.pos ) return state;
             return {
                 ...state,
-                pos: sel.getAnchorOffset(),
-                line: currentLine,
-                editorState,
+                pos,
+                line,
+                editorState: action.editorState,
                 toolbarShown: true,
             }
         case 'FOCUS_LOST':
@@ -86,8 +95,7 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
 }
 
 const useSlide = (initialSlide: ChordSlide, onSave?: (s: ChordSlide) => void) => {
-    const initialState = initState(initialSlide, onSave);
-    return useReducer(slideReducer, initialState);
+    return useReducer(slideReducer, { slide: initialSlide, onSave }, initState);
 }
 
 export default useSlide;
