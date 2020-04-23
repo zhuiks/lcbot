@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Editor, EditorState, DraftHandleValue } from 'draft-js';
 import ChordsBlock from "./chords-block";
+import CaretSpan from "./caret-span";
 import useSlide from "./slide-reducer";
 import { SlideActionType } from './slide-reducer';
 import { keyBinding } from "./key-binding";
@@ -16,6 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
       border: "2px solid " + theme.palette.primary.main,
       borderRadius: theme.shape.borderRadius,
+    },
+    container: {
       position: "relative",
     },
     button: {
@@ -63,15 +66,18 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
   return (
     <>
       <div className={classes.root}>
+        <div className={classes.container} >
         {state.slide.chords.map((chordsLine, i) => (
           <ChordsBlock key={i} chords={chordsLine} />
         ))}
+        <CaretSpan {...state} />
         {state.toolbarShown &&
           <ChordsToolbar
             currentLine={state.line}
             dispatch={dispatch}
           />
         }
+        </div>
       </div>
       <Button
         className={classes.button}

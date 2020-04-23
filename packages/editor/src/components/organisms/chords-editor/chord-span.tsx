@@ -3,13 +3,13 @@ import styled from 'styled-components';
 
 import { Chord } from '@bit/zhuiks.lcbot.core.chords';
 
+export const CHORDS_PADDING = 1.1;
 interface ChordProps {
     readonly bgColor?: string;
-    readonly paddingTop?: number;
 }
 const ChordContainer = styled.div<ChordProps>`
     position: relative;
-    padding-top: ${props => (props.paddingTop || 1).toString() + 'em'};
+    padding-top: ${CHORDS_PADDING}em;
     background-color: ${props => props.bgColor || '#fff'};
     /* caret-color: #fff; */
     /* color: ${props => props.bgColor || '#fff'}; */
@@ -35,14 +35,13 @@ const ChordSub = styled.sub`
 
 export interface ChordSpanProps {
     chord: Chord;
-    paddingTop?: number;
     children?: any;
 }
 
-const ChordSpan: React.FC<ChordSpanProps> = ({ chord, paddingTop, children }) => {
+const ChordSpan: React.FC<ChordSpanProps> = ({ chord, children }) => {
     const text = (chord.text || (children && children.toString()) || '');
     return (
-        <ChordContainer paddingTop={paddingTop}>
+        <ChordContainer>
             <ChordHolder>
                 {chord.root !== '_' && chord.root}
                 {chord.quality === 'm' ? chord.quality : <ChordSub>{chord.quality}</ChordSub>}

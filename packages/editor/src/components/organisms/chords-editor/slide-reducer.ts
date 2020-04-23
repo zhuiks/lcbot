@@ -4,7 +4,7 @@ import { ChordActionType } from "@bit/zhuiks.lcbot.core.types";
 import { chordAction, ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 import { initChords, applyChord } from "./slide-actions";
 
-interface ChordsEditorState {
+export interface ChordsEditorState {
     slide: ChordSlide;
     line: number;
     pos: number;
@@ -25,8 +25,8 @@ const initState = ({ slide, editorEl, onSave }: InitArgs) => {
     }
     return {
         slide,
-        line: 0,
-        pos: 0,
+        line: 2,
+        pos: 10,
         editorEl,
         toolbarShown: false,
     }
