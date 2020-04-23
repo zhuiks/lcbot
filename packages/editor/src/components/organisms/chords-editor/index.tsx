@@ -15,9 +15,10 @@ const useStyles = makeStyles((theme: Theme) =>
             padding: theme.spacing(2),
             border: "2px solid " + theme.palette.primary.main,
             borderRadius: theme.shape.borderRadius,
+            position: "relative",
         },
         button: {
-            marginTop: theme.spacing(1),
+            marginTop: theme.spacing(2),
         },
     }));
 
@@ -59,7 +60,7 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
                     handleKeyCommand={onKeyCommand}
                     keyBindingFn={keyBinding}
                 />
-                {state.toolbarShown &&
+                {true && //state.toolbarShown &&
                     <ChordsToolbar
                         currentLine={state.line}
                         dispatch={dispatch}
