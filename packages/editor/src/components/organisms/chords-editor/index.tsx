@@ -38,6 +38,11 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
   const [state, dispatch] = useSlide(initialSlide, onSave);
   // const contentState = initChords(state.slide);
   // const [editorState, setEditorState] = useState(EditorState.createWithContent(contentState));
+  const caretText = state.slide.chords[state.caretLine]
+    .slice(0, state.caretChordIndex - 1)
+    .map(chord => chord.text)
+    .reduce((str, chordText) => str + chordText, '')
+    + state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(0, state.caretChordOffset);
 
   const onEditorChange = (newState: EditorState) => {
     // setEditorState(newState);
@@ -45,6 +50,8 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
     dispatch({ type: 'POSITION_CHANGE', payload: caretPosition })
   }
   const onClick = (line: number, chordIndex: number, e: React.MouseEvent) => {
+    console.log(e.target);
+    // const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, pos);
     dispatch({ type: 'POSITION_CHANGE', payload: { line, pos: 7 } })
   }
 
@@ -60,10 +67,10 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
               onChordClick={(ci, e) => onClick(i, ci, e)}
             />
           ))}
-          <CaretSpan {...state} />
+          <CaretSpan ref={state.caretRef} line={state.caretLine} text={caretText} />
           {state.toolbarShown &&
             <ChordsToolbar
-              currentLine={state.line}
+              currentLine={state.caretLine}
               dispatch={dispatch}
             />
           }

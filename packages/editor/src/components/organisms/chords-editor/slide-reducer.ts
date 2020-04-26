@@ -6,29 +6,29 @@ import { initChords, applyChord } from "./slide-actions";
 
 export interface ChordsEditorState {
     slide: ChordSlide;
-    line: number;
-    pos: number;
-    editorEl: any;
+    caretLine: number;
+    caretChordIndex: number;
+    caretChordOffset: number;
+    caretRef: any;
     toolbarShown: boolean;
-}
-
-let onSaveSlide = (slide: ChordSlide) => { };
-interface InitArgs {
-    slide: ChordSlide;
-    editorEl: any;
     onSave?: (slide: ChordSlide) => void;
 }
 
-const initState = ({ slide, editorEl, onSave }: InitArgs) => {
-    if (typeof onSave === 'function') {
-        onSaveSlide = onSave;
-    }
+interface InitArgs {
+    initialSlide: ChordSlide;
+    caretRef: any;
+    onSave?: (slide: ChordSlide) => void;
+}
+
+const initState = ({ initialSlide, caretRef, onSave }: InitArgs) => {
     return {
-        slide,
-        line: 2,
-        pos: 10,
-        editorEl,
+        slide: initialSlide,
+        caretLine: 0,
+        caretChordIndex: 0,
+        caretChordOffset: 0,
+        caretRef,
         toolbarShown: false,
+        onSave,
     }
 }
 
@@ -40,24 +40,24 @@ export interface SlideAction {
     payload?: any;
 }
 const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEditorState => {
-    console.log(`ChordsEditor: dispatched ${action.type}; state: caret[${state.line}, ${state.pos}] toolbar=${state.toolbarShown}`);
+    console.log(`ChordsEditor: dispatched ${action.type}; state: caret[${state.caretLine}, ${state.caretChordOffset}] toolbar=${state.toolbarShown}`);
     switch (action.type) {
         case 'MOVE_CURSOR':
             return {
                 ...state,
-                line: state.line + action.payload.y,
-                pos: state.pos + action.payload.x,
+                caretLine: state.caretLine + action.payload.y,
+                caretChordOffset: state.caretChordOffset + action.payload.x,
             }
         // case 'RESET':
         //     return action.payload ? initState({ slide: action.payload }) : state;
         case 'POSITION_CHANGE':
             const { line, pos } = action.payload;
             console.log(`new caret pos: [${line}, ${pos}]`)
-            if (line === undefined || pos === undefined || (line === state.line && pos === state.pos)) return state;
+            if (line === undefined || (line === state.caretLine && pos === state.caretChordOffset)) return state;
             return {
                 ...state,
-                pos: pos === -1 ? state.pos : pos,
-                line,
+                caretChordOffset: pos === undefined ? state.caretChordOffset : pos,
+                caretLine: line,
                 toolbarShown: true,
             }
         case 'FOCUS_LOST':
@@ -66,14 +66,16 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
                 toolbarShown: false,
             }
         case 'SLIDE_UPDATE':
-            onSaveSlide(state.slide);
+            if (state.onSave && typeof state.onSave === 'function') {
+                state.onSave(state.slide);
+            }
             return state;
         case 'CHORD_ACTION':
             const newChordSlide = chordAction(
                 state.slide,
                 action.payload,
-                state.line,
-                state.pos,
+                state.caretLine,
+                state.caretChordOffset,
             );
             if (newChordSlide === state.slide) return state;
             // state.editorEl.current.focus();
@@ -85,8 +87,8 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
 }
 
 const useSlide = (initialSlide: ChordSlide, onSave?: (s: ChordSlide) => void) => {
-    const editorEl = useRef(null);
-    return useReducer(slideReducer, { slide: initialSlide, editorEl, onSave }, initState);
+    const caretRef = useRef(null);
+    return useReducer(slideReducer, { initialSlide, caretRef, onSave }, initState);
 }
 
 export default useSlide;

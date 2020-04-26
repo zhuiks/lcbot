@@ -25,6 +25,7 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, onChordClick }) => {
                 {chords.map((chord: Chord, i: number) => (
                     <ChordSpan key={i} chord={chord}
                         onClick={e => {
+                            e.stopPropagation();
                             if (onChordClick) onChordClick(i, e)
                         }}
                     />

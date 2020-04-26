@@ -17,16 +17,14 @@ const ChordContainer = styled.div<CaretProps>`
   /* color: #fff; */
   border-inline-end: 1px dashed red;
 `;
-
-const CaretSpan: React.FC<ChordsEditorState> = ({ slide, line, pos }) => {
-  const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, pos);
-  const text = slide.chords[line]
-    .slice(0, chordIndex - 1)
-    .map(chord => chord.text)
-    .reduce((str, chordText) => str + chordText, '')
-    + slide.chords[line][chordIndex].text.slice(0, charsFromTheEnd);
+interface CaretSpanProps {
+  line: number;
+  text: string;
+  ref?: any;
+}
+const CaretSpan: React.FC<CaretSpanProps> = ({ line, text, ref }) => {
   return (
-    <ChordContainer line={line}>
+    <ChordContainer ref={ref} line={line}>
       {text}
     </ChordContainer>
   );
