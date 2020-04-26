@@ -45,7 +45,7 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
     dispatch({ type: 'POSITION_CHANGE', payload: caretPosition })
   }
   const onClick = (line: number, chordIndex: number, e: React.MouseEvent) => {
-    dispatch({ type: 'POSITION_CHANGE', payload: { line, pos: 5 } })
+    dispatch({ type: 'POSITION_CHANGE', payload: { line, pos: 7 } })
   }
 
   return (

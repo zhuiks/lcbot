@@ -38,7 +38,7 @@ export interface ChordSpanProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const ChordSpan: React.FC<ChordSpanProps> = ({ chord, children, onKeyDown, onClick }) => {
-    const text = (chord.text || (children && children.toString()) || '');
+    const text = (chord.text || (children && children.toString()) || '').replace(/^\s|\s$/g, '\u00a0');
     return (
         <ChordContainer onKeyDown={onKeyDown} onClick={(e) => {
             console.log(`${e.nativeEvent.clientX}`)

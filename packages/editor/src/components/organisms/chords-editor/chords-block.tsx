@@ -10,11 +10,7 @@ const ChordsLine = styled.div`
 `;
 
 const BlockContainer = styled.div`
-    & > .public-DraftStyleDefault-block {
-        padding-top: ${(CHORDS_PADDING).toString() + 'em'};
-        position: relative;
-        caret-color: red;
-    }
+    width: 100%;
 `;
 
 export interface ChordsBlockProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -24,7 +20,7 @@ export interface ChordsBlockProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, onChordClick }) => {
     return (
-        <BlockContainer>
+        <BlockContainer onClick={e => { if (onChordClick) onChordClick(-1, e) }}>
             <ChordsLine className="chords" contentEditable={false}>
                 {chords.map((chord: Chord, i: number) => (
                     <ChordSpan key={i} chord={chord}

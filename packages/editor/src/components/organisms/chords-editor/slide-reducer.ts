@@ -56,7 +56,7 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
             if (line === undefined || pos === undefined || (line === state.line && pos === state.pos)) return state;
             return {
                 ...state,
-                pos,
+                pos: pos === -1 ? state.pos : pos,
                 line,
                 toolbarShown: true,
             }
@@ -76,7 +76,7 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
                 state.pos,
             );
             if (newChordSlide === state.slide) return state;
-            state.editorEl.current.focus();
+            // state.editorEl.current.focus();
             return {
                 ...state,
                 slide: newChordSlide,
