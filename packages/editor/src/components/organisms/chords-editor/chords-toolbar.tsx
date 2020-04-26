@@ -29,13 +29,13 @@ const ChordsToolbar: React.FC<ChordsToolbarProps> = ({ currentLine, dispatch }) 
   // console.log(`top = ${1+2.5 * (currentLine+1)}em`);
   return (
     <ButtonGroup className={classes.root} size="small" color="secondary" variant="contained">
-      <Button onClick={() => dispatch({ type: ChordActionType.ADD_CHORD_C })}>C</Button>
-      <Button onClick={() => dispatch({ type: ChordActionType.ADD_CHORD_D })}>D</Button>
-      <Button onClick={() => dispatch({ type: ChordActionType.ADD_CHORD_E })}>E</Button>
-      <Button onClick={() => dispatch({ type: ChordActionType.ADD_CHORD_F })}>F</Button>
-      <Button onClick={() => dispatch({ type: ChordActionType.ADD_CHORD_G })}>G</Button>
-      <Button onClick={() => dispatch({ type: ChordActionType.ADD_CHORD_A })}>A</Button>
-      <Button onClick={() => dispatch({ type: ChordActionType.ADD_CHORD_B })}>B</Button>
+      <Button onClick={() => dispatch({ type: 'CHORD_ACTION', payload: ChordActionType.ADD_CHORD_C })}>C</Button>
+      <Button onClick={() => dispatch({ type: 'CHORD_ACTION', payload: ChordActionType.ADD_CHORD_D })}>D</Button>
+      <Button onClick={() => dispatch({ type: 'CHORD_ACTION', payload: ChordActionType.ADD_CHORD_E })}>E</Button>
+      <Button onClick={() => dispatch({ type: 'CHORD_ACTION', payload: ChordActionType.ADD_CHORD_F })}>F</Button>
+      <Button onClick={() => dispatch({ type: 'CHORD_ACTION', payload: ChordActionType.ADD_CHORD_G })}>G</Button>
+      <Button onClick={() => dispatch({ type: 'CHORD_ACTION', payload: ChordActionType.ADD_CHORD_A })}>A</Button>
+      <Button onClick={() => dispatch({ type: 'CHORD_ACTION', payload: ChordActionType.ADD_CHORD_B })}>B</Button>
     </ButtonGroup>
   )
 }

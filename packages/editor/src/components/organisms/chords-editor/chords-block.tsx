@@ -17,16 +17,21 @@ const BlockContainer = styled.div`
     }
 `;
 
-export interface ChordsBlockProps {
+export interface ChordsBlockProps extends React.HTMLAttributes<HTMLDivElement> {
     chords: Chord[];
+    onChordClick?: (chordIndex: number, e: React.MouseEvent) => void
 }
 
-const ChordsBlock: React.FC<ChordsBlockProps> = ({chords}) => {
+const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, onChordClick }) => {
     return (
         <BlockContainer>
             <ChordsLine className="chords" contentEditable={false}>
-                { chords.map((chord: Chord, i: number) => (
-                    <ChordSpan key={i} chord={chord} />
+                {chords.map((chord: Chord, i: number) => (
+                    <ChordSpan key={i} chord={chord}
+                        onClick={e => {
+                            if (onChordClick) onChordClick(i, e)
+                        }}
+                    />
                 ))
                 }
             </ChordsLine>

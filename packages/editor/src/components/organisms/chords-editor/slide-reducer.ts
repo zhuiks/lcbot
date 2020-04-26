@@ -33,7 +33,7 @@ const initState = ({ slide, editorEl, onSave }: InitArgs) => {
 }
 
 
-export type SlideActionType = ChordActionType | 'POSITION_CHANGE' | 'FOCUS_LOST' | 'SLIDE_UPDATE';
+export type SlideActionType = 'CHORD_ACTION' | 'POSITION_CHANGE' | 'MOVE_CURSOR' | 'FOCUS_LOST' | 'SLIDE_UPDATE';
 export interface SlideAction {
     type: SlideActionType;
     editorState?: EditorState;
@@ -42,11 +42,18 @@ export interface SlideAction {
 const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEditorState => {
     console.log(`ChordsEditor: dispatched ${action.type}; state: caret[${state.line}, ${state.pos}] toolbar=${state.toolbarShown}`);
     switch (action.type) {
+        case 'MOVE_CURSOR':
+            return {
+                ...state,
+                line: state.line + action.payload.y,
+                pos: state.pos + action.payload.x,
+            }
         // case 'RESET':
         //     return action.payload ? initState({ slide: action.payload }) : state;
         case 'POSITION_CHANGE':
             const { line, pos } = action.payload;
-            if (line !== undefined || pos !== undefined || (line === state.line && pos === state.pos)) return state;
+            console.log(`new caret pos: [${line}, ${pos}]`)
+            if (line === undefined || pos === undefined || (line === state.line && pos === state.pos)) return state;
             return {
                 ...state,
                 pos,
@@ -61,10 +68,10 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
         case 'SLIDE_UPDATE':
             onSaveSlide(state.slide);
             return state;
-        default:
+        case 'CHORD_ACTION':
             const newChordSlide = chordAction(
                 state.slide,
-                action.type,
+                action.payload,
                 state.line,
                 state.pos,
             );

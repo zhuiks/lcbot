@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { KeyboardEvent, useState, useMemo } from "react";
 import { Editor, EditorState, DraftHandleValue } from 'draft-js';
 import ChordsBlock from "./chords-block";
 import CaretSpan from "./caret-span";
@@ -44,39 +44,29 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
     const caretPosition = getCaretPosition(newState);
     dispatch({ type: 'POSITION_CHANGE', payload: caretPosition })
   }
-
-  const onKeyCommand = (command: SlideActionType, es: EditorState) => {
-
-    console.log(command);
-    if (/^[A-Z]{3}_CHORD_\S+$/.test(command) || command === 'SLIDE_UPDATE') {
-      dispatch({ type: command, editorState: es });
-      const content = applyChord(
-        state.slide.chords[state.line],
-        es.getCurrentContent(),
-        state.line
-      );
-      // setEditorState(EditorState.set(es, {
-      //   currentContent: content,
-      // }));
-    }
-    const handled: DraftHandleValue = "handled";
-    return handled;
+  const onClick = (line: number, chordIndex: number, e: React.MouseEvent) => {
+    dispatch({ type: 'POSITION_CHANGE', payload: { line, pos: 5 } })
   }
 
   return (
     <>
       <div className={classes.root}>
-        <div className={classes.container} >
-        {state.slide.chords.map((chordsLine, i) => (
-          <ChordsBlock key={i} chords={chordsLine} />
-        ))}
-        <CaretSpan {...state} />
-        {state.toolbarShown &&
-          <ChordsToolbar
-            currentLine={state.line}
-            dispatch={dispatch}
-          />
-        }
+        <div
+          className={classes.container}
+          onKeyDown={e => keyBinding(e, dispatch)}
+        >
+          {state.slide.chords.map((chordsLine, i) => (
+            <ChordsBlock key={i} chords={chordsLine}
+              onChordClick={(ci, e) => onClick(i, ci, e)}
+            />
+          ))}
+          <CaretSpan {...state} />
+          {state.toolbarShown &&
+            <ChordsToolbar
+              currentLine={state.line}
+              dispatch={dispatch}
+            />
+          }
         </div>
       </div>
       <Button

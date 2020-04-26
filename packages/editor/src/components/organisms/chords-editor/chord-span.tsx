@@ -33,15 +33,17 @@ const ChordSub = styled.sub`
     bottom: -5px;
 `;
 
-export interface ChordSpanProps {
+export interface ChordSpanProps extends React.HTMLAttributes<HTMLDivElement> {
     chord: Chord;
-    children?: any;
 }
 
-const ChordSpan: React.FC<ChordSpanProps> = ({ chord, children }) => {
+const ChordSpan: React.FC<ChordSpanProps> = ({ chord, children, onKeyDown, onClick }) => {
     const text = (chord.text || (children && children.toString()) || '');
     return (
-        <ChordContainer>
+        <ChordContainer onKeyDown={onKeyDown} onClick={(e) => {
+            console.log(`${e.nativeEvent.clientX}`)
+            if (onClick) onClick(e)
+        }}>
             <ChordHolder>
                 {chord.root !== '_' && chord.root}
                 {chord.quality === 'm' ? chord.quality : <ChordSub>{chord.quality}</ChordSub>}
