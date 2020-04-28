@@ -10,7 +10,7 @@ interface CaretProps {
 }
 const ChordContainer = styled.div<CaretProps>`
   position: absolute;
-  top: ${props => props.line * (CHORDS_PADDING + 1.43)}em;
+  top: 0;/*${props => props.line * (CHORDS_PADDING + 1.43)}em;*/
   padding-top: ${CHORDS_PADDING}em;
   /*background-color: #fff;*/
   /* caret-color: #fff; */

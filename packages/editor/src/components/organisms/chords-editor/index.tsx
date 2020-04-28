@@ -1,12 +1,10 @@
 import React, { KeyboardEvent, useState, useMemo } from "react";
 import { Editor, EditorState, DraftHandleValue } from 'draft-js';
 import ChordsBlock from "./chords-block";
-import CaretSpan from "./caret-span";
 import useSlide, { ChordsEditorState, SlideAction, DispatchContext, StateContext } from "./slide-reducer";
 import { SlideActionType } from './slide-reducer';
 import { keyBinding } from "./key-binding";
 import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
-import ChordsToolbar from "./chords-toolbar";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Button } from "@material-ui/core";
 import { initChords, applyChord } from "./slide-actions";
@@ -47,11 +45,6 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
     const caretPosition = getCaretPosition(newState);
     dispatch({ type: 'POSITION_CHANGE', payload: caretPosition })
   }
-  const onClick = (line: number, chordIndex: number, e: React.MouseEvent) => {
-    const lastClickX = e.clientX;
-    // const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, pos);
-    dispatch({ type: 'POSITION_CHANGE', payload: { line, chordIndex, event: e, } })
-  }
 
   return (
     <>
@@ -64,12 +57,8 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
               onKeyDown={e => keyBinding(e, dispatch)}
             >
               {state.slide.chords.map((chordsLine, i) => (
-                <ChordsBlock key={i} chords={chordsLine}
-                  onChordClick={(ci, e) => onClick(i, ci, e)}
-                />
+                <ChordsBlock key={i} line={i} chords={chordsLine} />
               ))}
-              <CaretSpan />
-              <ChordsToolbar />
             </div>
           </StateContext.Provider>
         </DispatchContext.Provider>

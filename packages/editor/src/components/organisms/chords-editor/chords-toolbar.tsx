@@ -4,15 +4,13 @@ import { ChordActionType } from '@bit/zhuiks.lcbot.core.types'
 import { SlideAction, StateContext, DispatchContext } from './slide-reducer'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
-interface StyleProps {
-  line: number;
-}
-const useStyles = makeStyles<Theme, StyleProps>(theme =>
+const useStyles = makeStyles<Theme>(theme =>
   createStyles({
     root: {
       position: "absolute",
-      top: props => (2.5 * (props.line + 1) + 1).toString() + "em",
+      bottom: "-1.6em",
       left: "0.3em",
+      zIndex: 12,
       opacity: 0.8,
     },
     button: {

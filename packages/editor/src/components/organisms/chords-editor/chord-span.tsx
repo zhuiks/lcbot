@@ -10,7 +10,7 @@ interface ChordProps {
 const ChordContainer = styled.div<ChordProps>`
     position: relative;
     padding-top: ${CHORDS_PADDING}em;
-    background-color: ${props => props.bgColor || '#fff'};
+    /*background-color: ${props => props.bgColor || '#fff'};*/
     /* caret-color: #fff; */
     /* color: ${props => props.bgColor || '#fff'}; */
     /* border-inline-start: 1px dashed #485ef7; */
