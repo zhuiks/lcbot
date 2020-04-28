@@ -9,6 +9,7 @@ export interface ChordsEditorState {
     caretLine: number;
     caretChordIndex: number;
     caretChordOffset: number;
+    lastClickX: number;
     caretRef: any;
     toolbarShown: boolean;
     onSave?: (slide: ChordSlide) => void;
@@ -25,15 +26,18 @@ const initState = ({ initialSlide, caretRef, onSave }: InitArgs) => {
         slide: initialSlide,
         caretLine: 0,
         caretChordIndex: 0,
-        caretChordOffset: 0,
+        caretChordOffset: 3,
+        lastClickX: 0,
         caretRef,
         toolbarShown: false,
         onSave,
     }
 }
+const textMeasureEl = document.createElement('div');
+textMeasureEl.innerHTML = 'some test text';
 
 
-export type SlideActionType = 'CHORD_ACTION' | 'POSITION_CHANGE' | 'MOVE_CURSOR' | 'FOCUS_LOST' | 'SLIDE_UPDATE';
+export type SlideActionType = 'CHORD_ACTION' | 'POSITION_CHANGE' | 'ADJUST_POSITION' |'MOVE_CURSOR' | 'FOCUS_LOST' | 'SLIDE_UPDATE';
 export interface SlideAction {
     type: SlideActionType;
     editorState?: EditorState;
@@ -51,15 +55,24 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
         // case 'RESET':
         //     return action.payload ? initState({ slide: action.payload }) : state;
         case 'POSITION_CHANGE':
-            const { line, pos } = action.payload;
-            console.log(`new caret pos: [${line}, ${pos}]`)
-            if (line === undefined || (line === state.caretLine && pos === state.caretChordOffset)) return state;
+            const { line, chordIndex, event } = action.payload;
+            // console.log(`new caret click: [${line}, ${lastClickX}]`)
+            console.log(`adjust caret pos: ${event.target.getBoundingClientRect().width} -> ${100}`)
+            // if (line === undefined || (line === state.caretLine && pos === state.caretChordOffset)) return state;
             return {
                 ...state,
-                caretChordOffset: pos === undefined ? state.caretChordOffset : pos,
+                caretChordOffset: 3,
+                // lastClickX,
                 caretLine: line,
+                caretChordIndex: chordIndex,
                 toolbarShown: true,
             }
+        case 'ADJUST_POSITION':
+            console.log(`adjust caret pos: ${state.caretRef.current ? state.caretRef.current.getBoundingClientRect().width : 0} -> ${state.lastClickX}`)
+            return {
+                ...state,
+                caretChordOffset: action.payload,
+            }    
         case 'FOCUS_LOST':
             return {
                 ...state,

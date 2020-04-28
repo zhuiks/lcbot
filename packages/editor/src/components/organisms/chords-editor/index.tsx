@@ -38,6 +38,10 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
   const [state, dispatch] = useSlide(initialSlide, onSave);
   // const contentState = initChords(state.slide);
   // const [editorState, setEditorState] = useState(EditorState.createWithContent(contentState));
+  const pixelOffset = state.caretRef.current ? state.caretRef.current.getBoundingClientRect().width : 0;
+  // if ( pixelOffset < state.lastClickX ) {
+  //   dispatch({type: 'ADJUST_POSITION', payload: state.caretChordOffset+1})
+  // }
   const caretText = state.slide.chords[state.caretLine]
     .slice(0, state.caretChordIndex - 1)
     .map(chord => chord.text)
@@ -50,9 +54,9 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
     dispatch({ type: 'POSITION_CHANGE', payload: caretPosition })
   }
   const onClick = (line: number, chordIndex: number, e: React.MouseEvent) => {
-    console.log(e.target);
+    const lastClickX = e.clientX;
     // const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, pos);
-    dispatch({ type: 'POSITION_CHANGE', payload: { line, pos: 7 } })
+    dispatch({ type: 'POSITION_CHANGE', payload: { line, chordIndex, event: e, } })
   }
 
   return (
