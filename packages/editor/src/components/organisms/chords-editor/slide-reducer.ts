@@ -1,4 +1,4 @@
-import { useReducer, useRef, createContext } from "react";
+import { useReducer, useRef, createContext, MouseEvent } from "react";
 import { EditorState } from "draft-js";
 import { ChordActionType } from "@bit/zhuiks.lcbot.core.types";
 import { chordAction, ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
@@ -13,6 +13,7 @@ export interface ChordsEditorState {
     caretRef: any;
     toolbarShown: boolean;
     onSave?: (slide: ChordSlide) => void;
+    madeAdjustments: number;
 }
 
 interface InitArgs {
@@ -26,11 +27,12 @@ const initState = ({ initialSlide, caretRef, onSave }: InitArgs) => {
         slide: initialSlide,
         caretLine: 0,
         caretChordIndex: 0,
-        caretChordOffset: 3,
+        caretChordOffset: 0,
         lastClickX: 0,
         caretRef,
         toolbarShown: false,
         onSave,
+        madeAdjustments: 0,
     }
 }
 const textMeasureEl = document.createElement('div');
@@ -56,22 +58,21 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
         //     return action.payload ? initState({ slide: action.payload }) : state;
         case 'POSITION_CHANGE':
             const { line, chordIndex, event } = action.payload;
-            // console.log(`new caret click: [${line}, ${lastClickX}]`)
-            console.log(`adjust caret pos: ${event.target.getBoundingClientRect().width} -> ${100}`)
+            if (line === undefined || !event.target) return state;
             // if (line === undefined || (line === state.caretLine && pos === state.caretChordOffset)) return state;
             return {
                 ...state,
-                caretChordOffset: 3,
-                // lastClickX,
+                lastClickX: getClickX(event),
                 caretLine: line,
-                caretChordIndex: chordIndex,
+                caretChordIndex: chordIndex < 0 ? state.caretChordIndex: chordIndex,
                 toolbarShown: true,
+                madeAdjustments: 0,
             }
         case 'ADJUST_POSITION':
-            console.log(`adjust caret pos: ${state.caretRef.current ? state.caretRef.current.getBoundingClientRect().width : 0} -> ${state.lastClickX}`)
             return {
                 ...state,
-                caretChordOffset: action.payload,
+                caretChordOffset: state.caretChordOffset + action.payload,
+                madeAdjustments: state.madeAdjustments+1,
             }    
         case 'FOCUS_LOST':
             return {
@@ -98,6 +99,8 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
             };
     }
 }
+const getClickX = (e: MouseEvent) => e.clientX-(e.target as Element).getBoundingClientRect().x;
+
 type EmptyFunction = (args: any)=>void;
 export const DispatchContext = createContext<React.Dispatch<SlideAction>|EmptyFunction>(() => {});
 export const StateContext = createContext<ChordsEditorState | null>(null);

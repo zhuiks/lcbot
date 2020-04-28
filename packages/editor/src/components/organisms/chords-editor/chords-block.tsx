@@ -20,7 +20,6 @@ const BlockContainer = styled.div`
 export interface ChordsBlockProps extends React.HTMLAttributes<HTMLDivElement> {
   line: number;
   chords: Chord[];
-  onChordClick?: (chordIndex: number, e: React.MouseEvent) => void
 }
 
 const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
@@ -28,7 +27,6 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
   const state = useContext(StateContext);
 
   const onClick = (chordIndex: number, e: React.MouseEvent) => {
-    const lastClickX = e.clientX;
     // const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, pos);
     dispatch({ type: 'POSITION_CHANGE', payload: { line, chordIndex, event: e, } })
   }
