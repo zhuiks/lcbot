@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { ButtonGroup, Button } from '@material-ui/core'
 import { ChordActionType } from '@bit/zhuiks.lcbot.core.types'
-import { SlideAction } from './slide-reducer'
+import { SlideAction, StateContext, DispatchContext } from './slide-reducer'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 interface StyleProps {
@@ -19,13 +19,12 @@ const useStyles = makeStyles<Theme, StyleProps>(theme =>
     },
   }));
 
-interface ChordsToolbarProps {
-  currentLine: number;
-  dispatch: (args: SlideAction) => void;
-}
 
-const ChordsToolbar: React.FC<ChordsToolbarProps> = ({ currentLine, dispatch }) => {
-  const classes = useStyles({ line: currentLine });
+const ChordsToolbar: React.FC = () => {
+  const dispatch = useContext(DispatchContext);
+  const state = useContext(StateContext);
+  const classes = useStyles({ line: state ? state.caretLine : 0 });
+  if (!state || !state.toolbarShown) return null;
   // console.log(`top = ${1+2.5 * (currentLine+1)}em`);
   return (
     <ButtonGroup className={classes.root} size="small" color="secondary" variant="contained">

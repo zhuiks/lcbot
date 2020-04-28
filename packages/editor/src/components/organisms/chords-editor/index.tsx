@@ -2,7 +2,7 @@ import React, { KeyboardEvent, useState, useMemo } from "react";
 import { Editor, EditorState, DraftHandleValue } from 'draft-js';
 import ChordsBlock from "./chords-block";
 import CaretSpan from "./caret-span";
-import useSlide from "./slide-reducer";
+import useSlide, { ChordsEditorState, SlideAction, DispatchContext, StateContext } from "./slide-reducer";
 import { SlideActionType } from './slide-reducer';
 import { keyBinding } from "./key-binding";
 import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }));
 
-
 export interface ChordEditorProps {
   slide: ChordSlide;
   onSave?: (s: ChordSlide) => void;
@@ -42,11 +41,6 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
   // if ( pixelOffset < state.lastClickX ) {
   //   dispatch({type: 'ADJUST_POSITION', payload: state.caretChordOffset+1})
   // }
-  const caretText = state.slide.chords[state.caretLine]
-    .slice(0, state.caretChordIndex - 1)
-    .map(chord => chord.text)
-    .reduce((str, chordText) => str + chordText, '')
-    + state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(0, state.caretChordOffset);
 
   const onEditorChange = (newState: EditorState) => {
     // setEditorState(newState);
@@ -62,23 +56,23 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }
   return (
     <>
       <div className={classes.root}>
-        <div
-          className={classes.container}
-          onKeyDown={e => keyBinding(e, dispatch)}
-        >
-          {state.slide.chords.map((chordsLine, i) => (
-            <ChordsBlock key={i} chords={chordsLine}
-              onChordClick={(ci, e) => onClick(i, ci, e)}
-            />
-          ))}
-          <CaretSpan ref={state.caretRef} line={state.caretLine} text={caretText} />
-          {state.toolbarShown &&
-            <ChordsToolbar
-              currentLine={state.caretLine}
-              dispatch={dispatch}
-            />
-          }
-        </div>
+        <DispatchContext.Provider value={dispatch}>
+          <StateContext.Provider value={state}>
+
+            <div
+              className={classes.container}
+              onKeyDown={e => keyBinding(e, dispatch)}
+            >
+              {state.slide.chords.map((chordsLine, i) => (
+                <ChordsBlock key={i} chords={chordsLine}
+                  onChordClick={(ci, e) => onClick(i, ci, e)}
+                />
+              ))}
+              <CaretSpan />
+              <ChordsToolbar />
+            </div>
+          </StateContext.Provider>
+        </DispatchContext.Provider>
       </div>
       <Button
         className={classes.button}

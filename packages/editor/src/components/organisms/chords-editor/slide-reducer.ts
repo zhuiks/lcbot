@@ -1,4 +1,4 @@
-import { useReducer, useRef } from "react";
+import { useReducer, useRef, createContext } from "react";
 import { EditorState } from "draft-js";
 import { ChordActionType } from "@bit/zhuiks.lcbot.core.types";
 import { chordAction, ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
@@ -98,6 +98,9 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
             };
     }
 }
+type EmptyFunction = (args: any)=>void;
+export const DispatchContext = createContext<React.Dispatch<SlideAction>|EmptyFunction>(() => {});
+export const StateContext = createContext<ChordsEditorState | null>(null);
 
 const useSlide = (initialSlide: ChordSlide, onSave?: (s: ChordSlide) => void) => {
     const caretRef = useRef(null);
