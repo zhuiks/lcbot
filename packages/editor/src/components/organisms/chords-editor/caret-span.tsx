@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { getChordIndex } from '@bit/zhuiks.lcbot.core.chords';
 import { DispatchContext, StateContext } from './slide-reducer';
-import { CHORDS_PADDING } from './chord-span';
+import { CHORDS_PADDING } from './chord-container';
 
 interface CaretProps {
   readonly line: number;

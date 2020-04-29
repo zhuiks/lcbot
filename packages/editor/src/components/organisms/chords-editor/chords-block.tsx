@@ -5,6 +5,7 @@ import { Chord } from "@bit/zhuiks.lcbot.core.chords";
 import { DispatchContext, StateContext } from "./slide-reducer";
 import ChordsToolbar from "./chords-toolbar";
 import CaretSpan from "./caret-span";
+import WidthCalculator from "./width-calculator";
 
 const CHORDS_PADDING = 1.1;
 const ChordsLine = styled.div`
@@ -34,16 +35,28 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
     <BlockContainer onClick={e => onClick(-1, e)}>
       <ChordsLine className="chords" contentEditable={false}>
         {chords.map((chord: Chord, i: number) => (
-          <ChordSpan key={i} chord={chord}
-            onClick={e => {
-              e.stopPropagation();
-              onClick(i, e)
-            }}
-          />
+          state && state.charPixelOffset[line] && state.charPixelOffset[line][i] ? (
+            <ChordSpan key={i} chord={chord}
+              onClick={e => {
+                e.stopPropagation();
+                onClick(i, e)
+              }}
+            />
+          ) : (
+              <WidthCalculator
+                text={chord.text}
+                onComplete={(charPixels: number[]) =>
+                  dispatch({ 
+                    type: 'UPDATE_WIDTH', 
+                    payload: { line, chordIndex: i, charPixels } 
+                  })
+                }
+              />
+            )
         ))
         }
       </ChordsLine>
-      {state && state.caretLine === line && (
+      {state && state.caretLine === line && state.charPixelOffset[line] && (
         <>
           <ChordsToolbar />
           <CaretSpan />
