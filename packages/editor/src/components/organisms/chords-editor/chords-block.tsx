@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import ChordSpan from "./chord-span";
 import { Chord } from "@bit/zhuiks.lcbot.core.chords";
 import { DispatchContext, StateContext } from "./slide-reducer";
-import ChordsToolbar from "./chords-toolbar";
 import CaretSpan from "./caret-span";
 import WidthCalculator from "./width-calculator";
 
@@ -29,6 +28,7 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
   const onClick = (chordIndex: number, e: React.MouseEvent) => {
     // const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, pos);
     const lastClickX = e.clientX - (e.target as Element).getBoundingClientRect().x;
+    console.log(`click @${lastClickX}`)
     dispatch({ type: 'POSITION_CHANGE', payload: { line, chordIndex, lastClickX, } })
   }
   return (
@@ -57,10 +57,7 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
         }
       </ChordsLine>
       {state && state.caretLine === line && state.charPixelOffset[line] && (
-        <>
-          <ChordsToolbar />
           <CaretSpan />
-        </>
       )}
     </BlockContainer >
   )

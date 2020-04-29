@@ -30,7 +30,6 @@ const ChordSpan: React.FC<ChordSpanProps> = ({ chord, children, onKeyDown, onCli
     const text = (chord.text || (children && children.toString()) || '').replace(/^\s|\s$/g, '\u00a0');
     return (
         <ChordContainer onKeyDown={onKeyDown} onClick={(e) => {
-            console.log(`${e.nativeEvent.clientX}`)
             if (onClick) onClick(e)
         }}>
             <ChordHolder>

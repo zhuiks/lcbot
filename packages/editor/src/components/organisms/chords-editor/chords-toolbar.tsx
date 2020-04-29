@@ -1,15 +1,15 @@
 import React, { useContext } from 'react'
 import { ButtonGroup, Button } from '@material-ui/core'
 import { ChordActionType } from '@bit/zhuiks.lcbot.core.types'
-import { SlideAction, StateContext, DispatchContext } from './slide-reducer'
+import { StateContext, DispatchContext } from './slide-reducer'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 const useStyles = makeStyles<Theme>(theme =>
   createStyles({
     root: {
       position: "absolute",
-      bottom: "-1.6em",
-      left: "0.3em",
+      bottom: "-1.7em",
+      right: "-10em",
       zIndex: 12,
       opacity: 0.8,
     },

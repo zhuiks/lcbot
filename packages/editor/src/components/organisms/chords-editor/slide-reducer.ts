@@ -1,8 +1,5 @@
-import { useReducer, useRef, createContext, MouseEvent } from "react";
-import { EditorState } from "draft-js";
-import { ChordActionType } from "@bit/zhuiks.lcbot.core.types";
+import { useReducer, useRef, createContext } from "react";
 import { chordAction, ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
-import { initChords, applyChord } from "./slide-actions";
 
 export interface ChordsEditorState {
   slide: ChordSlide;
@@ -10,8 +7,6 @@ export interface ChordsEditorState {
   caretLine: number;
   caretChordIndex: number;
   caretChordOffset: number;
-  lastClickX: number;
-  caretRef: any;
   toolbarShown: boolean;
   onSave?: (slide: ChordSlide) => void;
   madeAdjustments: number;
@@ -34,9 +29,7 @@ const initState = ({ initialSlide, caretRef, onSave }: InitArgs) => {
     charPixelOffset: nulledArray,
     caretLine: 0,
     caretChordIndex: 0,
-    caretChordOffset: 0,
-    lastClickX: 0,
-    caretRef,
+    caretChordOffset: 1,
     toolbarShown: false,
     onSave,
     madeAdjustments: 0,
@@ -49,7 +42,6 @@ textMeasureEl.innerHTML = 'some test text';
 export type SlideActionType = 'CHORD_ACTION' | 'POSITION_CHANGE' | 'ADJUST_POSITION' | 'UPDATE_WIDTH' | 'MOVE_CURSOR' | 'FOCUS_LOST' | 'SLIDE_UPDATE';
 export interface SlideAction {
   type: SlideActionType;
-  editorState?: EditorState;
   payload?: any;
 }
 const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEditorState => {
@@ -77,7 +69,7 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
         ...state,
         caretLine: line,
         caretChordIndex: chordIndex < 0 ? state.caretChordIndex : chordIndex,
-        caretChordOffset: offset+1,
+        caretChordOffset: offset < 0 ? state.charPixelOffset[line][chordIndex].length : offset + 1,
         toolbarShown: true,
       }
     case 'ADJUST_POSITION':
