@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { getChordIndex } from '@bit/zhuiks.lcbot.core.chords';
@@ -20,18 +20,7 @@ const ChordContainer = styled.div<CaretProps>`
 
 const CaretSpan: React.FC = () => {
 
-  const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
-  const caretRef = useRef(null);
-
-  useEffect(() => {
-    const caretEl = caretRef.current === null ? false : (caretRef.current as Element);
-    if (!caretEl || !state || state.madeAdjustments > 35) return;
-    console.log(`adjust caret pos: ${caretEl.getBoundingClientRect().width} -> ${state.lastClickX}`)
-    const delta = state.lastClickX - caretEl.getBoundingClientRect().width;
-    if (Math.abs(delta) < 7) return;
-    dispatch({ type: 'ADJUST_POSITION', payload: Math.sign(delta) });
-  });
 
   if (!state) return null;
 
@@ -42,7 +31,7 @@ const CaretSpan: React.FC = () => {
     + state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(0, state.caretChordOffset);
 
   return (
-    <ChordContainer ref={caretRef} line={state.caretLine}>
+    <ChordContainer line={state.caretLine}>
       {caretText}
     </ChordContainer>
   );

@@ -7,7 +7,6 @@ import ChordsToolbar from "./chords-toolbar";
 import CaretSpan from "./caret-span";
 import WidthCalculator from "./width-calculator";
 
-const CHORDS_PADDING = 1.1;
 const ChordsLine = styled.div`
     position: relative;
     display: flex;
@@ -29,13 +28,14 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
 
   const onClick = (chordIndex: number, e: React.MouseEvent) => {
     // const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, pos);
-    dispatch({ type: 'POSITION_CHANGE', payload: { line, chordIndex, event: e, } })
+    const lastClickX = e.clientX - (e.target as Element).getBoundingClientRect().x;
+    dispatch({ type: 'POSITION_CHANGE', payload: { line, chordIndex, lastClickX, } })
   }
   return (
     <BlockContainer onClick={e => onClick(-1, e)}>
       <ChordsLine className="chords" contentEditable={false}>
         {chords.map((chord: Chord, i: number) => (
-          state && state.charPixelOffset[line] && state.charPixelOffset[line][i] ? (
+          state && state.charPixelOffset[line] && state.charPixelOffset[line][i] !== null ? (
             <ChordSpan key={i} chord={chord}
               onClick={e => {
                 e.stopPropagation();
@@ -45,10 +45,10 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
           ) : (
               <WidthCalculator
                 text={chord.text}
-                onComplete={(charPixels: number[]) =>
-                  dispatch({ 
-                    type: 'UPDATE_WIDTH', 
-                    payload: { line, chordIndex: i, charPixels } 
+                onComplete={charPixels =>
+                  dispatch({
+                    type: 'UPDATE_WIDTH',
+                    payload: { line, chordIndex: i, charPixels }
                   })
                 }
               />

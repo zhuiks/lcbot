@@ -64,16 +64,21 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
     // case 'RESET':
     //     return action.payload ? initState({ slide: action.payload }) : state;
     case 'POSITION_CHANGE':
-      const { line, chordIndex, event } = action.payload;
-      if (line === undefined || !event.target) return state;
+      const { line, lastClickX } = action.payload;
+      const chordIndex = action.payload.chordIndex < 0 ? 
+        state.slide.chords[line].length - 1 : 
+        action.payload.chordIndex;
+      if (line === undefined || !lastClickX || state.charPixelOffset[line][chordIndex] === null)
+        return state;
+      const offset = state.charPixelOffset[line][chordIndex]
+        .findIndex(px => lastClickX < px);
       // if (line === undefined || (line === state.caretLine && pos === state.caretChordOffset)) return state;
       return {
         ...state,
-        lastClickX: getClickX(event),
         caretLine: line,
         caretChordIndex: chordIndex < 0 ? state.caretChordIndex : chordIndex,
+        caretChordOffset: offset+1,
         toolbarShown: true,
-        madeAdjustments: 0,
       }
     case 'ADJUST_POSITION':
       return {
@@ -82,14 +87,16 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
         madeAdjustments: state.madeAdjustments + 1,
       }
     case 'UPDATE_WIDTH':
+      if (state.madeAdjustments > 10) return state
+      console.log(`updating [${action.payload.line}, ${action.payload.chordIndex}]: ${action.payload.charPixels}`)
       return {
         ...state,
         charPixelOffset: [
           ...state.charPixelOffset.slice(0, action.payload.line),
           [
-            ...state.charPixelOffset[action.payload.line].slice(0, action.payload.charIndex),
+            ...state.charPixelOffset[action.payload.line].slice(0, action.payload.chordIndex),
             action.payload.charPixels,
-            ...state.charPixelOffset[action.payload.line].slice(action.payload.charIndex),
+            ...state.charPixelOffset[action.payload.line].slice(action.payload.chordIndex),
           ],
           ...state.charPixelOffset.slice(action.payload.line + 1),
         ]
@@ -119,7 +126,6 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
       };
   }
 }
-const getClickX = (e: MouseEvent) => e.clientX - (e.target as Element).getBoundingClientRect().x;
 
 type EmptyFunction = (args: any) => void;
 export const DispatchContext = createContext<React.Dispatch<SlideAction> | EmptyFunction>(() => { });

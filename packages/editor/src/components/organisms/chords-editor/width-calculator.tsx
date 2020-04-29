@@ -1,7 +1,7 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
 import ChordContainer from './chord-container';
 
-const charPixels: number[] = [];
+// const charPixels: number[] = [];
 
 export interface WidthCalculatorProps {
   text: string;
@@ -9,24 +9,24 @@ export interface WidthCalculatorProps {
 }
 
 const WidthCalculator: React.FC<WidthCalculatorProps> = ({ text, onComplete }) => {
-  const [calculated, setCalculated] = useState(false);
+  // const [calculated, setCalculated] = useState(false);
   const [n, setN] = useState(1);
-  // const [charPixels, setPixels] = useState<number[]>([]);
+  const [charPixels, setPixels] = useState<number[]>([]);
   const textRef = useRef(null);
   useLayoutEffect(() => {
     // if(calculated) return;
-    const width = (textRef.current as unknown as Element).getBoundingClientRect().width;
-    // console.log(`in useEffect n=${n} width=${width}`)
-    // setPixels([...charPixels, width])
-    charPixels.push(width);
-    if (n + 1 > text.length) {
+    if (n > text.length) {
       onComplete(charPixels);
       console.log(`Width calculation completed: ${charPixels}`)
-      // setCalculated(true);
+      // charPixels.length = 0;
     } else {
+      const width = (textRef.current as unknown as Element).getBoundingClientRect().width;
+      // console.log(`in useEffect n=${n} width=${width}`)
+      setPixels([...charPixels, width])
+      // charPixels.push(width);
       setN(n + 1);
     }
-  }, [calculated, n, text, textRef, onComplete]);
+  }, [n, charPixels, text, textRef, onComplete]);
   return (
     <ChordContainer ref={textRef}>
       {text.slice(0, n).replace(/^\s|\s$/g, '\u00a0')}
