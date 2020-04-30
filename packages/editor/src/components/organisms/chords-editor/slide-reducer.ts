@@ -9,16 +9,17 @@ export interface ChordsEditorState {
   caretChordOffset: number;
   toolbarShown: boolean;
   onSave?: (slide: ChordSlide) => void;
+  rtl: boolean;
   madeAdjustments: number;
 }
 
 interface InitArgs {
   initialSlide: ChordSlide;
-  caretRef: any;
   onSave?: (slide: ChordSlide) => void;
+  isRTL?: boolean;
 }
 
-const initState = ({ initialSlide, caretRef, onSave }: InitArgs) => {
+const initState = ({ initialSlide, onSave, isRTL }: InitArgs) => {
   const nulledArray = initialSlide.chords.map(line => (
     line.map(() => {
       return null;
@@ -32,6 +33,7 @@ const initState = ({ initialSlide, caretRef, onSave }: InitArgs) => {
     caretChordOffset: 1,
     toolbarShown: false,
     onSave,
+    rtl: isRTL || false,
     madeAdjustments: 0,
   }
 }
@@ -57,19 +59,21 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
     //     return action.payload ? initState({ slide: action.payload }) : state;
     case 'POSITION_CHANGE':
       const { line, lastClickX } = action.payload;
-      const chordIndex = action.payload.chordIndex < 0 ? 
-        state.slide.chords[line].length - 1 : 
+      const chordIndex = action.payload.chordIndex < 0 ?
+        state.slide.chords[line].length - 1 :
         action.payload.chordIndex;
-      if (line === undefined || !lastClickX || state.charPixelOffset[line][chordIndex] === null)
+      if (line === undefined || !lastClickX || !state.charPixelOffset[line][chordIndex])
         return state;
-      const offset = state.charPixelOffset[line][chordIndex]
-        .findIndex(px => lastClickX < px);
+      const charPixels = state.charPixelOffset[line][chordIndex] || [];  
+      const offset =  charPixels.findIndex(
+        px => lastClickX < px
+      );
       // if (line === undefined || (line === state.caretLine && pos === state.caretChordOffset)) return state;
       return {
         ...state,
         caretLine: line,
         caretChordIndex: chordIndex < 0 ? state.caretChordIndex : chordIndex,
-        caretChordOffset: offset < 0 ? state.charPixelOffset[line][chordIndex].length : offset + 1,
+        caretChordOffset: offset < 0 ? charPixels.length : offset + 1,
         toolbarShown: true,
       }
     case 'ADJUST_POSITION':
@@ -123,9 +127,8 @@ type EmptyFunction = (args: any) => void;
 export const DispatchContext = createContext<React.Dispatch<SlideAction> | EmptyFunction>(() => { });
 export const StateContext = createContext<ChordsEditorState | null>(null);
 
-const useSlide = (initialSlide: ChordSlide, onSave?: (s: ChordSlide) => void) => {
-  const caretRef = useRef(null);
-  return useReducer(slideReducer, { initialSlide, caretRef, onSave }, initState);
+const useSlide = (initialSlide: ChordSlide, onSave?: (s: ChordSlide) => void, isRTL?: boolean) => {
+  return useReducer(slideReducer, { initialSlide, onSave, isRTL }, initState);
 }
 
 export default useSlide;

@@ -36,10 +36,10 @@ export default {
     excludeStories: /^mock.*/i,
 };
 
-export const Default: React.FC = () => <ChordsBlock chords={mockContent} />
+export const Default: React.FC = () => <ChordsBlock line={0} chords={mockContent} />
 
 export const Arabic: React.FC = () => (
     <MockRTLdiv>
-        <ChordsBlock chords={mockContentAr} />
+        <ChordsBlock line={0} chords={mockContentAr} />
     </MockRTLdiv>
 );

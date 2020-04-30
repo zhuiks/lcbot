@@ -26,9 +26,11 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
   const state = useContext(StateContext);
 
   const onClick = (chordIndex: number, e: React.MouseEvent) => {
-    // const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, pos);
-    const lastClickX = e.clientX - (e.target as Element).getBoundingClientRect().x;
-    console.log(`click @${lastClickX}`)
+    if (!state) return;
+    const targetDim = (e.target as Element).getBoundingClientRect();
+    const clickX = e.clientX
+    const lastClickX = state.rtl ? targetDim.right - clickX : clickX - targetDim.left;
+    console.log(`click (${targetDim.left} - ${targetDim.right}) @${clickX} `)
     dispatch({ type: 'POSITION_CHANGE', payload: { line, chordIndex, lastClickX, } })
   }
   return (
@@ -44,6 +46,7 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
             />
           ) : (
               <WidthCalculator
+                key={i} 
                 text={chord.text}
                 onComplete={charPixels =>
                   dispatch({

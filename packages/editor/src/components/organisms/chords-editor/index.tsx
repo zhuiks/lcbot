@@ -4,7 +4,7 @@ import useSlide, { DispatchContext, StateContext } from "./slide-reducer";
 import { keyBinding } from "./key-binding";
 import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Button } from "@material-ui/core";
+import { Button, useTheme } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,12 +24,14 @@ const useStyles = makeStyles((theme: Theme) =>
 export interface ChordEditorProps {
   slide: ChordSlide;
   onSave?: (s: ChordSlide) => void;
+  rtl?: boolean; 
 }
 
-const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave }) => {
-  console.log('rerendering Chord Editor');
+const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave, rtl }) => {
   const classes = useStyles();
-  const [state, dispatch] = useSlide(initialSlide, onSave);
+  const theme = useTheme();
+  const isRTL = rtl !== undefined ? rtl : theme.direction.toLowerCase()==='rtl' || false;
+  const [state, dispatch] = useSlide(initialSlide, onSave, isRTL);
 
   return (
     <>
