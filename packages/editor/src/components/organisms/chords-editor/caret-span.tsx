@@ -19,7 +19,7 @@ const ChordContainer = styled.div<CaretProps>`
 `;
 const blinkAnimation = keyframes`
   to {
-    background: transparent;
+    background: rgba(255, 0, 0, 0.1);
   }
 `;
 
@@ -33,7 +33,7 @@ const Caret = styled.div`
   border: 1px dashed red;
   border-radius: 2px;
   background: rgba(255, 0, 0, 0.3);
-  animation: ${blinkAnimation} 1s steps(5, start) infinite;
+  animation: ${blinkAnimation} 1.5s steps(5, start) infinite;
 `;
 
 const CaretSpan: React.FC = () => {
