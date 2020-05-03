@@ -1,4 +1,4 @@
-import { useReducer, useRef, createContext } from "react";
+import { useReducer, createContext } from "react";
 import { chordAction, ChordSlide } from "@bit/zhuiks.lcbot.core.chords";
 
 export interface ChordsEditorState {
@@ -31,7 +31,7 @@ const initState = ({ initialSlide, onSave, isRTL }: InitArgs) => {
     caretLine: 0,
     caretChordIndex: 0,
     caretChordOffset: 1,
-    toolbarShown: false,
+    toolbarShown: true,
     onSave,
     rtl: isRTL || false,
     madeAdjustments: 0,
