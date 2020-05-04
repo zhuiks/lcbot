@@ -120,6 +120,8 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
       return {
         ...state,
         slide: newChordSlide,
+        caretChordIndex: state.caretChordIndex+1,
+        caretChordOffset: 0,
       };
   }
 }
