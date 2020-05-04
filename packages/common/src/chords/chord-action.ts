@@ -1,7 +1,6 @@
 import Chord, { IChord, EMPTY_CHAR } from "./chord";
 import ChordSlide from "./chord-slide";
 import { ChordActionType } from "../types";
-import getChordIndex from "./get-chord-index";
 
 // https://www.w3.org/TR/2018/WD-alreq-20180222/#dfn-zwj
 export const ZWJ = '\u200D';
