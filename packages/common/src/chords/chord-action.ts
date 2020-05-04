@@ -6,8 +6,11 @@ import { ChordActionType } from "../types";
 export const ZWJ = '\u200D';
 
 const _addChord = (type: string, chord: IChord) => {
+    const root = type.slice(0,1);
+    const pitchStr = type.slice(2);
+    const pitch = pitchStr === 'SHARP' ? '♯' : pitchStr === 'FLAT' ? '♭' : '' 
     return {
-        root: type.toUpperCase()
+        root: root.toUpperCase() + pitch
     };
 
 }
@@ -38,7 +41,7 @@ const _modChord = (type: string, chord: IChord) => {
                 return false;
             }
             chordData = {
-                root: chord.root + '#',
+                root: chord.root + '♯',
             }
             break;
         default:
