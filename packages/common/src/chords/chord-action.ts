@@ -70,7 +70,7 @@ const _optChord = (type: string, chord: IChord) => {
 
 }
 
-const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, pos: number) => {
+const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, chordIndex: number,offset: number) => {
     if (!slide.lines[line] || !slide.chords[line]) {
         return slide;
     }
@@ -78,7 +78,7 @@ const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, pos
     const modType = type.slice(0, 'ADD_CHORD'.length); //first part
     const chordType = type.slice('ADD_CHORD_'.length);  //second part
     const chordsLine = slide.chords[line];
-    const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, pos);
+    // const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, offset);
     const chord = chordsLine[chordIndex];
 
     switch (modType) {
@@ -112,7 +112,7 @@ const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, pos
     }
 
     let newChordsLine;
-    const prevChordText = chord.text.slice(0, charsFromTheEnd);
+    const prevChordText = chord.text.slice(0, offset);
 
     if (modType === 'DEL_CHORD' && chordData.text) {
         newChordsLine = [
@@ -125,13 +125,13 @@ const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, pos
         ];
     } else if (modType === 'ADD_CHORD' && prevChordText.length !== 0) {
         const arabicPairRegex = /^[\u0620-\u064A]{2}$/;
-        const addZWJ = arabicPairRegex.test(chord.text.slice(charsFromTheEnd - 1, charsFromTheEnd + 1)) ? ZWJ : '';
+        const addZWJ = arabicPairRegex.test(chord.text.slice(offset - 1, offset + 1)) ? ZWJ : '';
         const prevChordData = {
             text: prevChordText + addZWJ,
         }
         chordData = {
             ...chordData,
-            text: addZWJ + chord.text.slice(charsFromTheEnd),
+            text: addZWJ + chord.text.slice(offset),
         };
         newChordsLine = [
             ...chordsLine.slice(0, chordIndex),

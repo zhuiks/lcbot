@@ -46,28 +46,31 @@ describe('Chord Slide', () => {
 
     it('adds chord in the begging', () => {
         const line = 0;
-        const pos = 0;
+        const index = 0;
+        const offset = 0;
         const upSlide = chordAction(
             slide,
             'ADD_CHORD_C',
             line,
-            pos
+            index,
+            offset
         );
         expect(upSlide).not.toEqual(slide);
         const upChordLine = upSlide.chords[line];
         expect(upChordLine.length).toEqual(1);
-        const upChord = upSlide.chords[line][pos];
+        const upChord = upSlide.chords[line][offset];
         expect(upChord.root).toEqual('C');
         expect(upChord.text).toEqual(slide.lines[line]);
         const upSlide2 = chordAction(
             upSlide,
             'ADD_CHORD_F',
             line,
-            pos
+            0,
+            offset
         );
         expect(upSlide2).not.toEqual(upSlide);
         expect(upSlide2).not.toEqual(slide);
-        const upChord2 = upSlide2.chords[line][pos];
+        const upChord2 = upSlide2.chords[line][offset];
         expect(upChord2.root).toEqual('F');
         expect(upChord2.text).toEqual(slide.lines[line]);
     })
@@ -78,7 +81,8 @@ describe('Chord Slide', () => {
             slide,
             'ADD_CHORD_C',
             line,
-            5
+            0,
+            4
         );
         expect(upSlide).not.toEqual(slide);
         const upChordLine = upSlide.chords[line];
@@ -92,7 +96,8 @@ describe('Chord Slide', () => {
             upSlide,
             'ADD_CHORD_F',
             line,
-            15
+            1,
+            10
         );
         expect(upSlide2.chords[line]).not.toEqual(upSlide.chords[line]);
         const upChord2 = upSlide2.chords[line][2];
@@ -103,6 +108,7 @@ describe('Chord Slide', () => {
             upSlide2,
             'ADD_CHORD_E',
             line,
+            0,
             0
         );
         const upChord3 = upSlide3.chords[line][0];
@@ -111,14 +117,15 @@ describe('Chord Slide', () => {
         expect(upSlide3.chords[line].length).toEqual(3);
     })
 
-    it('adds chord in the end of the line', ()=>{
+    it('adds chord in the end of the line', () => {
         const line = slide.lines.length - 1
-        const pos = [...slide.lines[line]].length
+        const offset = [...slide.lines[line]].length
         const upSlide = chordAction(
             slide,
             'ADD_CHORD_C',
             line,
-            pos
+            0,
+            offset
         );
         const upChord = upSlide.chords[line][1];
         expect(upChord.root).toEqual('C');

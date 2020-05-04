@@ -112,6 +112,7 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
         state.slide,
         action.payload,
         state.caretLine,
+        state.caretChordIndex,
         state.caretChordOffset,
       );
       if (newChordSlide === state.slide) return state;
