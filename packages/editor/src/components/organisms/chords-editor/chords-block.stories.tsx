@@ -1,10 +1,8 @@
 import React from 'react';
-import { EditorState, Editor } from 'draft-js';
 
 import ChordsBlock from './chords-block';
 import { MockRTLdiv } from './chord-span.stories';
-import { ChordSlide, Chord } from '@bit/zhuiks.lcbot.core.chords';
-import { initChords } from './slide-actions';
+import { Chord } from '@bit/zhuiks.lcbot.core.chords';
 
 
 export const mockContent = [

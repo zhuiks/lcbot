@@ -1088,12 +1088,12 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bit/zhuiks.lcbot.core.chords@0.0.8", "@bit/zhuiks.lcbot.core.chords@^0.0.8":
-  version "0.0.8"
-  resolved "https://node.bit.dev/zhuiks.lcbot.core.chords/-/zhuiks.lcbot.core.chords-0.0.8.tgz#bc8c6d38eb478468f7b423e9a2eb94e723d06e31"
-  integrity sha1-vIxtOOtHhGj3tCPpouuU5yPQbjE=
+"@bit/zhuiks.lcbot.core.chords@1.0.0", "@bit/zhuiks.lcbot.core.chords@^1.0.0":
+  version "1.0.0"
+  resolved "https://node.bit.dev/zhuiks.lcbot.core.chords/-/zhuiks.lcbot.core.chords-1.0.0.tgz#9daae97b4de9d95333cea40b7eb0e3b34f4665ac"
+  integrity sha1-narpe03p2VMzzqQLfrDjs09GZaw=
   dependencies:
-    "@bit/zhuiks.lcbot.core.types" "0.0.2"
+    "@bit/zhuiks.lcbot.core.types" "0.0.3"
 
 "@bit/zhuiks.lcbot.core.chords@^0.0.2":
   version "0.0.2"
@@ -1107,13 +1107,18 @@
   resolved "https://node.bit.dev/zhuiks.lcbot.core.types/-/zhuiks.lcbot.core.types-0.0.2.tgz#4d0e8bb6c70e0036f49549322a10bcf5f03eea82"
   integrity sha1-TQ6LtscOADb0lUkyKhC89fA+6oI=
 
-"@bit/zhuiks.lcbot.org.song-slide@^0.0.12":
-  version "0.0.12"
-  resolved "https://node.bit.dev/zhuiks.lcbot.org.song-slide/-/zhuiks.lcbot.org.song-slide-0.0.12.tgz#4f954ab6572e4ea51f8bb8632a63a103b244570d"
-  integrity sha1-T5VKtlcuTqUfi7hjKmOhA7JEVw0=
+"@bit/zhuiks.lcbot.core.types@0.0.3", "@bit/zhuiks.lcbot.core.types@^0.0.3":
+  version "0.0.3"
+  resolved "https://node.bit.dev/zhuiks.lcbot.core.types/-/zhuiks.lcbot.core.types-0.0.3.tgz#d3612dfa5506b637f138ae2e4c86e908d85427fc"
+  integrity sha1-02Et+lUGtjfxOK4uTIbpCNhUJ/w=
+
+"@bit/zhuiks.lcbot.org.song-slide@^0.0.14":
+  version "0.0.14"
+  resolved "https://node.bit.dev/zhuiks.lcbot.org.song-slide/-/zhuiks.lcbot.org.song-slide-0.0.14.tgz#cc6d46f0cfd1e481af02227aaa6971debc0a672b"
+  integrity sha1-zG1G8M/R5IGvAiJ6qmlx3rwKZys=
   dependencies:
-    "@bit/zhuiks.lcbot.core.chords" "0.0.8"
-    "@bit/zhuiks.lcbot.core.types" "0.0.2"
+    "@bit/zhuiks.lcbot.core.chords" "1.0.0"
+    "@bit/zhuiks.lcbot.core.types" "0.0.3"
     styled-components "5.0.1"
 
 "@cnakazawa/watch@^1.0.3":
