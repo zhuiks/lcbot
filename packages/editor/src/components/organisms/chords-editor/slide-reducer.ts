@@ -47,7 +47,7 @@ export interface SlideAction {
   payload?: any;
 }
 const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEditorState => {
-  console.log(`ChordsEditor: dispatched ${action.type}; state: caret[${state.caretLine}, ${state.caretChordOffset}] toolbar=${state.toolbarShown}`);
+  console.log(`ChordsEditor: dispatched ${action.type}; state: caret[#${state.caretLine}: ${state.caretChordIndex}~${state.caretChordOffset}] toolbar=${state.toolbarShown}`);
   switch (action.type) {
     case 'MOVE_CURSOR':
       return {
@@ -116,11 +116,18 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
         state.caretChordOffset,
       );
       if (newChordSlide === state.slide) return state;
-      // state.editorEl.current.focus();
+      const nulledLine = newChordSlide.chords[state.caretLine].map((c)=> { 
+        return null;
+      });
       return {
         ...state,
         slide: newChordSlide,
-        caretChordIndex: state.caretChordIndex+1,
+        charPixelOffset: [
+          ...state.charPixelOffset.slice(0, state.caretLine),
+          nulledLine,
+          ...state.charPixelOffset.slice(state.caretLine+1),
+        ],
+        // caretChordIndex: state.caretChordIndex+1,
         caretChordOffset: 0,
       };
   }
