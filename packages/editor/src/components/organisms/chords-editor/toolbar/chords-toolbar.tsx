@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { ChordActionType, ChordChar } from '@bit/zhuiks.lcbot.core.types'
-import { StateContext } from './slide-reducer'
+import { StateContext } from '../slide-reducer'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import { Fade, fade } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Chord } from '@bit/zhuiks.lcbot.core.chords'
-import ToolbarButton from './atoms/toolbar-button'
-import ModChord from './atoms/mod-chord'
+import ToolbarButton from './toolbar-button'
+import ModChord from './mod-chord'
 
 const useStyles = makeStyles<Theme>(theme =>
   createStyles({

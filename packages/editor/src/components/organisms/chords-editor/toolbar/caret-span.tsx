@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import ChordsToolbar from "./chords-toolbar";
-import { StateContext } from './slide-reducer';
-import { CHORDS_PADDING } from './chord-container';
+import { StateContext } from '../slide-reducer';
+import { CHORDS_PADDING } from '../chord-container';
 
 // https://www.w3.org/TR/2018/WD-alreq-20180222/#dfn-zwj
 const ZWJ = '\u200D';

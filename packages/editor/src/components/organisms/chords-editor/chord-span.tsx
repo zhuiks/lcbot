@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Chord } from '@bit/zhuiks.lcbot.core.chords';
 import ChordContainer from './chord-container';
-import CaretSpan from "./caret-span";
+import CaretSpan from "./toolbar/caret-span";
 
 const ChordHolder = styled.span`
     position: absolute;
