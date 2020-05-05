@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import ChordSpan from "./chord-span";
 import { Chord } from "@bit/zhuiks.lcbot.core.chords";
 import { DispatchContext, StateContext } from "./slide-reducer";
-import CaretSpan from "./caret-span";
 import WidthCalculator from "./width-calculator";
 
 const ChordsLine = styled.div`
@@ -40,6 +39,7 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
         {chords.map((chord: Chord, i: number) => (
           state && state.charPixelOffset[line] && state.charPixelOffset[line][i] !== null ? (
             <ChordSpan key={i} chord={chord}
+              displayCaret={state && state.caretLine === line && state.caretChordIndex === i}
               onClick={e => {
                 e.stopPropagation();
                 onClick(i, e)
@@ -60,9 +60,6 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
         ))
         }
       </ChordsLine>
-      {state && state.caretLine === line && state.charPixelOffset[line] && (
-          <CaretSpan />
-      )}
     </BlockContainer >
   )
 }

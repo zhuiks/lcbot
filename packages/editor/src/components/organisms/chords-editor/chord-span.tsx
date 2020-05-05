@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Chord } from '@bit/zhuiks.lcbot.core.chords';
 import ChordContainer from './chord-container';
+import CaretSpan from "./caret-span";
 
 const ChordHolder = styled.span`
     position: absolute;
@@ -24,14 +25,16 @@ const ChordSub = styled.sub`
 
 export interface ChordSpanProps extends React.HTMLAttributes<HTMLDivElement> {
     chord: Chord;
+    displayCaret?: boolean
 }
 
-const ChordSpan: React.FC<ChordSpanProps> = ({ chord, children, onKeyDown, onClick }) => {
+const ChordSpan: React.FC<ChordSpanProps> = ({ chord, displayCaret = false, children, onKeyDown, onClick }) => {
     const text = (chord.text || (children && children.toString()) || '').replace(/^\s|\s$/g, '\u00a0');
     return (
         <ChordContainer onKeyDown={onKeyDown} onClick={(e) => {
             if (onClick) onClick(e)
         }}>
+            {displayCaret && <CaretSpan />}
             <ChordHolder>
                 {chord.root !== '_' && chord.root}
                 {chord.quality === 'm' ? chord.quality : <ChordSub>{chord.quality}</ChordSub>}

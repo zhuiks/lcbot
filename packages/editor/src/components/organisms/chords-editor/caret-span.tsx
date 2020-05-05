@@ -52,19 +52,20 @@ const CaretSpan: React.FC = () => {
 
   const pair = state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(state.caretChordOffset - 1, state.caretChordOffset + 1);
   const addZWJ = arabicPairRegex.test(pair) ? ZWJ : '';
+  
   const offsetText = state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(0, state.caretChordOffset);
 
-  const prevChordsText = state.slide.chords[state.caretLine]
-    .slice(0, state.caretChordIndex)
-    .map(chord => chord.text)
-    .reduce((str, chordText) => str + chordText, '');
+  // const prevChordsText = state.slide.chords[state.caretLine]
+  //   .slice(0, state.caretChordIndex)
+  //   .map(chord => chord.text)
+  //   .reduce((str, chordText) => str + chordText, '');
 
-  console.log(`Caret Text: "${prevChordsText}"-"${offsetText}" ZWJ=${addZWJ !== ''}`)
+  // console.log(`Caret Text: "${prevChordsText}"-"${offsetText}" ZWJ=${addZWJ !== ''}`)
 
   return (
     <ChordContainer>
       <Caret rtl={state.rtl} />
-      {prevChordsText + offsetText + addZWJ}
+      {offsetText + addZWJ}
       <ChordsToolbar />
     </ChordContainer>
   );
