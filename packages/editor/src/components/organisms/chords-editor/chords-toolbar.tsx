@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { Button, ButtonProps, fade } from '@material-ui/core'
 import { ChordActionType, ChordChar } from '@bit/zhuiks.lcbot.core.types'
-import { StateContext, DispatchContext } from './slide-reducer'
+import { StateContext } from './slide-reducer'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import { Fade } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Chord } from '@bit/zhuiks.lcbot.core.chords'
-import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab'
 import ToolbarButton from './atoms/toolbar-button'
 
 const useStyles = makeStyles<Theme>(theme =>
@@ -21,10 +20,6 @@ const useStyles = makeStyles<Theme>(theme =>
     },
     btnContainer: {
       position: 'relative',
-      '&>.MuiButton-root': {
-        boxShadow: 'none',
-        minWidth: 30,
-      },
       '&:not(:first-child)>.MuiButton-root': {
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
@@ -57,8 +52,7 @@ const useStyles = makeStyles<Theme>(theme =>
     },
   }));
 
-type PitchType = 'SHARP' | 'FLAT' | '';
-interface ChordButtonProps extends ButtonProps {
+interface ChordButtonProps {
   act: ChordActionType;
   char: ChordChar;
   flat?: boolean;
@@ -66,21 +60,15 @@ interface ChordButtonProps extends ButtonProps {
 }
 
 const ChordButton: React.FC<ChordButtonProps> = ({ char, act, flat, sharp, }) => {
-  // const dispatch = useContext(DispatchContext);
   const classes = useStyles();
   const [mouseOver, setMouseOver] = useState(false);
-  // const handleClick = (e: React.MouseEvent<HTMLElement>, pitch: PitchType = '') => {
-  //   e.stopPropagation();
-  //   const payload = pitch ? act + '_' + pitch : act;
-  //   dispatch({ type: 'CHORD_ACTION', payload });
-  // }
   return (
     <div
       className={classes.btnContainer}
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
     >
-      <ToolbarButton payload={act}>
+      <ToolbarButton payload={act} contained>
         {char}
       </ToolbarButton>
       {flat &&
@@ -88,6 +76,7 @@ const ChordButton: React.FC<ChordButtonProps> = ({ char, act, flat, sharp, }) =>
           <ToolbarButton
             className={classes.btnPitch + ' ' + classes.btnFlat}
             payload={act + '_FLAT'}
+            contained
           >
             {char}♭
           </ToolbarButton>
@@ -98,6 +87,7 @@ const ChordButton: React.FC<ChordButtonProps> = ({ char, act, flat, sharp, }) =>
           <ToolbarButton
             className={classes.btnPitch + ' ' + classes.btnSharp}
             payload={act + '_SHARP'}
+            contained
           >
             {char}♯
           </ToolbarButton>
@@ -123,36 +113,29 @@ interface ChordsToolbarProps {
   selectedChord?: Chord | false;
 }
 const ModChordToolbar: React.FC<ChordsToolbarProps> = ({ selectedChord }) => {
-  const dispatch = useContext(DispatchContext);
   const classes = useStyles();
   if (!selectedChord) return null;
-  const handleQuality = (e: React.MouseEvent<HTMLElement>, newQuality: string | null) => {
-    e.stopPropagation();
-    let payload = '';
-    switch (newQuality) {
-      case 'm':
-        payload = ChordActionType.MOD_CHORD_MIN;
-        break;
-      case 'aug':
-        payload = ChordActionType.MOD_CHORD_AUG;
-        break;
-      case 'dim':
-        payload = ChordActionType.MOD_CHORD_DIM;
-        break;
-    }
-    dispatch({ type: 'CHORD_ACTION', payload });
-  }
+  console.log(selectedChord)
   return (
     <>
-      {/* <Button value="m" aria-label="bold">
-          m
-        </Button>
-        <ToggleButton value="dim" aria-label="italic">
-          dim
-        </ToggleButton>
-        <ToggleButton value="aug" aria-label="underlined">
-          aug
-        </ToggleButton> */}
+      <ToolbarButton
+        payload={ChordActionType.MOD_CHORD_MIN}
+        selected={selectedChord.quality === "m"}
+      >
+        m
+        </ToolbarButton>
+      <ToolbarButton
+        payload={ChordActionType.MOD_CHORD_DIM}
+        selected={selectedChord.quality === "dim"}
+      >
+        dim
+        </ToolbarButton>
+      <ToolbarButton
+        payload={ChordActionType.MOD_CHORD_AUG}
+        selected={selectedChord.quality === "aug"}
+      >
+        aug
+        </ToolbarButton>
 
       <ToolbarButton payload={ChordActionType.DEL_CHORD_DEL} >
         <DeleteIcon />
