@@ -34,9 +34,9 @@ interface CaretProps {
 const Caret = styled.div<CaretProps>`
   position: absolute;
   height: 1em;
-  width: ${props => props.width ? (Math.ceil(props.width)).toString()+'px' : '0.8em'};
+  width: ${props => props.width ? (Math.ceil(props.width)).toString() + 'px' : '0.8em'};
   top: 0;
-  right: ${props => props.rtl ? (props.width ? '0' : 'auto') :'-0.3em'};
+  right: ${props => props.rtl ? (props.width ? '0' : 'auto') : '-0.3em'};
   left: ${props => props.rtl ? '0' : (props.width ? '0' : 'auto')};
   content: ' ';
   border: 1px dashed red;
@@ -52,7 +52,8 @@ const CaretSpan: React.FC<CaretSpanProps> = ({ chordRef }) => {
   const state = useContext(StateContext);
 
   if (!state) return null;
-  const chordSelected = state.caretChordOffset > 0 && state.caretChordOffset < 4;
+  const caretChord = state.slide.chords[state.caretLine][state.caretChordIndex];
+  const chordSelected = caretChord.root !== '_' && state.caretChordOffset > 0 && state.caretChordOffset < 4;
   const chordWidth = chordSelected && chordRef && chordRef.current
     ? (chordRef.current as Element).getBoundingClientRect().width : 0;
   console.log(`Caret chordSelected=${chordSelected} chordWidth=${chordWidth}`);
@@ -73,7 +74,7 @@ const CaretSpan: React.FC<CaretSpanProps> = ({ chordRef }) => {
     <ChordContainer>
       <Caret rtl={state.rtl} width={chordWidth} />
       {offsetText + addZWJ}
-      <ChordsToolbar />
+      <ChordsToolbar selectedChord={chordSelected && caretChord} />
     </ChordContainer>
   );
 }
