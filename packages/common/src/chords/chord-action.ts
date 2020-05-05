@@ -130,7 +130,7 @@ const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, cho
         ];
     } else if (modType === 'ADD_CHORD' && prevChordText.length !== 0) {
         const arabicPairRegex = /^[\u0620-\u064A]{2}$/;
-        const addZWJ = arabicPairRegex.test(chord.text.slice(offset - 1, offset + 1)) ? ZWJ : '';
+        const addZWJ = arabicPairRegex.test(chord.text.slice(offset - 2, offset )) ? ZWJ : '';
         const prevChordData = {
             text: prevChordText + addZWJ,
         }
