@@ -144,7 +144,7 @@ const ModChordToolbar: React.FC<ChordsToolbarProps> = ({ selectedChord }) => {
   }
   return (
     <>
-        {/* <Button value="m" aria-label="bold">
+      {/* <Button value="m" aria-label="bold">
           m
         </Button>
         <ToggleButton value="dim" aria-label="italic">
@@ -154,14 +154,9 @@ const ModChordToolbar: React.FC<ChordsToolbarProps> = ({ selectedChord }) => {
           aug
         </ToggleButton> */}
 
-      <Button
-        size="small"
-        color="secondary"
-        variant="contained"
-      // onClick={}
-      >
+      <ToolbarButton payload={ChordActionType.DEL_CHORD_DEL} >
         <DeleteIcon />
-      </Button>
+      </ToolbarButton>
 
     </>
   )
