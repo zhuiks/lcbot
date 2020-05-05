@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Button, ButtonProps, fade } from '@material-ui/core'
-import { ChordActionType } from '@bit/zhuiks.lcbot.core.types'
+import { ChordActionType, ChordChar } from '@bit/zhuiks.lcbot.core.types'
 import { StateContext, DispatchContext } from './slide-reducer'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import { Fade } from '@material-ui/core'
@@ -53,28 +53,34 @@ const useStyles = makeStyles<Theme>(theme =>
     },
   }));
 
-type ChordChar = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
+type PitchType = 'SHARP' | 'FLAT' | '';
 interface ChordButtonProps extends ButtonProps {
   act: ChordActionType;
   char: ChordChar;
   flat?: boolean;
   sharp?: boolean;
 }
+
 const ChordButton: React.FC<ChordButtonProps> = ({ char, act, flat, sharp, }) => {
   const dispatch = useContext(DispatchContext);
   const classes = useStyles();
   const [mouseOver, setMouseOver] = useState(false);
+  const handleClick = (e: React.MouseEvent, pitch: PitchType = '') => {
+    e.stopPropagation();
+    const payload = pitch ? act + '_' + pitch : act;
+    dispatch({ type: 'CHORD_ACTION', payload });
+  }
   return (
-    <div 
-      className={classes.btnContainer} 
-      onMouseEnter={()=>setMouseOver(true)}
-      onMouseLeave={()=>setMouseOver(false)}
-      >
+    <div
+      className={classes.btnContainer}
+      onMouseEnter={() => setMouseOver(true)}
+      onMouseLeave={() => setMouseOver(false)}
+    >
       <Button
         size="small"
         color="secondary"
         variant="contained"
-        onClick={() => dispatch({ type: 'CHORD_ACTION', payload: act })}
+        onClick={handleClick}
       >
         {char}
       </Button>
@@ -85,7 +91,7 @@ const ChordButton: React.FC<ChordButtonProps> = ({ char, act, flat, sharp, }) =>
             size="small"
             color="secondary"
             variant="contained"
-            onClick={() => dispatch({ type: 'CHORD_ACTION', payload: act })}
+            onClick={(e) => handleClick(e, 'FLAT')}
           >
             {char}♭
           </Button>
@@ -98,7 +104,7 @@ const ChordButton: React.FC<ChordButtonProps> = ({ char, act, flat, sharp, }) =>
             size="small"
             color="secondary"
             variant="contained"
-            onClick={() => dispatch({ type: 'CHORD_ACTION', payload: act })}
+            onClick={(e) => handleClick(e, 'SHARP')}
           >
             {char}♯
           </Button>

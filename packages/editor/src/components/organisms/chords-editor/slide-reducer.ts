@@ -128,8 +128,8 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
           nulledLine,
           ...state.charPixelOffset.slice(state.caretLine+1),
         ],
-        // caretChordIndex: state.caretChordIndex+1,
-        caretChordOffset: 0,
+        caretChordIndex: state.caretChordIndex+1,
+        caretChordOffset: 1,
       };
   }
 }
