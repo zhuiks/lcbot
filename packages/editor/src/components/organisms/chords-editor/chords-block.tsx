@@ -27,6 +27,7 @@ const ChordsBlock: React.FC<ChordsBlockProps> = ({ chords, line }) => {
 
   const onClick = (chordIndex: number, e: React.MouseEvent) => {
     if (!state) return;
+    e.preventDefault();
     const targetDim = (e.target as Element).getBoundingClientRect();
     const clickX = e.clientX
     const lastClickX = state.rtl ? targetDim.right - clickX : clickX - targetDim.left;

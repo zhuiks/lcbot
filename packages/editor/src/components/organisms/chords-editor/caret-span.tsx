@@ -50,20 +50,21 @@ const CaretSpan: React.FC = () => {
 
   if (!state) return null;
 
-  const pair = state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(state.caretChordOffset-1, state.caretChordOffset + 1);
+  const pair = state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(state.caretChordOffset - 1, state.caretChordOffset + 1);
   const addZWJ = arabicPairRegex.test(pair) ? ZWJ : '';
-  console.log(`caret pair "${pair}" ZWJ=${addZWJ!==''}`)
+  const offsetText = state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(0, state.caretChordOffset);
 
-  const caretText = state.slide.chords[state.caretLine]
-    .slice(0, state.caretChordIndex - 1)
+  const prevChordsText = state.slide.chords[state.caretLine]
+    .slice(0, state.caretChordIndex)
     .map(chord => chord.text)
-    .reduce((str, chordText) => str + chordText, '')
-    + state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(0, state.caretChordOffset) + addZWJ;
+    .reduce((str, chordText) => str + chordText, '');
+
+  console.log(`Caret Text: "${prevChordsText}"-"${offsetText}" ZWJ=${addZWJ !== ''}`)
 
   return (
     <ChordContainer>
       <Caret rtl={state.rtl} />
-      {caretText}
+      {prevChordsText + offsetText + addZWJ}
       <ChordsToolbar />
     </ChordContainer>
   );

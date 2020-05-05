@@ -116,6 +116,7 @@ const slideReducer = (state: ChordsEditorState, action: SlideAction): ChordsEdit
         state.caretChordOffset,
       );
       if (newChordSlide === state.slide) return state;
+      console.log(newChordSlide.chords[state.caretLine])
       const nulledLine = newChordSlide.chords[state.caretLine].map((c)=> { 
         return null;
       });
