@@ -32,8 +32,6 @@ const useStyles = makeStyles<Theme>(theme =>
     },
     btnPitch: {
       position: 'absolute',
-      direction: 'ltr',
-      flip: false,
       left: 0,
     },
     btnFlat: {

@@ -9,7 +9,7 @@ const Container = styled.div`
 const Base = styled.div`
   content: ' ';
   height: 1em;
-  width: 3px;
+  width: 5px;
   border: 1px dotted;
   border-radius:1px
 `
