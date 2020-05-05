@@ -35,6 +35,6 @@ export const Default: React.FC = () => <ChordEditor slide={mockSlide} />
 
 export const Arabic: React.FC = () => (
     <MockRTLdiv>
-        <ChordEditor slide={mockSlideAr} />
+        <ChordEditor slide={mockSlideAr} rtl />
     </MockRTLdiv>
 )

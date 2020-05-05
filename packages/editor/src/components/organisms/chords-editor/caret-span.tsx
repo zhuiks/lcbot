@@ -29,30 +29,37 @@ const blinkAnimation = keyframes`
 
 interface CaretProps {
   readonly rtl?: boolean;
+  readonly width?: number;
 }
 const Caret = styled.div<CaretProps>`
   position: absolute;
   height: 1em;
-  width: 0.8em;
+  width: ${props => props.width ? (Math.ceil(props.width)).toString()+'px' : '0.8em'};
   top: 0;
-  right: ${props => props.rtl ? 'auto' : '-0.3em'};
-  left: ${props => props.rtl ? '0' : 'auto'};
+  right: ${props => props.rtl ? (props.width ? '0' : 'auto') :'-0.3em'};
+  left: ${props => props.rtl ? '0' : (props.width ? '0' : 'auto')};
   content: ' ';
   border: 1px dashed red;
   border-radius: 2px;
   background: rgba(255, 0, 0, 0.3);
   animation: ${blinkAnimation} 1.5s steps(5, start) infinite;
 `;
-
-const CaretSpan: React.FC = () => {
+interface CaretSpanProps {
+  chordRef?: any;
+}
+const CaretSpan: React.FC<CaretSpanProps> = ({ chordRef }) => {
 
   const state = useContext(StateContext);
 
   if (!state) return null;
+  const chordSelected = state.caretChordOffset > 0 && state.caretChordOffset < 4;
+  const chordWidth = chordSelected && chordRef && chordRef.current
+    ? (chordRef.current as Element).getBoundingClientRect().width : 0;
+  console.log(`Caret chordSelected=${chordSelected} chordWidth=${chordWidth}`);
 
   const pair = state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(state.caretChordOffset - 1, state.caretChordOffset + 1);
   const addZWJ = arabicPairRegex.test(pair) ? ZWJ : '';
-  
+
   const offsetText = state.slide.chords[state.caretLine][state.caretChordIndex].text.slice(0, state.caretChordOffset);
 
   // const prevChordsText = state.slide.chords[state.caretLine]
@@ -64,7 +71,7 @@ const CaretSpan: React.FC = () => {
 
   return (
     <ChordContainer>
-      <Caret rtl={state.rtl} />
+      <Caret rtl={state.rtl} width={chordWidth} />
       {offsetText + addZWJ}
       <ChordsToolbar />
     </ChordContainer>
