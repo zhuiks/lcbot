@@ -33,7 +33,7 @@ interface CaretProps {
 }
 const Caret = styled.div<CaretProps>`
   position: absolute;
-  height: 1em;
+  height: 1.3em;
   width: ${props => props.width ? (Math.ceil(props.width)).toString() + 'px' : '0.8em'};
   top: 0;
   right: ${props => props.rtl ? (props.width ? '0' : 'auto') : '-0.3em'};
