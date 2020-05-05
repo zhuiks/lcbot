@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { Button, ButtonProps, fade } from '@material-ui/core'
 import { ChordActionType, ChordChar } from '@bit/zhuiks.lcbot.core.types'
 import { StateContext } from './slide-reducer'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
-import { Fade } from '@material-ui/core'
+import { Fade, fade } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Chord } from '@bit/zhuiks.lcbot.core.chords'
 import ToolbarButton from './atoms/toolbar-button'
+import ModChord from './atoms/mod-chord'
 
 const useStyles = makeStyles<Theme>(theme =>
   createStyles({
@@ -35,8 +35,6 @@ const useStyles = makeStyles<Theme>(theme =>
       direction: 'ltr',
       flip: false,
       left: 0,
-      paddingLeft: 5,
-      paddingRight: 5,
     },
     btnFlat: {
       bottom: -32,
@@ -113,7 +111,6 @@ interface ChordsToolbarProps {
   selectedChord?: Chord | false;
 }
 const ModChordToolbar: React.FC<ChordsToolbarProps> = ({ selectedChord }) => {
-  const classes = useStyles();
   if (!selectedChord) return null;
   console.log(selectedChord)
   return (
@@ -122,19 +119,37 @@ const ModChordToolbar: React.FC<ChordsToolbarProps> = ({ selectedChord }) => {
         payload={ChordActionType.MOD_CHORD_MIN}
         selected={selectedChord.quality === "m"}
       >
-        m
-        </ToolbarButton>
+        <ModChord text="m" />
+      </ToolbarButton>
       <ToolbarButton
         payload={ChordActionType.MOD_CHORD_DIM}
         selected={selectedChord.quality === "dim"}
       >
-        dim
-        </ToolbarButton>
+        <ModChord sub="dim" />
+      </ToolbarButton>
       <ToolbarButton
         payload={ChordActionType.MOD_CHORD_AUG}
         selected={selectedChord.quality === "aug"}
       >
-        aug
+        <ModChord sub="aug" />
+      </ToolbarButton>
+      <ToolbarButton
+        payload={ChordActionType.OPT_CHORD_SUS}
+        selected={selectedChord.type === "sus"}
+      >
+        <ModChord sup="sus" />
+      </ToolbarButton>
+      <ToolbarButton
+        payload={ChordActionType.OPT_CHORD_2}
+        selected={selectedChord.type === "2"}
+      >
+        <ModChord sup="2" />
+        </ToolbarButton>
+      <ToolbarButton
+        payload={ChordActionType.OPT_CHORD_7}
+        selected={selectedChord.type === "7"}
+      >
+        <ModChord sup="7" />
         </ToolbarButton>
 
       <ToolbarButton payload={ChordActionType.DEL_CHORD_DEL} >

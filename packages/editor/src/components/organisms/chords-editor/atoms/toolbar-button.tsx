@@ -9,6 +9,8 @@ const useStyles = makeStyles<Theme>(theme =>
     btn: {
       boxShadow: 'none',
       minWidth: 30,
+      paddingLeft: 5,
+      paddingRight: 5,
     },
     grouped: {
       '&:not(:first-child)': {
