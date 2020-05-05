@@ -24,13 +24,13 @@ const useStyles = makeStyles((theme: Theme) =>
 export interface ChordEditorProps {
   slide: ChordSlide;
   onSave?: (s: ChordSlide) => void;
-  rtl?: boolean; 
+  rtl?: boolean;
 }
 
 const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave, rtl }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const isRTL = rtl !== undefined ? rtl : theme.direction.toLowerCase()==='rtl' || false;
+  const isRTL = rtl !== undefined ? rtl : theme.direction.toLowerCase() === 'rtl' || false;
   const [state, dispatch] = useSlide(initialSlide, onSave, isRTL);
 
   return (
@@ -54,7 +54,11 @@ const ChordEditor: React.FC<ChordEditorProps> = ({ slide: initialSlide, onSave, 
         className={classes.button}
         color="primary"
         variant="contained"
-        onClick={() => dispatch({ type: 'SLIDE_UPDATE' })}
+        onClick={(e) => {
+          e.stopPropagation();
+          dispatch({ type: 'SLIDE_UPDATE' })
+        }}
+
       >
         Update
                 </Button>

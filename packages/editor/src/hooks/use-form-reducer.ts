@@ -42,6 +42,7 @@ export interface FormAction {
 }
 
 const formReducer = (state: FormEditState, action: FormAction): FormEditState => {
+    console.log(`formReducer: dispatched ${action.type}`);
     switch (action.type) {
         case 'TITLE_CHANGE':
             return {
@@ -64,8 +65,8 @@ const formReducer = (state: FormEditState, action: FormAction): FormEditState =>
                 editSlide,
             };
         case 'CHORDS_UPDATE':
-            console.log('form reducer: dispatch CHORDS_UPDATE');
             if (!state.slides[state.editSlide]) {
+                console.log(`return empty :(`)
                 return state;
             }
             const slide = new ChordSlide({
