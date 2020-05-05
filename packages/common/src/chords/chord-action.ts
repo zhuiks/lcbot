@@ -82,7 +82,10 @@ const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, cho
     const chordsLine = slide.chords[line];
     // const { chordIndex, charsFromTheEnd } = getChordIndex(slide, line, offset);
     const chord = chordsLine[chordIndex];
-
+    //TODO: insert chord before the line
+    if (offset === 0) {
+        offset = 1;
+    }
     switch (modType) {
         case 'ADD_CHORD':
             chordData = _addChord(chordType, chord);
@@ -114,7 +117,7 @@ const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, cho
     }
 
     let newChordsLine;
-    const prevChordText = chord.text.slice(0, offset);
+    const prevChordText = chord.text.slice(0, offset-1);
 
     if (modType === 'DEL_CHORD' && chordData.text) {
         newChordsLine = [
@@ -133,7 +136,7 @@ const chordAction = (slide: ChordSlide, type: ChordActionType, line: number, cho
         }
         chordData = {
             ...chordData,
-            text: addZWJ + chord.text.slice(offset),
+            text: addZWJ + chord.text.slice(offset-1),
         };
         newChordsLine = [
             ...chordsLine.slice(0, chordIndex),

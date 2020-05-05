@@ -47,7 +47,7 @@ describe('Chord Slide', () => {
     it('adds chord in the begging', () => {
         const line = 0;
         const index = 0;
-        const offset = 0;
+        const offset = 1;
         const upSlide = chordAction(
             slide,
             'ADD_CHORD_C',
@@ -58,7 +58,7 @@ describe('Chord Slide', () => {
         expect(upSlide).not.toEqual(slide);
         const upChordLine = upSlide.chords[line];
         expect(upChordLine.length).toEqual(1);
-        const upChord = upSlide.chords[line][offset];
+        const upChord = upSlide.chords[line][index];
         expect(upChord.root).toEqual('C');
         expect(upChord.text).toEqual(slide.lines[line]);
         const upSlide2 = chordAction(
@@ -70,7 +70,7 @@ describe('Chord Slide', () => {
         );
         expect(upSlide2).not.toEqual(upSlide);
         expect(upSlide2).not.toEqual(slide);
-        const upChord2 = upSlide2.chords[line][offset];
+        const upChord2 = upSlide2.chords[line][index];
         expect(upChord2.root).toEqual('F');
         expect(upChord2.text).toEqual(slide.lines[line]);
     })
@@ -82,7 +82,7 @@ describe('Chord Slide', () => {
             'ADD_CHORD_C',
             line,
             0,
-            4
+            5
         );
         expect(upSlide).not.toEqual(slide);
         const upChordLine = upSlide.chords[line];
@@ -91,18 +91,19 @@ describe('Chord Slide', () => {
         const upChord = upSlide.chords[line][1];
         expect(upChord.root).toEqual('C');
         expect(upSlide.chords[line][0].text).toEqual('Усе ');
+        expect(upSlide.chords[line][1].text).toEqual('для Тебе і Тобою все живе!');
 
         const upSlide2 = chordAction(
             upSlide,
             'ADD_CHORD_F',
             line,
             1,
-            10
+            12
         );
         expect(upSlide2.chords[line]).not.toEqual(upSlide.chords[line]);
         const upChord2 = upSlide2.chords[line][2];
         expect(upChord2.root).toEqual('F');
-        expect(upChord2.text).toEqual(' Тобою все живе!');
+        expect(upChord2.text).toEqual('Тобою все живе!');
 
         const upSlide3 = chordAction(
             upSlide2,
@@ -129,5 +130,16 @@ describe('Chord Slide', () => {
         );
         const upChord = upSlide.chords[line][1];
         expect(upChord.root).toEqual('C');
+        expect(upChord.text).toEqual('!');
+    })
+
+    xit('adds chord before line begins', ()=>{
+        const line = 3;
+        const offset = 0;
+    })
+    xit('adds chord after line ends', ()=>{
+        const line = 3;
+        const offset = [...slide.lines[line]].length+1;
+        
     })
 })
