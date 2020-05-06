@@ -33,8 +33,13 @@ const Songs: React.FC<SongsProps> = () => {
 
   if (loading) return <Loading />;
   if (error) return <AppError err={error} />;
-  if (!data) return <p>Not found</p>;
-
+  if (!data || !data.songs) return <p>Not found</p>;
+  const songs = data.songs.sort((a, b) => {
+    if (!(a && a.title) && !(b && b.title)) return 0;
+    if (!(b && b.title)) return 1;
+    if (!(a && a.title)) return -1;
+    return a.title.localeCompare(b.title, 'ar', { sensitivity: 'base' })
+  });
   return (
     <>
       <SearchField filter={filter} onChange={setFilter} />
@@ -47,12 +52,11 @@ const Songs: React.FC<SongsProps> = () => {
         // alignContent="stretch"
         wrap="nowrap"
       >
-        {data.songs &&
-          wordSearch(data.songs.sort(), filter).map((song: any) => (
-            <Grid item key={song.id}>
-              <SongRow song={song} />
-            </Grid>
-          ))}
+        {wordSearch(songs, filter).map((song: any) => (
+          <Grid item key={song.id}>
+            <SongRow song={song} />
+          </Grid>
+        ))}
       </Grid>
       <ButtonAdd />
     </>
