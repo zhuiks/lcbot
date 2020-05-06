@@ -16,6 +16,13 @@ export const query = graphql`
           type
           name
           lines
+          chords {
+            text
+            root
+            quality
+            type
+            bass
+          }
         }
         links
       }
