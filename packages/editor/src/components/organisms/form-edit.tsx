@@ -1,6 +1,6 @@
 import React from 'react';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import { Grid, Chip, Paper, Button, Backdrop } from '@material-ui/core';
+import { Grid, Chip, Paper, Backdrop } from '@material-ui/core';
 import Loading from '../atoms/loading';
 import AppError from '../molecules/error';
 
