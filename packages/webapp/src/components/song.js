@@ -1,9 +1,9 @@
 import React from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
-
 import Layout from "./layout"
 import SEO from "./seo"
+import ChordToggle from "./atoms/chord-toggle"
 import SongSlide from "./song-slide"
 
 export const query = graphql`
@@ -44,8 +44,8 @@ const slides2text = slides => {
 
 const SongPage = ({ data, pageContext }) => {
   const song = data.songList.song
-  const songBegining = song.slides.find(sl => sl.lines && sl.lines.length )
-    .lines.map(line=>line.replace(/\|:|:\|/g, ''))
+  const songBegining = song.slides.find(sl => sl.lines && sl.lines.length)
+    .lines.map(line => line.replace(/\|:|:\|/g, ''))
     .join(' - ')
   const songInfo = {
     songId: song.id,
@@ -53,13 +53,16 @@ const SongPage = ({ data, pageContext }) => {
     youtube: song.links && song.links[0],
     pdf: pageContext.pdf,
   }
+  const [showChords, toggleChords] = React.useState(false)
+
   return (
     <Layout songInfo={songInfo}>
-      <SEO title={song.title} description={"كلمات ترنيمة" + ": "+ songBegining} songId={song.id} />
+      <SEO title={song.title} description={"كلمات ترنيمة" + ": " + songBegining} songId={song.id} />
       <SongTitle>{song.title}</SongTitle>
+      <ChordToggle checked={showChords} onToggle={toggleChords} />
       {song.slides.map((slide, i) => {
-        const displaySlide = slide.lines && slide.lines.length ? slide : song.slides.find(sl => sl.type === slide.type && sl.lines && sl.lines.length )
-        return <SongSlide key={i} slide={displaySlide} />
+        const displaySlide = slide.lines && slide.lines.length ? slide : song.slides.find(sl => sl.type === slide.type && sl.lines && sl.lines.length)
+        return <SongSlide key={i} slide={displaySlide} displayChords={showChords} />
       })}
     </Layout>
   )
