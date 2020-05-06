@@ -23,7 +23,8 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: "Harmattan, sans-serif",
+    // fontFamily: "Harmattan, sans-serif",
+    fontSize: 16,
     h1: headerFont,
     h2: headerFont,
     h3: headerFont,
