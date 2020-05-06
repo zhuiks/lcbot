@@ -168,23 +168,23 @@
     "zhuiks.lcbot/org/song-slide@0.0.16": {
         "files": [
             {
-                "relativePath": "packages/webapp/src/components/organisms/song-slide/chords-line.tsx",
+                "relativePath": "packages/webapp/src/components/song-slide/chords-line.tsx",
                 "test": false,
                 "name": "chords-line.tsx"
             },
             {
-                "relativePath": "packages/webapp/src/components/organisms/song-slide/index.tsx",
+                "relativePath": "packages/webapp/src/components/song-slide/index.tsx",
                 "test": false,
                 "name": "index.tsx"
             },
             {
-                "relativePath": "packages/webapp/src/components/organisms/song-slide/lyrics-line.tsx",
+                "relativePath": "packages/webapp/src/components/song-slide/lyrics-line.tsx",
                 "test": false,
                 "name": "lyrics-line.tsx"
             }
         ],
-        "mainFile": "packages/webapp/src/components/organisms/song-slide/index.tsx",
-        "trackDir": "packages/webapp/src/components/organisms/song-slide",
+        "mainFile": "packages/webapp/src/components/song-slide/index.tsx",
+        "trackDir": "packages/webapp/src/components/song-slide",
         "origin": "AUTHORED",
         "exported": true
     },

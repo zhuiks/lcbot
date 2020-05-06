@@ -1095,18 +1095,6 @@
   dependencies:
     "@bit/zhuiks.lcbot.core.types" "0.0.3"
 
-"@bit/zhuiks.lcbot.core.chords@^0.0.2":
-  version "0.0.2"
-  resolved "https://node.bit.dev/zhuiks.lcbot.core.chords/-/zhuiks.lcbot.core.chords-0.0.2.tgz#7e45a232fa2592315671f4de259a8b6285e21339"
-  integrity sha1-fkWiMvolkjFWcfTeJZqLYoXiEzk=
-  dependencies:
-    "@bit/zhuiks.lcbot.core.types" "0.0.2"
-
-"@bit/zhuiks.lcbot.core.types@0.0.2", "@bit/zhuiks.lcbot.core.types@^0.0.2":
-  version "0.0.2"
-  resolved "https://node.bit.dev/zhuiks.lcbot.core.types/-/zhuiks.lcbot.core.types-0.0.2.tgz#4d0e8bb6c70e0036f49549322a10bcf5f03eea82"
-  integrity sha1-TQ6LtscOADb0lUkyKhC89fA+6oI=
-
 "@bit/zhuiks.lcbot.core.types@0.0.3", "@bit/zhuiks.lcbot.core.types@^0.0.3":
   version "0.0.3"
   resolved "https://node.bit.dev/zhuiks.lcbot.core.types/-/zhuiks.lcbot.core.types-0.0.3.tgz#d3612dfa5506b637f138ae2e4c86e908d85427fc"

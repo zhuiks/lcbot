@@ -5,8 +5,8 @@
   "version": "0.2.0",
   "author": "zhuiks",
   "dependencies": {
-    "@bit/zhuiks.lcbot.core.types": "^0.0.2",
-    "@bit/zhuiks.lcbot.core.chords": "^0.0.2",
+    "@bit/zhuiks.lcbot.core.chords": "^1.0.2",
+    "@bit/zhuiks.lcbot.core.types": "^0.0.3",
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.19.37",
     "gatsby-image": "^2.2.43",
@@ -52,6 +52,7 @@
     "start": "yarn run develop",
     "serve": "gatsby serve",
     "test": "jest",
+    "bit-up": "yarn upgrade @bit/zhuiks.lcbot.core.types@latest @bit/zhuiks.lcbot.core.chords@latest",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "repository": {
