@@ -7,7 +7,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            position: 'absolute',
+            position: 'fixed',
             bottom: theme.spacing(2),
             right: theme.spacing(2),
             background: theme.palette.secondary.light,
