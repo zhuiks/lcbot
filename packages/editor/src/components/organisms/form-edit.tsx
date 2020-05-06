@@ -6,10 +6,11 @@ import AppError from '../molecules/error';
 
 import GridSlideMap from '../molecules/grid-slide-map';
 import useFormReducer from '../../hooks/use-form-reducer';
-import { SongDetails_song as ISongData }  from '../../__generated__/SongDetails';
+import { SongDetails_song as ISongData } from '../../__generated__/SongDetails';
 import SubmitResult from './submit-result';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Editable from '../atoms/editable';
+import ButtonSave from '../atoms/button-save';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,9 +32,6 @@ const useStyles = makeStyles((theme: Theme) =>
       borderTop: "2px dotted " + theme.palette.background.default,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
-    },
-    button: {
-
     },
     backdrop: {
       zIndex: 0,
@@ -57,50 +55,43 @@ const FormEdit: React.FC<EditFormProps> = ({ songData }) => {
       {mutationResult.data ? (
         <SubmitResult data={mutationResult.data.updateSong} />
       ) : (
-          <Grid
-            container
-            component="form"
-            spacing={1}
-            direction="column"
-            wrap="nowrap"
-          >
-            <Grid item>
-              <Paper className={classes.root} elevation={2}>
-                <Chip
-                  className={classes.chip}
-                  size="small"
-                  icon={<VpnKeyIcon />}
-                  label={state.songId}
-                />
-                <Editable
-                  variant="h3"
-                  helperText="Song title"
-                  onChange={(s: string) => dispatch({ type: 'TITLE_CHANGE', payload: s })}
-                >
-                  {state.songTitle}
-                </Editable>
-              </Paper>
+          <>
+            <Grid
+              container
+              component="form"
+              spacing={1}
+              direction="column"
+              wrap="nowrap"
+            >
+              <Grid item>
+                <Paper className={classes.root} elevation={2}>
+                  <Chip
+                    className={classes.chip}
+                    size="small"
+                    icon={<VpnKeyIcon />}
+                    label={state.songId}
+                  />
+                  <Editable
+                    variant="h3"
+                    helperText="Song title"
+                    onChange={(s: string) => dispatch({ type: 'TITLE_CHANGE', payload: s })}
+                  >
+                    {state.songTitle}
+                  </Editable>
+                </Paper>
+              </Grid>
+              <GridSlideMap
+                slides={state.slides}
+                editSlide={state.editSlide}
+                editSlideName={state.slideName}
+                dispatch={dispatch}
+              />
             </Grid>
-            <GridSlideMap
-              slides={state.slides}
-              editSlide={state.editSlide}
-              editSlideName={state.slideName}
-              dispatch={dispatch}
+            <ButtonSave
+              disabled={editingSlide}
+              onClick={() => dispatch({ type: 'SONG_SAVE' })}
             />
-            <Grid item>
-              <Paper className={classes.rootBottom} elevation={2}>
-                <Button
-                  className={classes.button}
-                  variant="contained"
-                  color="secondary"
-                  disabled={editingSlide}
-                  onClick={() => dispatch({ type: 'SONG_SAVE' })}
-                >
-                  Save
-                </Button>
-              </Paper>
-            </Grid>
-          </Grid>
+          </>
         )
       }
       <Backdrop className={classes.backdrop} open={editingSlide} />
