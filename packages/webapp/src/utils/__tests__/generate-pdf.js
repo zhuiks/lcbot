@@ -1,10 +1,11 @@
 import generatePdf from "../generate-pdf"
 
-describe("Generate PDF", () =>
+describe("Generate PDF", () => {
     it("returns file name with songId", () => {
         const pdf = generatePdf(mockData)
-        expect(pdf).toEqual('test-id.pdf')
-    }))
+        expect(pdf).toEqual('print/test-id.pdf')
+    })
+})
 
 const mockData = {
     "id": "test-id",
