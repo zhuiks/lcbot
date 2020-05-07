@@ -1,4 +1,4 @@
-import haveChords from "../have-chords"
+import { haveChords, slideHaveChords }from "../have-chords"
 import { ChordSlide } from "@bit/zhuiks.lcbot.core.chords"
 
 describe("haveChords", () => {
@@ -24,7 +24,7 @@ describe("haveChords", () => {
         const res = chordSlide.chords && chordSlide.chords.find((chordsLine) => (
             chordsLine.length && (chordsLine.length > 1 || chordsLine[0].root !== "_")
           )) !== undefined
-        expect(res).toEqual(true)  
+        expect(slideHaveChords(chordSlide)).toEqual(true)  
       
     })
 
