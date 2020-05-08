@@ -7,199 +7,358 @@ Array [
   >
     <article>
       <h1
-        className="sc-AxheI ByOdM"
+        className="sc-fznZeY liULjh"
       >
         جايين يا أبانا
-         (
-        ***
-        )
       </h1>
       <div
-        className="sc-AxiKw cNQqcW"
+        className="sc-AxiKw eJkkWC"
+      >
+        <div
+          className="react-toggle sc-AxhUy gyIvxi"
+          onClick={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+        >
+          <div
+            className="react-toggle-track"
+          >
+            <div
+              className="react-toggle-track-check"
+            >
+              <svg
+                height="11"
+                viewBox="0 0 14 11"
+                width="14"
+              >
+                <title>
+                  switch-check
+                </title>
+                <path
+                  d="M11.264 0L5.26 6.004 2.103 2.847 0 4.95l5.26 5.26 8.108-8.107L11.264 0"
+                  fill="#fff"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </div>
+            <div
+              className="react-toggle-track-x"
+            >
+              <svg
+                height="10"
+                viewBox="0 0 10 10"
+                width="10"
+              >
+                <title>
+                  switch-x
+                </title>
+                <path
+                  d="M9.9 2.12L7.78 0 4.95 2.828 2.12 0 0 2.12l2.83 2.83L0 7.776 2.123 9.9 4.95 7.07 7.78 9.9 9.9 7.776 7.072 4.95 9.9 2.12"
+                  fill="#fff"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="react-toggle-thumb"
+          />
+          <input
+            checked={false}
+            className="react-toggle-screenreader-only"
+            id="show-chords"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="checkbox"
+          />
+        </div>
+        <label
+          className="sc-AxhCb zckqH"
+          htmlFor="show-chords"
+        >
+          تظهر الكردات
+        </label>
+      </div>
+      <div
+        className="sc-fzplWN laBPzj"
         type="VERSE"
       >
         <h3
-          className="sc-AxhCb jluUBf"
+          className="sc-fznyAO fPyGja"
         >
           1
         </h3>
-        <p
-          className="sc-AxhUy gjwpPs"
+        <div
+          className="sc-fznKkj cwThxx"
         >
-          جايين يا أبانا
-          <span
-            className="sc-AxgMl kmikAR"
-          />
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          اسمع لدعانا
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          بتواضع يرجع شعبك
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          يطلب رحمة من عندك
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          بقلوب محتاجه إليك
-          <span
-            className="sc-AxgMl kmikAR"
+          <p
+            className="sc-fzoLsD kLYuIg"
           >
-            2x
-          </span>
-        </p>
+            جايين يا أبانا
+            <span
+              className="sc-fzpans fEYHZW"
+            />
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            اسمع لدعانا
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            بتواضع يرجع شعبك
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            يطلب رحمة من عندك
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            بقلوب محتاجه إليك
+            <span
+              className="sc-fzpans fEYHZW"
+            >
+              2x
+            </span>
+          </p>
+        </div>
       </div>
       <div
-        className="sc-AxiKw insbwg"
+        className="sc-fzplWN hhmSHh"
         type="CHORUS"
       >
         <h3
-          className="sc-AxhCb jluUBf"
+          className="sc-fznyAO fPyGja"
         >
           القرار
         </h3>
-        <p
-          className="sc-AxhUy dIOdnl"
+        <div
+          className="sc-fznKkj iXbmPM"
         >
-          ده رجانا فيك يا إلهنا
-          <span
-            className="sc-AxgMl kmikAR"
-          />
-        </p>
-        <p
-          className="sc-AxhUy dIOdnl"
-        >
-          وهنستنى المواعيد
-        </p>
-        <p
-          className="sc-AxhUy dIOdnl"
-        >
-          نحوك نرفع أعيننا
-        </p>
-        <p
-          className="sc-AxhUy dIOdnl"
-        >
-          وايمانا فيك بيزيد
-        </p>
-        <p
-          className="sc-AxhUy dIOdnl"
-        >
-          بنصدق كل وعودك دا
-        </p>
-        <p
-          className="sc-AxhUy dIOdnl"
-        >
-          انت في الوعد أمين
-        </p>
-        <p
-          className="sc-AxhUy dIOdnl"
-        >
-          تملا حياتنا من جودك
-        </p>
-        <p
-          className="sc-AxhUy dIOdnl"
-        >
-          مجداً ليك يا معين
-          <span
-            className="sc-AxgMl kmikAR"
+          <p
+            className="sc-fzoLsD kLYuIg"
           >
-            2x
-          </span>
-        </p>
+            ده رجانا فيك يا إلهنا
+            <span
+              className="sc-fzpans fEYHZW"
+            />
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj iXbmPM"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            وهنستنى المواعيد
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj iXbmPM"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            نحوك نرفع أعيننا
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj iXbmPM"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            وايمانا فيك بيزيد
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj iXbmPM"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            بنصدق كل وعودك دا
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj iXbmPM"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            انت في الوعد أمين
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj iXbmPM"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            تملا حياتنا من جودك
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj iXbmPM"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            مجداً ليك يا معين
+            <span
+              className="sc-fzpans fEYHZW"
+            >
+              2x
+            </span>
+          </p>
+        </div>
       </div>
       <div
-        className="sc-AxiKw cNQqcW"
+        className="sc-fzplWN laBPzj"
         type="VERSE"
       >
         <h3
-          className="sc-AxhCb jluUBf"
+          className="sc-fznyAO fPyGja"
         >
           2
         </h3>
-        <p
-          className="sc-AxhUy gjwpPs"
+        <div
+          className="sc-fznKkj cwThxx"
         >
-          أرضنا عطشانة
-          <span
-            className="sc-AxgMl kmikAR"
-          />
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          بجروح مليانة
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          من فيض حبك ترويها
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          لمسة إيدك تشفيها
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          وتردها تاني إليك
-          <span
-            className="sc-AxgMl kmikAR"
+          <p
+            className="sc-fzoLsD kLYuIg"
           >
-            2x
-          </span>
-        </p>
+            أرضنا عطشانة
+            <span
+              className="sc-fzpans fEYHZW"
+            />
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            بجروح مليانة
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            من فيض حبك ترويها
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            لمسة إيدك تشفيها
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            وتردها تاني إليك
+            <span
+              className="sc-fzpans fEYHZW"
+            >
+              2x
+            </span>
+          </p>
+        </div>
       </div>
       <div
-        className="sc-AxiKw cNQqcW"
+        className="sc-fzplWN laBPzj"
         type="VERSE"
       >
         <h3
-          className="sc-AxhCb jluUBf"
+          className="sc-fznyAO fPyGja"
         >
           3
         </h3>
-        <p
-          className="sc-AxhUy gjwpPs"
+        <div
+          className="sc-fznKkj cwThxx"
         >
-          بنتوب قدامك
-          <span
-            className="sc-AxgMl kmikAR"
-          />
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          بنعود لحنانك
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          نعلن ملكك في حياتنا
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          في بيوتنا وإجتماعاتنا
-        </p>
-        <p
-          className="sc-AxhUy gjwpPs"
-        >
-          وقلوبنا تسجد ليك
-          <span
-            className="sc-AxgMl kmikAR"
+          <p
+            className="sc-fzoLsD kLYuIg"
           >
-            2x
-          </span>
-        </p>
+            بنتوب قدامك
+            <span
+              className="sc-fzpans fEYHZW"
+            />
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            بنعود لحنانك
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            نعلن ملكك في حياتنا
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            في بيوتنا وإجتماعاتنا
+          </p>
+        </div>
+        <div
+          className="sc-fznKkj cwThxx"
+        >
+          <p
+            className="sc-fzoLsD kLYuIg"
+          >
+            وقلوبنا تسجد ليك
+            <span
+              className="sc-fzpans fEYHZW"
+            >
+              2x
+            </span>
+          </p>
+        </div>
       </div>
     </article>
   </main>,

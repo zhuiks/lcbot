@@ -13,11 +13,12 @@ beforeEach(() => {
         })
 })
 
-describe("Song Page", () =>
+describe("Song Page", () => {
     it("renders correctly", () => {
-        const tree = renderer.create(<SongPage data={mockData} />).toJSON()
+        const tree = renderer.create(<SongPage data={mockData} pageContext={{pdf: false}}/>).toJSON()
         expect(tree).toMatchSnapshot()
-    }))
+    })
+})
 
 const mockData = {
     "songList": {
