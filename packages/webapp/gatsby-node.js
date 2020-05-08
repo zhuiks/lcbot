@@ -1,5 +1,7 @@
 const path = require(`path`)
 const generatePdf = require(`./src/utils/generate-pdf`)
+const generatePdfChords = require(`./src/utils/generate-pdf-chords`)
+const { haveChords } = require(`./src/utils/have-chords`)
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -27,12 +29,14 @@ exports.createPages = async ({ actions, graphql }) => {
  
     data.songList.songs.forEach(song => {
       const pdf = generatePdf(song)
+      const pdfChords = haveChords(song) ? generatePdfChords(song) : false
       actions.createPage({
         path: song.id,
         component: path.resolve(`./src/components/song.js`),
         context: {
           songId: song.id,
           pdf,
+          pdfChords,
         },
       })
     })
