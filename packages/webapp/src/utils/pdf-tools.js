@@ -37,7 +37,8 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
   })
   const MAX_X = 595
   const verOffset = LYRICS_VER_OFFSET + extraOffset
-
+  const options = { align: 'center' }
+  if (rtl) options.features = ['curs', 'kern']
   if (!fs.existsSync('static')) {
     fs.mkdirSync('static')
   }
@@ -58,24 +59,26 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
 
   const title = (songTitle) => {
     doc.font('Heading').fontSize(32)
-      .text(rightToLeftText(songTitle), 0, 10 - verOffset, { align: 'center' })
+      .text(songTitle, 0, 10 - verOffset, options)
   }
 
   const slideName = (name) => {
     y += LINE_HEIGHT
     doc.font('Regular').fontSize(18).fillColor('#aaa')
-      .text(rightToLeftText(name), rtl ? MAX_X - H_MARGIN + 30 : H_MARGIN - 30, y, { align: rtl ? 'left' : 'right' })
+      .text(name, rtl ? MAX_X - H_MARGIN + 30 : H_MARGIN - 30, y, { ...options, align: rtl ? 'left' : 'right' })
   }
 
   const lyricSlide = (slide) => {
     if (slide.lines) {
       x = 0
-      doc.fillColor('#333')
+      doc.fontSize(18).fillColor('#333')
       let lineReducer = '';
       slide.lines.forEach(line => {
         lineReducer += ' ' + line.replace(/\|:|:\|/g, '')
         if (getCharacterLength(lineReducer) > LINE_CHARS_LIMIT) {
-          doc.text(rightToLeftText(lineReducer.trim()), x, y, { align: 'center' })
+          doc.text(lineReducer.trim(), x, y, {
+            align: 'center', features: ['curs'],
+          })
           lineReducer = ''
           y += LINE_HEIGHT
         }
@@ -85,29 +88,44 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
 
   const chordSlide = (slide) => {
     if (slide.chords) {
-      let lineReducer = '';
       slide.chords.forEach(chordsLine => {
         x = rtl ? MAX_X - H_MARGIN : H_MARGIN
         chordsLine.forEach(chord => {
-          const text = rightToLeftText(chord.text)
-          const options = {
-//            continued: true,
+          const tOpt = {
+            ...options,
+            //            continued: true,
             lineWrap: false,
             align: 'left',
           }
+          const textWidth = doc.widthOfString(chord.text, tOpt)
+
+          const cOpt = {
+            lineWrap: false,
+            align: 'left',
+            features: [],
+          }
           const root = chord.root + (chord.quality === 'm' ? 'm' : '')
-          const textWidth = doc.widthOfString(text, options)
-          x = x + textWidth * (rtl ? -1 : 1)
-          doc.fillColor('#333').text(text, x, y, options)
-          const chordWidth = doc.widthOfString(root)
-          doc.fillColor('#F33').text(root, x+textWidth-chordWidth/2, y + 2 - LINE_HEIGHT)
+          const chordWidth = doc.widthOfString(root, cOpt)
+          const sub = chord.quality && chord.quality !== 'm' ? chord.quality : false
+          const sup = chord.type ? chord.type : false
+          const chordY = y - LINE_HEIGHT + 2
+          doc.fillColor('#F33').text(root, x - chordWidth, chordY, cOpt)
+          if (sub) {
+            doc.fontSize(12).text(sub, x, chordY + 8, cOpt)
+          }
+          if (sup) {
+            doc.fontSize(12).text(sup, x, chordY-2, cOpt)
+          }
+
+          x = x + (rtl ? -1 : 1) * textWidth
+          doc.fontSize(18).fillColor('#333').text(chord.text, x, y, tOpt)
         })
         // lineReducer += ' ' + line.replace(/\|:|:\|/g, '')
         // if (getCharacterLength(lineReducer) > LINE_CHARS_LIMIT) {
         //   doc.text(rightToLeftText(lineReducer.trim()), { align: 'center' })
         //   lineReducer = ''
         // }
-        y += 2 * LINE_HEIGHT
+        y += 2*LINE_HEIGHT
       })
     }
   }

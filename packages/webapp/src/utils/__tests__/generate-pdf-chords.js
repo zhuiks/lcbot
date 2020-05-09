@@ -6,7 +6,7 @@ describe("Generate PDF Chords", () => {
         expect(pdf).toEqual('print/test-id_chords.pdf')
     })
 })
-
+const ZWJ = '\u200D'
 const mockData = {
     "id": "test-id",
     "title": "جايين يا أبانا",
@@ -28,6 +28,10 @@ const mockData = {
                 ],
                 [
                     { "text": "اسمع لدعانا", "root": "G", },
+                ],
+                [
+                    { "text": "بتواضع يرجع ش"+ZWJ, "root": "C", "quality": "dim", "type": "sus"},
+                    { "text": ZWJ+"عبك", "root": "E", },
                 ],
             ]
         },
