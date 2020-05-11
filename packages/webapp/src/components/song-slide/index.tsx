@@ -13,7 +13,7 @@ const Slide = styled.div<SlideProps>`
   z-index: 0;
   margin: 0 -1em;
   padding: 0.6em 1em;
-  background-color: ${props => props.type === SlideType.CHORUS ? '#f5f5f5' : 'transparent'};
+  background-color: ${props => props.type === SlideType.CHORUS ? '#d0a16e3d' : 'transparent'};
 `
 const SlideTitle = styled.h3`
   position: absolute;
