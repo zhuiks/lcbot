@@ -1,9 +1,14 @@
 import React from 'react'
 import styled from "styled-components"
 
+const Form = styled.form`
+  margin: 0;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.8);
+  z-index: 10;
+`
 const Input = styled.input`
   border-radius: 5px;
-  border: #999 1px solid;
+  border: #fff 1px solid;
   width: 100%;
   padding: 0.3em 0.5em;
 `
@@ -17,13 +22,13 @@ const SearchField = ({ filter = '', onChange }) => {
   }
 
   return (
-    <form>
+    <Form>
       <Input
         type="text"
         placeholder="بحث"
         onChange={HandleInput}
       />
-    </form>
+    </Form>
   );
 }
 export default SearchField;

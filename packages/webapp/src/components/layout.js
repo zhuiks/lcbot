@@ -6,10 +6,11 @@ import Footer from "../components/footer"
 const Main = styled.main`
   min-height: 100vh;
   padding: 0 0 ${props => props.footerHeight};
-  direction: ${props =>props.direction};
+  direction: ${props => props.direction};
+  background-color: ${props => props.dark ? '#000' : '#fff'}
 `
 
-const Layout = ({ children, songInfo = false }) => {
+const Layout = ({ children, dark = false, songInfo = false }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -25,7 +26,11 @@ const Layout = ({ children, songInfo = false }) => {
 
   return (
     <>
-      <Main direction={site.siteMetadata.direction} footerHeight={site.siteMetadata.footerHeight}>
+      <Main
+        direction={site.siteMetadata.direction}
+        footerHeight={site.siteMetadata.footerHeight}
+        dark={dark}
+      >
         {children}
       </Main>
       <Footer songInfo={songInfo} />

@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 const SongLink = styled(Link)`
   text-decoration: none;
-  color: #333;
+  color: #fff;
 `
 
 const SongRow = ({ song }) => {
