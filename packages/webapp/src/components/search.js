@@ -8,21 +8,23 @@ const Form = styled.form`
   z-index: 10;
 `
 const Input = styled.input`
-  border-radius: 5px;
+  border-radius: 10px;
   border: #fff 1px solid;
   width: 100%;
-  padding: 0.3em 0.5em;
+  height: 56px;
+  color: #999;
+  padding: 5px 21px 5px 52px;
 `
 const Button = styled.button`
   position: absolute;
   color: #aaa;
   background: #eee;
   border: none;
-  font-size: 1.3em;
-  padding: 0.4em 0.4em 0.1em 0.4em;
-  inset-inline-end: 2em;
-  line-height: 1em;
-  margin-inline-end: -0.5em;
+  font-size: 28px;
+  padding: 8px 12px 5px 12px;
+  left: 2em;
+  height: 56px;
+  line-height: 56px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 `
