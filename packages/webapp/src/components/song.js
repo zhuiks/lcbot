@@ -29,6 +29,10 @@ export const query = graphql`
     }
   }
 `
+const Article = styled.article`
+    margin-bottom: 2em;
+    padding: 40px 1em 0;
+`
 
 const SongTitle = styled.h1`
   text-align: center;
@@ -64,19 +68,22 @@ const SongPage = ({ data, pageContext }) => {
     youtube: song.links && song.links[0],
     pdf: showChords ? pageContext.pdfChords : pageContext.pdf,
   }
-
   return (
-    <Layout songInfo={songInfo}>
+    <>
       <SEO title={song.title} description={"كلمات ترنيمة" + ": " + songBegining} songId={song.id} />
-      <SongTitle>{song.title}</SongTitle>
-      {pageContext.pdfChords !== false &&
-        <ChordToggle checked={showChords} onToggle={toggleChords} />
-      }
-      {song.slides.map((slide, i) => {
-        const displaySlide = slide.lines && slide.lines.length ? slide : song.slides.find(sl => sl.type === slide.type && sl.lines && sl.lines.length)
-        return <SongSlide key={i} slide={displaySlide} displayChords={showChords} />
-      })}
-    </Layout>
+      <Layout songInfo={songInfo}>
+        <Article>
+          <SongTitle>{song.title}</SongTitle>
+          {pageContext.pdfChords !== false &&
+            <ChordToggle checked={showChords} onToggle={toggleChords} />
+          }
+          {song.slides.map((slide, i) => {
+            const displaySlide = slide.lines && slide.lines.length ? slide : song.slides.find(sl => sl.type === slide.type && sl.lines && sl.lines.length)
+            return <SongSlide key={i} slide={displaySlide} displayChords={showChords} />
+          })}
+        </Article>
+      </Layout>
+    </>
   )
 }
 
