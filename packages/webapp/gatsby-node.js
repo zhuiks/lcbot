@@ -36,7 +36,7 @@ exports.createPages = async ({ actions, graphql }) => {
  
     data.songList.songs.forEach(song => {
       const pdf = generatePdf(song)
-      console.log(`haveChords("${song.title}")=${haveChords(song)}`)
+ //      console.log(`haveChords("${song.title}")=${haveChords(song)}`)
       const pdfChords = haveChords(song) ? generatePdfChords(song) : false
       actions.createPage({
         path: song.id,
