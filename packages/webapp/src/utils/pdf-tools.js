@@ -8,15 +8,15 @@ const H_MARGIN = 150
 const LYRICS_VER_OFFSET = 50
 const LINE_HEIGHT = 20
 
-const isArabic = (text) => text.search(/[\u0600-\u06FF]/) >= 0
+// const isArabic = (text) => text.search(/[\u0600-\u06FF]/) >= 0
 
-const rightToLeftText = (text) => {
-  if (isArabic(text)) {
-    return text.split(' ').reverse().join(' ') + ' '
-  } else {
-    return text;
-  }
-}
+// const rightToLeftText = (text) => {
+//   if (isArabic(text)) {
+//     return text.split(' ').reverse().join(' ') + ' '
+//   } else {
+//     return text;
+//   }
+// }
 
 const getCharacterLength = (str) => {
   // The string iterator that is used here iterates over characters,
@@ -50,9 +50,10 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
   doc.pipe(fs.createWriteStream(`static/${filePath}`))
   doc.registerFont('Heading', 'fonts/ElMessiri-SemiBold.ttf')
   doc.registerFont('Regular', 'fonts/Harmattan-Regular.ttf')
+  doc.registerFont('Chords', 'fonts/NotoSansSymbols-Regular.ttf')
 
   doc.translate(0, verOffset)
-  doc.rect(H_MARGIN, 0, MAX_X - 2 * H_MARGIN, 800 - verOffset).stroke()
+  //doc.rect(H_MARGIN, 0, MAX_X - 2 * H_MARGIN, 800 - verOffset).stroke()
 
   let x = 0
   let y = 0
@@ -71,7 +72,7 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
   const lyricSlide = (slide) => {
     if (slide.lines) {
       x = 0
-      doc.fontSize(18).fillColor('#333')
+      doc.font('Regular').fontSize(18).fillColor('#333')
       let lineReducer = '';
       slide.lines.forEach(line => {
         lineReducer += ' ' + line.replace(/\|:|:\|/g, '')
@@ -105,27 +106,29 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
             features: [],
           }
           const root = chord.root + (chord.quality === 'm' ? 'm' : '')
-          const chordWidth = doc.widthOfString(root, cOpt)
           const sub = chord.quality && chord.quality !== 'm' ? chord.quality : false
           const sup = chord.type ? chord.type : false
-          const chordY = y - LINE_HEIGHT + 2
-          doc.fillColor('#F33').text(root, x - chordWidth, chordY, cOpt)
-          if (sub) {
-            doc.fontSize(12).text(sub, x, chordY + 8, cOpt)
+          const chordY = y - LINE_HEIGHT
+          if (root && root !== '_') {
+            doc.font('Chords').fontSize(14).fillColor('#F33')
+            const chordWidth = doc.widthOfString(root, cOpt)
+            doc.text(root, x - chordWidth, chordY, cOpt)
+            if (sub) {
+              doc.fontSize(8).text(sub, x, chordY + 10, cOpt)
+            }
+            if (sup) {
+              doc.fontSize(8).text(sup, x, chordY + 2, cOpt)
+            }
           }
-          if (sup) {
-            doc.fontSize(12).text(sup, x, chordY-2, cOpt)
-          }
-
           x = x + (rtl ? -1 : 1) * textWidth
-          doc.fontSize(18).fillColor('#333').text(chord.text, x, y, tOpt)
+          doc.font('Regular').fontSize(18).fillColor('#333').text(chord.text, x, y, tOpt)
         })
         // lineReducer += ' ' + line.replace(/\|:|:\|/g, '')
         // if (getCharacterLength(lineReducer) > LINE_CHARS_LIMIT) {
         //   doc.text(rightToLeftText(lineReducer.trim()), { align: 'center' })
         //   lineReducer = ''
         // }
-        y += 2*LINE_HEIGHT
+        y += 2 * LINE_HEIGHT
       })
     }
   }

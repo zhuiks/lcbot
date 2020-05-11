@@ -23,11 +23,12 @@ const mockData = {
             ],
             "chords": [
                 [
-                    { "text": "جايين ", "root": "C", },
-                    { "text": "يا أبانا", "root": "A", "quality": "m", },
+                    { "text": "جايين ", "root": "C♯", },
+                    { "text": "يا أبانا", "root": "A♯", "quality": "m", "type": "7"},
                 ],
                 [
-                    { "text": "اسمع لدعانا", "root": "G", },
+                    { "text": "اسمع ل"+ZWJ, "root": "_", },
+                    { "text": ZWJ+"دعانا", "root": "G♭", },
                 ],
                 [
                     { "text": "بتواضع يرجع ش"+ZWJ, "root": "C", "quality": "dim", "type": "sus"},
