@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components"
-import { FaSearch } from "react-icons/fa"
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai"
 
 const Form = styled.form`
   margin: 0;
@@ -14,26 +14,29 @@ const Input = styled.input`
   height: 56px;
   color: #999;
   padding: 5px 21px 5px 52px;
+  &:focus {
+    color: #555;
+  }
 `
 const Button = styled.button`
+  transition: left 4s easyInOut;
   position: absolute;
-  color: #aaa;
-  background: #eee;
+  color: ${props => props.active ? '#888' : '#aaa'};
+  background: ${props => props.active ? 'transparent' : '#eee'};
   border: none;
   font-size: 28px;
   padding: 8px 12px 5px 12px;
-  left: 2em;
+  left: ${props => props.active ? 0.7 : 2}em;
   height: 56px;
   line-height: 56px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 `
 
-const SearchField = ({ filter = '', onChange }) => {
+const SearchField = ({ filter = '', active, onChange, onFocus, onBlur }) => {
 
   const HandleInput = (e) => {
-    const val = e.target.value.trim();
-    if (val.length < 2) return;
+    const val = e.target.value
     onChange(val)
   }
 
@@ -41,10 +44,24 @@ const SearchField = ({ filter = '', onChange }) => {
     <Form>
       <Input
         type="text"
-        placeholder="بحث"
+        value={filter}
+        placeholder={active ? "" : "بحث"}
         onChange={HandleInput}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
-      <Button><FaSearch /></Button>
+      <Button
+        active={active}
+        onClick={e => {
+          e.preventDefault()
+          if (active) {
+            onChange("")
+            onBlur()
+          }
+        }}
+      >
+        {active ? <AiOutlineClose /> : <AiOutlineSearch />}
+      </Button>
     </Form>
   );
 }

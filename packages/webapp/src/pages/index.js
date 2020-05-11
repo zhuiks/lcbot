@@ -21,8 +21,9 @@ export const query = graphql`
 `
 
 const SearchWrapper = styled.div`
-  height: 40vh;
-  padding: 2em 2em 0.5em;
+  transition: height 4s easyInOut;
+  height: ${props => props.active ? 'auto' : '40vh'};
+  padding: ${props => props.active ? '10px 0.7em' : '2em 2em 0.5em'};
   position: relative;
   display: grid;
   align-items: center;
@@ -48,6 +49,7 @@ const SongList = styled.ul`
 
 const IndexPage = ({ data }) => {
   const [filter, setFilter] = useState("");
+  const [searchActive, setActive] = useState(false)
 
   return (
     <>
@@ -58,8 +60,14 @@ const IndexPage = ({ data }) => {
       />
       <Layout dark>
         <div className="text-center">
-          <SearchWrapper>
-            <SearchField filter={filter} onChange={setFilter} />
+          <SearchWrapper active={searchActive}>
+            <SearchField
+              filter={filter}
+              active={searchActive}
+              onChange={setFilter}
+              onFocus={() => setActive(true)}
+              onBlur={() => { if (filter.trim() === "") setActive(false) }}
+            />
           </SearchWrapper>
           <SongList className="song-list">
             {data.songList &&
