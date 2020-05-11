@@ -51,6 +51,13 @@ const IndexPage = ({ data }) => {
   const [filter, setFilter] = useState("");
   const [searchActive, setActive] = useState(false)
 
+  const songs = data.songList && data.songList.songs.sort((a, b) => {
+    if (!(a && a.title) && !(b && b.title)) return 0;
+    if (!(b && b.title)) return 1;
+    if (!(a && a.title)) return -1;
+    return a.title.localeCompare(b.title, 'ar', { sensitivity: 'base' })
+  });
+
   return (
     <>
       <SEO
@@ -70,8 +77,8 @@ const IndexPage = ({ data }) => {
             />
           </SearchWrapper>
           <SongList className="song-list">
-            {data.songList &&
-              songFilter(data.songList.songs, filter).map(song => (
+            {songs &&
+              songFilter(songs, filter).map(song => (
                 <SongRow key={song.id} song={song} />
               ))}
           </SongList>
