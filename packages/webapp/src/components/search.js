@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components"
+import { FaSearch } from "react-icons/fa"
 
 const Form = styled.form`
   margin: 0;
@@ -12,12 +13,25 @@ const Input = styled.input`
   width: 100%;
   padding: 0.3em 0.5em;
 `
+const Button = styled.button`
+  position: absolute;
+  color: #aaa;
+  background: #eee;
+  border: none;
+  font-size: 1.3em;
+  padding: 0.4em 0.4em 0.1em 0.4em;
+  inset-inline-end: 2em;
+  line-height: 1em;
+  margin-inline-end: -0.5em;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+`
 
 const SearchField = ({ filter = '', onChange }) => {
 
   const HandleInput = (e) => {
     const val = e.target.value.trim();
-    if(val.length < 2) return;
+    if (val.length < 2) return;
     onChange(val)
   }
 
@@ -28,6 +42,7 @@ const SearchField = ({ filter = '', onChange }) => {
         placeholder="بحث"
         onChange={HandleInput}
       />
+      <Button><FaSearch /></Button>
     </Form>
   );
 }
