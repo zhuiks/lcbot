@@ -9,8 +9,8 @@ const FooterDiv = styled.footer`
   margin-top: -${props => props.footerHeight};
   height: ${props => props.footerHeight};
   width: 100%;
-  border-top: #888 1px solid;
-  color: #888;
+  border-top: ${props => props.theme.footer.borderTop};
+  color: ${props => props.theme.footer.color};
   direction: ${props => props.direction};
   padding-inline: 1em;
   div {
@@ -21,7 +21,7 @@ const FooterDiv = styled.footer`
       font-size: 0.7em;
     }
     &.link a {
-      color: #000000;
+      color: ${props => props.theme.footer.link};
       margin-inline-end: 1em;
       svg {
         margin-top: 0.5em;
@@ -29,7 +29,15 @@ const FooterDiv = styled.footer`
     }
   }
 `
-
+FooterDiv.defaultProps = {
+  theme: {
+    footer: {
+      borderTop: '#888 1px solid',
+      color: '#888',
+      link: '#000',
+    }
+  }
+}
 const Footer = ({ songInfo = false }) => {
   const { site } = useStaticQuery(
     graphql`

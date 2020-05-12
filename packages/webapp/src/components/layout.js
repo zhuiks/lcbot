@@ -8,8 +8,13 @@ const Main = styled.main`
   min-height: 100vh;
   padding: 0 0 ${props => props.footerHeight};
   direction: ${props => props.direction};
-  background: ${props => props.dark ? '#000' : 'url('+pattern+') repeat'}
+  background: ${props => props.theme.background};
 `
+Main.defaultProps = {
+  theme: {
+    background: '#fff',
+  }
+}
 
 const Layout = ({ children, dark = false, songInfo = false }) => {
   const { site } = useStaticQuery(

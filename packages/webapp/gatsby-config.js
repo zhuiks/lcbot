@@ -7,6 +7,7 @@ module.exports = {
     author: `BayaderCoders`,
     direction: 'rtl',
     footerHeight: '50px',
+    theme: 'dark',
   },
   plugins: [
     {

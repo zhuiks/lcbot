@@ -21,9 +21,14 @@ const ChordHolder = styled.span`
     position: absolute;
     top: 0;
     /* font-weight: bold; */
-    color: red;
+    color: ${props => props.theme.song.chords};
     direction: LTR;
 `;
+ChordHolder.defaultProps = {
+    theme: {
+        song: { chords: 'red' }
+    }
+}
 const ChordSup = styled.sup`
     position: absolute;
     padding-inline-start: 2px;

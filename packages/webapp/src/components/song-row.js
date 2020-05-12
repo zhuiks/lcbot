@@ -4,8 +4,13 @@ import styled from "styled-components"
 
 const SongLink = styled(Link)`
   text-decoration: none;
-  color: #fff;
+  color: ${props => props.theme.index.link};
 `
+SongLink.defaultProps = {
+  theme: {
+    index: {link: '#333'},
+  }
+}
 
 const SongRow = ({ song }) => {
   const { id, title } = song;

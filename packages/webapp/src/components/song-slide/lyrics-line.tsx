@@ -16,20 +16,26 @@ const Repeat = styled.span`
     height: 100%;
     z-index: -1;
     width: 1.5em;
-    color: #cccccc;
+    color: ${props => props.theme.song.slideHeading};
     font-size: 0.7em;
     line-height: 0.7em;
     top: 0;
     inset-block-start: 0;
     left: 0;
     inset-inline-end: 0;
-    border-inline-start: 2px solid #cccccc;
+    border-inline-start: 2px solid ${props => props.theme.song.slideHeading};
     padding-inline-start: 5px;
     padding-block-start: 1em;
     padding-block-end: 3px;
     display: flex;
     align-items: flex-end;
   `
+  Repeat.defaultProps = {
+    theme: {
+      song: { slideHeading: '#888' }
+    }
+  }
+  
 interface LyricsLineProps {
     text: string
     chordsPadding?: boolean

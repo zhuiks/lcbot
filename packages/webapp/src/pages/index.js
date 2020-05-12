@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
-import styled from "styled-components"
-import bgImage from "../images/worship.jpg"
+import styled, { ThemeProvider } from "styled-components"
+import themes from "../themes"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -17,6 +17,11 @@ export const query = graphql`
         title
       }
     }
+    site {
+      siteMetadata {
+        theme
+      }
+    }
   }
 `
 
@@ -28,9 +33,8 @@ const SearchWrapper = styled.div`
   display: grid;
   align-items: center;
   &:before {
-    background-image: url(${bgImage});
+    background: ${props => props.theme.index.searchBackground};
     background-size: cover;
-    background-position: center;
     background-origin: border-box;
     filter: blur(2px);
     content: ' ';
@@ -41,6 +45,13 @@ const SearchWrapper = styled.div`
     left: 0;
   }
 `
+SearchWrapper.defaultProps = {
+  theme: {
+    index: {
+      searchBackground: '#fff',
+    }
+  }
+}
 
 const SongList = styled.ul`
   list-style: none;
@@ -50,6 +61,7 @@ const SongList = styled.ul`
 const IndexPage = ({ data }) => {
   const [filter, setFilter] = useState("");
   const [searchActive, setActive] = useState(false)
+  const currentTheme = data.site.siteMetadata.theme || 'default'
 
   const songs = data.songList && data.songList.songs.sort((a, b) => {
     if (!(a && a.title) && !(b && b.title)) return 0;
@@ -59,13 +71,13 @@ const IndexPage = ({ data }) => {
   });
 
   return (
-    <>
+    <ThemeProvider theme={themes[currentTheme]}>
       <SEO
         title="ترنيمات والكوردات"
         description="ابحث وشارك كلمات و كوردات الترانيم و التسبيح"
         keywords={[`ترنيم`, `كلمات`, `تسبيح`]}
       />
-      <Layout dark>
+      <Layout>
         <div className="text-center">
           <SearchWrapper active={searchActive}>
             <SearchField
@@ -84,7 +96,7 @@ const IndexPage = ({ data }) => {
           </SongList>
         </div>
       </Layout>
-    </>
+    </ThemeProvider>
   )
 }
 
