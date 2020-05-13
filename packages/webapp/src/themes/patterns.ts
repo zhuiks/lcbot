@@ -13,8 +13,8 @@ const patterns: DefaultTheme = {
     title: '#441a01',
     lyrics: '#441a01',
     chords: 'red',
-    slideHeading: '#dd9815',
-    chorusBackground: '#a8833c7d',
+    slideHeading: '#db8f0085',
+    chorusBackground: '#eccc8d57',
   },
   footer: {
     borderTop: '1px solid #805f4c', 

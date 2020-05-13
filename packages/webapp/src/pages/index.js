@@ -55,7 +55,7 @@ SearchWrapper.defaultProps = {
 
 const SongList = styled.ul`
   list-style: none;
-  margin: 1em;
+  margin: 1em 2.1em;
 `
 
 const IndexPage = ({ data }) => {

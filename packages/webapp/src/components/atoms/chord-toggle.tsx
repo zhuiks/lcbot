@@ -10,8 +10,13 @@ const Container = styled.div`
 `
 const Label = styled.label`
   font-size: 0.8em;
-  color: #888;
+  color: ${props => props.theme.song.slideHeading};
 `
+Label.defaultProps = {
+  theme: {
+    song: { slideHeading: '#888' }
+  }
+}
 const TheToggle = styled(Toggle)`
   touch-action: pan-x;
 

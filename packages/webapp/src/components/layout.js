@@ -2,7 +2,6 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Footer from "../components/footer"
-import pattern from "../images/pattern.svg"
 
 const Main = styled.main`
   min-height: 100vh;

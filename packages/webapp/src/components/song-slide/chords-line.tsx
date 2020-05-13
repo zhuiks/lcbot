@@ -32,7 +32,7 @@ ChordHolder.defaultProps = {
 const ChordSup = styled.sup`
     position: absolute;
     padding-inline-start: 2px;
-    top: -5px;
+    top: 8px;
 `;
 const ChordSub = styled.sub`
     position: absolute;
