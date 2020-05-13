@@ -73,7 +73,7 @@ const IndexPage = ({ data }) => {
   return (
     <ThemeProvider theme={themes[currentTheme]}>
       <SEO
-        title="ترنيمات والكوردات"
+        title="ترانيم والكوردات"
         description="ابحث وشارك كلمات و كوردات الترانيم و التسبيح"
         keywords={[`ترنيم`, `كلمات`, `تسبيح`]}
       />

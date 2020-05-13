@@ -4,15 +4,17 @@ import styled from "styled-components"
 import { FaWhatsapp, FaSearch, FaYoutube, FaFilePdf } from "react-icons/fa"
 
 const FooterDiv = styled.footer`
+  position: fixed;
+  bottom: 0;
   display: flex;
   justify-content: start;
-  margin-top: -${props => props.footerHeight};
-  height: ${props => props.footerHeight};
+  margin-top: -${props => props.footerHeight}px;
+  height: ${props => props.footerHeight}px;
   width: 100%;
   border-top: ${props => props.theme.footer.borderTop};
   color: ${props => props.theme.footer.color};
   direction: ${props => props.direction};
-  padding-inline: 1em;
+  padding: 14px 1em 0;
   div {
     align-self: center;
     text-align: center;
@@ -23,9 +25,6 @@ const FooterDiv = styled.footer`
     &.link a {
       color: ${props => props.theme.footer.link};
       margin-inline-end: 1em;
-      svg {
-        margin-top: 0.5em;
-      }
     }
   }
 `

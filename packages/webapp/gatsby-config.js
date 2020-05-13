@@ -6,8 +6,8 @@ module.exports = {
     url: `https://bayader.tk`,
     author: `BayaderCoders`,
     direction: 'rtl',
-    footerHeight: '50px',
-    theme: 'patterns',
+    footerHeight: 50,
+    theme: 'dark2',
   },
   plugins: [
     {
