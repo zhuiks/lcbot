@@ -5,7 +5,7 @@ import Footer from "../components/footer"
 
 const Main = styled.main`
   min-height: 100vh;
-  padding: 0 0 ${props => props.footerHeight+1}px;
+  padding: 0 0 ${props => parseInt(props.footerHeight)+1}px;
   direction: ${props => props.direction};
   background: ${props => props.theme.background};
 `
@@ -38,7 +38,7 @@ const Layout = ({ children, dark = false, songInfo = false }) => {
       >
         {children}
       </Main>
-      <Footer songInfo={songInfo} />
+      {songInfo && <Footer songInfo={songInfo} />}
     </>
   )
 }

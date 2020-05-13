@@ -16,13 +16,9 @@ declare module 'styled-components' {
     }
     footer?: {
       borderTop?: string
+      background?: string
       color?: string
       link?: string
     }
   }
-}
-
-declare module "*.jpg" {
-  const value: any;
-  export = value;
 }

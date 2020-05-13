@@ -12,6 +12,7 @@ const FooterDiv = styled.footer`
   height: ${props => props.footerHeight}px;
   width: 100%;
   border-top: ${props => props.theme.footer.borderTop};
+  background: ${props => props.theme.footer.background};
   color: ${props => props.theme.footer.color};
   direction: ${props => props.direction};
   padding: 14px 1em 0;
@@ -32,6 +33,7 @@ FooterDiv.defaultProps = {
   theme: {
     footer: {
       borderTop: '#888 1px solid',
+      background: '#fff',
       color: '#888',
       link: '#000',
     }

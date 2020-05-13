@@ -17,6 +17,7 @@ const dark: DefaultTheme = {
   },
   footer: {
     borderTop: '1px solid #888', 
+    background: '#000',
     color: '#888',
     link: '#ccc',
   }
