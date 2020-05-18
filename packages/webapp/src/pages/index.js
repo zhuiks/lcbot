@@ -2,12 +2,13 @@ import React, { useState } from "react"
 import { graphql } from "gatsby"
 import styled, { ThemeProvider } from "styled-components"
 import themes from "../themes"
-
+import '../utils/i18n'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import SearchField from "../components/search"
 import SongRow from "../components/song-row"
 import songFilter from "../components/song-filter"
+import { useTranslation } from "react-i18next";
 
 export const query = graphql`
   query {
@@ -19,6 +20,7 @@ export const query = graphql`
     }
     site {
       siteMetadata {
+        title
         theme
       }
     }
@@ -62,7 +64,7 @@ const IndexPage = ({ data }) => {
   const [filter, setFilter] = useState("");
   const [searchActive, setActive] = useState(false)
   const currentTheme = data.site.siteMetadata.theme || 'default'
-
+  const { t } = useTranslation();
   const songs = data.songList && data.songList.songs.sort((a, b) => {
     if (!(a && a.title) && !(b && b.title)) return 0;
     if (!(b && b.title)) return 1;
@@ -73,7 +75,7 @@ const IndexPage = ({ data }) => {
   return (
     <ThemeProvider theme={themes[currentTheme]}>
       <SEO
-        title="ترانيم والكوردات"
+        title={t('Welcome to React')} //"ترانيم والكوردات"
         description="ابحث وشارك كلمات و كوردات الترانيم و التسبيح"
         keywords={[`ترنيم`, `كلمات`, `تسبيح`]}
       />

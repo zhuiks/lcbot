@@ -2,6 +2,7 @@ const path = require(`path`)
 const generatePdf = require(`./src/utils/generate-pdf`)
 const generatePdfChords = require(`./src/utils/generate-pdf-chords`)
 const { haveChords } = require(`./src/utils/have-chords`)
+const i18n = require(`./src/utils/i18n`)
 /**
  * Implement Gatsby's Node APIs in this file.
  *
