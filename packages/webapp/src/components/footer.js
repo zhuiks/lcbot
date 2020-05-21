@@ -1,7 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
-import { FaWhatsapp, FaSearch, FaYoutube, FaFilePdf } from "react-icons/fa"
+import { FaWhatsapp, FaYoutube, FaFilePdf } from "react-icons/fa"
+import { AiOutlineSearch } from "react-icons/ai"
+import { useTranslation } from "react-i18next"
 
 const FooterDiv = styled.footer`
   position: fixed;
@@ -48,25 +50,26 @@ const Footer = ({ songInfo = false }) => {
             title
             url
             author
-            direction
             footerHeight
           }
         }
       }
     `
   )
+  const { i18n: { language } } = useTranslation()
+  const direction = ['ar'].includes(language) ? 'rtl' : 'lfr'
 
   const whatsappLink = songInfo ? `https://wa.me/?text=${songInfo.text}${site.siteMetadata.url}/${songInfo.songId}` : ''
 
   return (
     <FooterDiv
-      direction={site.siteMetadata.direction}
+      direction={direction}
       footerHeight={site.siteMetadata.footerHeight}
     >
       {songInfo &&
         <>
           <div className="link">
-            <Link to="/"><FaSearch /></Link>
+            <Link to="/"><AiOutlineSearch /></Link>
           </div>
           <div className="link">
             <a href={whatsappLink}><FaWhatsapp /></a>

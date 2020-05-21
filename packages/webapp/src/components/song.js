@@ -6,6 +6,8 @@ import Layout from "./layout"
 import SEO from "./seo"
 import ChordToggle from "./atoms/chord-toggle"
 import SongSlide from "./song-slide"
+import '../utils/i18n'
+import { useTranslation } from "react-i18next";
 
 export const query = graphql`
   query($songId: ID!) {
@@ -46,7 +48,7 @@ const SongTitle = styled.h1`
 `
 SongTitle.defaultProps = {
   theme: {
-    song: {title: '#333'},
+    song: { title: '#333' },
   }
 }
 
@@ -67,12 +69,13 @@ const slides2text = slides => {
 
 const SongPage = ({ data, pageContext }) => {
 
+  const { t } = useTranslation()
   const [showChords, toggleChords] = React.useState(false)
 
   const currentTheme = data.site.siteMetadata.theme || 'default'
   const song = data.songList.song
 
-  const songBegining = song.slides.find(sl => sl.lines && sl.lines.length)
+  const songBeginning = song.slides.find(sl => sl.lines && sl.lines.length)
     .lines.map(line => line.replace(/\|:|:\|/g, ''))
     .join(' - ')
   const songInfo = {
@@ -83,7 +86,7 @@ const SongPage = ({ data, pageContext }) => {
   }
   return (
     <ThemeProvider theme={themes[currentTheme]}>
-      <SEO title={song.title} description={"كلمات ترنيمة" + ": " + songBegining} songId={song.id} />
+      <SEO title={song.title} description={t("lyrics", { songBeginning })} songId={song.id} />
       <Layout songInfo={songInfo}>
         <Article>
           <SongTitle>{song.title}</SongTitle>

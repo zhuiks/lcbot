@@ -9,10 +9,11 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { useTranslation } from "react-i18next";
 
 import metaImage from "../images/worship.jpg"
 
-function SEO({ description, lang, meta, keywords, title, songId }) {
+function SEO({ description, meta, title, songId }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -28,15 +29,18 @@ function SEO({ description, lang, meta, keywords, title, songId }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const { t, i18n: { language } } = useTranslation()
+  const metaTitle = title ? title : t('title')
+  const metaDescription = description || t('description')
+  const metaKeywords = t('metaKeywords')
 
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: language,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={metaTitle}
+      titleTemplate={title ? `%s | ${t('title')}` : ''}
       meta={[
         // --- Primary Meta Tags
         {
@@ -46,7 +50,7 @@ function SEO({ description, lang, meta, keywords, title, songId }) {
         // --- Open Graph / Facebook
         {
           property: `og:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           property: `og:description`,
@@ -62,7 +66,7 @@ function SEO({ description, lang, meta, keywords, title, songId }) {
         },
         {
           property: `og:url`,
-          content: site.siteMetadata.url + (songId ? `/${songId}` : '') +'/',
+          content: site.siteMetadata.url + (songId ? `/${songId}` : '') + '/',
         },
         // --- Twitter
         {
@@ -75,7 +79,7 @@ function SEO({ description, lang, meta, keywords, title, songId }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           name: `twitter:description`,
@@ -87,10 +91,10 @@ function SEO({ description, lang, meta, keywords, title, songId }) {
         },
       ]
         .concat(
-          keywords.length > 0
+          metaKeywords.length > 0
             ? {
               name: `keywords`,
-              content: keywords.join(`, `),
+              content: metaKeywords,
             }
             : []
         )
@@ -100,7 +104,7 @@ function SEO({ description, lang, meta, keywords, title, songId }) {
 }
 
 SEO.defaultProps = {
-  lang: `ar`,
+  lang: `en`,
   meta: [],
   keywords: [],
   description: ``,

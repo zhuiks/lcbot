@@ -1,6 +1,7 @@
 import React from 'react'
 import Toggle from "react-toggle"
 import styled from "styled-components"
+import { useTranslation } from "react-i18next";
 
 // import { RiFileMusicLine } from "react-icons/ri"
 
@@ -166,14 +167,16 @@ interface ChordToggleProps {
   onToggle: (val: boolean) => void
 }
 
-const ChordToggle: React.FC<ChordToggleProps> = ({ checked, onToggle }) => (
-  <Container>
-    <TheToggle
-      id='show-chords'
-      checked={checked}
-      onChange={(e) => onToggle(e.target.checked)} />
-    <Label htmlFor='show-chords'>تظهر الكردات</Label>
-  </Container>
-)
-
+const ChordToggle: React.FC<ChordToggleProps> = ({ checked, onToggle }) => {
+  const { t } = useTranslation()
+  return (
+    <Container>
+      <TheToggle
+        id='show-chords'
+        checked={checked}
+        onChange={(e) => onToggle(e.target.checked)} />
+      <Label htmlFor='show-chords'>{t("show chords")}</Label>
+    </Container>
+  )
+}
 export default ChordToggle

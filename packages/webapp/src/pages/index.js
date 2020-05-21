@@ -28,8 +28,8 @@ export const query = graphql`
 `
 
 const SearchWrapper = styled.div`
-  transition: height 4s easyInOut;
-  height: ${props => props.active ? 'auto' : '40vh'};
+  transition: 0.4s height ease-out;
+  height: ${props => props.active ? '4em' : '40vh'};
   padding: ${props => props.active ? '10px 0.7em' : '2em 2em 0.5em'};
   position: relative;
   display: grid;
@@ -64,21 +64,17 @@ const IndexPage = ({ data }) => {
   const [filter, setFilter] = useState("");
   const [searchActive, setActive] = useState(false)
   const currentTheme = data.site.siteMetadata.theme || 'default'
-  const { t } = useTranslation();
+  const { i18n: { language } } = useTranslation();
   const songs = data.songList && data.songList.songs.sort((a, b) => {
     if (!(a && a.title) && !(b && b.title)) return 0;
     if (!(b && b.title)) return 1;
     if (!(a && a.title)) return -1;
-    return a.title.localeCompare(b.title, 'ar', { sensitivity: 'base' })
+    return a.title.localeCompare(b.title, language, { sensitivity: 'base' })
   });
 
   return (
     <ThemeProvider theme={themes[currentTheme]}>
-      <SEO
-        title={t('Welcome to React')} //"ترانيم والكوردات"
-        description="ابحث وشارك كلمات و كوردات الترانيم و التسبيح"
-        keywords={[`ترنيم`, `كلمات`, `تسبيح`]}
-      />
+      <SEO />
       <Layout>
         <div className="text-center">
           <SearchWrapper active={searchActive}>
