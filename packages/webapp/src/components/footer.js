@@ -1,8 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
-import { FaWhatsapp, FaYoutube, FaFilePdf } from "react-icons/fa"
-import { AiOutlineSearch } from "react-icons/ai"
+import { FaWhatsapp } from "react-icons/fa"
+import { AiOutlineSearch, AiOutlineYoutube, AiOutlineFilePdf } from "react-icons/ai"
 import { useTranslation } from "react-i18next"
 
 const FooterDiv = styled.footer`
@@ -76,12 +76,12 @@ const Footer = ({ songInfo = false }) => {
           </div>
           {songInfo.youtube &&
             <div className="link">
-              <a href={songInfo.youtube} target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
+              <a href={songInfo.youtube} target="_blank" rel="noopener noreferrer"><AiOutlineYoutube /></a>
             </div>
           }
           {songInfo.pdf &&
             <div className="link">
-              <a href={songInfo.pdf} target="_blank" rel="noopener noreferrer"><FaFilePdf /></a>
+              <a href={songInfo.pdf} target="_blank" rel="noopener noreferrer"><AiOutlineFilePdf /></a>
             </div>
           }
         </>
