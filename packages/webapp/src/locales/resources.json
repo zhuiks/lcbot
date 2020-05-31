@@ -1,0 +1,26 @@
+{
+  "en": {
+    "title": "Lyrics & Chords",
+    "description": "Easy to find and share words and chords for worship songs, praises and hymns",
+    "metaKeywords": "worship, hymns, praise, lyrics, chords",
+    "lyrics": "Song Lyrics: {{songBeginning}}",
+    "search": "Search",
+    "show chords": "Show Chords"
+  },
+  "ar": {
+    "title": "ترانيم والكوردات",
+    "description": "ابحث وشارك كلمات و كوردات الترانيم و التسبيح",
+    "metaKeywords": "ترنيم, كلمات, تسبيح",
+    "lyrics": "كلمات ترنيمة: {{songBeginning}}",
+    "search": "بحث",
+    "show chords": "تظهر الكردات"
+  },
+  "uk": {
+    "title": "Слова та Акорди",
+    "description": "Легкий пошук слів та акордів пісень прославлення",
+    "metaKeywords": "прославлення, акорди, слова",
+    "lyrics": "Слова Пісні: {{songBeginning}}",
+    "search": "Пошук",
+    "show chords": "Показати акорди"
+  }
+}

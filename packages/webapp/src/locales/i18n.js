@@ -1,12 +1,11 @@
 import i18n from "i18next"
 import { initReactI18next } from "react-i18next"
-import translation from "../locales/ar.json"
-const LANG = "ar"
-// the translations
-// (tip move them in a JSON file and import them)
+import translResources from "./resources.json"
+import { siteMetadata } from "../../gatsby-config"
+const LANG = siteMetadata.language
 const resources = {}
 resources[LANG] = {
-  translation
+  translation: translResources[LANG],
 }
 
 

@@ -5,9 +5,9 @@ module.exports = {
     description: `Easy to find and share words and chords for worship songs, praises and hymns`,
     url: `https://bayader.tk`,
     author: `BayaderCoders`,
-    direction: 'rtl',
     footerHeight: 50,
-    theme: 'dark2',
+    language: process.env.LANGUAGE || 'ar',
+    theme: process.env.THEME || 'dark2',
   },
   plugins: [
     {
@@ -49,6 +49,13 @@ module.exports = {
         icon: `src/images/logo.png`
       },
     },
+    // `gatsby-transformer-json`,
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `./src/locales/`,
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
