@@ -54,7 +54,7 @@ const ChordsLine: React.FC<ChordsLineProps> = ({ chords }) => {
                         {chord.quality === 'm' ? chord.quality : <ChordSub>{chord.quality}</ChordSub>}
                         <ChordSup>{chord.type}</ChordSup>
                     </ChordHolder>
-                    {chord.text}
+                    {chord.text.replace(/^\s|\s$/g, '\u00a0')}
                 </ChordContainer>
             ))
             }
