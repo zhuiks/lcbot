@@ -6,7 +6,6 @@ import Layout from "./layout"
 import SEO from "./seo"
 import ChordToggle from "./atoms/chord-toggle"
 import SongSlide from "./song-slide"
-import '../utils/i18n'
 import { useTranslation } from "react-i18next";
 
 export const query = graphql`
