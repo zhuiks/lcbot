@@ -73,6 +73,12 @@ const FormAdd: React.FC<AddFormProps> = ({ songId }) => {
                     slides={state.slides}
                     songTitle={state.songTitle}
                     onTitleChange={s => dispatch({ type: 'SET_TITLE', payload: s })}
+                    link={{
+                      value: state.songLink,
+                      isInvalid: state.isLinkInvalid,
+                      onChange: s => dispatch({ type: 'SET_LINK', payload: s }),
+                      validate: () => dispatch({ type: 'VALIDATE_LINK' }),
+                    }}
                   />
                   <StepActions
                     activeStep={activeStep}
