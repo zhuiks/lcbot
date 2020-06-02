@@ -56,10 +56,12 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   link
 });
 
+const direction = process.env.REACT_APP_DIRECTION === 'rtl' || process.env.REACT_APP_DIRECTION === 'ltr' ? process.env.REACT_APP_DIRECTION : 'ltr';
+
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <ThemeProvider theme={theme}>
-      <RTL>
+    <ThemeProvider theme={theme(direction)}>
+      <RTL direction={direction}>
         <CssBaseline />
         <Pages />
       </RTL>

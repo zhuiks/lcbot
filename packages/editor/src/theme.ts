@@ -5,8 +5,8 @@ const headerFont = {
   fontFamily: "El Messiri, serif"
 }
 // A custom theme for this app
-const theme = createMuiTheme({
-  direction: 'rtl',
+const theme = (direction: 'ltr'|'rtl' = 'ltr') => createMuiTheme({
+  direction,
   palette: {
     primary: {
       main: '#006c65',
