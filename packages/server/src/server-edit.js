@@ -1,15 +1,17 @@
-const { ApolloServer } = require('apollo-server-lambda');
-const typeDefs = require('./schema');
-const resolvers = require('./resolvers');
-const Songs = require('./datasources/songs-dynamodb');
+import { ApolloServer } from 'apollo-server-lambda';
+import typeDefs from './schema';
+import resolvers from './resolvers';
+import Songs from './datasources/songs-dynamodb';
 
-module.exports = new ApolloServer({
+const serverEdit = new ApolloServer({
   typeDefs,
   resolvers,
   tracing: true,
   dataSources: () => {
     return {
       songs: new Songs()
-    }
+    };
   }
 });
+
+export default serverEdit;

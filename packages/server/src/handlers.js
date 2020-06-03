@@ -1,7 +1,7 @@
-const serverQuery = require('./server-query');
-const serverEdit = require('./server-edit');
+import serverQuery from './server-query';
+import serverEdit from './server-edit';
 
-module.exports.query = (event, context, callback) => {
+export const query = (event, context, callback) => {
   const handler = serverQuery.createHandler({
     cors: {
       origin: '*',
@@ -17,7 +17,7 @@ module.exports.query = (event, context, callback) => {
   return handler(event, context, callback);
 };
 
-module.exports.edit = (event, context, callback) => {
+export const edit = (event, context, callback) => {
   const handler = serverEdit.createHandler({
     cors: {
       origin: '*',

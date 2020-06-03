@@ -1,4 +1,4 @@
-const getDb = require('./dynamo-db');
+import getDb from './dynamo-db';
 
 class Songs {
     async getAllSongs() {
@@ -36,4 +36,4 @@ class Songs {
     }
 }
 
-module.exports = Songs;
+export default Songs;

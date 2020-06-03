@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-lambda');
+import { gql } from 'apollo-server-lambda';
 
 const typeDefs = gql`
   type Song {
@@ -67,4 +67,4 @@ const typeDefs = gql`
   }
 `;
 
-module.exports = typeDefs;
+export default typeDefs;

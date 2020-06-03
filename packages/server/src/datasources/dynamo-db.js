@@ -1,4 +1,4 @@
-const AWS = require('aws-sdk');
+import AWS from 'aws-sdk';
 
 let _db;
 
@@ -48,7 +48,7 @@ class Database {
                     return null;
                 }
                 return result.Item;
-            })
+            });
     }
 
     async update(data) {
@@ -91,8 +91,7 @@ class Database {
                 '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
             const links = (typeof data.links === 'string'
                 ? [data.links]
-                : Array.from(data.links, s => s.toString().trim())).
-                filter(s => !!pattern.test(s));
+                : Array.from(data.links, s => s.toString().trim())).filter(s => !!pattern.test(s));
             if (links.length) {
                 updateExpr.push('#U = list_append(if_not_exists(#U,:empty), :links)');
                 attrNames['#U'] = 'Links';
@@ -117,7 +116,7 @@ class Database {
                     return null;
                 }
                 return result.Attributes;
-            })
+            });
     }
 
     async query(params) {
@@ -132,17 +131,17 @@ class Database {
                     return [];
                 }
                 return result.Items;
-            })
+            });
     }
 }
 
-const getDatabase = async () => {
+const getDb = async () => {
     if (!_db) {
         _db = new Database();
         await _db.connect();
     }
 
     return _db;
-}
+};
 
-module.exports = getDatabase;
+export default getDb;

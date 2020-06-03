@@ -3,12 +3,13 @@ service: lcbot-server
 plugins:
   - serverless-dynamodb-local
   - serverless-offline
+  - serverless-bundle
 
 provider:
   name: aws
   runtime: nodejs12.x
 # you can overwrite defaults here
-#  stage: dev
+  stage: ${opt:stage, 'dev'}
 #  region: us-east-1
   environment:
     DYNAMODB_TABLE: ${self:service}-${self:provider.stage}
@@ -34,9 +35,10 @@ package:
     - .gitlab-ci.yml
     - .dynamodb	
     - src/__tests__/**
-
+  # Create an individual package for our functions 
+  individually: true
 functions:
-  graphql:
+  lcbot-query:
     handler: src/handlers.query
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -50,7 +52,7 @@ functions:
           path: query
           method: post
           cors: true
-  graphql-mutations:
+  lcbot-editor:
     handler: src/handlers.edit
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -116,6 +118,6 @@ resources:
 custom:
   dynamodb:
     stages:
-      - dev
+      - ${opt:stage, 'dev'}
     start:
       migrate: true

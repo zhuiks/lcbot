@@ -1,4 +1,4 @@
-module.exports = {
+const resolvers = {
   Query: {
     songs: (_, __, { dataSources }) =>
       dataSources.songs.getAllSongs(),
@@ -16,7 +16,7 @@ module.exports = {
           songId != false && song.id != false
             ? "Song added successfully"
             : "Something went wrong"
-      }
+      };
     },
     updateSong: async (_, { id, title, slides, links }, { dataSources }) => {
       const songId = await dataSources.songs.updateSong({ id, title, slides, links });
@@ -28,7 +28,7 @@ module.exports = {
           songId != false && song.id != false
             ? "Song updated successfully"
             : "Something went wrong"
-      }
+      };
     },
   },
   Song: {
@@ -40,7 +40,8 @@ module.exports = {
         lines.push(' ', '    ' + (slide.name || slide.type));
         lines = lines.concat(slide.lines);
       });
-      return lines.slice(1);  
+      return lines.slice(1);
     }
   }
-};  
+};
+export default resolvers;
