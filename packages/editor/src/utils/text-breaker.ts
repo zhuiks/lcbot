@@ -3,11 +3,25 @@ import strComparator from './str-comparator';
 import { IChordSlide, ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
 import { SlideType } from '@bit/zhuiks.lcbot.core.types';
 
-/* eslint no-useless-concat: "off" */
+const lang = process.env.REACT_APP_LANGUAGE || 'ar';
 
-const verse = '[0-9]+';
-const chorus = '(?:ال)?' + 'قرار';
-const chorusR = new RegExp(chorus);
+/* eslint no-useless-concat: "off" */
+const regexs = {
+    ar: {
+        verse: '[0-9]+',
+        chorus: '(?:ال)?' + 'قرار',
+    },
+    uk: {
+        VERSE: '(?:куплет)? *[0-9]+',
+        CHORUS: 'приспів',
+        bridge: 'заспів',
+    }
+}
+const slideNames = Object.entries(regexs[lang]).map(val => val[1]).reduce((acc, val) => {
+    return `${acc}|${val}`
+})
+const slideNamesRegex = new RegExp(`^ *(${slideNames}) *[-–:.]* *`, 'iu');
+
 
 let currentSlide: IChordSlide;
 let slides: ChordSlide[];
@@ -26,12 +40,12 @@ const resetSlide = (allSlides: boolean = false) => {
 }
 const setCurrentSlideType = (name: string) => {
     currentSlide.name = name;
-    if (chorusR.test(name)) {
-        currentSlide.type = SlideType.CHORUS;
-    } else { // if 'VERSE'
-        // verseCounter++;
+    for (const type in regexs[lang]) {
+        const rx = new RegExp(regexs[lang][type])
+        if (rx.test(name)) {
+            currentSlide.type = SlideType[type];
+        }
     }
-
 }
 const addNewSlide = (name: string = '') => {
     // console.log(currentSlide, name, verseCounter)
@@ -42,7 +56,7 @@ const addNewSlide = (name: string = '') => {
                 currentSlide.name = verseCounter.toString();
             }
         }
-        if(slides.filter(slide => (
+        if (slides.filter(slide => (
             strComparator(slide.lines?.join('\n'), currentSlide.lines?.join('\n'))
         )).length) {
             currentSlide.lines = [];
@@ -61,7 +75,6 @@ const addCurrentSlideLine = (str: string) => {
 }
 
 const textBreaker = (input: string) => {
-    const slideNamesRegex = new RegExp(`^ *(${verse}|${chorus}) *[-–:.]* *`, 'iu');
     resetSlide(true);
     fixArabicNumbers(input.trim())
         .split(/\r\n|[\n\v\f\r\x85\u2028\u2029]/).forEach(line => {
