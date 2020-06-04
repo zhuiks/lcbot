@@ -43,12 +43,12 @@ const resolvers = {
       return lines.slice(1);
     },
     hasChords: (songDb) => {
-      if (!songDb.slides) return false
+      if (!songDb.slides) return false;
       return songDb.slides.find(slide => (
         slide.chords && slide.chords.find((chordsLine) => (
           chordsLine.length && (chordsLine.length > 1 || chordsLine[0].root !== "_")
         )) !== undefined)
-      ) !== undefined
+      ) !== undefined;
     }
   }
 };
