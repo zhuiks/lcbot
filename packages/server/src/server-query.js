@@ -9,7 +9,7 @@ const serverQuery = new ApolloServer({
     Query: resolvers.Query,
     Song: resolvers.Song,
   },
-  tracing: true,
+  introspection: true,
   dataSources: () => {
     return {
       songs: new Songs()
