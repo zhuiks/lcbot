@@ -56,10 +56,10 @@ class Database {
         let updateExpr = [];
         let attrNames = {};
         let attrVal = {};
-        if (true || data.lang) {
+        if (data.lang) {
             updateExpr.push('#L = :lang');
             attrNames['#L'] = 'Lang';
-            attrVal[':lang'] = 'ar';
+            attrVal[':lang'] = data.lang;
         }
         const title = data.title && data.title.toString().trim();
         if (title && title.length) {
@@ -123,8 +123,8 @@ class Database {
         return _promisify(callback =>
             this.dynamoDb.scan({
                 TableName: process.env.DYNAMODB_TABLE,
-                FilterExpression: 'Lang = :lang',
-                ExpressionAttributeValues: { ':lang': 'ar' }
+                //FilterExpression: 'Lang = :lang',
+                //ExpressionAttributeValues: { ':lang': 'ar' }
             }, callback))
             .then((result) => {
                 if (!result.Items) {

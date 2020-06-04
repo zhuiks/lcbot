@@ -2,3 +2,4 @@
 /.serverless
 /node_modeles
 .env
+/.webpack
