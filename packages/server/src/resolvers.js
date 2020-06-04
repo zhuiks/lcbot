@@ -15,7 +15,7 @@ const resolvers = {
         message:
           songId != false && song.id != false
             ? "Song added successfully"
-            : "Something went wrong"
+            : "Something went wrong while adding the song"
       };
     },
     updateSong: async (_, { id, title, slides, links }, { dataSources }) => {
@@ -27,7 +27,7 @@ const resolvers = {
         message:
           songId != false && song.id != false
             ? "Song updated successfully"
-            : "Something went wrong"
+            : "Something went wrong while updating the song"
       };
     },
   },
