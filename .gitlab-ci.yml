@@ -18,7 +18,8 @@ deploy-server:
   before_script:
 #    - npm config set prefix /usr/local
 #    - yarn install -g serverless
-    - cd packages/server && npm install
+    - cd packages/server 
+    - npm install
   script:
     - serverless deploy --stage ar --region ap-southeast-1
     - serverless deploy --stage uk --region eu-north-1
