@@ -6,7 +6,7 @@ import Songs from './datasources/songs-dynamodb';
 const serverEdit = new ApolloServer({
   typeDefs,
   resolvers,
-  tracing: true,
+  //tracing: true,
   dataSources: () => {
     return {
       songs: new Songs()

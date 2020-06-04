@@ -21,7 +21,6 @@ deploy-server:
     - cd packages/server 
     - npm install
   script:
-    - cd packages/server 
     - serverless deploy --stage ar --region ap-southeast-1
     - serverless deploy --stage uk --region eu-north-1
   environment: production
