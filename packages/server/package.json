@@ -5,7 +5,8 @@
   "main": "src/handler.js",
   "scripts": {
     "test": "jest",
-    "start": "env NODE_ENV=development serverless offline start --noTimeout",
+    "install_db": "serverless dynamodb install",
+    "start": "serverless offline start --noTimeout",
     "deploy": "serverless deploy --verbose"
   },
   "author": "zhuiks",
