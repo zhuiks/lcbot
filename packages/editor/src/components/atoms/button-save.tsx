@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
         }
     }));
 
-const ButtonSave: React.FC<FabProps> = (props) => {
+const ButtonSave: React.FC<Partial<FabProps>> = (props) => {
     const classes = useStyles();   
     return (
         <Fab className={classes.root} color="secondary" variant="extended" {...props} >

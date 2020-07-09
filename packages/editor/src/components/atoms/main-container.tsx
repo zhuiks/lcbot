@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   }));
 
-const MainContainer: React.FC = ({ children }) => {
+const MainContainer: React.FC<any> = ({ children }) => {
   const classes = useStyles();
   return (
     <Container maxWidth="sm" component="main" className={classes.root} >

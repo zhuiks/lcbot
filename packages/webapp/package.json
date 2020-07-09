@@ -52,7 +52,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop -H 0.0.0.0 -p 9000",
     "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "yarn run develop",
+    "start": "env BIT_TOKEN=$(bit config get user.token) yarn run develop",
     "serve": "gatsby serve",
     "test": "jest",
     "bit-up": "yarn upgrade @bit/zhuiks.lcbot.core.types@latest @bit/zhuiks.lcbot.core.chords@latest",
