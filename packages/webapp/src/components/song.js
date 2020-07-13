@@ -89,7 +89,7 @@ const SongPage = ({ data, pageContext }) => {
       <Layout songInfo={songInfo}>
         <Article>
           <SongTitle>{song.title}</SongTitle>
-          {pageContext.pdfChords !== false &&
+          {pageContext.pdfChords !== "" &&
             <ChordToggle checked={showChords} onToggle={toggleChords} />
           }
           {song.slides.map((slide, i) => {
