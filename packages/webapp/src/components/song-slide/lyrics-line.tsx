@@ -1,14 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { CHORDS_PADDING } from './chords-line';
-
-interface LineProps {
-    readonly chordsPadding: boolean
-}
-const Line = styled.p<LineProps>`
+const Line = styled.p`
   margin: 0;
-  padding-top: ${props => (props.chordsPadding ? CHORDS_PADDING : 0).toString()}em;
+  padding-top: 0;
   position: relative;
   `
 const Repeat = styled.span`
@@ -42,7 +37,7 @@ interface LyricsLineProps {
 }
 
 const LyricsLine: React.FC<LyricsLineProps> = ({ text, chordsPadding = false }) => (
-    <Line chordsPadding={chordsPadding}>
+    <Line>
         {text.replace(/\|:|:\|/g, '')}
         {text.indexOf(':|') !== -1 ? (
             <Repeat>2x</Repeat>

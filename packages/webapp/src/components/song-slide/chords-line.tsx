@@ -2,19 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import { Chord } from '@bit/zhuiks.lcbot.core.chords';
 
-export const CHORDS_PADDING = 1.1;
+const CHORDS_PADDING = 0.9;
 
 const CLine = styled.div`
-    position: absolute;
+    position: relative;
     display: flex;
 `;
 interface ChordProps {
     readonly bgColor?: string;
-    readonly paddingTop?: number;
 }
 const ChordContainer = styled.div<ChordProps>`
     position: relative;
-    padding-top: ${props => (props.paddingTop || 1).toString()}em;
+    padding-top: ${CHORDS_PADDING}em;
     color: ${props => props.bgColor || '#fff'};
 `;
 const ChordHolder = styled.span`
@@ -48,7 +47,7 @@ const ChordsLine: React.FC<ChordsLineProps> = ({ chords }) => {
     return (
         <CLine className="chords">
             {chords.map((chord: Chord, i: number) => (
-                <ChordContainer key={i} paddingTop={CHORDS_PADDING}>
+                <ChordContainer key={i}>
                     <ChordHolder>
                         {chord.root !== '_' && chord.root}
                         {chord.quality === 'm' ? chord.quality : <ChordSub>{chord.quality}</ChordSub>}

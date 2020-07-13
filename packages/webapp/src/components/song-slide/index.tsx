@@ -59,8 +59,11 @@ const SongSlide: React.FC<SongSlideProps> = ({ slide, displayChords = false }) =
       {
         slide.lines && slide.lines.map((str, i) => (
           <LineContainer key={i} slideType={slide.type}>
-            {toDisplayChords && <ChordsLine chords={slide.chords[i]} />}
-            <LyricsLine text={str} chordsPadding={toDisplayChords} />
+            {toDisplayChords ?
+              <ChordsLine chords={slide.chords[i]} />
+              :
+              <LyricsLine text={str} />
+            }
           </LineContainer>
 
         ))
