@@ -79,7 +79,7 @@ const Footer = ({ songInfo = false }) => {
               <a href={songInfo.youtube} target="_blank" rel="noopener noreferrer"><AiOutlineYoutube /></a>
             </div>
           }
-          {songInfo.pdf &&
+          {songInfo.pdf && songInfo.pdf !== "" &&
             <div className="link">
               <a href={songInfo.pdf} target="_blank" rel="noopener noreferrer"><AiOutlineFilePdf /></a>
             </div>

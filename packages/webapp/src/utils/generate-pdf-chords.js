@@ -2,14 +2,11 @@ const { slideHaveChords } = require(`./have-chords`)
 const pdfTools = require(`./pdf-tools`)
 
 const generatePdfChords = (song) => {
-    const pdf = pdfTools(song.id+'_chords')
+    const pdf = pdfTools(song.id)
     pdf.title(song.title)
 
     if (song.slides) {
         song.slides.forEach(slide => {
-            if (slide.name) {
-                pdf.slideName(slide.name)
-            }
             if (slideHaveChords(slide)) {
                 pdf.chordSlide(slide)
             } else {
@@ -17,7 +14,7 @@ const generatePdfChords = (song) => {
             }
         })
     }
-    pdf.footer(`https://bayader.tk/${song.id}`)
+    // pdf.footer(`https://bayader.tk/${song.id}`)
     return pdf.end()
 }
 

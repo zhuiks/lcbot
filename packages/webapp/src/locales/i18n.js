@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next"
 import translResources from "./resources.json"
 import { siteMetadata } from "../../gatsby-config"
 const LANG = siteMetadata.language
+console.log(`Language: ${LANG}`)
 const resources = {}
 resources[LANG] = {
   translation: translResources[LANG],

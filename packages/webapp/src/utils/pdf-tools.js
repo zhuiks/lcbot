@@ -2,11 +2,13 @@ const PDFDocument = require('pdfkit')
 const fs = require('fs')
 // const TwitterCldr = require('twitter_cldr').load('ar');
 
+const FRONTPAGE_LINK = 'https://bayader.tk'
 const PDF_OUTPUT_DIR = 'print'
 const LINE_CHARS_LIMIT = 25
 const H_MARGIN = 150
 const LYRICS_VER_OFFSET = 50
 const LINE_HEIGHT = 20
+const EXTRA_OFFSET = 20
 
 // const isArabic = (text) => text.search(/[\u0600-\u06FF]/) >= 0
 
@@ -24,7 +26,7 @@ const getCharacterLength = (str) => {
   return [...str].length;
 }
 
-const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
+const pdfTools = (songId, withChords = true, rtl = true) => {
 
   const doc = new PDFDocument({
     size: 'A4', //595 × 842 points
@@ -33,10 +35,11 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
       bottom: 10,
       left: 0,
       right: 0
-    }
+    },
+    autoFirstPage: false
   })
   const MAX_X = 595
-  const verOffset = LYRICS_VER_OFFSET + extraOffset
+  const verOffset = LYRICS_VER_OFFSET + (withChords ? 0 : EXTRA_OFFSET)
   const options = { align: 'center' }
   if (rtl) options.features = ['curs', 'kern']
   if (!fs.existsSync('static')) {
@@ -46,12 +49,20 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir)
   }
+  const songLink = FRONTPAGE_LINK + '/' + songId
+  const fileName = songId + (withChords ? '_chords' : '')
   const filePath = `${PDF_OUTPUT_DIR}/${fileName}.pdf`
   doc.pipe(fs.createWriteStream(`static/${filePath}`))
   doc.registerFont('Heading', 'fonts/ElMessiri-SemiBold.ttf')
   doc.registerFont('Regular', 'fonts/Harmattan-Regular.ttf')
   doc.registerFont('Chords', 'fonts/NotoSansSymbols-Regular.ttf')
 
+  doc.on('pageAdded', () => doc.font('Helvetica').fontSize(12).text(songLink, 50, 800 - verOffset, {
+    songLink,
+    underline: true
+  })
+  )
+  doc.addPage()
   doc.translate(0, verOffset)
   //doc.rect(H_MARGIN, 0, MAX_X - 2 * H_MARGIN, 800 - verOffset).stroke()
 
@@ -63,14 +74,21 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
       .text(songTitle, 0, 10 - verOffset, options)
   }
 
-  const slideName = (name) => {
-    y += LINE_HEIGHT
-    doc.font('Regular').fontSize(18).fillColor('#aaa')
-      .text(name, rtl ? MAX_X - H_MARGIN + 30 : H_MARGIN - 30, y, { ...options, align: rtl ? 'left' : 'right' })
+  const slideName = (slide) => {
+    if (slide.name) {
+      y += LINE_HEIGHT
+      doc.font('Regular').fontSize(18).fillColor('#aaa')
+        .text(slide.name, rtl ? MAX_X - H_MARGIN + 30 : H_MARGIN - 30, y, { ...options, align: rtl ? 'left' : 'right' })
+    }
   }
 
   const lyricSlide = (slide) => {
     if (slide.lines) {
+      if (y + slide.lines.length * LINE_HEIGHT > 820) {
+        doc.addPage()
+        y = EXTRA_OFFSET
+      }
+      slideName(slide)
       x = 0
       doc.font('Regular').fontSize(18).fillColor('#333')
       let lineReducer = '';
@@ -89,6 +107,11 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
 
   const chordSlide = (slide) => {
     if (slide.chords) {
+      if (y + slide.chords.length * 2 * LINE_HEIGHT > 820) {
+        doc.addPage()
+        y = EXTRA_OFFSET + LINE_HEIGHT
+      }
+      slideName(slide)
       slide.chords.forEach(chordsLine => {
         x = rtl ? MAX_X - H_MARGIN : H_MARGIN
         chordsLine.forEach(chord => {
@@ -133,12 +156,6 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
     }
   }
 
-  const footer = (link) => {
-    doc.font('Helvetica').fontSize(12).text(link, 50, 800 - verOffset, {
-      link,
-      underline: true
-    })
-  }
   const end = () => {
     doc.end()
     return filePath
@@ -146,10 +163,8 @@ const pdfTools = (fileName, extraOffset = 0, rtl = true) => {
 
   return {
     title,
-    slideName,
     lyricSlide,
     chordSlide,
-    footer,
     end,
   }
 }
