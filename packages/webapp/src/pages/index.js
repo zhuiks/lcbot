@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
-import styled, { ThemeProvider } from "styled-components"
-import themes from "../themes"
+import styled from "styled-components"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import SearchField from "../components/search"
@@ -15,12 +14,6 @@ export const query = graphql`
       songs{
         id
         title
-      }
-    }
-    site {
-      siteMetadata {
-        title
-        theme
       }
     }
   }
@@ -62,7 +55,6 @@ const SongList = styled.ul`
 const IndexPage = ({ data }) => {
   const [filter, setFilter] = useState("");
   const [searchActive, setActive] = useState(false)
-  const currentTheme = data.site.siteMetadata.theme || 'default'
   // const { language } = useI18N() //  useTranslation();
   const { i18n: { language } } = useTranslation();
   const songs = data.songList && data.songList.songs.sort((a, b) => {
@@ -73,7 +65,7 @@ const IndexPage = ({ data }) => {
   });
 
   return (
-    <ThemeProvider theme={themes[currentTheme]}>
+    <>
       <SEO />
       <Layout>
         <div className="text-center">
@@ -94,7 +86,7 @@ const IndexPage = ({ data }) => {
           </SongList>
         </div>
       </Layout>
-    </ThemeProvider>
+    </>
   )
 }
 

@@ -4,6 +4,9 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 import "./src/locales/i18n"
+import CustomWrapper from "./src/utils/wrapPageElement"
+
+export const wrapPageElement = CustomWrapper
 
 // exports.onInitialClientRender = () => {
 //   const i18n = require("./src/utils/i18n")

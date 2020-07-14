@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import styled, { ThemeProvider } from "styled-components"
-import themes from "../themes"
+import styled from "styled-components"
 import Layout from "./layout"
 import SEO from "./seo"
 import ChordToggle from "./atoms/chord-toggle"
@@ -27,11 +26,6 @@ export const query = graphql`
           }
         }
         links
-      }
-    }
-    site {
-      siteMetadata {
-        theme
       }
     }
   }
@@ -71,7 +65,6 @@ const SongPage = ({ data, pageContext }) => {
   const { t } = useTranslation()
   const [showChords, toggleChords] = React.useState(false)
 
-  const currentTheme = data.site.siteMetadata.theme || 'default'
   const song = data.songList.song
 
   const songBeginning = song.slides.find(sl => sl.lines && sl.lines.length)
@@ -84,7 +77,7 @@ const SongPage = ({ data, pageContext }) => {
     pdf: showChords ? pageContext.pdfChords : pageContext.pdf,
   }
   return (
-    <ThemeProvider theme={themes[currentTheme]}>
+    <>
       <SEO title={song.title} description={t("lyrics", { songBeginning })} songId={song.id} />
       <Layout songInfo={songInfo}>
         <Article>
@@ -98,7 +91,7 @@ const SongPage = ({ data, pageContext }) => {
           })}
         </Article>
       </Layout>
-    </ThemeProvider>
+    </>
   )
 }
 

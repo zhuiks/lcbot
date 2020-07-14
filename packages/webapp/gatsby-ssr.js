@@ -4,6 +4,10 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 import "./src/locales/i18n"
+import CustomWrapper from "./src/utils/wrapPageElement"
+
+export const wrapPageElement = CustomWrapper
+
 // const React = require("react")
 // const { I18nextProvider } = require("react-i18next")
 // // exports.onPreRenderHTML = () => {
