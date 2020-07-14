@@ -55,7 +55,6 @@ const SongList = styled.ul`
 const IndexPage = ({ data }) => {
   const [filter, setFilter] = useState("");
   const [searchActive, setActive] = useState(false)
-  // const { language } = useI18N() //  useTranslation();
   const { i18n: { language } } = useTranslation();
   const songs = data.songList && data.songList.songs.sort((a, b) => {
     if (!(a && a.title) && !(b && b.title)) return 0;

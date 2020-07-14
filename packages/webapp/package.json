@@ -60,10 +60,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://gitlab.com/zhuiks/lcbot"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://gitlab.com/zhuiks/lcbot/-/issues"
   },
-  "homepage": "https://billyjacoby.github.io/gatsby-react-bootstrap-starter/"
+  "homepage": "https://gitlab.com/zhuiks/lcbot"
 }
