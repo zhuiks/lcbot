@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "gatsby"
 import styled from "styled-components"
+import BookmarkButton from "./bookmark-button"
 
 const SongLink = styled(Link)`
   text-decoration: none;
@@ -16,6 +17,7 @@ const SongRow = ({ song }) => {
   const { id, title } = song;
   return (
     <li>
+      <BookmarkButton songId={id} />
       <SongLink to={`/${id}`}>
         {title}
       </SongLink>

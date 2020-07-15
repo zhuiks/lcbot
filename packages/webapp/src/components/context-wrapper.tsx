@@ -8,23 +8,11 @@ import i18n from "i18next"
 import { initReactI18next, I18nextProvider } from 'react-i18next'
 import translResources from "../locales/resources.json"
 
+export const BookmarkContext = React.createContext({
+  bookmarks: [],
+  updateBookmarks: (id: string) => {}
+})
 
-// const { I18nextProvider } = require("react-i18next")
-// // exports.onPreRenderHTML = () => {
-//   const i18n = require("./src/utils/i18n")
-// // }
-// exports.wrapRootElement = ({ element }) => {
-//   return (
-//     <I18nextProvider i18n={i18n}>
-//       {element}
-//     </I18nextProvider>
-
-//   )
-// }
-
-
-//   )
-// }
 const ContextWrapper = ({ children, pageContext }) => {
   const data = useStaticQuery(graphql`
       query SiteQuery {
@@ -45,22 +33,34 @@ const ContextWrapper = ({ children, pageContext }) => {
     translation: translResources[currentLanguage],
   }
   i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
-  .init({
-    resources,
-    lng: currentLanguage,
+    .use(initReactI18next) // passes i18n down to react-i18next
+    .init({
+      resources,
+      lng: currentLanguage,
 
-    keySeparator: false, // we do not use keys in form messages.welcome
+      keySeparator: false, // we do not use keys in form messages.welcome
 
-    interpolation: {
-      escapeValue: false // react already safes from xss
+      interpolation: {
+        escapeValue: false // react already safes from xss
+      }
+    })
+  const [bookmarks, setBookmarks] = React.useState([])
+  const updateBookmarks = (id: string) => {
+    const index = bookmarks.indexOf(id);
+    if (index > -1) {
+      bookmarks.splice(index, 1);        
+      setBookmarks(bookmarks.filter(el => el !== id))
+    } else {
+      setBookmarks(bookmarks.concat(id))
     }
-  })
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <I18nextProvider i18n={i18n}>
-        {children}
+        <BookmarkContext.Provider value={{bookmarks, updateBookmarks}}>
+          {children}
+        </BookmarkContext.Provider>
       </I18nextProvider>
     </ThemeProvider>
   )
