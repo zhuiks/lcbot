@@ -59,6 +59,7 @@ const Footer = ({ songInfo = false }) => {
   const { i18n: { language } } = useTranslation()
   const direction = ['ar'].includes(language) ? 'rtl' : 'lfr'
 
+//  const whatsappLink = songInfo ? `https://wa.me/?text=${songInfo.text}${site.siteMetadata.url}/${songInfo.songId}` : ''
   const whatsappLink = songInfo ? `https://wa.me/?text=${songInfo.text}` : ''
 
   return (
