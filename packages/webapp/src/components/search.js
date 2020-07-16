@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components"
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai"
 import { useTranslation } from "react-i18next";
+import useRtl from "../utils/use-rtl"
 
 const Form = styled.form`
   margin: 0;
@@ -50,8 +51,8 @@ const Button = styled.button`
 
 const SearchField = ({ filter = '', active, onChange, onFocus, onBlur }) => {
 
-  const { t, i18n: { language } } = useTranslation()
-  const isRtl = ['ar'].includes(language)
+  const { t } = useTranslation()
+  const { isRtl } = useRtl()
 
   const HandleInput = (e) => {
     const val = e.target.value

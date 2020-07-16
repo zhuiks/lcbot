@@ -4,8 +4,9 @@ import { BsBookmarkPlus, BsBookmarkFill } from "react-icons/bs"
 import { BookmarkContext } from "./context-wrapper"
 
 const Button = styled.button`
-  border: 0;
+  border: none;
   background: none;
+  outline: none;
   font-size: 0.6em;
   color: #aaa;
   margin: 0;

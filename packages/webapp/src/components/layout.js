@@ -1,8 +1,10 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
-import Footer from "../components/footer"
+import Footer from "./footer"
+import Bookmarks from "./bookmarks"
 import { useTranslation } from "react-i18next"
+import useRtl from "../utils/use-rtl"
 
 const Main = styled.main`
   min-height: 100vh;
@@ -28,11 +30,11 @@ const Layout = ({ children, dark = false, songInfo = false }) => {
       }
     `
   )
-  const { i18n: { language } } = useTranslation()
-  const direction = ['ar'].includes(language) ? 'rtl' : 'lfr'
+  const {direction} = useRtl()
 
   return (
     <>
+      <Bookmarks/>
       <Main
         direction={direction}
         footerHeight={site.siteMetadata.footerHeight}
