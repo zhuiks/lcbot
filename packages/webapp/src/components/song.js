@@ -5,6 +5,7 @@ import Layout from "./layout"
 import SEO from "./seo"
 import ChordToggle from "./atoms/chord-toggle"
 import SongSlide from "./song-slide"
+import BookmarkButton from "./bookmark-button"
 import { useTranslation } from "react-i18next";
 
 export const query = graphql`
@@ -82,6 +83,7 @@ const SongPage = ({ data, pageContext }) => {
       <Layout songInfo={songInfo}>
         <Article>
           <SongTitle>{song.title}</SongTitle>
+          <BookmarkButton songId={song.id} />
           {pageContext.pdfChords !== "" &&
             <ChordToggle checked={showChords} onToggle={toggleChords} />
           }
