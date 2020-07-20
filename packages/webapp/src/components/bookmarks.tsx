@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { BsBookmarksFill } from "react-icons/bs"
 import { BookmarkContext } from "./context-wrapper"
 import useRtl from "../utils/use-rtl"
-import { idComp } from "../utils/id-compress"
+import { getBLink } from "../utils/id-compress"
 
 const BookmarksLink = styled(Link)<{ isRtl: boolean }>`
   position: absolute;
@@ -22,9 +22,8 @@ const Bookmarks: React.FC = () => {
     return null
   }
   
-  const link = `/s?q=${bookmarks.length}&t=${idComp(bookmarks)}`
   return (
-    <BookmarksLink to={link} isRtl={isRtl}>
+    <BookmarksLink to={getBLink(bookmarks)} isRtl={isRtl}>
       <BsBookmarksFill />
     </BookmarksLink>
   )

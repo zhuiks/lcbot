@@ -41,7 +41,7 @@ FooterDiv.defaultProps = {
     }
   }
 }
-const Footer = ({ songInfo = false }) => {
+const Footer = ({ info = false }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -60,14 +60,14 @@ const Footer = ({ songInfo = false }) => {
   const direction = ['ar'].includes(language) ? 'rtl' : 'lfr'
 
 //  const whatsappLink = songInfo ? `https://wa.me/?text=${songInfo.text}${site.siteMetadata.url}/${songInfo.songId}` : ''
-  const whatsappLink = songInfo ? `https://wa.me/?text=${songInfo.text}` : ''
+  const whatsappLink = info ? `https://wa.me/?text=${info.text}` : ''
 
   return (
     <FooterDiv
       direction={direction}
       footerHeight={site.siteMetadata.footerHeight}
     >
-      {songInfo &&
+      {info &&
         <>
           <div className="link">
             <Link to="/"><AiOutlineSearch /></Link>
@@ -75,14 +75,14 @@ const Footer = ({ songInfo = false }) => {
           <div className="link">
             <a href={whatsappLink}><FaWhatsapp /></a>
           </div>
-          {songInfo.youtube &&
+          {info.youtube &&
             <div className="link">
-              <a href={songInfo.youtube} target="_blank" rel="noopener noreferrer"><AiOutlineYoutube /></a>
+              <a href={info.youtube} target="_blank" rel="noopener noreferrer"><AiOutlineYoutube /></a>
             </div>
           }
-          {songInfo.pdf && songInfo.pdf !== "" &&
+          {info.pdf && info.pdf !== "" &&
             <div className="link">
-              <a href={songInfo.pdf} target="_blank" rel="noopener noreferrer"><AiOutlineFilePdf /></a>
+              <a href={info.pdf} target="_blank" rel="noopener noreferrer"><AiOutlineFilePdf /></a>
             </div>
           }
         </>

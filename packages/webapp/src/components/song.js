@@ -80,7 +80,7 @@ const SongPage = ({ data, pageContext }) => {
   return (
     <>
       <SEO title={song.title} description={t("lyrics", { songBeginning })} songId={song.id} />
-      <Layout songInfo={songInfo}>
+      <Layout info={songInfo}>
         <Article>
           <SongTitle>{song.title}</SongTitle>
           <BookmarkButton songId={song.id} />

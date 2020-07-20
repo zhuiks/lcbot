@@ -17,7 +17,7 @@ Main.defaultProps = {
   }
 }
 
-const Layout = ({ children, dark = false, songInfo = false }) => {
+const Layout = ({ children, dark = false, info = false, bookmarksButton = true }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -33,7 +33,7 @@ const Layout = ({ children, dark = false, songInfo = false }) => {
 
   return (
     <>
-      <Bookmarks/>
+      { bookmarksButton && <Bookmarks/> }
       <Main
         direction={direction}
         footerHeight={site.siteMetadata.footerHeight}
@@ -41,7 +41,7 @@ const Layout = ({ children, dark = false, songInfo = false }) => {
       >
         {children}
       </Main>
-      {songInfo && <Footer songInfo={songInfo} />}
+      {info && <Footer info={info} />}
     </>
   )
 }
