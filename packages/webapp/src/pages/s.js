@@ -3,9 +3,7 @@ import styled from "styled-components"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import { BookmarkContext } from "../components/context-wrapper"
-import { AiOutlineSearch, AiOutlineYoutube, AiOutlineFilePdf, AiOutlineClose } from "react-icons/ai"
-
-import SongRow from "../components/song-row"
+import BookmarkRow from "../components/bookmark-row"
 import { getBLink } from "../utils/id-compress"
 
 const ButtonRow = styled.div`
@@ -29,6 +27,8 @@ export const query = graphql`
       songs{
         id
         title
+        links
+        hasChords
       }
     }
     site {
@@ -52,7 +52,7 @@ const SetPage = ({ data, location }) => {
       <Layout info={bookmarksInfo} bookmarksButton={false}>
         <SongList>
           {songs && songs.map(song => (
-            <SongRow key={song.id} song={song} />
+            <BookmarkRow key={song.id} song={song} />
           ))}
         </SongList>
       </Layout>
