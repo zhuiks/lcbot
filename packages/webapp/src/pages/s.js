@@ -21,9 +21,8 @@ export const query = graphql`
   }
 `
 
-const SetPage = ({ data }) => {
+const SetPage = ({ data, location }) => {
   const { bookmarks } = useContext(BookmarkContext)
-  console.log(bookmarks)
   const songs = bookmarks.map(songId => data.songList && data.songList.songs.find(song => song.id === songId))
   console.log(songs)
   return (

@@ -54,7 +54,7 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "yarn run develop",
     "serve": "gatsby serve",
-    "test": "jest",
+    "test": "jest -o --watch",
     "bit-up": "yarn upgrade @bit/zhuiks.lcbot.core.types@latest @bit/zhuiks.lcbot.core.chords@latest",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },

@@ -3,19 +3,52 @@
 exports[`Song Page renders correctly 1`] = `
 Array [
   <main
-    className="sc-AxjAm fTaVTy"
+    className="sc-AxiKw cnKCqW"
+    direction="lfr"
   >
-    <article>
+    <article
+      className="sc-fzqBZW flkXms"
+    >
       <h1
-        className="sc-fznZeY liULjh"
+        className="sc-fzqNJr cSYkmQ"
       >
         جايين يا أبانا
       </h1>
+      <button
+        className="sc-fzokOt ktskVK"
+        onClick={[Function]}
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M4.5 2a.5.5 0 00-.5.5v11.066l4-2.667 4 2.667V8.5a.5.5 0 011 0v6.934l-5-3.333-5 3.333V2.5A1.5 1.5 0 014.5 1h4a.5.5 0 010 1h-4zm9-1a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13V1.5a.5.5 0 01.5-.5z"
+            fillRule="evenodd"
+          />
+          <path
+            clipRule="evenodd"
+            d="M13 3.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </button>
       <div
-        className="sc-AxiKw eJkkWC"
+        className="sc-AxhCb dSjMOG"
       >
         <div
-          className="react-toggle sc-AxhUy gyIvxi"
+          className="react-toggle sc-AxgMl cJBMKw"
           onClick={[Function]}
           onTouchEnd={[Function]}
           onTouchMove={[Function]}
@@ -75,69 +108,69 @@ Array [
           />
         </div>
         <label
-          className="sc-AxhCb zckqH"
+          className="sc-AxhUy jOizoN"
           htmlFor="show-chords"
         >
-          تظهر الكردات
+          show chords
         </label>
       </div>
       <div
-        className="sc-fzplWN laBPzj"
+        className="sc-fznyAO gCPfhp"
         type="VERSE"
       >
         <h3
-          className="sc-fznyAO fPyGja"
+          className="sc-fznKkj dSmbBg"
         >
           1
         </h3>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             جايين يا أبانا
             <span
-              className="sc-fzpans fEYHZW"
+              className="sc-fzplWN iAeXrn"
             />
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             اسمع لدعانا
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             بتواضع يرجع شعبك
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             يطلب رحمة من عندك
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             بقلوب محتاجه إليك
             <span
-              className="sc-fzpans fEYHZW"
+              className="sc-fzplWN iAeXrn"
             >
               2x
             </span>
@@ -145,89 +178,89 @@ Array [
         </div>
       </div>
       <div
-        className="sc-fzplWN hhmSHh"
+        className="sc-fznyAO jOqcAh"
         type="CHORUS"
       >
         <h3
-          className="sc-fznyAO fPyGja"
+          className="sc-fznKkj dSmbBg"
         >
           القرار
         </h3>
         <div
-          className="sc-fznKkj iXbmPM"
+          className="sc-fznZeY gURvRk"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             ده رجانا فيك يا إلهنا
             <span
-              className="sc-fzpans fEYHZW"
+              className="sc-fzplWN iAeXrn"
             />
           </p>
         </div>
         <div
-          className="sc-fznKkj iXbmPM"
+          className="sc-fznZeY gURvRk"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             وهنستنى المواعيد
           </p>
         </div>
         <div
-          className="sc-fznKkj iXbmPM"
+          className="sc-fznZeY gURvRk"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             نحوك نرفع أعيننا
           </p>
         </div>
         <div
-          className="sc-fznKkj iXbmPM"
+          className="sc-fznZeY gURvRk"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             وايمانا فيك بيزيد
           </p>
         </div>
         <div
-          className="sc-fznKkj iXbmPM"
+          className="sc-fznZeY gURvRk"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             بنصدق كل وعودك دا
           </p>
         </div>
         <div
-          className="sc-fznKkj iXbmPM"
+          className="sc-fznZeY gURvRk"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             انت في الوعد أمين
           </p>
         </div>
         <div
-          className="sc-fznKkj iXbmPM"
+          className="sc-fznZeY gURvRk"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             تملا حياتنا من جودك
           </p>
         </div>
         <div
-          className="sc-fznKkj iXbmPM"
+          className="sc-fznZeY gURvRk"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             مجداً ليك يا معين
             <span
-              className="sc-fzpans fEYHZW"
+              className="sc-fzplWN iAeXrn"
             >
               2x
             </span>
@@ -235,62 +268,62 @@ Array [
         </div>
       </div>
       <div
-        className="sc-fzplWN laBPzj"
+        className="sc-fznyAO gCPfhp"
         type="VERSE"
       >
         <h3
-          className="sc-fznyAO fPyGja"
+          className="sc-fznKkj dSmbBg"
         >
           2
         </h3>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             أرضنا عطشانة
             <span
-              className="sc-fzpans fEYHZW"
+              className="sc-fzplWN iAeXrn"
             />
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             بجروح مليانة
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             من فيض حبك ترويها
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             لمسة إيدك تشفيها
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             وتردها تاني إليك
             <span
-              className="sc-fzpans fEYHZW"
+              className="sc-fzplWN iAeXrn"
             >
               2x
             </span>
@@ -298,62 +331,62 @@ Array [
         </div>
       </div>
       <div
-        className="sc-fzplWN laBPzj"
+        className="sc-fznyAO gCPfhp"
         type="VERSE"
       >
         <h3
-          className="sc-fznyAO fPyGja"
+          className="sc-fznKkj dSmbBg"
         >
           3
         </h3>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             بنتوب قدامك
             <span
-              className="sc-fzpans fEYHZW"
+              className="sc-fzplWN iAeXrn"
             />
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             بنعود لحنانك
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             نعلن ملكك في حياتنا
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             في بيوتنا وإجتماعاتنا
           </p>
         </div>
         <div
-          className="sc-fznKkj cwThxx"
+          className="sc-fznZeY kEsPRt"
         >
           <p
-            className="sc-fzoLsD kLYuIg"
+            className="sc-fzpans eAwgVX"
           >
             وقلوبنا تسجد ليك
             <span
-              className="sc-fzpans fEYHZW"
+              className="sc-fzplWN iAeXrn"
             >
               2x
             </span>
@@ -363,7 +396,8 @@ Array [
     </article>
   </main>,
   <footer
-    className="sc-AxirZ kgiNEa"
+    className="sc-AxjAm dqivQl"
+    direction="lfr"
   >
     <div
       className="link"
@@ -381,12 +415,12 @@ Array [
               "color": undefined,
             }
           }
-          viewBox="0 0 512 512"
+          viewBox="0 0 1024 1024"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+            d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
           />
         </svg>
       </a>
@@ -395,7 +429,7 @@ Array [
       className="link"
     >
       <a
-        href="https://wa.me/?text=%20%20%20%201%0A|:جايين يا أبانا%D8%A7%D8%B3%D9%85%D8%B9%20%D9%84%D8%AF%D8%B9%D8%A7%D9%86%D8%A7%0A%D8%A8%D8%AA%D9%88%D8%A7%D8%B6%D8%B9%20%D9%8A%D8%B1%D8%AC%D8%B9%20%D8%B4%D8%B9%D8%A8%D9%83%0A%D9%8A%D8%B7%D9%84%D8%A8%20%D8%B1%D8%AD%D9%85%D8%A9%20%D9%85%D9%86%20%D8%B9%D9%86%D8%AF%D9%83%0A%D8%A8%D9%82%D9%84%D9%88%D8%A8%20%D9%85%D8%AD%D8%AA%D8%A7%D8%AC%D9%87%20%D8%A5%D9%84%D9%8A%D9%83%3A%7C%0A%0A%20%20%20%20%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D8%B1%0A|:ده رجانا فيك يا إلهنا%D9%88%D9%87%D9%86%D8%B3%D8%AA%D9%86%D9%89%20%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF%0A%D9%86%D8%AD%D9%88%D9%83%20%D9%86%D8%B1%D9%81%D8%B9%20%D8%A3%D8%B9%D9%8A%D9%86%D9%86%D8%A7%0A%D9%88%D8%A7%D9%8A%D9%85%D8%A7%D9%86%D8%A7%20%D9%81%D9%8A%D9%83%20%D8%A8%D9%8A%D8%B2%D9%8A%D8%AF%0A%D8%A8%D9%86%D8%B5%D8%AF%D9%82%20%D9%83%D9%84%20%D9%88%D8%B9%D9%88%D8%AF%D9%83%20%D8%AF%D8%A7%0A%D8%A7%D9%86%D8%AA%20%D9%81%D9%8A%20%D8%A7%D9%84%D9%88%D8%B9%D8%AF%20%D8%A3%D9%85%D9%8A%D9%86%0A%D8%AA%D9%85%D9%84%D8%A7%20%D8%AD%D9%8A%D8%A7%D8%AA%D9%86%D8%A7%20%D9%85%D9%86%20%D8%AC%D9%88%D8%AF%D9%83%0A%D9%85%D8%AC%D8%AF%D8%A7%D9%8B%20%D9%84%D9%8A%D9%83%20%D9%8A%D8%A7%20%D9%85%D8%B9%D9%8A%D9%86%3A%7C%0A%0A%20%20%20%202%0A|:أرضنا عطشانة%D8%A8%D8%AC%D8%B1%D9%88%D8%AD%20%D9%85%D9%84%D9%8A%D8%A7%D9%86%D8%A9%0A%D9%85%D9%86%20%D9%81%D9%8A%D8%B6%20%D8%AD%D8%A8%D9%83%20%D8%AA%D8%B1%D9%88%D9%8A%D9%87%D8%A7%0A%D9%84%D9%85%D8%B3%D8%A9%20%D8%A5%D9%8A%D8%AF%D9%83%20%D8%AA%D8%B4%D9%81%D9%8A%D9%87%D8%A7%0A%D9%88%D8%AA%D8%B1%D8%AF%D9%87%D8%A7%20%D8%AA%D8%A7%D9%86%D9%8A%20%D8%A5%D9%84%D9%8A%D9%83%3A%7C%0A%0A%20%20%20%203%0A|:بنتوب قدامك%D8%A8%D9%86%D8%B9%D9%88%D8%AF%20%D9%84%D8%AD%D9%86%D8%A7%D9%86%D9%83%0A%D9%86%D8%B9%D9%84%D9%86%20%D9%85%D9%84%D9%83%D9%83%20%D9%81%D9%8A%20%D8%AD%D9%8A%D8%A7%D8%AA%D9%86%D8%A7%0A%D9%81%D9%8A%20%D8%A8%D9%8A%D9%88%D8%AA%D9%86%D8%A7%20%D9%88%D8%A5%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D8%A7%D8%AA%D9%86%D8%A7%0A%D9%88%D9%82%D9%84%D9%88%D8%A8%D9%86%D8%A7%20%D8%AA%D8%B3%D8%AC%D8%AF%20%D9%84%D9%8A%D9%83%3A%7C%0A%0Aundefined/test-id"
+        href="https://wa.me/?text=%20%20%20%201%0A|:جايين يا أبانا%D8%A7%D8%B3%D9%85%D8%B9%20%D9%84%D8%AF%D8%B9%D8%A7%D9%86%D8%A7%0A%D8%A8%D8%AA%D9%88%D8%A7%D8%B6%D8%B9%20%D9%8A%D8%B1%D8%AC%D8%B9%20%D8%B4%D8%B9%D8%A8%D9%83%0A%D9%8A%D8%B7%D9%84%D8%A8%20%D8%B1%D8%AD%D9%85%D8%A9%20%D9%85%D9%86%20%D8%B9%D9%86%D8%AF%D9%83%0A%D8%A8%D9%82%D9%84%D9%88%D8%A8%20%D9%85%D8%AD%D8%AA%D8%A7%D8%AC%D9%87%20%D8%A5%D9%84%D9%8A%D9%83%3A%7C%0A%0A%20%20%20%20%D8%A7%D9%84%D9%82%D8%B1%D8%A7%D8%B1%0A|:ده رجانا فيك يا إلهنا%D9%88%D9%87%D9%86%D8%B3%D8%AA%D9%86%D9%89%20%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF%0A%D9%86%D8%AD%D9%88%D9%83%20%D9%86%D8%B1%D9%81%D8%B9%20%D8%A3%D8%B9%D9%8A%D9%86%D9%86%D8%A7%0A%D9%88%D8%A7%D9%8A%D9%85%D8%A7%D9%86%D8%A7%20%D9%81%D9%8A%D9%83%20%D8%A8%D9%8A%D8%B2%D9%8A%D8%AF%0A%D8%A8%D9%86%D8%B5%D8%AF%D9%82%20%D9%83%D9%84%20%D9%88%D8%B9%D9%88%D8%AF%D9%83%20%D8%AF%D8%A7%0A%D8%A7%D9%86%D8%AA%20%D9%81%D9%8A%20%D8%A7%D9%84%D9%88%D8%B9%D8%AF%20%D8%A3%D9%85%D9%8A%D9%86%0A%D8%AA%D9%85%D9%84%D8%A7%20%D8%AD%D9%8A%D8%A7%D8%AA%D9%86%D8%A7%20%D9%85%D9%86%20%D8%AC%D9%88%D8%AF%D9%83%0A%D9%85%D8%AC%D8%AF%D8%A7%D9%8B%20%D9%84%D9%8A%D9%83%20%D9%8A%D8%A7%20%D9%85%D8%B9%D9%8A%D9%86%3A%7C%0A%0A%20%20%20%202%0A|:أرضنا عطشانة%D8%A8%D8%AC%D8%B1%D9%88%D8%AD%20%D9%85%D9%84%D9%8A%D8%A7%D9%86%D8%A9%0A%D9%85%D9%86%20%D9%81%D9%8A%D8%B6%20%D8%AD%D8%A8%D9%83%20%D8%AA%D8%B1%D9%88%D9%8A%D9%87%D8%A7%0A%D9%84%D9%85%D8%B3%D8%A9%20%D8%A5%D9%8A%D8%AF%D9%83%20%D8%AA%D8%B4%D9%81%D9%8A%D9%87%D8%A7%0A%D9%88%D8%AA%D8%B1%D8%AF%D9%87%D8%A7%20%D8%AA%D8%A7%D9%86%D9%8A%20%D8%A5%D9%84%D9%8A%D9%83%3A%7C%0A%0A%20%20%20%203%0A|:بنتوب قدامك%D8%A8%D9%86%D8%B9%D9%88%D8%AF%20%D9%84%D8%AD%D9%86%D8%A7%D9%86%D9%83%0A%D9%86%D8%B9%D9%84%D9%86%20%D9%85%D9%84%D9%83%D9%83%20%D9%81%D9%8A%20%D8%AD%D9%8A%D8%A7%D8%AA%D9%86%D8%A7%0A%D9%81%D9%8A%20%D8%A8%D9%8A%D9%88%D8%AA%D9%86%D8%A7%20%D9%88%D8%A5%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D8%A7%D8%AA%D9%86%D8%A7%0A%D9%88%D9%82%D9%84%D9%88%D8%A8%D9%86%D8%A7%20%D8%AA%D8%B3%D8%AC%D8%AF%20%D9%84%D9%8A%D9%83%3A%7C%0A%0A"
       >
         <svg
           fill="currentColor"
@@ -435,12 +469,12 @@ Array [
               "color": undefined,
             }
           }
-          viewBox="0 0 576 512"
+          viewBox="0 0 1024 1024"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+            d="M960 509.2c0-2.2 0-4.7-.1-7.6-.1-8.1-.3-17.2-.5-26.9-.8-27.9-2.2-55.7-4.4-81.9-3-36.1-7.4-66.2-13.4-88.8a139.52 139.52 0 0 0-98.3-98.5c-28.3-7.6-83.7-12.3-161.7-15.2-37.1-1.4-76.8-2.3-116.5-2.8-13.9-.2-26.8-.3-38.4-.4h-29.4c-11.6.1-24.5.2-38.4.4-39.7.5-79.4 1.4-116.5 2.8-78 3-133.5 7.7-161.7 15.2A139.35 139.35 0 0 0 82.4 304C76.3 326.6 72 356.7 69 392.8c-2.2 26.2-3.6 54-4.4 81.9-.3 9.7-.4 18.8-.5 26.9 0 2.9-.1 5.4-.1 7.6v5.6c0 2.2 0 4.7.1 7.6.1 8.1.3 17.2.5 26.9.8 27.9 2.2 55.7 4.4 81.9 3 36.1 7.4 66.2 13.4 88.8 12.8 47.9 50.4 85.7 98.3 98.5 28.2 7.6 83.7 12.3 161.7 15.2 37.1 1.4 76.8 2.3 116.5 2.8 13.9.2 26.8.3 38.4.4h29.4c11.6-.1 24.5-.2 38.4-.4 39.7-.5 79.4-1.4 116.5-2.8 78-3 133.5-7.7 161.7-15.2 47.9-12.8 85.5-50.5 98.3-98.5 6.1-22.6 10.4-52.7 13.4-88.8 2.2-26.2 3.6-54 4.4-81.9.3-9.7.4-18.8.5-26.9 0-2.9.1-5.4.1-7.6v-5.6zm-72 5.2c0 2.1 0 4.4-.1 7.1-.1 7.8-.3 16.4-.5 25.7-.7 26.6-2.1 53.2-4.2 77.9-2.7 32.2-6.5 58.6-11.2 76.3-6.2 23.1-24.4 41.4-47.4 47.5-21 5.6-73.9 10.1-145.8 12.8-36.4 1.4-75.6 2.3-114.7 2.8-13.7.2-26.4.3-37.8.3h-28.6l-37.8-.3c-39.1-.5-78.2-1.4-114.7-2.8-71.9-2.8-124.9-7.2-145.8-12.8-23-6.2-41.2-24.4-47.4-47.5-4.7-17.7-8.5-44.1-11.2-76.3-2.1-24.7-3.4-51.3-4.2-77.9-.3-9.3-.4-18-.5-25.7 0-2.7-.1-5.1-.1-7.1v-4.8c0-2.1 0-4.4.1-7.1.1-7.8.3-16.4.5-25.7.7-26.6 2.1-53.2 4.2-77.9 2.7-32.2 6.5-58.6 11.2-76.3 6.2-23.1 24.4-41.4 47.4-47.5 21-5.6 73.9-10.1 145.8-12.8 36.4-1.4 75.6-2.3 114.7-2.8 13.7-.2 26.4-.3 37.8-.3h28.6l37.8.3c39.1.5 78.2 1.4 114.7 2.8 71.9 2.8 124.9 7.2 145.8 12.8 23 6.2 41.2 24.4 47.4 47.5 4.7 17.7 8.5 44.1 11.2 76.3 2.1 24.7 3.4 51.3 4.2 77.9.3 9.3.4 18 .5 25.7 0 2.7.1 5.1.1 7.1v4.8zM423 646l232-135-232-133z"
           />
         </svg>
       </a>

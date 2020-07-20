@@ -3,7 +3,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Footer from "./footer"
 import Bookmarks from "./bookmarks"
-import { useTranslation } from "react-i18next"
 import useRtl from "../utils/use-rtl"
 
 const Main = styled.main`
