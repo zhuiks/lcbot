@@ -15,6 +15,7 @@ const GET_SONGS = gql`
     songs {
       id
       title
+      hasChords
     }
   }
 `;
