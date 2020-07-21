@@ -8,6 +8,7 @@ const Button = styled.button`
   border: none;
   background: none;
   outline: none;
+  cursor: pointer;
   font-size: 0.6em;
   color: ${props => props.theme.footer.link};
   margin: 0;

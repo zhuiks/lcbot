@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { FaWhatsapp } from "react-icons/fa"
 import { AiOutlineSearch, AiOutlineYoutube, AiOutlineFilePdf } from "react-icons/ai"
 import { useTranslation } from "react-i18next"
+import FilePdfChords from "./atoms/file-pdf-chords"
 
 const FooterDiv = styled.footer`
   position: fixed;
@@ -82,7 +83,7 @@ const Footer = ({ info = false }) => {
           }
           {info.pdf && info.pdf !== "" &&
             <div className="link">
-              <a href={info.pdf} target="_blank" rel="noopener noreferrer"><AiOutlineFilePdf /></a>
+              <a href={info.pdf} target="_blank" rel="noopener noreferrer">{info.pdf.includes("chords") ? <FilePdfChords/> : <AiOutlineFilePdf />}</a>
             </div>
           }
         </>

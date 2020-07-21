@@ -3,7 +3,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
 import BookmarkButton from "./bookmark-button"
 import { AiOutlineYoutube, AiOutlineFilePdf } from "react-icons/ai"
-import FilePdfChords from './file-pdf-chords';
+import FilePdfChords from './atoms/file-pdf-chords';
 
 const SongLink = styled(Link)`
   text-decoration: none;
