@@ -1,4 +1,5 @@
 const SEPARATOR = '|'
+//const distinguishableCharacters = 'CDEHKMPRTUWXY012458'.toLowerCase().split('')
 
 export const idComp = (arrIds) => {
   return arrIds.join(SEPARATOR)
