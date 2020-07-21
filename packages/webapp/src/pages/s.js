@@ -43,7 +43,7 @@ const SetPage = ({ data, location }) => {
   const { bookmarks } = useContext(BookmarkContext)
   const songs = bookmarks.map(songId => data.songList && data.songList.songs.find(song => song.id === songId))
   const bookmarksInfo = {
-    text: `${data.site.siteMetadata.url}/${getBLink(bookmarks)}`
+    text: encodeURIComponent(`${data.site.siteMetadata.url}${getBLink(bookmarks)}`)
   }
 
   return (
