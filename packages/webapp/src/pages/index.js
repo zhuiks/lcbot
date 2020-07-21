@@ -14,6 +14,7 @@ export const query = graphql`
       songs{
         id
         title
+        hasChords
       }
     }
   }
