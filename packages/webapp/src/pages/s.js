@@ -6,15 +6,6 @@ import { BookmarkContext } from "../components/context-wrapper"
 import BookmarkRow from "../components/bookmark-row"
 import { getBLink } from "../utils/id-compress"
 
-const ButtonRow = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-`
-const Button = styled.button`
-  
-`
-
 const SongList = styled.ul`
   list-style: none;
   margin: 0;

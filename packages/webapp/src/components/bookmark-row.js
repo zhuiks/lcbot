@@ -50,17 +50,17 @@ const BookmarkRow = ({ song }) => {
       </SongLink>
       {youtube &&
         <Button>
-          <a href={youtube} target="_blank" rel="noopener noreferrer"><AiOutlineYoutube /></a>
+          <a href={youtube} target="_blank" rel="noopener noreferrer" aria-label="Song example on Youtube"><AiOutlineYoutube /></a>
         </Button>
       }
       {pdf &&
         <Button>
-          <a href={pdf} target="_blank" rel="noopener noreferrer"><AiOutlineFilePdf /></a>
+          <a href={pdf} target="_blank" rel="noopener noreferrer" aria-label="Download PDF file with lyrics"><AiOutlineFilePdf /></a>
         </Button>
       }
       {pdfChords &&
         <Button>
-          <a href={pdfChords} target="_blank" rel="noopener noreferrer"><FilePdfChords/></a>
+          <a href={pdfChords} target="_blank" rel="noopener noreferrer" aria-label="Download PDF file with lyrics and chords"><FilePdfChords/></a>
         </Button>
       }
     </li>

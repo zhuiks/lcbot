@@ -3,15 +3,15 @@ import SongSlide from '@bit/zhuiks.lcbot.org.song-slide';
 import { TextField, InputAdornment } from '@material-ui/core';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import { ChordSlide } from '@bit/zhuiks.lcbot.core.chords';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+// import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        link: {
-            textAlign: "left",
-            flip: false,
-        },
-    }));
+// const useStyles = makeStyles((theme: Theme) =>
+//     createStyles({
+//         link: {
+//             textAlign: "left",
+//             flip: false,
+//         },
+//     }));
 
 interface SongConfirmProps {
     slides: ChordSlide[];
@@ -26,7 +26,7 @@ interface SongConfirmProps {
 }
 
 const SongConfirm: React.FC<SongConfirmProps> = ({ slides, songTitle, onTitleChange, link }) => {
-    const classes = useStyles();
+    // const classes = useStyles();
     return (
         <>
             <TextField

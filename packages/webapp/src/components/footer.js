@@ -60,7 +60,7 @@ const Footer = ({ info = false }) => {
   const { i18n: { language } } = useTranslation()
   const direction = ['ar'].includes(language) ? 'rtl' : 'lfr'
 
-//  const whatsappLink = songInfo ? `https://wa.me/?text=${songInfo.text}${site.siteMetadata.url}/${songInfo.songId}` : ''
+  //  const whatsappLink = songInfo ? `https://wa.me/?text=${songInfo.text}${site.siteMetadata.url}/${songInfo.songId}` : ''
   const whatsappLink = info ? `https://wa.me/?text=${info.text}` : ''
 
   return (
@@ -74,16 +74,20 @@ const Footer = ({ info = false }) => {
             <Link to="/"><AiOutlineSearch /></Link>
           </div>
           <div className="link">
-            <a href={whatsappLink}><FaWhatsapp /></a>
+            <a href={whatsappLink} aria-label="Share this lyrics on Whatsapp"><FaWhatsapp /></a>
           </div>
           {info.youtube &&
             <div className="link">
-              <a href={info.youtube} target="_blank" rel="noopener noreferrer"><AiOutlineYoutube /></a>
+              <a href={info.youtube} target="_blank" rel="noopener noreferrer" aria-label="Song example on Youtube"><AiOutlineYoutube /></a>
             </div>
           }
           {info.pdf && info.pdf !== "" &&
             <div className="link">
-              <a href={info.pdf} target="_blank" rel="noopener noreferrer">{info.pdf.includes("chords") ? <FilePdfChords/> : <AiOutlineFilePdf />}</a>
+              {info.pdf.includes("chords") ?
+                <a href={info.pdf} target="_blank" rel="noopener noreferrer" aria-label="Download PDF file with lyrics and chords"><FilePdfChords /></a>
+                :
+                <a href={info.pdf} target="_blank" rel="noopener noreferrer" aria-label="Download PDF file with lyrics"><AiOutlineFilePdf /></a>
+              }
             </div>
           }
         </>
