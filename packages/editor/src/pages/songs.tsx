@@ -9,6 +9,7 @@ import ButtonAdd from '../components/atoms/button-add';
 import { SongRow, SearchField } from '../components';
 import * as GetSongListTypes from '../__generated__/GetSongList';
 import wordSearch from '../word-search';
+import ButtonPublish from '../components/atoms/button-publish';
 
 const GET_SONGS = gql`
   query GetSongList {
@@ -60,6 +61,7 @@ const Songs: React.FC<SongsProps> = () => {
         ))}
       </Grid>
       <ButtonAdd />
+      <ButtonPublish />
     </>
   );
 }

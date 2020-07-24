@@ -9,13 +9,13 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             position: 'fixed',
             bottom: theme.spacing(2),
-            right: theme.spacing(2),
+            right: theme.spacing(8),
             background: theme.palette.secondary.light,
-        }
+        },
     }));
 
 const ButtonAdd: React.FC = () => {
-    const classes = useStyles();   
+    const classes = useStyles();
     return (
         <Fab className={classes.root} color="secondary" variant="extended" component={RouterLink} to="/add" >
             <PostAddIcon />
