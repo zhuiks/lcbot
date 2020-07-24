@@ -9,6 +9,7 @@ import {
   Button,
   Typography,
 } from '@material-ui/core';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import logo from '../../assets/logo.png';
 
@@ -56,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'Lyrics & Chords', user, logout
             <Typography>
               Hello <strong>{(user.user_metadata && user.user_metadata.full_name) || 'NoName'}</strong>!
           </Typography>
-            <Button color="inherit" onClick={logoutAction}>Log Out</Button>
+            <Button color="inherit" onClick={logoutAction} title="Log Out"><ExitToAppIcon /></Button>
           </>
         )}
       </Toolbar>
