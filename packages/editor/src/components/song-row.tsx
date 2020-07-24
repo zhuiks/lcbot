@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.secondary.light,
       overflow: "visible",
       transform: "scale(0.035)",
-      paddingLeft: "3em"
+      paddingLeft: "3em",
+      width: "auto"
     }
   }));
 
