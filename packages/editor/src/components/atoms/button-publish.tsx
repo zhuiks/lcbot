@@ -76,7 +76,7 @@ const ButtonPublish: React.FC = () => {
         <div className={classes.paper}>
             <h2 id="simple-modal-title">Publish Songs</h2>
             <p id="simple-modal-description">
-                Republishing all songs to the public website <a href="https://bayader.tk" target="_blank">bayader.tk</a> requires complete rebuild of the website. Resources for that are limited. It may take up to 10 min for a new build to finish. After that all songs will be avaliable on the public website.
+                Republishing all songs to the public website <a href="https://bayader.tk" target="_blank" rel="noopener noreferrer">bayader.tk</a> requires complete rebuild of the website. Resources for that are limited. It may take up to 10 min for a new build to finish. After that all songs will be avaliable on the public website.
             </p>
             <p>Are you sure you want to proceed with the new build?</p>
             <Button variant="contained" color="secondary" onClick={handleBuild}>Build</Button>
